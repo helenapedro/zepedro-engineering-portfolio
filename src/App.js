@@ -19,7 +19,7 @@ function App() {
     <div id="app">
       <NavBar />
       <div className="content">
-        {/* <Home /> */}
+        <Home />
         {/* <Projects />
         <Card />
         <Certificate /> */}
