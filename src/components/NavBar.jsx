@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <body className='is-preload'>
-        <nav id="nav">
+    <nav id="nav">
           <Link to="/" className="icon solid fa-home"><span>Home</span></Link>
           <Link to="/projects" className="icon solid fa-building"><span>Projects</span></Link>
           <Link to="/card" className="icon solid fa-id-card"><span>Card</span></Link>
@@ -17,7 +16,6 @@ const NavBar = () => {
               <span>LinkedIn</span>
           </a>
         </nav>
-    </body>
   );
 };
  

@@ -8,7 +8,7 @@ const Card = () => {
         <h1>José Francisco Pedro</h1>
         <p>
           <b>
-            <a href="#card" className="icon solid">Objectivo:</a> Produção (Direcção de obra) | Gestão de Projectos.
+            <a href="#card" className="icon solid">Interested Area:</a> Construction Management.
           </b>
         </p>
       </header>
@@ -19,7 +19,7 @@ const Card = () => {
         className="col-2 col-3-medium col-10-small image fit"
       >
         <span className="arrow icon solid fa-chevron-right">
-          <span><i>Cartão de Membro</i></span>
+          <span><i>Associated A3  Member of The Order of Engineers of Angola (OEA)</i></span>
         </span>
         <img src="https://pedro-pi.s3.us-east-2.amazonaws.com/oea.jpeg" alt="Cartão de Membro" />
       </a>

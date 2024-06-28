@@ -9,6 +9,7 @@ import NotFound from './components/NotFound';
 import Footer from './components/Footer';
 
 import '@fortawesome/fontawesome-free/css/all.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = () => {
