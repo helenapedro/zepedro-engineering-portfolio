@@ -1,7 +1,9 @@
 import React from 'react';
+import SkillsTable from './comon/SkillsTable'
 
 const Certificate = () => {
   return (
+    <div id='main'>
     <article id="certificate" className="panel">
       <section>
         <header className="quote__school"><u>FORMAÇÃO ACADÊMICA</u></header>
@@ -44,8 +46,10 @@ const Certificate = () => {
           {/* Add other certification images similarly */}
         </div>
       </section>
-      <a href="#certificate" className="arrow icon solid fa-arrow-up"></a>
     </article>
+    <SkillsTable />
+    <a href="#certificate" className="arrow icon solid fa-arrow-up"></a>
+    </div>
   );
 };
 

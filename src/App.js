@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Certificate from './components/Certificate';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/card" element={<Card />} />
+          <Route path="/certificate" element={<Certificate />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
