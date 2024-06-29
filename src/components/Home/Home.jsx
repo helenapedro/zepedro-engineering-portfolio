@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './Home.module.css';
 
 const Home = () => {
   return (
-    <div id="main">
-      <article id="home" className="panel intro">
+    <div id="main" className={styles.main}>
+      <article id="home" className={`${styles.panel} ${styles.intro}`}>
         <header>
           <h1>José Francisco Pedro</h1>
           <p className="aln-left">
@@ -19,8 +20,8 @@ const Home = () => {
             </strong>
           </p>
         </header>
-        <Link to="/projects" className="jumplink pic">
-          <span className="arrow icon solid fa-chevron-right">
+        <Link to="/projects" className={`${styles.jumplink} ${styles.pic}`}>
+          <span className={`${styles.arrow} icon solid fa-chevron-right`}>
             <span>See my work</span>
           </span>
           <img src="https://pedro-pi.s3.us-east-2.amazonaws.com/me_1.jpg" alt="José Francisco Pedro" />

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from "./NavBar.module.css";
 
 const NavBar = () => {
   return (
-    <nav id="nav">
+    <nav className={styles.nav}>
           <Link to="/" className="icon solid fa-home"><span>Home</span></Link>
           <Link to="/projects" className="icon solid fa-building"><span>Projects</span></Link>
           <Link to="/card" className="icon solid fa-id-card"><span>Card</span></Link>
@@ -18,5 +19,5 @@ const NavBar = () => {
         </nav>
   );
 };
- 
+  
 export default NavBar;

@@ -1,5 +1,5 @@
 import React from 'react';
-import SkillsTable from './comon/SkillsTable'
+import SkillsTable from '../comon/SkillsTable'
 
 const Certificate = () => {
   return (
