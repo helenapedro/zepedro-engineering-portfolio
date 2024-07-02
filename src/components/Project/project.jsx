@@ -1,31 +1,39 @@
 import React from 'react';
+import styles from './Project.module.css';
+import rowStyles from '../Global/Row.module.css';
 
 const Project = ({ title, organization, description, activities, finalDescription, images }) => {
   return (
-    <article id="projects" className="panel">
-      <header>
-        <h2 className="quote__title">{title}</h2>
-        <i className="quote__organization">{organization}</i>
-      </header>
-      <p className="quote__line">
-        <b>{description}</b>
-        <ul className="list list--tick">
+    <div id="main" className={styles.project}>
+      <article id="projects" className={styles.panel}>
+        <header>
+          <h2 className={styles.quote__title}>{title}</h2>
+          <i className={styles.quote__organization}>{organization}</i>
+        </header>
+        <p className={styles.quote__line}>
+          <b>{description}</b>
+        </p>
+        <ul className={`${styles.list} ${styles['list--tick']}`}>
           {activities.map((activity, index) => (
-            <li className="list__item" key={index}>{activity}</li>
+            <li className={styles.list__item} key={index}>{activity}</li>
           ))}
         </ul>
-        <b>{finalDescription}</b>
-      </p>
-      <section>
-        <div className="row">
-          {images.map((image, index) => (
-            <div className="col-4 col-6-medium col-12-small" key={index}>
-              <a className="image fit zoomed"><img src={image} alt="" /></a>
-            </div>
-          ))}
-        </div>
-      </section>
-    </article>
+        <p className={styles.quote__line}>
+          <b>{finalDescription}</b>
+        </p>
+        <section>
+          <div className='row'>
+            {images.map((image, index) => (
+              <div className="col-4 col-6-medium col-12-small" key={index}>
+                <a className="image fit zoomed">
+                  <img src={image} alt="" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+      </article>
+    </div>
   );
 };
 

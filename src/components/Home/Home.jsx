@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Home.module.css';
+import homeStyles from './Home.module.css';
+import globalStyles from '../Global/global.module.css';
 
 const Home = () => {
   return (
-    <div id="main" className={styles.main}>
-      <article id="home" className={`${styles.panel} ${styles.intro}`}>
+    <div id="main" className={homeStyles.main}>
+      <article id="home" className={`${homeStyles.panel} ${homeStyles.intro}`}>
         <header>
           <h1>José Francisco Pedro</h1>
           <p className="aln-left">
@@ -20,8 +21,8 @@ const Home = () => {
             </strong>
           </p>
         </header>
-        <Link to="/projects" className={`${styles.jumplink} ${styles.pic}`}>
-          <span className={`${styles.arrow} icon solid fa-chevron-right`}>
+        <Link to="/projects" className={`${homeStyles.jumplink} ${homeStyles.pic}`}>
+          <span className={`${homeStyles.arrow} ${globalStyles.icon} solid fa-chevron-right`}>
             <span>See my work</span>
           </span>
           <img src="https://pedro-pi.s3.us-east-2.amazonaws.com/me_1.jpg" alt="José Francisco Pedro" />
