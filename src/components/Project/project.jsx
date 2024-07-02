@@ -1,10 +1,9 @@
 import React from 'react';
 import styles from './Project.module.css';
-import rowStyles from '../Global/Row.module.css';
 
 const Project = ({ title, organization, description, activities, finalDescription, images }) => {
   return (
-    <div id="main" className={styles.project}>
+    <div> 
       <article id="projects" className={styles.panel}>
         <header>
           <h2 className={styles.quote__title}>{title}</h2>

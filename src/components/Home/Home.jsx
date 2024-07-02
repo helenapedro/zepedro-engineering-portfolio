@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import homeStyles from './Home.module.css';
 import globalStyles from '../Global/global.module.css';
 
-const Home = () => {
+const Home = () => { 
   return (
     <div id="main" className={homeStyles.main}>
       <article id="home" className={`${homeStyles.panel} ${homeStyles.intro}`}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Project from './project';
 import Pagination from '../comon/Pagination';
+import styles from "./Project.module.css";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -28,7 +29,7 @@ const Projects = () => {
   const paginatedProjects = projects.slice(startIndex, startIndex + pageSize);
 
   return (
-    <div id="main">
+    <div id="main" className={styles.project}>
       <div>
         {projects.length > 0 ? (
           <>

@@ -94,6 +94,9 @@
 }
 
 @media screen and (max-width: 980px) {
+  .nav {
+    margin-top: 2em;
+  }
   .nav a span {
     display: none;
   }

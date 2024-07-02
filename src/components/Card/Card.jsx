@@ -3,7 +3,7 @@ import styles from './Card.module.css';
 
 const Card = () => {
   return (
-    <div id='main' className={styles.card}>
+    <div id='main' className={styles.main}>
       <article className={`${styles.panel} ${styles.intro}`}>
         <header>
           <h1>José Francisco Pedro</h1>
@@ -21,5 +21,5 @@ const Card = () => {
     </div>
   );
 };
-
+ 
 export default Card;
