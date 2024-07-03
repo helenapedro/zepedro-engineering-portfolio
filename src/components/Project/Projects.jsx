@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Project from './project';
 import Pagination from '../comon/Pagination';
-import styles from "./Project.module.css";
+import styles from "./Project.module.css"; 
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);

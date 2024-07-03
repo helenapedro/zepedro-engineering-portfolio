@@ -1,0 +1,17 @@
+[
+    {
+        "course": "B.S, Construction Engineering ~ 2021",
+        "organization": "Instituto Superior Politécnico Metropolitano de Angola (IMETRO)",
+        "organizationLink": "http://www.imetroangola.com/",
+        "tutorDescription": "Orientadora de Monografia: Engª._Mestre - CEO Next Building",
+        "tutorName": "Tatiana da Encarnação Casaca",
+        "tutorLink": "https://www.linkedin.com/in/tatiana-encarna%C3%A7%C3%A3o-engenheiracivil-gerentedeprojectos/",
+        "images": ["grad2.jpg", "grad1.jpg", "grad7.jpg", "grad4.jpg", "grad5.jpg", "grad6.jpg"]
+    },
+    {
+        "course": "Technical High School in Civil Construction ~ 2014",
+        "organization": "Instituto Médio Industrial de Luanda (IMIL)",
+        "organizationLink": "http://www.industrialdeluanda.com/",
+        "images": []
+    }
+]

@@ -33,6 +33,16 @@
   }
 }
 
+@media screen and (max-width: 1680px) {
+  .panel {
+    padding: 2em 1.5em 1.5em 1.5em;
+  }
+
+  .project {
+    width: 80%;
+  }
+}
+
 .panel.intro {
   padding: 0;
   height: 20em;
@@ -90,6 +100,7 @@
   color: var(--color-headings);
   font-size: 1.5rem;
   font-style: normal;
+  margin-top: -2em;
 }
 
 .quote__organization,
