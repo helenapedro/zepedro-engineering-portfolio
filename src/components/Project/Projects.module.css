@@ -51,7 +51,7 @@
 }
 
 .ulItems--tick {
-  list-style-image: url("/src/assets/images/tick.svg");
+  list-style-image: url("https://dh09x5tu10bt3.cloudfront.net/tick.svg");
   padding-left: 3rem;
   color: var(--color-headings);
 }
