@@ -36,7 +36,7 @@ const Academic = ({ academicData }) => {
                             })}
                         </div>
                     </header>
-                </article>
+                </article> 
             ))}
         </div>
     );

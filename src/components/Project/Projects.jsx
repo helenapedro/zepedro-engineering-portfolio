@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Project from './project';
+import Project from './Project';
 import Pagination from '../comon/Pagination';
-import styles from "./Project.module.css"; 
+import styles from "./Projects.module.css";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 3; // Number of projects per page
+  const pageSize = 3;
 
   useEffect(() => {
     fetch('/data/projectsData.json')
@@ -16,7 +16,10 @@ const Projects = () => {
         }
         return response.json();
       })
-      .then(data => setProjects(data))
+      .then(data => {
+        console.log('Fetched projects data:', data); // Log the data to check if it's fetched correctly
+        setProjects(data);
+      })
       .catch(error => console.error('Error fetching projects data:', error));
   }, []);
 
@@ -24,12 +27,11 @@ const Projects = () => {
     setCurrentPage(page);
   };
 
-  // Calculate the projects to display for the current page
   const startIndex = (currentPage - 1) * pageSize;
   const paginatedProjects = projects.slice(startIndex, startIndex + pageSize);
 
   return (
-    <div id="main" className={styles.project}>
+    <div id="main" className={styles.projectContainer}>
       <div>
         {projects.length > 0 ? (
           <>
@@ -50,7 +52,7 @@ const Projects = () => {
               currentPage={currentPage}
               onPageChange={handlePageChange}
             />
-            <a href="#main" className="arrow icon solid fa-arrow-up"></a> 
+            <a href="#main" className="arrow icon solid fa-arrow-up"></a>
           </>
         ) : (
           <p>Loading projects...</p>

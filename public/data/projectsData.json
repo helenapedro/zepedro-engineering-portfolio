@@ -1,117 +1,103 @@
 [
-  {
-    "title": "Rehabilitation of the Maria M. Café Airport Pavement Runway - Cabinda ~ 2023",
-    "organization": "MOTA-ENGIL ANGOLA",
-    "description": "O projecto envolveu a intervenção na pista do principal aeródromo da província de Cabinda. Visando preservar a economia local e atender às necessidades da população em relação aos serviços de voo, as atividades foram desenvolvidas durante o periódo noturno, após o fecho do último serviço, entre as 00h ás 06h da manhã, focando principalmente nas seguintes atividades:",
-    "activities": [
-      "Fresagem em 5 cm de espessura, com comprimento total de 600 metros e 16 metros de largura respectivamente;",
-      "Recomposição da camada fresada com betuminoso."
-    ],
-    "finalDescription":"",
-    "images": [
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/A3.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/A2.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/A5.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/A8.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/A0.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/A7.jpg"
-    ]
-  },
-  {
-    "title":"Construction of the Accesses to the New Bridge Over the Lucola River",
-    "organization":"MOTA-ENGIL ANGOLA",
-    "description":"",
-    "activities":[
-
-    ],
-    "finalDescription":"",
-    "images":[
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/ac1.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/ac2.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/ac3.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/ac4.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/ac5.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/ac6.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/ac7.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/ac8.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/ac9.jpg"
-    ]
-  },
-  {
-    "title":"Construction of the New Bridge Over the Lucola River",
-    "organization":"MOTA-ENGIL ANGOLA",
-    "description":"",
-    "activities":[
-
-    ],
-    "finalDescription":"",
-    "images":[
-      "https://dh09x5tu10bt3.cloudfront.net/rl1.jpg",
-      "https://dh09x5tu10bt3.cloudfront.net/rl2.jpg",
-      "https://dh09x5tu10bt3.cloudfront.net/rl3.jpg",
-      "https://dh09x5tu10bt3.cloudfront.net/rl4.jpg",
-      "https://dh09x5tu10bt3.cloudfront.net/rl5.jpg",
-      "https://dh09x5tu10bt3.cloudfront.net/rl6.jpg",
-      "https://dh09x5tu10bt3.cloudfront.net/rl7.jpg",
-      "https://dh09x5tu10bt3.cloudfront.net/rl8.jpg",
-      "https://dh09x5tu10bt3.cloudfront.net/rl9.jpg"
-    ]
-  },
-  {
-    "title":"Rehabilitation of the Macau Street Office Building",
-    "organization":"MOTA-ENGIL ANGOLA",
-    "description":"",
-    "activities":[
-
-    ],
-    "finalDescription":"",
-    "images":[
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/r11.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/r12.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/r13.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/r14.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/r15.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/r16.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/r17.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/r18.jpg",
-      "https://pedro-pi.s3.us-east-2.amazonaws.com/r19.jpg"
-    ]
-  },
-  {
-    "title":"Rehabilitation and Expansion of the 1º de Maio Maternity Hospital",
-    "organization":"MOTA-ENGIL ANGOLA",
-    "description":"",
-    "activities":[
-
-    ],
-    "finalDescription":"",
-    "images":[
-
-    ]
-  },
-  {
-    "title":"Rehabilitation and Expansion of the 1º de Maio Maternity Hospital (Cabinda-Angola)",
-    "organization":"MOTA-ENGIL ANGOLA",
-    "description":"",
-    "activities":[
-
-    ],
-    "finalDescription":"",
-    "images":[
-
-    ]
-  },
-  {
-    "title":"Two floors Single-family home T4, Includes two floors outbuilding. Luanda-Angola",
-    "organization":"Independet Project",
-    "description":"",
-    "activities":[
-
-    ],
-    "finalDescription":"",
-    "images":[
-
-    ]
-  }
-
-]
+     {
+       "title": "Rehabilitation of the Maria M. Café Airport Pavement Runway - Cabinda ~ 2023",
+       "organization": "MOTA-ENGIL ANGOLA",
+       "description": "O projecto envolveu a intervenção na pista do principal aeródromo da província de Cabinda. Visando preservar a economia local e atender às necessidades da população em relação aos serviços de voo, as atividades foram desenvolvidas durante o periódo noturno, após o fecho do último serviço, entre as 00h ás 06h da manhã, focando principalmente nas seguintes atividades:",
+       "activities": [
+         "Fresagem em 5 cm de espessura, com comprimento total de 600 metros e 16 metros de largura respectivamente;",
+         "Recomposição da camada fresada com betuminoso."
+       ],
+       "finalDescription":"",
+       "images": [ 
+         "A3.jpg", "A2.jpg", "A5.jpg", "A8.jpg", "A0.jpg", "A7.jpg"]
+     },
+     {
+       "title":"Construction of the Accesses to the New Bridge Over the Lucola River",
+       "organization":"MOTA-ENGIL ANGOLA",
+       "description":"",
+       "activities":[
+   
+       ],
+       "finalDescription":"",
+       "images":[
+         "ac1.jpg", "ac2.jpg", "ac3.jpg", "ac4.jpg", "ac5.jpg", "ac6.jpg", "ac7.jpg", "ac8.jpg", "ac9.jpg"]
+     },
+     {
+       "title":"Construction of the New Bridge Over the Lucola River",
+       "organization":"MOTA-ENGIL ANGOLA",
+       "description":"",
+       "activities":[
+   
+       ],
+       "finalDescription":"",
+       "images":[
+         "rl1.jpg",
+         "rl2.jpg",
+         "rl3.jpg",
+         "rl4.jpg",
+         "rl5.jpg",
+         "rl6.jpg",
+         "rl7.jpg",
+         "rl8.jpg",
+         "rl9.jpg"
+       ]
+     },
+     {
+       "title":"Rehabilitation of the Macau Street Office Building",
+       "organization":"MOTA-ENGIL ANGOLA",
+       "description":"",
+       "activities":[
+   
+       ],
+       "finalDescription":"",
+       "images":[
+         "r11.jpg",
+         "r12.jpg",
+         "r13.jpg",
+         "r14.jpg",
+         "r15.jpg",
+         "r16.jpg",
+         "r17.jpg",
+         "r18.jpg",
+         "r19.jpg"
+       ]
+     },
+     {
+       "title":"Rehabilitation and Expansion of the 1º de Maio Maternity Hospital",
+       "organization":"MOTA-ENGIL ANGOLA",
+       "description":"",
+       "activities":[
+   
+       ],
+       "finalDescription":"",
+       "images":[
+   
+       ]
+     },
+     {
+       "title":"Rehabilitation and Expansion of the 1º de Maio Maternity Hospital (Cabinda-Angola)",
+       "organization":"MOTA-ENGIL ANGOLA",
+       "description":"",
+       "activities":[
+   
+       ],
+       "finalDescription":"",
+       "images":[
+   
+       ]
+     },
+     {
+       "title":"Two floors Single-family home T4, Includes two floors outbuilding. Luanda-Angola",
+       "organization":"Independet Project",
+       "description":"",
+       "activities":[
+   
+       ],
+       "finalDescription":"",
+       "images":[
+   
+       ]
+     }
+   
+   ]
+   

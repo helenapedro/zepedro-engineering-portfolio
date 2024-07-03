@@ -1,0 +1,101 @@
+/* Projects.module.css */
+
+.projectContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projectContainer:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.projectHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.projectTitle {
+  font-size: 2em;
+  color: #007acc;
+}
+
+.projectOrganization {
+  font-style: italic;
+  color: #555;
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.projectDescription {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.projectActivitiesList {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.ulItems {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ulItems--tick {
+  list-style-image: url("/src/assets/images/tick.svg");
+  padding-left: 3rem;
+  color: var(--color-headings);
+}
+
+.projectActivityItem {
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.col-4,
+.col-6-medium,
+.col-12-small {
+  flex: 1 1 calc(33.333% - 20px);
+  margin: 10px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.col-4:hover,
+.col-6-medium:hover,
+.col-12-small:hover {
+  transform: scale(1.05);
+}
+
+.projectImage {
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.projectImage img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.projectImage img:hover {
+  transform: scale(1.1);
+}

@@ -1,37 +1,37 @@
 import React from 'react';
-import styles from './Project.module.css';
+import styles from './Projects.module.css';
+import config from '../../config';
 
 const Project = ({ title, organization, description, activities, finalDescription, images }) => {
   return (
-    <div> 
-      <article id="projects" className={styles.panel}>
-        <header>
-          <h2 className={styles.quote__title}>{title}</h2>
-          <i className={styles.quote__organization}>{organization}</i>
-        </header>
-        <p className={styles.quote__line}>
-          <b>{description}</b>
-        </p>
-        <ul className={`${styles.list} ${styles['list--tick']}`}>
-          {activities.map((activity, index) => (
-            <li className={styles.list__item} key={index}>{activity}</li>
-          ))}
-        </ul>
-        <p className={styles.quote__line}>
-          <b>{finalDescription}</b>
-        </p>
-        <section>
-          <div className='row'>
-            {images.map((image, index) => (
-              <div className="col-4 col-6-medium col-12-small" key={index}>
-                <a className="image fit zoomed">
-                  <img src={image} alt="" />
+    <div className={styles.projectContainer}>
+      <header className={styles.projectHeader}>
+        <h2 className={styles.projectTitle}>{title}</h2>
+        <i className={styles.projectOrganization}>{organization}</i>
+      </header>  
+      <p className={styles.projectDescription}><b>{description}</b></p>
+      <ul className={styles.projectActivitiesList}>
+        {activities.map((activity, index) => (
+          <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`}>
+            <li className={styles.projectActivityItem} key={index}>{activity}</li>
+          </ul>
+        ))} 
+      </ul>
+      <p className={styles.projectDescription}><b>{finalDescription}</b></p>
+      <section>
+        <div className={styles.row}>
+          {images && images.map((image, imgIndex) => {
+            const imageUrl = `${config.projectsUrl}${image}`;
+            return (
+              <div className={`${styles.col-4} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
+                <a className={styles.projectImage}>
+                  <img src={imageUrl} alt="images of the projects" />
                 </a>
               </div>
-            ))}
-          </div>
-        </section>
-      </article>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 };
