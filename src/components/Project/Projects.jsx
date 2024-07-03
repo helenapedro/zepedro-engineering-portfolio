@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProjectComponent from './ProjectsComponent';
-import Pagination from '../common/Pagination';
+import Pagination from '../comon/Pagination';
 import styles from './Projects.module.css';
 
 const Projects = () => {
