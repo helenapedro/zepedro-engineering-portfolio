@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './Academic.module.css';
-import config from '../../config'; // Ajuste o caminho conforme necessário
+import config from '../../config';
 
 const Academic = ({ academicData }) => {
     if (!academicData || !Array.isArray(academicData)) {
         return <div>No academic data available.</div>;
     }
-
+ 
     return (
         <div className={styles.certificate}>
             {academicData.map((data, index) => (
@@ -15,20 +15,12 @@ const Academic = ({ academicData }) => {
                         <h2 className={styles.title}>{data.title}</h2>
                         <h1 className={styles.course}>{data.course}</h1>
                         <b className={styles.institute}>
-                            {data.organization}
                             <a href={data.organizationLink} target='_blank' rel='noopener noreferrer'> ({data.organization})</a>
                         </b>
-                        <br />
                         {data.tutorDescription && (
                             <b className={styles.tutordescription}>
                                 {data.tutorDescription}
-                                <a 
-                                    href={data.tutorLink}
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                >
-                                    {data.tutorName}
-                                </a>
+                                <a href={data.tutorLink} target='_blank' rel='noopener noreferrer'> {data.tutorName}</a>
                             </b>
                         )}
                         <div className={styles.row}>

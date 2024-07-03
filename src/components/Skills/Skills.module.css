@@ -1,0 +1,64 @@
+/* Define CSS variables for reusability and customization */
+:root {
+  --skills-table-margin-top: 40px;
+  --skills-table-width: 100%;
+  --skills-table-max-width: 800px;
+  --skills-table-bg-color: #fff;
+  --skills-table-border-radius: 10px;
+  --skills-table-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --skills-table-header-bg-color: #007acc;
+  --skills-table-header-color: #fff;
+  --skills-table-header-hover-bg-color: #005d7a;
+  --skills-table-cell-padding: 10px;
+  --skills-table-body-even-bg-color: #f2f2f2;
+  --skills-table-body-hover-bg-color: #e0e0e0;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Apply styles using CSS variables */
+.skills-table {
+  flex-direction: column;
+  margin-top: var(--skills-table-margin-top);
+  width: var(--skills-table-width);
+  max-width: var(--skills-table-max-width);
+  background-color: var(--skills-table-bg-color);
+  border-radius: var(--skills-table-border-radius);
+  box-shadow: var(--skills-table-box-shadow);
+  overflow: hidden;
+}
+
+.skills-table-header {
+  background-color: var(--skills-table-header-bg-color);
+  color: var(--skills-table-header-color);
+}
+
+.skills-table-header th {
+  padding: var(--skills-table-cell-padding);
+  cursor: pointer;
+}
+
+.skills-table-header th:hover {
+  background-color: var(--skills-table-header-hover-bg-color);
+}
+
+.skills-table-body td {
+  padding: var(--skills-table-cell-padding);
+}
+
+.skills-table-body tr:nth-child(even) {
+  background-color: var(--skills-table-body-even-bg-color);
+}
+
+.skills-table-body tr:hover {
+  background-color: var(--skills-table-body-hover-bg-color);
+}

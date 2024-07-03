@@ -1,11 +1,12 @@
-import React, { memo, useState } from "react";
+import React, { useState } from "react";
 import SkillsHeader from "./SkillsHeader";
 import SkillsBody from "./SkillsBody";
+import styles from './Skills.module.css'; // Import the Skills module CSS
 
 const SkillsTable = () => {
   const [sortColumn, setSortColumn] = useState({ path: 'year', order: 'asc' });
 
-  const [skills] = useState([
+  const [skills, setSkills] = useState([
     { year: '2023', skill: 'Lumion', level: 'Básico' },
     { year: '2023', skill: 'Pilotagem de Drones', level: 'Intermediário' },
     { year: '2021', skill: 'SAP HANA S4P (aprovisionamentos, logística e armazém)', level: 'Intermediário' },
@@ -27,26 +28,26 @@ const SkillsTable = () => {
     const sortedSkills = [...skills].sort((a, b) => {
       const path = newSortColumn.path;
       const order = newSortColumn.order === "asc" ? 1 : -1;
-      return (a[path] < b[path] ? -1 : 1) * order;
+      // Convert year to numbers for correct numerical comparison
+      return order * (parseInt(a[path]) - parseInt(b[path]));
     });
+    setSkills(sortedSkills); 
   };
 
   return (
-    <>
-      <header className="quote__school"><u>TECHNICAL SKILLS</u></header>
-      <br />
-      <div className="table-responsive mb-3">
-        <table className="table table-bordered table-hover border-primary">
-          <SkillsHeader
-            sortColumn={sortColumn}
-            onSort={handleSort}
-          />
-          <SkillsBody data={skills} />
-        </table>
-      </div>
-      <br />
-    </>
+    <div className={styles.table}>
+      <header className={styles['skills-table']}>
+        <section>
+          <div className={`${styles['skills-table-body']} table-responsive mb-3`}>
+            <table className="table table-bordered table-hover border-primary">
+              <SkillsHeader sortColumn={sortColumn} onSort={handleSort} />
+              <SkillsBody data={skills} />
+            </table>
+          </div>
+        </section>
+      </header>
+    </div>
   );
 };
 
-export default memo(SkillsTable);
+export default SkillsTable;
