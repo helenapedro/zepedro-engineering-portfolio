@@ -1,30 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import Project from './Project';
-import Pagination from '../comon/Pagination';
-import styles from "./Projects.module.css";
+import ProjectComponent from './ProjectsComponent';
+import Pagination from '../common/Pagination';
+import styles from './Projects.module.css';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 3; 
+  const pageSize = 3;
 
   useEffect(() => {
     fetch('/data/projectsData.json')
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      .then(data => {
-        console.log('Fetched projects data:', data); // Log the data to check if it's fetched correctly
+      .then((data) => {
+        console.log('Fetched projects data:', data);
         setProjects(data);
       })
-      .catch(error => console.error('Error fetching projects data:', error));
+      .catch((error) => console.error('Error fetching projects data:', error));
   }, []);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const startIndex = (currentPage - 1) * pageSize;
@@ -36,7 +40,7 @@ const Projects = () => {
         {projects.length > 0 ? (
           <>
             {paginatedProjects.map((project, index) => (
-              <Project
+              <ProjectComponent
                 key={index}
                 title={project.title}
                 organization={project.organization}
@@ -52,7 +56,7 @@ const Projects = () => {
               currentPage={currentPage}
               onPageChange={handlePageChange}
             />
-            <a href="#main" className={`${styles.arrowIcon} solid fa-arrow-up`}></a>
+            <a href="#main" className={`${styles.arrowIcon} solid fa-arrow-up`} onClick={handleScrollToTop}></a>
           </>
         ) : (
           <p>Loading projects...</p>

@@ -2,20 +2,18 @@ import React from 'react';
 import styles from './Projects.module.css';
 import config from '../../config';
 
-const Project = ({ title, organization, description, activities, finalDescription, images }) => {
+const ProjectComponent = ({ title, organization, description, activities, finalDescription, images }) => {
   return (
     <div className={styles.projectContainer}>
       <header className={styles.projectHeader}>
         <h2 className={styles.projectTitle}>{title}</h2>
         <i className={styles.projectOrganization}>{organization}</i>
-      </header>  
+      </header>
       <p className={styles.projectDescription}><b>{description}</b></p>
       <ul className={styles.projectActivitiesList}>
         {activities.map((activity, index) => (
-          <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`}>
-            <li className={styles.projectActivityItem} key={index}>{activity}</li>
-          </ul>
-        ))} 
+          <li className={styles.projectActivityItem} key={index}>{activity}</li>
+        ))}
       </ul>
       <p className={styles.projectDescription}><b>{finalDescription}</b></p>
       <section>
@@ -36,4 +34,4 @@ const Project = ({ title, organization, description, activities, finalDescriptio
   );
 };
 
-export default Project;
+export default ProjectComponent;
