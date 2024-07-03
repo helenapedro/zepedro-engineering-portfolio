@@ -6,7 +6,7 @@ import styles from "./Projects.module.css";
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 3;
+  const pageSize = 3; 
 
   useEffect(() => {
     fetch('/data/projectsData.json')
@@ -52,7 +52,7 @@ const Projects = () => {
               currentPage={currentPage}
               onPageChange={handlePageChange}
             />
-            <a href="#main" className="arrow icon solid fa-arrow-up"></a>
+            <a href="#main" className={`${styles.arrowIcon} solid fa-arrow-up`}></a>
           </>
         ) : (
           <p>Loading projects...</p>

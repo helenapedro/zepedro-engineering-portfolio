@@ -1,7 +1,5 @@
-@import "../../vars.css";
-
-/* Main */
-.main {
+/* Main Container */
+.mainContainer {
   background: #ffffff;
   box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25);
   margin: auto;
@@ -11,6 +9,7 @@
   width: 60%;
 }
 
+/* Panels */
 .panel {
   transition: opacity 0.25s ease-in-out;
   margin-bottom: 0;
@@ -29,7 +28,8 @@
   }
 }
 
-.panel.intro {
+/* Intro Panel */
+.introPanel {
   padding: 0;
   height: 20em;
   display: flex;
@@ -37,7 +37,61 @@
   align-items: center;
 }
 
-.pic {
+@media screen and (max-width: 980px) {
+  .introPanel {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .introPanel {
+    height: auto;
+  }
+}
+
+/* Header */
+.header {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 3.5em 2.5em;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 980px) {
+  .header {
+    padding: 1.4em;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .header {
+    padding: 2.75em 2em 2.5em 2em;
+  }
+}
+
+.title {
+  line-height: 1.25em;
+  margin-bottom: 0;
+}
+
+.description {
+  letter-spacing: -0.015em;
+  font-size: 1.11em;
+  margin: 0.25em 0 0 0;
+}
+
+@media screen and (max-width: 736px) {
+  .description {
+    font-size: 1em;
+    margin: 0.25em 0 0 0;
+  }
+}
+
+/* Project Link */
+.projectLink {
   text-decoration: none;
   position: relative;
   flex-grow: 0;
@@ -46,29 +100,20 @@
   height: 100%;
 }
 
-.pic:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: url("../../assets/images/overlay.png");
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+@media screen and (max-width: 980px) {
+  .projectLink {
+    height: 19.9em;
+    width: 100%;
+  }
 }
 
-.pic img {
-  position: relative;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+@media screen and (max-width: 736px) {
+  .projectLink {
+    height: 20em;
+  }
 }
 
+/* Arrow */
 .arrow {
   display: block;
   position: absolute;
@@ -77,7 +122,6 @@
   margin-top: -1.375em;
   width: 2.75em;
   height: 2.75em;
-  background: #000;
   background: rgba(0, 0, 0, 0.75);
   color: #ffffff;
   text-align: center;
@@ -98,58 +142,20 @@
   text-indent: -9999px;
 }
 
-.pic:hover .arrow {
+.projectLink:hover .arrow {
   width: 3em;
   padding-right: 0.25em;
 }
 
-header {
-  flex-grow: 1;
-  flex-shrink: 1;
-  padding: 3.5em 2.5em;
-  margin-bottom: 0;
+/* Profile Image */
+.profileImage {
+  position: relative;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-}
-
-header h1 {
-  line-height: 1.25em;
-  margin-bottom: 0;
-}
-
-header p {
-  letter-spacing: -0.015em;
-  font-size: 1.11em;
-  margin: 0.25em 0 0 0;
-}
-
-@media screen and (max-width: 980px) {
-  .panel.intro {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .pic {
-    height: 19.9em;
-    width: 100%;
-  }
-
-  header {
-    padding: 1.4em;
-    text-align: center;
-  }
-}
-
-@media screen and (max-width: 736px) {
-  .pic {
-    height: 20em;
-  }
-
-  header {
-    padding: 2.75em 2em 2.5em 2em;
-  }
-
-  header p {
-    font-size: 1em;
-    margin: 0.25em 0 0 0;
-  }
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }

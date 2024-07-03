@@ -2,14 +2,14 @@ import React from 'react';
 import styles from './Academic.module.css';
 import config from '../../config';
 
-const ProfessionalMe = ({ professionalData }) => {
-    if (!professionalData || !Array.isArray(professionalData)) {
-        return <div>No professional data available.</div>;
+const OtherEducationData = ({ otherEducationData }) => {
+    if (!otherEducationData || !Array.isArray(otherEducationData)) {
+        return <div>No data available.</div>;
     }
-  
+
     return (
         <div className={styles.certificate}>
-            {professionalData.map((data, index) => (
+            {otherEducationData.map((data, index) => (
                 <article className={styles.panel} key={index}>
                     <div className={styles.row}>
                         {data.images && data.images.length > 0 ? (
@@ -27,7 +27,7 @@ const ProfessionalMe = ({ professionalData }) => {
                         ) : (
                             <div className={`${styles['col-12-small']}`}>
                                 <p className={styles.title}>{data.title}</p>
-                                <p>No certificate image available</p>
+                                <p>No image available</p>
                             </div>
                         )}
                     </div>
@@ -37,4 +37,4 @@ const ProfessionalMe = ({ professionalData }) => {
     );
 };
 
-export default ProfessionalMe;
+export default OtherEducationData;

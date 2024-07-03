@@ -87,6 +87,7 @@
   display: block;
   overflow: hidden;
   border-radius: 10px;
+  position: relative;
 }
 
 .projectImage img {
@@ -97,5 +98,20 @@
 }
 
 .projectImage img:hover {
+  transform: scale(1.1);
+}
+
+.arrowIcon {
+  position: relative;
+  bottom: 10px;
+  right: 10px;
+  background-color: #007acc;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.arrowIcon:hover {
   transform: scale(1.1);
 }

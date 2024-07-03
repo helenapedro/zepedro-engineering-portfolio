@@ -1,11 +1,13 @@
 import React from 'react';
-import SkillsTable from '../Skills/SkillsTable';
-import Academic from '../Education/Academic';
-import ProfessionalMe from '../Education/ProfessionalMe'; 
 import styles from './Certificate.module.css';
+
+import Academic from '../Education/Academic';
+import ProfessionalMe from '../Education/ProfessionalMe';
+import SkillsTable from '../Skills/SkillsTable';
 import academicData from '../../data/academicData.json';
-import professionalData from '../../data/professionalData.json'
-import config from '../../config';
+import professionalData from '../../data/professionalData.json';
+import otherEducationData from '../../data/otherEducationData.json';
+import OtherEducationData from '../Education/otherEducation'
 
 const Certificate = () => {
     return (
@@ -22,8 +24,12 @@ const Certificate = () => {
             <div>
                 <SkillsTable />
             </div>
-            <a href="#certificate" className="arrow icon solid fa-arrow-up"></a>
-        </div>
+            <h1 className={styles['certificate-title']}>OTHER</h1>
+            <div>
+                <OtherEducationData otherEducationData={otherEducationData} />
+            </div>
+            <a href="#certificate" className={`${styles.arrowIcon} solid fa-arrow-up`}></a>
+        </div> 
     );
 };
 
