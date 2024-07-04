@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProjectComponent from './ProjectsComponent';
 import Pagination from '../comon/Pagination';
 import styles from './Projects.module.css';
+import paginationStyles from '../comon/Pagination.module.css'
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -57,7 +58,7 @@ const Projects = () => {
             {index !== paginatedProjects.length - 1 && <br />} {/* Add <br /> between projects */}
           </React.Fragment>
         ))}
-        <div className={styles.paginationContainer}>
+        <div className={paginationStyles.paginationContainer}>
           <Pagination
             itemsCount={projects.length}
             pageSize={pageSize}

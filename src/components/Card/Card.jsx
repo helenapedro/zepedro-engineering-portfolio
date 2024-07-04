@@ -1,23 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Card.module.css';
 
-const Card = () => {
+const Card = ({ name, description, imageUrl }) => {
   return (
-    <div id='main' className={styles.mainContainer}>
+    <div className={styles.cardContainer}>
       <article className={`${styles.panel} ${styles.introPanel}`}>
         <header className={styles.header}>
-          <h1 className={styles.title}>José Francisco Pedro</h1>
-          <p className={styles.description}>
-            Associated A3 Member of The Order of Engineers of Angola (OEA) <br />
-            <b>Interested Area: Construction Management.</b>
-          </p>
+          <h1 className={styles.title}>{name}</h1>
+          <p className={styles.description}>{description}</p>
         </header>
-        <a className={`${styles.imageWrapper} ${styles.fitImage} col-2 col-3-medium col-10-small`}>
-          <img src="https://pedro-pi.s3.us-east-2.amazonaws.com/oea.jpeg" alt="Cartão de Membro" className={styles.image} />
-        </a>
+        <div className={`${styles.imageWrapper} ${styles.fitImage}`}>
+          <img src={imageUrl} alt={`${name} image`} className={styles.image} />
+        </div>
       </article>
     </div>
   );
-}; 
+};
+
+Card.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+};
 
 export default Card;

@@ -5,8 +5,9 @@
   margin: auto;
   overflow: hidden;
   position: relative;
-  transition: min-height 0.5s ease-in-out, max-height 0.5s ease-in-out;
   width: 60%;
+  max-width: fit-content;
+  border-radius: 10px;
 }
 
 /* Panels */
@@ -73,6 +74,7 @@
 }
 
 .title {
+  color: #007acc;
   line-height: 1.25em;
   margin-bottom: 0;
 }
@@ -81,6 +83,7 @@
   letter-spacing: -0.015em;
   font-size: 1.11em;
   margin: 0.25em 0 0 0;
+  text-align: justify;
 }
 
 @media screen and (max-width: 736px) {

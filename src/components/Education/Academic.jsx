@@ -7,7 +7,7 @@ const Academic = ({ academicData }) => {
         return <div>No academic data available.</div>;
     }
  
-    return (
+    return ( 
         <div className={styles.certificate}>
             {academicData.map((data, index) => (
                 <article className={styles.panel} key={index}>

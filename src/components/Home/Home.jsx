@@ -10,7 +10,7 @@ const Home = () => {
           <h1 className={styles.title}>José Francisco Pedro</h1>
           <p className={styles.description}>
             <strong>
-              With over 3 years of experience in Construction Management, 
+              Hi, I'm ZéPedro. With over 3 years of experience in Construction Management, 
               I’ve contributed to significant projects, 
               including the intervention on Cabinda province’s main airstrip 
               and the creation of an alternative route connecting to Cabassango.
