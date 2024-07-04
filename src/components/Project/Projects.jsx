@@ -47,17 +47,18 @@ const Projects = () => {
         {projects.length > 0 ? (
           <>
             {paginatedProjects.map((project, index) => (
-              <ProjectComponent
-                key={index}
-                title={project.title}
-                organization={project.organization}
-                description={project.description}
-                activities={project.activities}
-                finalDescription={project.finalDescription}
-                images={project.images}
-              />
+              <React.Fragment key={index}>
+                <ProjectComponent
+                  title={project.title}
+                  organization={project.organization}
+                  description={project.description}
+                  activities={project.activities}
+                  finalDescription={project.finalDescription}
+                  images={project.images}
+                />
+                {index !== paginatedProjects.length - 1 && <br />} {/* Add <br /> between projects */}
+              </React.Fragment>
             ))}
-            <br />
             <Pagination
               itemsCount={projects.length}
               pageSize={pageSize}

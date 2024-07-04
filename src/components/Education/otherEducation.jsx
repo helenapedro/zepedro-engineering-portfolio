@@ -5,7 +5,7 @@ import config from '../../config';
 const OtherEducationData = ({ otherEducationData }) => {
     if (!otherEducationData || !Array.isArray(otherEducationData)) {
         return <div>No data available.</div>;
-    }
+    } 
 
     return (
         <div className={styles.certificate}>
@@ -27,7 +27,6 @@ const OtherEducationData = ({ otherEducationData }) => {
                         ) : (
                             <div className={`${styles['col-12-small']}`}>
                                 <p className={styles.title}>{data.title}</p>
-                                <p>No image available</p>
                             </div>
                         )}
                     </div>

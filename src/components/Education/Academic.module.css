@@ -34,7 +34,8 @@
   text-align: center;
 }
 
-.title {
+.title,
+.othereducationtitle {
   font-size: 1.2em;
   color: #333;
   margin-bottom: 10px;
