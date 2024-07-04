@@ -35,9 +35,9 @@ const SkillsTable = () => {
   };
 
   return (
-    <div className={styles.table}>
+    <div className={styles.skills}>
       <header className={styles['skills-table']}>
-        <section>
+        <section className={styles.panel}>
           <div className={`${styles['skills-table-body']} table-responsive mb-3`}>
             <table className="table table-bordered table-hover border-primary">
               <SkillsHeader sortColumn={sortColumn} onSort={handleSort} />
