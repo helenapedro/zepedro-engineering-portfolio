@@ -44,32 +44,28 @@ const Projects = () => {
   return (
     <div id="main" className={styles.projectContainer}>
       <div>
-        {projects.length > 0 ? (
-          <>
-            {paginatedProjects.map((project, index) => (
-              <React.Fragment key={index}>
-                <ProjectComponent
-                  title={project.title}
-                  organization={project.organization}
-                  description={project.description}
-                  activities={project.activities}
-                  finalDescription={project.finalDescription}
-                  images={project.images}
-                />
-                {index !== paginatedProjects.length - 1 && <br />} {/* Add <br /> between projects */}
-              </React.Fragment>
-            ))}
-            <Pagination
-              itemsCount={projects.length}
-              pageSize={pageSize}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
+        {paginatedProjects.map((project, index) => (
+          <React.Fragment key={index}>
+            <ProjectComponent
+              title={project.title}
+              organization={project.organization}
+              description={project.description}
+              activities={project.activities}
+              finalDescription={project.finalDescription}
+              images={project.images}
             />
-            <a href="#main" className={`${styles.arrowIcon} solid fa-arrow-up`} onClick={handleScrollToTop}></a>
-          </>
-        ) : (
-          <p>Loading projects...</p>
-        )}
+            {index !== paginatedProjects.length - 1 && <br />} {/* Add <br /> between projects */}
+          </React.Fragment>
+        ))}
+        <div className={styles.paginationContainer}>
+          <Pagination
+            itemsCount={projects.length}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </div>
+        <a href="#main" className={`${styles.arrowIcon} solid fa-arrow-up`} onClick={handleScrollToTop}></a>
       </div>
     </div>
   );

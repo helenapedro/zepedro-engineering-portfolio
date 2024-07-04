@@ -149,6 +149,13 @@
   transform: scale(1.1);
 }
 
+.paginationContainer {
+  margin-top: 20px; /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Responsive styles */
 @media screen and (max-width: 736px) {
   .col4,
