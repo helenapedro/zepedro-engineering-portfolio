@@ -8,8 +8,7 @@
          "Repositioning the milled layer with asphalt."
        ],
        "finalDescription":"",
-       "images": [ 
-         "A3.jpg", "A2.jpg", "A5.jpg", "A8.jpg", "A0.jpg", "A7.jpg"]
+       "images": [ "A3.jpg", "A2.jpg", "A5.jpg", "A8.jpg", "A0.jpg", "A7.jpg"]
      },
      {
        "title":"Construction of the Accesses to the New Bridge Over the Lucola River",
@@ -20,7 +19,7 @@
        ],
        "finalDescription":"",
        "images":[
-         "ac1.jpg", "ac2.jpg", "ac3.jpg", "ac4.jpg", "ac5.jpg", "ac6.jpg", "ac7.jpg", "ac8.jpg", "ac9.jpg"]
+         "ac1.jpg", "ac2.jpg", "ac3.jpg", "ac4.jpg", "ac5.jpg", "ac6.jpg", "ac7.jpg", "ac8.jpg", "ac9.jpg", "l1.jpg", "l2.jpg", "l3.jpg"]
      },
      {
        "title":"Construction of the New Bridge Over the Lucola River",
@@ -30,17 +29,7 @@
    
        ],
        "finalDescription":"",
-       "images":[
-         "rl1.jpg",
-         "rl2.jpg",
-         "rl3.jpg",
-         "rl4.jpg",
-         "rl5.jpg",
-         "rl6.jpg",
-         "rl7.jpg",
-         "rl8.jpg",
-         "rl9.jpg"
-       ]
+       "images":["rl1.jpg", "rl2.jpg", "rl3.jpg", "rl4.jpg", "rl5.jpg", "rl6.jpg", "rl7.jpg", "rl8.jpg", "rl9.jpg", "rl10.JPG", "rl11.JPG", "rl12.JPG"]
      },
      {
        "title":"Rehabilitation of the Macau Street Office Building",
@@ -50,29 +39,7 @@
    
        ],
        "finalDescription":"",
-       "images":[
-         "r11.jpg",
-         "r12.jpg",
-         "r13.jpg",
-         "r14.jpg",
-         "r15.jpg",
-         "r16.jpg",
-         "r17.jpg",
-         "r18.jpg",
-         "r19.jpg"
-       ]
-     },
-     {
-       "title":"Rehabilitation and Expansion of the 1º de Maio Maternity Hospital",
-       "organization":"MOTA-ENGIL ANGOLA",
-       "description":"",
-       "activities":[
-   
-       ],
-       "finalDescription":"",
-       "images":[
-   
-       ]
+       "images":["macau5.jpg", "macau8.jpg", "macau2.jpg", "macau7.jpg", "macau4.jpg", "macau9.jpg", "macau3.jpg", "macau1.jpg", "macau6.jpg"]
      },
      {
        "title":"Rehabilitation and Expansion of the 1º de Maio Maternity Hospital (Cabinda-Angola)",
@@ -82,10 +49,59 @@
    
        ],
        "finalDescription":"",
-       "images":[
-   
-       ]
+       "images":["mt1.jpg", "mt2.jpg", "mt3.jpg", "mt4.jpg", "mt5.jpg", "mt6.jpg", "mt7.jpg", "mt8.jpg", "mt9.jpg"]
      },
+     {
+       "title":"Trainee Program STARTME@2021_8th Edition ~ 2022",
+       "organization":"MOTA-ENGIL ANGOLA",
+       "description":"",
+       "activities":[
+   
+       ],
+       "finalDescription":"",
+       "images":["st13.jpg", "st14.jpg", "st5.jpg", "st1.jpg", "st3.jpg",
+                  "st4.jpg", "st6.jpg", "st7.jpg", "st9.jpg", "st16.jpg",
+                  "st12.jpg", "st10.jpg", "st11.jpg", "st8.jpg", "st15.jpg"
+                ]
+     },
+     {
+      "title":"Reabilitação e Ampliação de Residência de 2 Pisos - Luanda ~ 2020 - 2021",
+      "organization":"Independet Project",
+      "description":"",
+      "activities":[
+  
+      ],
+      "finalDescription":"",
+      "images":["cd1.jpg", "cd2.jpg", "cd3.jpg", "cd7.jpg",
+                "cd5.jpg", "cd6.jpg", "cd4.jpg", "cd8.jpg",
+                "cd9.jpg", "cd10.jpg", "cd11.jpg", "cd12.jpg"
+              ]
+    },
+    {
+      "title":"Reabilitação do Sistema de Drenagem Pluvial da Cidade de Cabinda - Cabinda, Angola ~ 2024",
+      "organization":"Independet Project",
+      "description":"",
+      "activities":[
+        "Passeios", "Lancis", "Valetas e sumidouros", "Caixas de visita", "Árvores", "Mobiliário urbano"],
+      "finalDescription":"Esta maquete serve como uma ferramenta visual para entender melhor as intervenções propostas, garantindo uma infraestrutura urbana mais eficiente e sustentável.",
+      "images":["GPC1.jpg", "GPC2.jpg", "GPC3.jpg", "GPC4.jpg",
+                "GPC5.jpg", "GPC6.jpg"
+              ]
+    },
+    {
+      "title":"Projecto de Maquete Electrónica Mamaland, Fazenda Tchiela - Cabinda, Angola ~ 2023",
+      "organization":"MAMALAND ~ MOTA-ENGIL ANGOLA",
+      "description":"A maquete eletrónica foi desenvolvida para otimizar a disposição das instalações destinadas ao tratamento do cacau colhido. O projeto contempla a distribuição de cinco blocos principais:",
+      "activities":[
+        "Zona de Corte", "Zona de Fermentação", "Zona de Secagem",
+        "Zona de Ensacamento", "Zona de Compostagem"
+      ],
+      "finalDescription":"Além desses blocos, a maquete inclui a ampliação de escritórios, cozinha, instalações sanitárias, e outros espaços necessários para o bom funcionamento da fazenda.",
+      "images":[
+        "Mamaland-Tchiela+1.jpg", "Mamaland-Tchiela+2.jpg", "Mamaland-Tchiela+3.jpg",
+        "Mamaland-Tchiela+4.jpg", "Mamaland-Tchiela+5.jpg", "Mamaland-Tchiela+6.jpg"
+      ]
+    },
      {
        "title":"Two floors Single-family home T4, Includes two floors outbuilding. Luanda-Angola",
        "organization":"Independet Project",
@@ -95,9 +111,55 @@
        ],
        "finalDescription":"",
        "images":[
-   
+          "p10.jpg", "p8.jpeg", "p6.jpeg", "p5.jpeg",
+          "p7.jpeg", "p3.jpeg", "p4.jpeg", "p2.jpeg", "p1.jpeg"
        ]
-     }
-   
-   ]
+     },
+     {
+      "title":"Projecto Arquitectónico - Vivenda Unifamiliar T5 - Zaire (Soyo), Angola ~ 2020",
+      "organization":"Independet Project",
+      "description":"A vivenda Unifamiliar foi projectada em dois pisos no edifício principal, com a seguinte compartimentação:",
+      "activities":[
+  
+      ],
+      "finalDescription":"",
+      "images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"]
+    },
+    {
+      "title":"Projecto Arquitectónico Evolutivo para Conjunto Residencial com 10 apartamentos - Huambo, Angola ~ 2020.",
+      "organization":"Independet Project",
+      "description":"",
+      "activities":[
+  
+      ],
+      "finalDescription":"",
+      "images":["im1.jpeg", "im2.jpeg", "im3.jpeg"]
+    },
+    {
+      "title":"Projecto de Alteração e Reforma de Duas Residências T1 - Luanda, Angola ~ 2021",
+      "organization":"Independet Project",
+      "description":"",
+      "activities":[
+  
+      ],
+      "finalDescription":"",
+      "images":[
+  
+      ]
+    },
+    {
+      "title":"Projecto Arquitetónico | Edifício Multifuncional de 3 Pisos - Soyo, Zaire - Angola ~ 2019",
+      "organization":"",
+      "description":"",
+      "activities":[
+  
+      ],
+      "finalDescription":"",
+      "images":[
+        "m0.jpeg", "m01.jpeg", "m1.jpeg", "m3.jpeg",
+        "m4.jpeg", "m5.jpeg", "m6.jpeg", "m8.jpeg",
+        "m9.jpeg", "m10.jpg", "m11.jpg", "m12.jpg"
+      ]
+    }
+]
    

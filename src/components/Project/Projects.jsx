@@ -24,13 +24,20 @@ const Projects = () => {
   }, []);
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
+    if (page < 1) {
+      setCurrentPage(1);
+    } else if (page > totalPages) {
+      setCurrentPage(totalPages);
+    } else {
+      setCurrentPage(page);
+    }
   };
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const totalPages = Math.ceil(projects.length / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
   const paginatedProjects = projects.slice(startIndex, startIndex + pageSize);
 
@@ -50,6 +57,7 @@ const Projects = () => {
                 images={project.images}
               />
             ))}
+            <br />
             <Pagination
               itemsCount={projects.length}
               pageSize={pageSize}

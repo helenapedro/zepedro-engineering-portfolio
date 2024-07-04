@@ -4,7 +4,7 @@ import config from '../../config';
 
 const ProfessionalMe = ({ professionalData }) => {
     if (!professionalData || !Array.isArray(professionalData)) {
-        return <div>No professional data available.</div>;
+        return <div>No data available.</div>;
     }
   
     return (
@@ -27,7 +27,6 @@ const ProfessionalMe = ({ professionalData }) => {
                         ) : (
                             <div className={`${styles['col-12-small']}`}>
                                 <p className={styles.title}>{data.title}</p>
-                                <p>No certificate image available</p>
                             </div>
                         )}
                     </div>

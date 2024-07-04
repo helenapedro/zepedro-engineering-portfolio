@@ -1,15 +1,17 @@
 /* Projects.module.css */
+@import "../../vars.css";
 
 .projectContainer {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  margin: 20px;
-  padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 60%;
 }
 
 .projectContainer:hover {
@@ -37,21 +39,17 @@
 .projectDescription {
   font-weight: bold;
   margin: 10px 0;
-}
-
-.projectActivitiesList {
-  list-style-type: none;
-  padding: 0;
-  margin: 10px 0;
+  text-align: justify;
 }
 
 .ulItems {
   list-style: none;
   padding-left: 0;
+  text-align: justify;
 }
 
 .ulItems--tick {
-  list-style-image: url("https://dh09x5tu10bt3.cloudfront.net/tick.svg");
+  list-style-image: url("../../assets/images/tick.svg");
   padding-left: 3rem;
   color: var(--color-headings);
 }
@@ -68,18 +66,18 @@
   margin-top: 20px;
 }
 
-.col-4,
-.col-6-medium,
-.col-12-small {
+.col4,
+.col6Medium,
+.col12Small {
   flex: 1 1 calc(33.333% - 20px);
   margin: 10px;
   box-sizing: border-box;
   transition: transform 0.3s ease;
 }
 
-.col-4:hover,
-.col-6-medium:hover,
-.col-12-small:hover {
+.col4:hover,
+.col6Medium:hover,
+.col12Small:hover {
   transform: scale(1.05);
 }
 
@@ -88,6 +86,7 @@
   overflow: hidden;
   border-radius: 10px;
   position: relative;
+  width: 100%; /* Ensure projectImage takes full width of its container */
 }
 
 .projectImage img {
@@ -114,4 +113,29 @@
 
 .arrowIcon:hover {
   transform: scale(1.1);
+}
+
+/* Adjust image sizes for small screens */
+@media screen and (max-width: 736px) {
+  .col4,
+  .col6Medium,
+  .col12Small {
+    flex: 1 1 calc(100% - 20px);
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .col4,
+  .col6Medium,
+  .col12Small {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .col4,
+  .col6Medium,
+  .col12Small {
+    flex: 1 1 calc(33.333% - 20px);
+  }
 }
