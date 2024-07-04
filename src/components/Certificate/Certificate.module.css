@@ -8,7 +8,7 @@
   margin: auto;
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 80%; /* Adjust width as necessary */
+  width: 60%;
 }
 
 .certificate:hover {
@@ -36,4 +36,27 @@
 
 .arrowIcon:hover {
   transform: scale(1.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .certificate {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .certificate-title {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .certificate {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .certificate-title {
+    font-size: 1.2em;
+  }
 }

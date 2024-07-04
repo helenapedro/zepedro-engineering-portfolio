@@ -23,7 +23,6 @@
   margin: auto;
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 100%; /* Ensure it takes up full width of parent */
 }
 
 .panel {
@@ -76,4 +75,29 @@
 
 .skills-table-body tr:hover {
   background-color: var(--skills-table-body-hover-bg-color);
+}
+
+@media (max-width: 768px) {
+  .skills-table {
+    width: 90%;
+    margin-top: 20px;
+  }
+
+  .skills-table-header th,
+  .skills-table-body td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-table {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .skills-table-header th,
+  .skills-table-body td {
+    padding: 6px;
+    font-size: 0.9em;
+  }
 }
