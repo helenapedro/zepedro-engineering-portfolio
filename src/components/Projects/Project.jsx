@@ -46,7 +46,7 @@ const Project = ({
             {images.map((image, imgIndex) => {
               const imageUrl = `${config.projectsUrl}${image}`;
               return (
-                <div className={`${styles.col4} ${styles.col6Medium} ${styles.col12Small}`} key={imgIndex}>
+                <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
                   <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
                     <img src={imageUrl} alt={`Project image ${imgIndex + 1} for ${title}`} />
                   </a>

@@ -38,7 +38,6 @@
   transform: scale(1.1);
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .certificate {
     width: 80%;

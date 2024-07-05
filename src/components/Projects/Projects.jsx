@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Project from './Project';
-import PaginationComponent from '../comon/Paginagion';
+import PaginationComponent from '../comon/Pagination';
 import styles from './Project.module.css';
 
 const Projects = () => {
@@ -29,9 +29,6 @@ const Projects = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-  };
-
-  const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -65,9 +62,6 @@ const Projects = () => {
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />
-        <button onClick={handleScrollToTop} aria-label="Scroll to top">
-          <i className="fa fa-arrow-up" aria-hidden="true"></i>
-        </button>
       </div>
     </div>
   );

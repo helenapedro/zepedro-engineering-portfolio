@@ -37,12 +37,6 @@
 }
 
 .title {
-  font-size: 1.2em;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.course {
   font-size: 1.5em;
   color: #007acc;
   margin-bottom: 10px;
@@ -115,8 +109,8 @@
 }
 
 .col-4:hover,
-.col6Medium:hover,
-.col12Small:hover {
+.col-6-medium:hover,
+.col-12-small:hover {
   transform: scale(1.05);
 }
 
