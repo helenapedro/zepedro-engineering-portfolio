@@ -6,7 +6,7 @@ const Academic = ({ academicData }) => {
     if (!academicData || !Array.isArray(academicData)) {
         return <div>No academic data available.</div>;
     }
- 
+  
     return ( 
         <div className={styles.certificate}>
             {academicData.map((data, index) => (

@@ -1,5 +1,3 @@
-@import "../../vars.css";
-
 :root {
   --project-container-width: 60%;
   --project-container-padding: 20px;
@@ -35,17 +33,17 @@
 }
 
 .projectContainer {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  margin: auto;
-  padding: var(--project-container-padding);
   background-color: var(--project-container-bg-color);
   border-radius: var(--project-container-border-radius);
   box-shadow: var(--project-container-box-shadow);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: var(--project-container-padding);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: var(--project-container-width);
-  margin-bottom: 20px;
 }
 
 .projectContainer:hover {
@@ -132,6 +130,12 @@
 
 .projectImage img:hover {
   transform: scale(1.1);
+}
+
+.projectActivityHeader {
+  font-size: 1.5em;
+  margin-top: 20px;
+  color: var(--project-title-color);
 }
 
 .arrowIcon {
