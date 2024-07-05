@@ -37,10 +37,6 @@ const Projects = () => {
     }
   };
 
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const totalPages = Math.ceil(projects.length / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
   const paginatedProjects = projects.slice(startIndex, startIndex + pageSize);
@@ -73,7 +69,6 @@ const Projects = () => {
             onPageChange={handlePageChange}
           />
         </div>
-        <a href="#main" className={`${styles.arrowIcon} solid fa-arrow-up`} onClick={handleScrollToTop}></a>
       </div>
     </div>
   );

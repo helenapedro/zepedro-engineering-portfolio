@@ -12,7 +12,6 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
-import Projects from './components/Project/Projects';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer/Footer';
 import Certificate from './components/Certificate/Certificate';

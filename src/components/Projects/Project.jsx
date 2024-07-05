@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Project.module.css';
+
 import config from '../../config';
 
 const Project = ({
@@ -55,8 +56,9 @@ const Project = ({
           </div>
         </section>
       )}
-    </article>
+    </article> 
   </div>
+  
 );
 
 Project.propTypes = {
