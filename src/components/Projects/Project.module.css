@@ -1,0 +1,138 @@
+@import "../../vars.css";
+
+.project {
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.panel {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  text-align: center;
+}
+
+.title {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.course {
+  font-size: 1.5em;
+  color: #007acc;
+  margin-bottom: 10px;
+}
+
+.organization,
+.projectdescription {
+  font-size: 1em;
+  color: #666;
+  display: block;
+  margin: 10px 0;
+}
+
+.organization a,
+.projectdescription a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+.organization a:hover,
+.projectdescription a:hover {
+  text-decoration: underline;
+}
+
+.ulItems {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ulItems--tick {
+  list-style-image: url("../../assets/images/tick.svg");
+  padding-left: 3rem;
+  color: var(--color-headings);
+}
+
+.projectActivityItem {
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.arrowIcon {
+  position: relative;
+  bottom: 10px;
+  right: 10px;
+  background-color: #007acc;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.arrowIcon:hover {
+  transform: scale(1.1);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.col-4,
+.col6Medium,
+.col12Small {
+  flex: 1 1 calc(33.333% - 20px);
+  margin: 10px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.col-4:hover,
+.col6Medium:hover,
+.col12Small:hover {
+  transform: scale(1.05);
+}
+
+.image {
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.image img:hover {
+  transform: scale(1.1);
+}

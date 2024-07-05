@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import ProjectComponent from './ProjectsComponent';
+import Project from './Project';
 import Pagination from '../comon/Pagination';
-import styles from './Projects.module.css';
+import styles from './Project.module.css';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true); // Initialize loading state
+  const [loading, setLoading] = useState(true);
   const pageSize = 3;
 
   useEffect(() => {
@@ -18,15 +18,14 @@ const Projects = () => {
         return response.json();
       })
       .then((data) => {
-        console.log('Fetched projects data:', data);
         setProjects(data);
-        setLoading(false); // Set loading to false after successful data fetch
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching projects data:', error);
-        setLoading(false); // Ensure loading is set to false on error
+        setLoading(false);
       });
-  }, []); // Empty dependency array ensures this effect runs once on component mount
+  }, []);
 
   const handlePageChange = (page) => {
     if (page < 1) {
@@ -47,7 +46,7 @@ const Projects = () => {
   const paginatedProjects = projects.slice(startIndex, startIndex + pageSize);
 
   if (loading) {
-    return <div>Loading...</div>; // Return loading indicator while data is being fetched
+    return <div>Loading...</div>;
   }
 
   return (
@@ -55,7 +54,7 @@ const Projects = () => {
       <div>
         {paginatedProjects.map((project, index) => (
           <React.Fragment key={index}>
-            <ProjectComponent
+            <Project
               title={project.title}
               organization={project.organization}
               description={project.description}
@@ -63,7 +62,7 @@ const Projects = () => {
               finalDescription={project.finalDescription}
               images={project.images}
             />
-            {index !== paginatedProjects.length - 1 && <br />} {/* Add <br /> between projects */}
+            {index !== paginatedProjects.length - 1 && <br />}
           </React.Fragment>
         ))}
         <div>

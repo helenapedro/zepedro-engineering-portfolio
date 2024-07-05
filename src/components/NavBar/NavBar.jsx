@@ -23,9 +23,9 @@ const NavBar = () => {
           <FontAwesomeIcon icon="house" className="fas fa-house" />
           <span>Home</span>
         </Link> 
-        <Link to="/projects" className={`${styles.icon} ${location.pathname === '/projects' ? styles.active : ''}`} onClick={toggleMenu}>
+        <Link to="/other" className={`${styles.icon} ${location.pathname === '/other' ? styles.active : ''}`} onClick={toggleMenu}>
           <FontAwesomeIcon icon="building" className="fas fa-building" />
-          <span>Projects</span>
+          <span>ProjectsContainer</span>
         </Link>
         <Link to="/card" className={`${styles.icon} ${location.pathname === '/card' ? styles.active : ''}`} onClick={toggleMenu}>
           <FontAwesomeIcon icon="id-card" className="fas fa-id-card" />

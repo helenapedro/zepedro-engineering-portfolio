@@ -1,8 +1,9 @@
 .pagination {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
+  margin-top: 2rem;
   padding-left: 0;
   list-style: none;
 }
@@ -17,11 +18,11 @@
   background-color: #007acc;
   color: white;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: background-color 0.3s ease;
   border: none;
 }
 
 .pagination button:hover {
-  background-color: #005b8f;
+  background-color: #b51414;
 }

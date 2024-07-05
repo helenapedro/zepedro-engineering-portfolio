@@ -34,16 +34,31 @@
 
 .projectContainer {
   align-items: center;
-  background-color: var(--project-container-bg-color);
-  border-radius: var(--project-container-border-radius);
-  box-shadow: var(--project-container-box-shadow);
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   margin: auto;
-  margin-bottom: 20px;
-  padding: var(--project-container-padding);
+  padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: var(--project-container-width);
+  width: 60%;
+  max-width: 100%;
+}
+
+.panel {
+  width: 100%;
+  margin-bottom: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .projectContainer:hover {

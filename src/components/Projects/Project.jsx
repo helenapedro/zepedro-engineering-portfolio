@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Projects.module.css';
+import styles from './Project.module.css';
 import config from '../../config';
 
-const ProjectComponent = ({
+const Project = ({
   title,
   organization,
   description,
@@ -11,13 +11,13 @@ const ProjectComponent = ({
   finalDescription = '',
   images = []
 }) => (
-  <div className={styles.projectContainer}>
-    <article>
-      <header className={styles.projectHeader}>
-        <h2 className={styles.projectTitle}>{title}</h2>
-        <i className={styles.projectOrganization}>{organization}</i>
+  <div className={styles.project}>
+    <article className={styles.panel}> 
+      <header className={styles.header}>
+        <h2 className={styles.title}>{title}</h2>
+        <i className={styles.organization}>{organization}</i>
       </header>
-      <p className={styles.projectDescription}><b>{description}</b></p>
+      <p className={styles.projectdescription}><b>{description}</b></p>
       {Array.isArray(activities) && activities.length > 0 && (
         activities.map((activitySection, sectionIndex) => (
           <div key={sectionIndex}>
@@ -38,7 +38,7 @@ const ProjectComponent = ({
           </div>
         ))
       )}
-      <p className={styles.projectDescription}><b>{finalDescription}</b></p>
+      <p className={styles.projectdescription}><b>{finalDescription}</b></p>
       {Array.isArray(images) && images.length > 0 && (
         <section>
           <div className={styles.row}>
@@ -46,7 +46,7 @@ const ProjectComponent = ({
               const imageUrl = `${config.projectsUrl}${image}`;
               return (
                 <div className={`${styles.col4} ${styles.col6Medium} ${styles.col12Small}`} key={imgIndex}>
-                  <a className={styles.projectImage} href={imageUrl} target="_blank" rel="noopener noreferrer">
+                  <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
                     <img src={imageUrl} alt={`Project ${imgIndex + 1}`} />
                   </a>
                 </div>
@@ -59,7 +59,7 @@ const ProjectComponent = ({
   </div>
 );
 
-ProjectComponent.propTypes = {
+Project.propTypes = {
   title: PropTypes.string.isRequired,
   organization: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -76,4 +76,4 @@ ProjectComponent.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default ProjectComponent;
+export default Project;
