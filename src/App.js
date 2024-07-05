@@ -29,7 +29,7 @@ const App = () => {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/other" element={<ProjectsContainer />} />
+          <Route path="/projects" element={<ProjectsContainer />} />
           <Route path="/card" element={<CardEngineer />} />
           <Route path="/certificate" element={<Certificate />} />
           <Route path="*" element={<NotFound />} />
