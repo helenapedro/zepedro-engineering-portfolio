@@ -13,9 +13,9 @@ const Project = ({
   images = []
 }) => (
   <div className={styles.project}>
-    <article className={styles.panel}> 
+    <article className={styles.panel} aria-labelledby={`project-title-${title}`}>
       <header className={styles.header}>
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title} id={`project-title-${title}`}>{title}</h2>
         <i className={styles.organization}>{organization}</i>
       </header>
       <p className={styles.projectdescription}><b>{description}</b></p>
@@ -23,13 +23,13 @@ const Project = ({
         activities.map((activitySection, sectionIndex) => (
           <div key={sectionIndex}>
             {typeof activitySection === 'string' ? (
-              <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`}>
+              <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`} role="list">
                 <li className={styles.projectActivityItem}>{activitySection}</li>
               </ul>
             ) : (
               <div>
                 {activitySection.header && <h3>{activitySection.header}</h3>}
-                <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`}>
+                <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`} role="list">
                   {activitySection.items.map((item, itemIndex) => (
                     <li className={styles.projectActivityItem} key={itemIndex}>{item}</li>
                   ))}
@@ -41,14 +41,14 @@ const Project = ({
       )}
       <p className={styles.projectdescription}><b>{finalDescription}</b></p>
       {Array.isArray(images) && images.length > 0 && (
-        <section>
+        <section aria-label="Project images">
           <div className={styles.row}>
             {images.map((image, imgIndex) => {
               const imageUrl = `${config.projectsUrl}${image}`;
               return (
                 <div className={`${styles.col4} ${styles.col6Medium} ${styles.col12Small}`} key={imgIndex}>
                   <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
-                    <img src={imageUrl} alt={`Project ${imgIndex + 1}`} />
+                    <img src={imageUrl} alt={`Project image ${imgIndex + 1} for ${title}`} />
                   </a>
                 </div>
               );
@@ -56,9 +56,8 @@ const Project = ({
           </div>
         </section>
       )}
-    </article> 
+    </article>
   </div>
-  
 );
 
 Project.propTypes = {

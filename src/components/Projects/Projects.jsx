@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Project from './Project';
-import Pagination from '../comon/Pagination';
+import PaginationComponent from '../comon/Paginagion';
 import styles from './Project.module.css';
 
 const Projects = () => {
@@ -28,13 +28,11 @@ const Projects = () => {
   }, []);
 
   const handlePageChange = (page) => {
-    if (page < 1) {
-      setCurrentPage(1);
-    } else if (page > totalPages) {
-      setCurrentPage(totalPages);
-    } else {
-      setCurrentPage(page);
-    }
+    setCurrentPage(page);
+  };
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const totalPages = Math.ceil(projects.length / pageSize);
@@ -61,14 +59,15 @@ const Projects = () => {
             {index !== paginatedProjects.length - 1 && <br />}
           </React.Fragment>
         ))}
-        <div>
-          <Pagination
-            itemsCount={projects.length}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-        </div>
+        <PaginationComponent
+          itemsCount={projects.length}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+        <button onClick={handleScrollToTop} aria-label="Scroll to top">
+          <i className="fa fa-arrow-up" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   );
