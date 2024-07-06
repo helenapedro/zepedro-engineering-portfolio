@@ -42,11 +42,15 @@
   margin-bottom: 10px;
 }
 
+.projectdescription {
+  font-weight: bold;
+}
+
 .organization,
 .projectdescription {
-  font-size: 1em;
   color: #666;
   display: block;
+  font-size: 1em;
   margin: 10px 0;
 }
 
@@ -62,8 +66,8 @@
 }
 
 .ulItems {
-  list-style: none;
-  padding-left: 0;
+  list-style: disc;
+  padding-left: 1;
 }
 
 .ulItems--tick {
@@ -73,8 +77,9 @@
 }
 
 .projectActivityItem {
-  padding-left: 0.5rem;
+  line-height: 1.2;
   margin-bottom: 1rem;
+  padding-left: 0.5rem;
 }
 
 .arrowIcon {
@@ -100,8 +105,8 @@
 }
 
 .col-4,
-.col6Medium,
-.col12Small {
+.col-6-medium,
+.col-12-small {
   flex: 1 1 calc(33.333% - 20px);
   margin: 10px;
   box-sizing: border-box;
@@ -114,19 +119,46 @@
   transform: scale(1.05);
 }
 
+/* Image */
+
 .image {
-  display: block;
+  display: inline-block;
   overflow: hidden;
   border-radius: 10px;
 }
 
 .image img {
+  display: block;
   width: 100%;
   height: auto;
-  border-radius: 10px;
   transition: transform 0.3s ease;
 }
 
 .image img:hover {
   transform: scale(1.1);
+}
+
+.fit {
+  display: block;
+  width: 100%;
+}
+
+.featured {
+  display: block;
+  width: 100%;
+  margin: 0 0 2em 0;
+}
+
+.left {
+  float: left;
+  margin: 0 2em 2em 0;
+}
+
+.centered {
+  display: block;
+  margin: 0 0 2em 0;
+}
+.centered img {
+  margin: 0 auto;
+  width: auto;
 }

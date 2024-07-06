@@ -1,27 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
 
-const Card = ({ name, description, imageUrl }) => {
+const Card = () => {
   return (
-    <div className={styles.cardContainer}>
-      <article className={`${styles.panel} ${styles.introPanel}`}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>{name}</h1>
-          <p className={styles.description}>{description}</p>
+    <div className={styles.mainContainer}>
+      <article id="card" className={`${styles.panel} ${styles.introPanel}`}>
+      <header className={styles.header}>
+          <h1 className={styles.title}>José Francisco Pedro</h1>
+          <p className={styles.description}>
+            <b>Associated A3 Member of The Order of Engineers of Angola (OEA)</b>
+          </p>
+          <p><b className={styles.b}>Interested Area:</b> <b>Construction Management.</b></p>
         </header>
-        <div className={`${styles.imageWrapper} ${styles.fitImage}`}>
-          <img src={imageUrl} alt={`${name} image`} className={styles.image} />
-        </div>
+        <a
+            href="https://ambrosiopublicfiles.s3.us-east-2.amazonaws.com/Jose_Pedro_Engineering_Order_Card.jpg"
+            target="_blank"
+            className={`${styles['col-2']} ${styles['col-3-medium']} ${styles['col-10-small']} ${styles.image} ${styles.fit}`}>
+            <span class={`${styles.arrow} fa fa-chevron-right`}
+              ><span><i>Cartão de Membro</i></span>
+            </span>
+            <img src="https://pedro-pi.s3.us-east-2.amazonaws.com/oea.jpeg" alt=""/>
+          </a>
       </article>
     </div>
   );
-};
-
-Card.propTypes = {
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-};
+}; 
 
 export default Card;

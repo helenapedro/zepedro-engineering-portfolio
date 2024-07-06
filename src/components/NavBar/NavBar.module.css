@@ -1,14 +1,14 @@
 @import "../../vars.css";
 
 .nav {
-  display: block;
-  justify-content: space-between;
   border: 0;
-  padding: 0.5em 1em;
-  margin-top: 4.6em;
-  text-align: center;
-  height: 4.75em;
   cursor: default;
+  display: block;
+  height: 4.75em;
+  justify-content: space-between;
+  margin-top: 4.6em;
+  padding: 0.5em 1em;
+  text-align: center;
 }
 
 .nav a {

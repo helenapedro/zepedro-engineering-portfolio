@@ -190,45 +190,96 @@
        ]
      },
      {
-      "title":"Projecto Arquitectónico - Vivenda Unifamiliar T5 - Zaire (Soyo), Angola ~ 2020",
+      "title":"Architectural Project - Single-Family Home T5 - Zaire (Soyo), Angola ~ 2020",
       "organization":"AUTONOMOUS PROJECT",
-      "description":"A vivenda Unifamiliar foi projectada em dois pisos no edifício principal, com a seguinte compartimentação:",
+      "description":"The single-family home was designed with two floors in the main building, featuring the following layout:",
       "activities":[
-  
+        {
+          "header":"Ground Floor:",
+          "items": [
+              "An open common room",
+              "A kitchen",
+              "A bathroom serving the outdoor area",
+              "A laundry room",
+              "A storage room",
+              "A gym",
+              "One bedroom"
+          ]
+        },
+        {
+          "header":"First Floor:",
+          "items": [
+              "A large open room",
+              "An office",
+              "A library",
+              "A general bathroom"
+          ]
+        }
       ],
       "finalDescription":"",
       "images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"]
     },
     {
-      "title":"Projecto Arquitectónico Evolutivo para Conjunto Residencial com 10 apartamentos - Huambo, Angola ~ 2020.",
-      "organization":"Independet Project",
-      "description":"",
+      "title":"Evolutionary Architectural Project for a Residential Complex with 10 Apartments - Huambo, Angola ~ 2020",
+      "organization":"AUTONOMOUS PROJECT",
+      "description":"The project was developed with the ambition of future expansion to approximately 15 apartments, each comprising:",
       "activities":[
-  
+        "Living room",
+        "Kitchen",
+        "Bedroom",
+        "Bathroom",
+        {
+          "header": "The project also includes additional facilities such as:",
+          "items":[
+            "General reception area",
+            "Community kitchen",
+            "Parking area",
+            "Two auxiliary staircases for access to the upper floor",
+            "Shop"
+          ]
+        }
       ],
       "finalDescription":"",
       "images":["im1.jpeg", "im2.jpeg", "im3.jpeg"]
     },
     {
-      "title":"Projecto de Alteração e Reforma de Duas Residências T1 - Luanda, Angola ~ 2021",
-      "organization":"Independet Project",
-      "description":"",
+      "title":"Modification and Renovation Project for Two T1 Residences - Luanda, Angola ~ 2021",
+      "organization":"AUTONOMOUS PROJECT",
+      "description":"Each residence comprises a hall, common room, kitchen, bathroom, and bedroom. The activities carried out included:",
       "activities":[
-  
+        "Creating openings for the installation of a counter",
+        "Applying porcelain tile flooring and wall coverings",
+        "Leveling the floors",
+        "Renewing the general interior paint",
+        "Intervening in the sanitation system (sewage), including cleaning the septic tank",
+        "Repairing the roof to address infiltration issues caused by weather conditions"
       ],
       "finalDescription":"",
-      "images":[
-  
-      ]
+      "images":[]
     },
     {
-      "title":"Projecto Arquitetónico | Edifício Multifuncional de 3 Pisos - Soyo, Zaire - Angola ~ 2019",
-      "organization":"",
-      "description":"",
+      "title":"Architectural Project | 3-Story Multifunctional Building - Soyo, Zaire - Angola ~ 2019",
+      "organization":"AUTONOMOUS PROJECT",
+      "description":"The building is organized as follows:",
       "activities":[
-  
+        {
+          "header": "Ground Floor:",
+          "items": ["Store (IT technology and home appliances)"]
+        },
+        {
+          "header": "First Floor:",
+          "items":["Offices"]
+        },
+        {
+          "header":"Second Floor",
+          "items":["Economic nightclub (convertible to a banquet hall)"]
+        },
+        {
+          "header":"Third Floor",
+          "items":["VIP nightclub (VIP area also convertible to a banquet hall)"]
+        }
       ],
-      "finalDescription":"",
+      "finalDescription":"The project included supervision activities, which encompassed monitoring the physical execution, cost control, and inventory management over a three-month period.",
       "images":[
         "m0.jpeg", "m01.jpeg", "m1.jpeg", "m3.jpeg",
         "m4.jpeg", "m5.jpeg", "m6.jpeg", "m8.jpeg",

@@ -22,7 +22,7 @@ const NavBar = () => {
         <Link to="/" className={`${styles.icon} ${location.pathname === '/' ? styles.active : ''}`} onClick={toggleMenu}>
           <FontAwesomeIcon icon="house" className="fas fa-house" />
           <span>Home</span>
-        </Link> 
+        </Link>  
         <Link to="/projects" className={`${styles.icon} ${location.pathname === '/projects' ? styles.active : ''}`} onClick={toggleMenu}>
           <FontAwesomeIcon icon="building" className="fas fa-building" />
           <span>Projects</span>
