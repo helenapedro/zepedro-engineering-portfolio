@@ -28,7 +28,6 @@ const Certificate = () => {
             <div>
                 <OtherEducationData otherEducationData={otherEducationData} />
             </div>
-            <a href="#certificate" className={`${styles.arrowIcon} solid fa-arrow-up`}></a>
         </div> 
     );
 };
