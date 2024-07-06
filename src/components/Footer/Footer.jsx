@@ -1,11 +1,12 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import globalStyles from '../Global/global.module.css';
+import styles from './Footer.module.css';
 
 const Footer = () => {
   return (
-    <div id="footer">
-      <ul className="copyright">
+    <div className={styles.footer}>
+      <ul className={styles.copyright}>
         <li>Engº ZéPedro</li>
         <li>
           <a href="tel:+244947462094" className={globalStyles.icon}>
