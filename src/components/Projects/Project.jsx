@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Project.module.css';
-
 import config from '../../config';
 
 const Project = ({
@@ -71,13 +70,13 @@ Project.propTypes = {
     PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.shape({
-        header: PropTypes.string,
-        items: PropTypes.arrayOf(PropTypes.string).isRequired,
+        header: PropTypes.string.isRequired,
+        items: PropTypes.arrayOf(PropTypes.string).isRequired
       })
     ])
-  ),
-  finalDescription: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.string),
+  ).isRequired,
+  finalDescription: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Project;

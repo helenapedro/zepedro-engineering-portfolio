@@ -1,5 +1,3 @@
-@import "../../vars.css";
-
 .project {
   align-items: center;
   background-color: #f9f9f9;
@@ -147,8 +145,8 @@
 
 .image {
   display: inline-block;
-  overflow: hidden;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .image img {
@@ -182,7 +180,32 @@
   display: block;
   margin: 0 0 2em 0;
 }
+
 .centered img {
   margin: 0 auto;
   width: auto;
+}
+
+@media (max-width: 768px) {
+  .col-4,
+  .col-6-medium,
+  .col-12-small {
+    flex: 1 1 calc(50% - 20px);
+  }
+
+  .image img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .col-4,
+  .col-6-medium,
+  .col-12-small {
+    flex: 1 1 calc(100% - 20px);
+  }
+
+  .image img {
+    width: 100%;
+  }
 }

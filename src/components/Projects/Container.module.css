@@ -37,7 +37,7 @@
 }
 
 @media (max-width: 480px) {
-  .certificate {
+  .container {
     width: 90%;
     padding: 10px;
   }

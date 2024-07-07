@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Certificate.module.css';
 
 import Academic from '../Education/Academic';
@@ -7,7 +7,7 @@ import SkillsTable from '../Skills/SkillsTable';
 import academicData from '../../data/academicData.json';
 import professionalData from '../../data/professionalData.json';
 import otherEducationData from '../../data/otherEducationData.json';
-import OtherEducationData from '../Education/otherEducation'
+import OtherEducationData from '../Education/otherEducation';
 
 const Certificate = () => {
     return (
@@ -28,7 +28,7 @@ const Certificate = () => {
             <div>
                 <OtherEducationData otherEducationData={otherEducationData} />
             </div>
-        </div> 
+        </div>
     );
 };
 
