@@ -80,6 +80,10 @@
 }
 
 @media (max-width: 768px) {
+  .skills {
+    width: 88%;
+    max-width: 90%;
+  }
   .skills-table {
     width: 90%;
     margin-top: 20px;
@@ -93,7 +97,7 @@
 
 @media (max-width: 480px) {
   .skills {
-    max-width: 90%;
+    max-width: 88%;
   }
   .skills-table {
     width: 100%;

@@ -1,3 +1,23 @@
+@font-face {
+  font-family: "eb_garamond_sc08_regular";
+  src: url("../public/fonts/garamond/ebgaramondsc08-regular-webfont.woff2")
+      format("woff2"),
+    url("../public/fonts/garamond/ebgaramondsc08-regular-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "eb_garamond_sc12_regular";
+  src: url("../public/fonts/garamond/ebgaramondsc12-regular-webfont.woff2")
+      format("woff2"),
+    url("../public/fonts/garamond/ebgaramondsc12-regular-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body,
 div,
@@ -12,7 +32,6 @@ h4,
 h5,
 h6,
 p,
-blockquote,
 pre,
 a,
 abbr,
@@ -51,14 +70,7 @@ fieldset,
 form,
 label,
 legend,
-table,
 caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
 article,
 aside,
 canvas,
@@ -79,11 +91,11 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
-  padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+  margin: 0;
+  padding: 0;
   vertical-align: baseline;
 }
 
@@ -105,27 +117,20 @@ body {
   line-height: 1;
 }
 
+mark {
+  background-color: transparent;
+  color: inherit;
+}
+
+input,
+select,
+textarea {
+  appearance: none;
+}
+
 ol,
 ul {
   list-style: none;
-}
-
-blockquote,
-q {
-  quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
 mark {
@@ -176,7 +181,6 @@ body,
 input,
 textarea,
 select {
-  font-family: "Source Sans Pro", sans-serif;
   font-weight: 300;
   color: #777777;
   font-size: 20pt;
@@ -304,34 +308,9 @@ p,
 ul,
 ol,
 dl,
-table,
 blockquote,
 form {
   margin-bottom: 2em;
-}
-
-/* Table */
-
-table {
-  width: 100%;
-}
-
-table.default tbody tr {
-  border-bottom: solid 1px #f4f4f4;
-}
-
-table.default td {
-  padding: 0.5em 1em 0.5em 1em;
-}
-
-table.default th {
-  text-align: left;
-  font-weight: 400;
-  padding: 0.5em 1em 0.5em 1em;
-}
-
-table.default thead {
-  border-bottom: solid 2px #f4f4f4;
 }
 
 /* Form */
