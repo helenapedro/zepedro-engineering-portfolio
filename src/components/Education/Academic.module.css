@@ -30,7 +30,8 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.header {
+.header,
+.title {
   text-align: center;
 }
 
