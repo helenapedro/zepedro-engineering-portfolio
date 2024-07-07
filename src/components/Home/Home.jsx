@@ -15,14 +15,14 @@ const Home = () => {
                             Hello, my name is <Link to="/card">ZéPedro</Link> and I am an experienced <Link to="/certificate">Civil Engineer</Link>,
                             with over <i className={styles.year}>3</i> years in
                             project management and nearly <i className={styles.year}>1</i> year
-                            as Coordinator of QHSE-Quality in Mota-Engil Angola. <br />
+                            as Coordinator of QHSE-Quality at Mota-Engil Angola. <br />
                         </strong>
                     </p>
                     <p className={styles.description}>
                         <strong>
-                            Proficient in managing and executing <Link to="/projects">civil construction projects</Link>,
-                            including roads, bridges, maritime, and airport pavements. <br />
-                            Skilled in utilizing various <a href='/certificate'>engineering and project management software</a> to 
+                            Knowledge in managing and executing <Link to="/projects">civil construction</Link> projects,
+                            roads, bridges, maritime, and aerodrome pavements. <br />
+                            Skilled in using <a href='/certificate'>engineering architecture and project management software</a> to 
                             enhance project delivery and quality assurance.
                         </strong>
                     </p>
