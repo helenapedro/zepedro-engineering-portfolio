@@ -18,8 +18,9 @@
 }
 
 .container-title {
-  font-size: 2em;
   color: #007acc;
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+  font-size: 2em;
   margin-bottom: 20px;
   text-align: center;
 }

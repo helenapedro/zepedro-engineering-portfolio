@@ -7,6 +7,7 @@ import config from '../../config';
 const Project = ({
   title,
   organization,
+  placeandyear,
   description,
   activities = [],
   finalDescription = '',
@@ -17,6 +18,7 @@ const Project = ({
       <header className={styles.header}>
         <h2 className={styles.title} id={`project-title-${title}`}>{title}</h2>
         <i className={styles.organization}>{organization}</i>
+        <i className={styles.placeandyear}>{placeandyear}</i>
       </header>
       <p className={styles.projectdescription}><b>{description}</b></p>
       {Array.isArray(activities) && activities.length > 0 && (
@@ -63,6 +65,7 @@ const Project = ({
 Project.propTypes = {
   title: PropTypes.string.isRequired,
   organization: PropTypes.string.isRequired,
+  placeandyear: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   activities: PropTypes.arrayOf(
     PropTypes.oneOfType([

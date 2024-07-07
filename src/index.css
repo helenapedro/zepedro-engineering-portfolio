@@ -18,6 +18,16 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "robotslab";
+  src: url("../public/fonts/roboto/RobotoSlab-Bold.ttf") format("tff");
+  src: url("../public/fonts/roboto/RobotoSlab-Light.ttf") format("tff");
+  src: url("../public/fonts/roboto/RobotoSlab-Regular.ttf") format("tff");
+  src: url("../public/fonts/roboto/RobotoSlab-Thin.ttf") format("tff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body,
 div,
@@ -93,7 +103,6 @@ audio,
 video {
   border: 0;
   font-size: 100%;
-  font-family: "eb_garamond_sc08_regular", sans-serif;
   margin: 0;
   padding: 0;
   vertical-align: baseline;

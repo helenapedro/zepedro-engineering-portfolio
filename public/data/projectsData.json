@@ -1,7 +1,8 @@
 [
      {
-       "title": "Rehabilitation of the Maria M. Café Airport Pavement Runway - Cabinda ~ 2023",
+       "title": "Rehabilitation of the Maria M. Café Airport Pavement Runway",
        "organization": "MOTA-ENGIL ANGOLA",
+       "placeandyear": "Cabinda, Angola ~ 2023",
        "description": "The project involved intervention on the runway of the main aerodrome in the province of Cabinda. Aimed at preserving the local economy and meeting the population's needs regarding flight services, the activities were carried out during the nighttime, after the closure of the last service, from midnight to 6 AM. The focus was primarily on the following activities:",
        "activities": [
          "Milling to a depth of 5 cm, covering a total length of 600 meters and width of 16 meters respectively;",
@@ -11,8 +12,9 @@
        "images": [ "A3.jpg", "A2.jpg", "A5.jpg", "A8.jpg", "A0.jpg", "A7.jpg"]
      },
      {
-       "title":"Construction of Access Roads to the New Bridge Over the Lucola River - Cabinda ~ 2023",
+       "title":"Construction of Access Roads to the New Bridge Over the Lucola River",
        "organization":"MOTA-ENGIL ANGOLA",
+       "placeandyear": "Cabinda, Angola ~ 2023",
        "description":"I was integrated into the project, which consists of creating an alternative route connecting to Cabassango, crossing the Lucola River, after approximately 50% of the project's physical execution. In this endeavor, I gained knowledge in:",
        "activities":[
         "Application of various sanitation methods;",
@@ -32,8 +34,9 @@
          "ac1.jpg", "ac2.jpg", "ac3.jpg", "ac4.jpg", "ac5.jpg", "ac6.jpg", "ac7.jpg", "ac8.jpg", "ac9.jpg", "l1.jpg", "l2.jpg", "l3.jpg"]
      },
      {
-       "title":"Construction of the New Bridge Over the Lucola River - Cabinda ~ 2023",
+       "title":"Construction of the New Bridge Over the Lucola River",
        "organization":"MOTA-ENGIL ANGOLA",
+       "placeandyear": "Cabinda, Angola ~ 2023",
        "description":"Built using a mixed solution, comprising a deck with prefabricated slabs (pre-slabs) set on metal profiles. At the time, the New Bridge project was approximately 70% physically complete, providing me the opportunity to actively participate in various activities, such as:",
        "activities":[
         "Monitoring the process of applying the prefabricated slabs (pre-slabs) on metal profiles. A total of 47 pieces were applied, each weighing an average of 14.5 tons, with two slabs at the ends subsequently cast in situ;",
@@ -48,8 +51,9 @@
        "images":["rl1.jpg", "rl2.jpg", "rl3.jpg", "rl4.jpg", "rl5.jpg", "rl6.jpg", "rl7.jpg", "rl8.jpg", "rl9.jpg", "rl10.JPG", "rl11.JPG", "rl12.JPG"]
      },
      {
-       "title":"Renovation of the Office Building on Rua de Macau - Cabinda ~ 2023",
-       "organization":"MOTA-ENGIL ANGOLA",
+       "title": "Renovation of the Office Building on Rua de Macau",
+       "organization": "MOTA-ENGIL ANGOLA",
+       "placeandyear": "Cabinda, Angola ~ 2023",
        "description":"I served as Deputy Director in this significant Civil Construction project focusing on Buildings. The undertaking involved rehabilitating the main building with four floors and demolishing a two-story support building (annex) for total reconstruction. I gained essential knowledge, including:",
        "activities":[
         "Setting up the construction site and preparing for the groundbreaking ceremony, actively participating in all stages of this process;",
@@ -65,16 +69,18 @@
        "images":["macau5.jpg", "macau8.jpg", "macau2.jpg", "macau7.jpg", "macau4.jpg", "macau9.jpg", "macau3.jpg", "macau1.jpg", "macau6.jpg"]
      },
      {
-       "title":"Renovation and Expansion of the 1º de Maio Maternity Hospital - Cabinda ~ 2022",
+       "title":"Renovation and Expansion of the 1º de Maio Maternity Hospital",
        "organization":"MOTA-ENGIL ANGOLA",
+       "placeandyear": "Cabinda, Angola ~ 2022",
        "description":"The main goal of this project was to contribute to the reduction of maternal and infant morbidity and mortality, ensuring childbirth assistance that provides comfort to both the mother and the newborn, as well as postpartum care.",
        "activities":[],
        "finalDescription":"",
        "images":["mt1.jpg", "mt2.jpg", "mt3.jpg", "mt4.jpg", "mt5.jpg", "mt6.jpg", "mt7.jpg", "mt8.jpg", "mt9.jpg"]
      },
      {
-        "title":"Trainee Program STARTME@2021_8th Edition ~ 2022",
+        "title":"Trainee Program STARTME@2021_8th Edition",
         "organization":"MOTA-ENGIL ANGOLA",
+        "placeandyear": "2022",
         "description":"During the internship period, as a trainee, I had the opportunity to gain knowledge in different sectors and cost centers, namely:",
         "activities":[
           "Measurements area;",
@@ -91,8 +97,9 @@
         ]
      },
      {
-      "title":"Renovation and Expansion of a 2-Story Residence - Luanda ~ 2020 - 2021",
-      "organization":"CADEL CONSTRUÇÕES",
+      "title": "Renovation and Expansion of a 2-Story Residence",
+      "organization": "CADEL CONSTRUÇÕES",
+      "placeandyear": "Luanda ~ 2020 - 2021",
       "description":"Throughout the project, I was involved in production, planning, procurement (acquisition of materials and tools/equipment), design (architecture), measurements and budgeting, logistics-warehouse, and as a driver. The project consisted of renovating and expanding the residence, resulting in the addition of:",
       "activities":[
         "Gym", 
@@ -107,8 +114,9 @@
               ]
     },
     {
-      "title":"Rehabilitation of the Storm Drainage System in the City of Cabinda - Cabinda, Angola ~ 2024",
+      "title":"Rehabilitation of the Storm Drainage System in the City of Cabinda",
       "organization":"MOTA-ENGIL ANGOLA",
+      "placeandyear": "Cabinda, Angola ~ 2024",
       "description":"The electronic model was developed to present the conceptual project aimed at improving the city of Cabinda, due to the increasing degradation of urban infrastructure. The project includes:",
       "activities":[
         "Sidewalks", 
@@ -123,8 +131,9 @@
               ]
     },
     {
-      "title":"Electronic Model Project Mamaland, Fazenda Tchiela - Cabinda, Angola ~ 2023",
+      "title":"Electronic Model Project Mamaland, Tchiela Farm (Fazenda Tchiela)",
       "organization":"MAMALAND ~ MOTA-ENGIL ANGOLA",
+      "placeandyear": "Cabinda, Angola ~ 2023",
       "description":"The electronic model was developed to optimize the layout of facilities for processing harvested cocoa. The project includes the distribution of five main blocks:",
       "activities":[
         "Cutting Area", 
@@ -140,8 +149,9 @@
       ]
     },
      {
-       "title":"Executive and Structural Project of a T4 Single-Family Home - Luanda, Angola ~ 2021 – 2023",
+       "title":"Executive and Structural Project of a T4 Single-Family Home",
        "organization":"AUTONOMOUS PROJECT",
+       "placeandyear": "Luanda, Angola ~ 2021 - 2023",
        "description":"The building has the following layout:",
        "activities": [
             {
@@ -243,8 +253,9 @@
       "images":["im1.jpeg", "im2.jpeg", "im3.jpeg"]
     },
     {
-      "title":"Modification and Renovation Project for Two T1 Residences - Luanda, Angola ~ 2021",
+      "title":"Modification and Renovation Project for Two T1 Residences",
       "organization":"AUTONOMOUS PROJECT",
+      "placeandyear": "Luanda, Angola ~ 2021",
       "description":"Each residence comprises a hall, common room, kitchen, bathroom, and bedroom. The activities carried out included:",
       "activities":[
         "Creating openings for the installation of a counter",
@@ -258,8 +269,9 @@
       "images":[]
     },
     {
-      "title":"Architectural Project | 3-Story Multifunctional Building - Soyo, Zaire - Angola ~ 2019",
+      "title":"Architectural Project | 3-Story Multifunctional Building",
       "organization":"AUTONOMOUS PROJECT",
+      "placeandyear": "Soyo, Zaire - Angola ~ 2019",
       "description":"The building is organized as follows:",
       "activities":[
         {

@@ -10,10 +10,18 @@ const Home = () => {
           <h1 className={styles.title}>José Francisco Pedro</h1>
           <p className={styles.description}>
             <strong>
-              Hello! May name is ZéPedro and I am a Construction Engineer with over 3 years of experience in Construction Management and
-              A3 associate member of the Order of Engineers of Angola (OEA). 
-             {/*  Thorough my carrer, I have contributed to significant projects, including the intervention on Cabinda province’s main airstrip 
-              and the creation of an alternative route connecting to Cabassango. */}
+              Hello, my name is <a href="/card">ZéPedro</a> and I am a experienced Civil Engineer,    
+              with over <i className={styles.year}>3</i> years in 
+              project management and nearly <i className={styles.year}>1</i> year 
+              as Coordinator of QHSE-Quality in Mota-Engil Angola. <br />
+            </strong>
+          </p>
+          <p className={styles.description}>
+            <strong>
+              Proficient in managing and executing civil construction projects, 
+              including roads, bridges, maritime, and airport pavements. <br />
+              Skilled in utilizing various engineering and project management software 
+              to enhance project delivery and quality assurance.
             </strong>
           </p>
         </header>

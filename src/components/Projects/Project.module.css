@@ -37,16 +37,39 @@
 }
 
 .title {
-  font-size: 1.5em;
   color: #007acc;
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+  font-size: 1.5em;
+  hyphens: auto;
   margin-bottom: 10px;
+  word-spacing: normal;
+}
+
+.placeandyear {
+  line-height: normal;
+}
+
+.placeandyear,
+.organization {
+  color: #666;
+  display: block;
+  font-size: 1em;
+  margin: 10px 0;
 }
 
 .projectdescription {
   font-weight: bold;
 }
 
-.organization,
+.projectdescription,
+.ulItems {
+  font-family: "eb_garamond_sc12_regular", sans-serif;
+  hyphens: auto;
+  line-height: normal;
+  text-align: justify;
+  word-spacing: normal;
+}
+
 .projectdescription {
   color: #666;
   display: block;
@@ -61,6 +84,7 @@
 }
 
 .organization a:hover,
+.placeandyear a:hover,
 .projectdescription a:hover {
   text-decoration: underline;
 }

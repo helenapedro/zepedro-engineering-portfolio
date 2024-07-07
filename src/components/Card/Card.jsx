@@ -11,15 +11,15 @@ const Card = () => {
           <p className={styles.description}>
             <b>Associated A3 Member of The Order of Engineers of Angola (OEA)</b>
           </p>
-          <p><b className={styles.b}>Interested Area:</b> <b>Construction Management.</b></p>
+          <p className={styles.description}>
+            <i className={styles.b}>Interested Area:</i>
+            <b> Construction Management.</b>
+          </p>
         </header>
         <a
             href="https://ambrosiopublicfiles.s3.us-east-2.amazonaws.com/Jose_Pedro_Engineering_Order_Card.jpg"
             target="_blank"
             className={`${styles['col-2']} ${styles['col-3-medium']} ${styles['col-10-small']} ${styles.image} ${styles.fit}`}>
-            <span class={`${styles.arrow} fa fa-chevron-right`}
-              ><span><i>Cartão de Membro</i></span>
-            </span>
             <img src="https://pedro-pi.s3.us-east-2.amazonaws.com/oea.jpeg" alt=""/>
           </a>
       </article>

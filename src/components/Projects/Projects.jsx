@@ -48,6 +48,7 @@ const Projects = () => {
             <Project
               title={project.title}
               organization={project.organization}
+              placeandyear={project.placeandyear}
               description={project.description}
               activities={project.activities}
               finalDescription={project.finalDescription}

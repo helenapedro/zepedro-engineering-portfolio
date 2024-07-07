@@ -84,15 +84,20 @@
 
 .title {
   color: #007acc;
+  font-family: "eb_garamond_sc08_regular", sans-serif;
   line-height: 1.25em;
   margin-bottom: 0;
 }
 
 .description {
-  letter-spacing: -0.015em;
+  hyphens: auto;
+  letter-spacing: normal;
+  line-height: normal;
+  font-family: "eb_garamond_sc12_regular", sans-serif;
   font-size: 1.11em;
   margin: 0.25em 0 0 0;
   text-align: justify;
+  word-spacing: normal;
 }
 
 .b {

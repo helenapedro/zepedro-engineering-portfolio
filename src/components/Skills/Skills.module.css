@@ -43,14 +43,19 @@
 }
 
 .skills-table {
-  flex-direction: column;
-  margin-top: var(--skills-table-margin-top);
-  width: var(--skills-table-width);
-  max-width: var(--skills-table-max-width);
   background-color: var(--skills-table-bg-color);
   border-radius: var(--skills-table-border-radius);
   box-shadow: var(--skills-table-box-shadow);
+  flex-direction: column;
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+  hyphens: auto;
+  letter-spacing: normal;
+  margin-top: var(--skills-table-margin-top);
+  max-width: var(--skills-table-max-width);
   overflow: hidden;
+  text-align: center;
+  width: var(--skills-table-width);
+  word-spacing: normal;
 }
 
 .skills-table-header {
@@ -59,8 +64,8 @@
 }
 
 .skills-table-header th {
-  padding: var(--skills-table-cell-padding);
   cursor: pointer;
+  padding: var(--skills-table-cell-padding);
 }
 
 .skills-table-header th:hover {
@@ -77,6 +82,10 @@
 
 .skills-table-body tr:hover {
   background-color: var(--skills-table-body-hover-bg-color);
+}
+
+.year {
+  font-family: "robotslab", sans-serif;
 }
 
 @media (max-width: 768px) {

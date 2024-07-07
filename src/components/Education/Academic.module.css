@@ -36,12 +36,13 @@
 
 .title,
 .othereducationtitle {
-  font-size: 1.2em;
   color: #333;
+  font-size: 0.75em;
   margin-bottom: 10px;
 }
 
 .course {
+  font-family: "eb_garamond_sc08_regular", sans-serif;
   font-size: 1.5em;
   color: #007acc;
   margin-bottom: 10px;
@@ -53,6 +54,16 @@
   color: #666;
   display: block;
   margin: 10px 0;
+}
+
+.title,
+.othereducationtitle,
+.institute,
+.tutordescription {
+  font-family: "eb_garamond_sc12_regular", sans-serif;
+  hyphens: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
 }
 
 .institute a,
