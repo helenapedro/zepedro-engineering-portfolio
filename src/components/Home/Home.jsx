@@ -5,7 +5,7 @@ import styles from './Home.module.css';
 const Home = () => {
   return (
     <div className={styles.mainContainer}>
-      <article id="home" className={`${styles.panel} ${styles.introPanel}`}>
+      <article className={`${styles.panel} ${styles.introPanel}`}>
         <header className={styles.header}>
           <h1 className={styles.title}>José Francisco Pedro</h1>
           <p className={styles.description}>

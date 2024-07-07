@@ -5,7 +5,7 @@ import styles from './Card.module.css';
 const Card = () => {
   return (
     <div className={styles.mainContainer}>
-      <article id="card" className={`${styles.panel} ${styles.introPanel}`}>
+      <article className={`${styles.panel} ${styles.introPanel}`}>
       <header className={styles.header}>
           <h1 className={styles.title}>José Francisco Pedro</h1>
           <p className={styles.description}>

@@ -13,25 +13,25 @@ const NavBar = () => {
 
   return (
     <nav className={styles.nav}>
-      <div className={`${styles.hamburger} ${menuOpen ? styles.active : ''}`} onClick={toggleMenu}>
+      <div className={menuOpen ? styles.active : ''} onClick={toggleMenu}>
         <div />
         <div />
         <div />
       </div>
       <div className={`${styles.menu} ${menuOpen ? styles.show : ''}`}>
-        <Link to="/" className={`${styles.icon} ${location.pathname === '/' ? styles.active : ''}`} onClick={toggleMenu}>
+        <Link to="/" className={location.pathname === '/' ? styles.active : ''} onClick={toggleMenu}>
           <FontAwesomeIcon icon="house" className="fas fa-house" />
           <span>Home</span>
         </Link>  
-        <Link to="/projects" className={`${styles.icon} ${location.pathname === '/projects' ? styles.active : ''}`} onClick={toggleMenu}>
+        <Link to="/projects" className={location.pathname === '/projects' ? styles.active : ''} onClick={toggleMenu}>
           <FontAwesomeIcon icon="building" className="fas fa-building" />
           <span>Projects</span>
         </Link>
-        <Link to="/card" className={`${styles.icon} ${location.pathname === '/card' ? styles.active : ''}`} onClick={toggleMenu}>
+        <Link to="/card" className={location.pathname === '/card' ? styles.active : ''} onClick={toggleMenu}>
           <FontAwesomeIcon icon="id-card" className="fas fa-id-card" />
           <span>Card</span>
         </Link>
-        <Link to="/certificate" className={`${styles.icon} ${location.pathname === '/certificate' ? styles.active : ''}`} onClick={toggleMenu}>
+        <Link to="/certificate" className={location.pathname === '/certificate' ? styles.active : ''} onClick={toggleMenu}>
           <FontAwesomeIcon icon="certificate" className="fas fa-certificate" />
           <span>Certificate</span>
         </Link>
@@ -39,7 +39,7 @@ const NavBar = () => {
           href="https://linkedin.com/in/josefpedro/" 
           target="_blank" 
           rel="noreferrer"
-          className={styles.icon} onClick={toggleMenu}>
+          onClick={toggleMenu}>
           <FontAwesomeIcon icon={['fab', 'linkedin']} className="fab fa-linkedin" />
           <span>LinkedIn</span>
         </a>
