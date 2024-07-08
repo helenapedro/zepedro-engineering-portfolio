@@ -13,7 +13,7 @@ const SkillsTable = () => {
     { year: '2020', skill: 'MS Project', level: 'Basic' },
     { year: '2020', skill: 'SketchUp', level: 'Intermediary' },
     { year: '2020', skill: 'Adobe Sketchbook', level: 'Intermediary' },
-    { year: '2019', skill: 'Revit - Arquitectura', level: 'Basic' },
+    { year: '2019', skill: 'Revit - Architecture', level: 'Basic' },
     { year: '2018', skill: 'GanttProject', level: 'Intermediary' },
     { year: '2018', skill: 'Adobe Premiere Pro', level: 'Intermediary' },
     { year: '2017', skill: 'SAP 2000 - Analysis and Structural Design', level: 'Intermediary' },
