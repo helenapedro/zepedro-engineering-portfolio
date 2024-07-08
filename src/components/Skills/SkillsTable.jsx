@@ -7,20 +7,20 @@ const SkillsTable = () => {
   const [sortColumn, setSortColumn] = useState({ path: 'year', order: 'asc' });
 
   const [skills, setSkills] = useState([
-    { year: '2023', skill: 'Lumion', level: 'Básico' },
-    { year: '2023', skill: 'Pilotagem de Drones', level: 'Intermediário' },
-    { year: '2021', skill: 'SAP HANA S4P (aprovisionamentos, logística e armazém)', level: 'Intermediário' },
-    { year: '2020', skill: 'MS Project', level: 'Básico' },
-    { year: '2020', skill: 'SketchUp', level: 'Intermediário' },
-    { year: '2020', skill: 'Adobe Sketchbook', level: 'Intermediário' },
-    { year: '2019', skill: 'Revit - Arquitectura', level: 'Básico' },
-    { year: '2018', skill: 'GanttProject', level: 'Intermediário' },
-    { year: '2018', skill: 'Adobe Premiere Pro', level: 'Intermediário' },
-    { year: '2017', skill: 'SAP 2000 - Análise e Projecto Estrutural', level: 'Intermediário' },
-    { year: '2016', skill: 'FTool', level: 'Intermediário' },
-    { year: '2010', skill: 'AutoCAD 2D - 3D', level: 'Intermediário' },
-    { year: '2009', skill: 'Software e Hardware', level: 'Intermediário' },
-    { year: '2009', skill: 'Microsoft Office', level: 'Intermediário' },
+    { year: '2023', skill: 'Lumion', level: 'Basic' },
+    { year: '2023', skill: 'Drone Piloting', level: 'Intermediary' },
+    { year: '2021', skill: 'SAP HANA S4P (procurement, logistics and warehouse)', level: 'Intermediary' },
+    { year: '2020', skill: 'MS Project', level: 'Basic' },
+    { year: '2020', skill: 'SketchUp', level: 'Intermediary' },
+    { year: '2020', skill: 'Adobe Sketchbook', level: 'Intermediary' },
+    { year: '2019', skill: 'Revit - Arquitectura', level: 'Basic' },
+    { year: '2018', skill: 'GanttProject', level: 'Intermediary' },
+    { year: '2018', skill: 'Adobe Premiere Pro', level: 'Intermediary' },
+    { year: '2017', skill: 'SAP 2000 - Analysis and Structural Design', level: 'Intermediary' },
+    { year: '2016', skill: 'FTool', level: 'Intermediary' },
+    { year: '2010', skill: 'AutoCAD 2D - 3D', level: 'Intermediary' },
+    { year: '2009', skill: 'Software and Hardware', level: 'Intermediary' },
+    { year: '2009', skill: 'Microsoft Office', level: 'Intermediary' },
   ]);
 
   const handleSort = (newSortColumn) => {
