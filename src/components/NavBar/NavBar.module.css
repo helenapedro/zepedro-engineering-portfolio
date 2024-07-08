@@ -60,6 +60,9 @@
   transition: opacity 0.25s ease-in-out;
   top: -2.75em;
   width: 5.5em;
+  -moz-transition: opacity 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s ease-in-out;
+  -ms-transition: opacity 0.25s ease-in-out;
 }
 
 .nav a span:after {
@@ -96,5 +99,12 @@
   }
   .nav a span {
     display: none;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .nav a:after {
+    transform: translateX(100%);
+    margin-left: calc(100% - 2.1em);
   }
 }

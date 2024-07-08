@@ -38,6 +38,12 @@
   }
 }
 
+@media (max-width: 480px) {
+  .panel {
+    padding: auto;
+  }
+}
+
 /* Intro Panel */
 .introPanel {
   padding: 0;
@@ -85,18 +91,22 @@
 .title {
   color: #007acc;
   font-family: "eb_garamond_sc08_regular", sans-serif;
-  line-height: 1.25em;
-  margin-bottom: 0;
+  margin-bottom: auto;
 }
 
+.description {
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+  font-size: 1.11em;
+  text-align: justify;
+}
+
+.title,
 .description {
   hyphens: auto;
   letter-spacing: normal;
   line-height: normal;
-  font-family: "eb_garamond_sc12_regular", sans-serif;
-  font-size: 1.11em;
   margin: 0.25em 0 0 0;
-  text-align: justify;
+  overflow: hidden;
   word-spacing: normal;
 }
 

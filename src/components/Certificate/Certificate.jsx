@@ -18,6 +18,10 @@ const Certificate = () => {
             <div>
                 <Academic academicData={academicData} />
             </div>
+            <h1 className={styles['certificate-title']}>TECHNICAL SKILLS</h1>
+            <div>
+                <SkillsTable />
+            </div>
             <h1 className={styles['certificate-title']}>MOTA-ENGIL TRAINING</h1>
             <div>
                 <ProfessionalMe professionalData={professionalData} />
@@ -25,10 +29,6 @@ const Certificate = () => {
             <h1 className={styles['certificate-title']}>ADDITIONAL TRAINING</h1>
             <div>
                 <AditionalTraining otherTrainingData={otherTrainingData} />
-            </div>
-            <h1 className={styles['certificate-title']}>TECHNICAL SKILLS</h1>
-            <div>
-                <SkillsTable />
             </div>
             <h1 className={styles['certificate-title']}>OTHER</h1>
             <div>
