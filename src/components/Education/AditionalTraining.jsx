@@ -17,16 +17,18 @@ const AditionalTraining = ({ otherTrainingData }) => {
                                 const imageUrl = `${config.trainingUrl}${image}`;
                                 return (
                                     <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
+                                        <p className={styles.title}>{data.title[imgIndex]}</p>
                                         <a className={styles.image}>
                                             <img src={imageUrl} alt={`Certificate ${index + 1}`} />
                                         </a>
-                                        <p className={styles.title}>{data.title[imgIndex]}</p>
+                                        <p className={styles.year}>{data.year[imgIndex]}</p>
                                     </div>
                                 );
-                            })
+                            }) 
                         ) : (
                             <div className={`${styles['col-12-small']}`}>
                                 <p className={styles.title}>{data.title}</p>
+                                <p className={styles.year}>{data.year}</p>
                             </div>
                         )}
                     </div>
