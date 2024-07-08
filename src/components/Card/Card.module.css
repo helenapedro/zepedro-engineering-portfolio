@@ -90,29 +90,25 @@
 
 .title {
   color: #007acc;
-  font-family: "eb_garamond_sc08_regular", sans-serif;
+  letter-spacing: normal;
+  line-height: normal;
   margin-bottom: auto;
-}
-
-.description {
-  font-family: "eb_garamond_sc08_regular", sans-serif;
-  font-size: 1.11em;
-  text-align: justify;
+  margin-top: 1.3em;
 }
 
 .title,
 .description {
+  font-family: "eb_garamond_sc08_regular", sans-serif;
   hyphens: auto;
-  letter-spacing: normal;
   line-height: normal;
-  margin: 0.25em 0 0 0;
-  overflow: hidden;
   word-spacing: normal;
 }
 
-.b {
-  color: #007acc;
-  text-decoration: underline;
+.description {
+  font-size: 1em;
+  letter-spacing: -0.015em;
+  margin: 0.25em 0 0 0;
+  text-align: justify;
 }
 
 @media screen and (max-width: 736px) {
@@ -233,4 +229,16 @@
 .centered img {
   margin: 0 auto;
   width: auto;
+}
+
+@media screen and (max-width: 360px) {
+  .mainContainer {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 1024) {
+  .mainContainer {
+    width: 70%;
+  }
 }

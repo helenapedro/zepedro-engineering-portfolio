@@ -202,6 +202,12 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .mainContainer {
+    width: 70%;
+  }
+}
+
 @media screen and (max-width: 360px) {
   .mainContainer {
     width: 70%;

@@ -108,3 +108,10 @@
     margin-left: calc(100% - 2.1em);
   }
 }
+
+@media (min-width: 1024px) {
+  .nav a:after {
+    transform: translateX(100%);
+    margin-left: calc(100% - 2.1em);
+  }
+}
