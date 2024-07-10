@@ -29,7 +29,7 @@ const NavBar = () => {
         </Link>
         <Link to="/card" className={location.pathname === '/card' ? styles.active : ''} onClick={toggleMenu}>
           <FontAwesomeIcon icon="id-card" className="fas fa-id-card" />
-          <span>Card</span>
+          <span>About</span>
         </Link>
         <Link to="/certificate" className={location.pathname === '/certificate' ? styles.active : ''} onClick={toggleMenu}>
           <FontAwesomeIcon icon="certificate" className="fas fa-certificate" />

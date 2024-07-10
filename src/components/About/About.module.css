@@ -1,4 +1,4 @@
-.certificate {
+.main {
   align-items: center;
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -11,12 +11,12 @@
   width: 60%;
 }
 
-.certificate:hover {
+.main:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.certificate-title {
+.main-title {
   font-family: "eb_garamond_sc08_regular", sans-serif;
   font-size: 2em;
   color: #007acc;
@@ -25,23 +25,23 @@
 }
 
 @media (max-width: 768px) {
-  .certificate {
+  .main {
     width: 80%;
     padding: 15px;
   }
 
-  .certificate-title {
+  .main-title {
     font-size: 1.5em;
   }
 }
 
 @media (max-width: 480px) {
-  .certificate {
+  .main {
     width: 90%;
     padding: 10px;
   }
 
-  .certificate-title {
+  .main-title {
     font-size: 1.2em;
   }
 }

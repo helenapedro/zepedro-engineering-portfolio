@@ -17,7 +17,7 @@ import NotFound from './components/NotFound';
 import Footer from './components/Footer/Footer';
 import Certificate from './components/Certificate/Certificate';
 import ProjectsContainer from './components/Projects/ProjectsContainer';
-import Card from './components/Card/Card';
+import AboutMeContainer from './components/About/AboutMeContainer';
 
 // Add Font Awesome icons to the library
 library.add(fas, fab);
@@ -30,7 +30,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<ProjectsContainer />} />
-          <Route path="/card" element={<Card />} />
+          <Route path="/card" element={<AboutMeContainer />} />
           <Route path="/certificate" element={<Certificate />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

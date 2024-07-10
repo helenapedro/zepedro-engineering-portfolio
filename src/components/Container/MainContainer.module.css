@@ -1,0 +1,16 @@
+/* Main Container */
+.mainContainer {
+  margin: auto;
+  max-width: fit-content;
+  width: 60%;
+}
+
+.mainContainer:hover {
+  transform: translateY(-10px);
+}
+
+@media screen and (max-width: 980px) {
+  .mainContainer {
+    width: 80%;
+  }
+}

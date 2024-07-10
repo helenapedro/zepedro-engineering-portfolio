@@ -8,19 +8,19 @@ const SkillsTable = () => {
 
   const [skills, setSkills] = useState([
     { year: '2023', skill: 'Lumion', level: 'Basic' },
-    { year: '2023', skill: 'Drone Piloting', level: 'Intermediary' },
-    { year: '2021', skill: 'SAP HANA S4P (procurement, logistics and warehouse)', level: 'Intermediary' },
+    { year: '2023', skill: 'Drone Piloting', level: 'Intermediate' },
+    { year: '2021', skill: 'SAP HANA S4P (procurement, logistics and warehouse)', level: 'Intermediate' },
     { year: '2020', skill: 'MS Project', level: 'Basic' },
-    { year: '2020', skill: 'SketchUp', level: 'Intermediary' },
-    { year: '2020', skill: 'Adobe Sketchbook', level: 'Intermediary' },
+    { year: '2020', skill: 'SketchUp', level: 'Intermediate' },
+    { year: '2020', skill: 'Adobe Sketchbook', level: 'Intermediate' },
     { year: '2019', skill: 'Revit - Architecture', level: 'Basic' },
-    { year: '2018', skill: 'GanttProject', level: 'Intermediary' },
-    { year: '2018', skill: 'Adobe Premiere Pro', level: 'Intermediary' },
-    { year: '2017', skill: 'SAP 2000 - Analysis and Structural Design', level: 'Intermediary' },
-    { year: '2016', skill: 'FTool', level: 'Intermediary' },
-    { year: '2010', skill: 'AutoCAD 2D - 3D', level: 'Intermediary' },
-    { year: '2009', skill: 'Software and Hardware', level: 'Intermediary' },
-    { year: '2009', skill: 'Microsoft Office', level: 'Intermediary' },
+    { year: '2018', skill: 'GanttProject', level: 'Intermediate' },
+    { year: '2018', skill: 'Adobe Premiere Pro', level: 'Intermediate' },
+    { year: '2017', skill: 'SAP 2000 - Analysis and Structural Design', level: 'Intermediate' },
+    { year: '2016', skill: 'FTool', level: 'Intermediate' },
+    { year: '2010', skill: 'AutoCAD 2D - 3D', level: 'Intermediate' },
+    { year: '2009', skill: 'Software and Hardware', level: 'Intermediate' },
+    { year: '2009', skill: 'Microsoft Office', level: 'Intermediate' },
   ]);
 
   const handleSort = (newSortColumn) => {
