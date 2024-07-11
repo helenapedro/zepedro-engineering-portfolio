@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Academic.module.css';
 import config from '../../config';
 
-const AditionalTraining = ({ otherTrainingData }) => {
+const AdditionalTraining = ({ otherTrainingData }) => {
     if (!otherTrainingData || !Array.isArray(otherTrainingData)) {
         return <div>No data available.</div>;
     }
@@ -16,19 +16,17 @@ const AditionalTraining = ({ otherTrainingData }) => {
                             data.images.map((image, imgIndex) => {
                                 const imageUrl = `${config.trainingUrl}${image}`;
                                 return (
-                                    <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
-                                        <p className={styles.title}>{data.title[imgIndex]}</p>
+                                    <div className='col-4 col-6-medium col-12-small' key={imgIndex}>
                                         <a className={styles.image}>
                                             <img src={imageUrl} alt={`Certificate ${index + 1}`} />
                                         </a>
-                                        <p className={styles.year}>{data.year[imgIndex]}</p>
+                                        <p className={styles.title}>{data.title[imgIndex]}</p>
                                     </div>
                                 );
                             }) 
                         ) : (
-                            <div className={`${styles['col-12-small']}`}>
+                            <div className='col-12-small'>
                                 <p className={styles.title}>{data.title}</p>
-                                <p className={styles.year}>{data.year}</p>
                             </div>
                         )}
                     </div>
@@ -38,4 +36,4 @@ const AditionalTraining = ({ otherTrainingData }) => {
     );
 };
 
-export default AditionalTraining;
+export default AdditionalTraining;

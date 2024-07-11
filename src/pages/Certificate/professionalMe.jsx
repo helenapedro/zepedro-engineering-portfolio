@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Academic.module.css';
 import config from '../../config';
 
-const ProfessionalMe = ({ professionalData }) => {
+const professionalMe = ({ professionalData }) => {
     if (!professionalData || !Array.isArray(professionalData)) {
         return <div>No data available.</div>;
     }
@@ -16,17 +16,17 @@ const ProfessionalMe = ({ professionalData }) => {
                             data.images.map((image, imgIndex) => {
                                 const imageUrl = `${config.trainingUrl}${image}`;
                                 return (
-                                    <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
+                                    <div className='col-4 col-6-medium col-12-small' key={imgIndex}>
                                         <a className={styles.image}>
                                             <img src={imageUrl} alt={`Certificate ${index + 1}`} />
                                         </a>
-                                        <p className={styles.title}>{data.title[imgIndex]}</p>
+                                        <h4 className={styles.title}>{data.title[imgIndex]}</h4>
                                     </div>
                                 );
                             })
                         ) : (
-                            <div className={`${styles['col-12-small']}`}>
-                                <p className={styles.title}>{data.title}</p>
+                            <div className='col-12-small'>
+                                <p className={styles.title}>{data.title}</p> 
                             </div>
                         )}
                     </div>
@@ -36,4 +36,4 @@ const ProfessionalMe = ({ professionalData }) => {
     );
 };
 
-export default ProfessionalMe;
+export default professionalMe;

@@ -1,28 +1,28 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-
-import styles from '../Education/Academic.module.css';
+import styles from './Academic.module.css';
 import config from '../../config';
 
-const Academic = ({ aboutmeData }) => {
-    if (!aboutmeData || !Array.isArray(aboutmeData)) {
+const Academic = ({ academicData }) => {
+    if (!academicData || !Array.isArray(academicData)) {
         return <div>No academic data available.</div>;
     }
   
     return ( 
         <div className={styles.certificate}>
-            {aboutmeData.map((data, index) => (
+            {academicData.map((data, index) => (
                 <article className={styles.panel} key={index}>
                     <header className={styles.header}>
-                        <h2 className={styles.course}>{data.name}</h2>
-                        <h1 className={styles.institute}>{data.title}</h1>
-                        <b className={styles.title}>
-                            <Link to={data.titleLink} target='_blank' rel='noopener noreferrer'
-                            > ({data.titleOEA})
-                            </Link>
+                        <h2 className={styles.title}>{data.title}</h2>
+                        <h1 className={styles.course}>{data.course}</h1>
+                        <b className={styles.institute}>
+                            <a href={data.organizationLink} target='_blank' rel='noopener noreferrer'> ({data.organization})</a>
                         </b>
-                        <p className={styles.tutordescription}>{data.descriptionTwo}</p>
-                        <p className={styles.tutordescription}>{data.descriptionThree}</p>
+                        {data.tutorDescription && (
+                            <b className={styles.tutordescription}>
+                                {data.tutorDescription}
+                                <a href={data.tutorLink} target='_blank' rel='noopener noreferrer'> {data.tutorName}</a>
+                            </b>
+                        )}
                         <div className={styles.row}>
                             {data.images && data.images.map((image, imgIndex) => {
                                 const imageUrl = `${config.baseUrl}${image}`;
@@ -33,7 +33,7 @@ const Academic = ({ aboutmeData }) => {
                                         </a>
                                     </div>
                                 );
-                            })}
+                            })} 
                         </div>
                     </header>
                 </article> 

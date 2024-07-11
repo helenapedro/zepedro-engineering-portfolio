@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
 import styles from './Certificate.module.css';
+import mainStyles from '../../components/Main.module.css';
 
-import Academic from '../Education/Academic';
-import ProfessionalMe from '../Education/ProfessionalMe';
-import AditionalTraining from '../Education/AditionalTraining';
-import SkillsTable from '../Skills/SkillsTable';
+import Academic from './Academic';
+import ProfessionalMe from './professionalMe';
+import AditionalTraining from './AdditionalTraing';
+import SkillsTable from '../../components/Skills/SkillsTable';
 import academicData from '../../data/academicData.json';
 import professionalData from '../../data/professionalData.json';
 import otherEducationData from '../../data/otherEducationData.json';
-import OtherEducationData from '../Education/otherEducation';
+import OtherEducationData from './otherEducation';
 import otherTrainingData from '../../data/otherTrainingData.json';
 
 const Certificate = () => {
     return (
-        <div className={styles.certificate}>
+        <div className={mainStyles.panel}>
             <h1 className={styles['certificate-title']}>ACADEMIC EDUCATION</h1>
             <div>
                 <Academic academicData={academicData} />

@@ -66,6 +66,7 @@
   font-family: "eb_garamond_sc12_regular", sans-serif;
   hyphens: auto;
   letter-spacing: normal;
+  overflow: hidden;
   word-spacing: normal;
 }
 
