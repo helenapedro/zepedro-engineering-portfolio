@@ -1,41 +1,34 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-import '@fortawesome/fontawesome-free/css/all.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import './App.css';
 import './App.module.css';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-
-import NavBar from './components/NavBar/NavBar';
-import Home from './components/Home/Home';
-import NotFound from './components/NotFound';
+import Wrapper from './components/wrapper';
+import Main from './components/main';
+import NavBar from './pages/NavBar/NavBar';
+import Home from './pages/Home/Home';
+import ProjectsContainer from './pages/projects/ProjectContainer';
+import NotFound from './pages/NotFound';
 import Footer from './components/Footer/Footer';
 import Certificate from './components/Certificate/Certificate';
-import ProjectsContainer from './components/Projects/ProjectsContainer';
 import AboutMeContainer from './components/About/AboutMeContainer';
-
-// Add Font Awesome icons to the library
-library.add(fas, fab);
 
 const App = () => {
   return (
     <Router>
-      <div>
+      <Wrapper>
         <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<ProjectsContainer />} />
-          <Route path="/card" element={<AboutMeContainer />} />
-          <Route path="/certificate" element={<Certificate />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<ProjectsContainer />} />
+            <Route path="/card" element={<AboutMeContainer />} />
+            <Route path="/certificate" element={<Certificate />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Main>
         <Footer />
-      </div>
+      </Wrapper>
     </Router>
   );
 }

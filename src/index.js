@@ -11,7 +11,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 library.add(fas, fab);
 
-
+library.add(fas, fab);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

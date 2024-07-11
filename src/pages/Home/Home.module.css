@@ -1,0 +1,32 @@
+.home {
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.home-title {
+  color: #007acc;
+}
+
+.home-text {
+  hyphens: auto;
+}
+
+.home-title,
+.home-text {
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+}
+
+.link {
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.link:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
