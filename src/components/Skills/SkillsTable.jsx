@@ -35,7 +35,7 @@ const SkillsTable = () => {
   };
 
   return (
-    <div className={styles.skills}>
+    <div> 
       <header className={styles['skills-table']}>
         <section className={styles.panel}>
           <div className={`${styles['skills-table-body']} table-responsive mb-3`}>
