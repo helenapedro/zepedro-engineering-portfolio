@@ -7,7 +7,7 @@ const SkillsTable = () => {
   const [sortColumn, setSortColumn] = useState({ path: 'year', order: 'asc' });
 
   const [skills, setSkills] = useState([
-    { year: '2023', skill: 'Lumion', level: 'Basic' },
+    { year: '2023', skill: 'Lumion', level: 'Intermediate' },
     { year: '2023', skill: 'Drone Piloting', level: 'Intermediate' },
     { year: '2021', skill: 'SAP HANA S4P (procurement, logistics and warehouse)', level: 'Intermediate' },
     { year: '2020', skill: 'MS Project', level: 'Basic' },
