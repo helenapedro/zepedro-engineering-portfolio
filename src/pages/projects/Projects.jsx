@@ -6,6 +6,7 @@ import styles from './Project.module.css';
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const pageSize = 3;
 
   useEffect(() => {
@@ -18,9 +19,11 @@ const Projects = () => {
       })
       .then((data) => {
         setProjects(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching projects data:', error);
+        setLoading(false);
       });
   }, []);
 
@@ -32,6 +35,10 @@ const Projects = () => {
   const totalPages = Math.ceil(projects.length / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
   const paginatedProjects = projects.slice(startIndex, startIndex + pageSize);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div id="main" className={styles.projectContainer}>
