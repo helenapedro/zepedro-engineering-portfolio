@@ -156,8 +156,6 @@ form {
   margin-bottom: 2em;
 }
 
-/* Section/Article */
-
 section,
 article {
   margin-bottom: 3em;
@@ -185,8 +183,6 @@ header > p {
   }
 }
 
-/* List */
-
 ul {
   list-style: disc;
   padding-left: 1em;
@@ -204,8 +200,6 @@ ol {
 ol li {
   padding-left: 0.25em;
 }
-
-/* Actions */
 
 ul.actions {
   list-style: none;
@@ -403,7 +397,7 @@ form {
   margin-bottom: 2em;
 }
 
-* Row */ .row {
+.row {
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
