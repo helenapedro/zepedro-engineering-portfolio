@@ -12,8 +12,8 @@ html {
 }
 
 body {
-  background-image: url("/src/assets/images/overlay.png"),
-    url("/src/assets/images/bg0.webp");
+  background-image: url("./assets/images/overlay.png"),
+    url("./assets/images/bg0.webp");
   background-repeat: repeat, no-repeat;
   background-size: auto, 100% 100%;
   background-attachment: fixed;
