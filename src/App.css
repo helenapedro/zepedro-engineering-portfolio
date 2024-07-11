@@ -1,3 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic");
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import "../src/vars.css";
+
+@font-face {
+  font-family: "eb_garamond_sc08_regular";
+  src: url("../public/fonts/garamond/ebgaramondsc08-regular-webfont.woff2")
+      format("woff2"),
+    url("../public/fonts/garamond/ebgaramondsc08-regular-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "eb_garamond_sc12_regular";
+  src: url("../public/fonts/garamond/ebgaramondsc12-regular-webfont.woff2")
+      format("woff2"),
+    url("../public/fonts/garamond/ebgaramondsc12-regular-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "robotslab";
+  src: url("../public/fonts/roboto/RobotoSlab-Bold.ttf") format("tff");
+  src: url("../public/fonts/roboto/RobotoSlab-Light.ttf") format("tff");
+  src: url("../public/fonts/roboto/RobotoSlab-Regular.ttf") format("tff");
+  src: url("../public/fonts/roboto/RobotoSlab-Thin.ttf") format("tff");
+  font-weight: normal;
+  font-style: normal;
+}
