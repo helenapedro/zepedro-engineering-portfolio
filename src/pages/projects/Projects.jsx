@@ -18,6 +18,7 @@ const Projects = () => {
         return response.json();
       })
       .then((data) => {
+        console.log('Fetched projects data:', data); // Add this line
         setProjects(data);
         setLoading(false);
       })
@@ -25,7 +26,7 @@ const Projects = () => {
         console.error('Error fetching projects data:', error);
         setLoading(false);
       });
-  }, []);
+  }, []);  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

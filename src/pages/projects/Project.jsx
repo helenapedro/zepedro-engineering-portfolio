@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Project.module.css';
 import config from '../../config';
 import { wrapProjectFields } from '../../utils/wrapProjectFields';
+import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
 const Project = ({
   title,
@@ -16,6 +17,8 @@ const Project = ({
   // Wrap numeric fields with the specified class
   const wrappedProject = wrapProjectFields({ title, placeandyear, description, activities, finalDescription }, styles.number);
 
+  console.log('Rendering Project:', { title, activities });
+
   return (
     <div className={styles.project}>
       <article className={styles.panel} aria-labelledby={`project-title-${title}`}>
@@ -25,21 +28,23 @@ const Project = ({
           <i className={styles.placeandyear}>{wrappedProject.placeandyear}</i>
         </header>
         <p className={styles.projectdescription}><b>{wrappedProject.description}</b></p>
-        {Array.isArray(wrappedProject.activities) && wrappedProject.activities.length > 0 && (
-          wrappedProject.activities.map((activitySection, sectionIndex) => (
+        {Array.isArray(activities) && activities.length > 0 && (
+          activities.map((activitySection, sectionIndex) => (
             <div key={sectionIndex}>
               {typeof activitySection === 'string' ? (
                 <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`} role="list">
-                  <li className={styles.projectActivityItem}>{activitySection}</li>
+                  <li className={styles.projectActivityItem}>{wrapNumbersWithClass(activitySection, styles.number)}</li>
                 </ul>
               ) : (
                 <div>
                   {activitySection.header && <h3>{activitySection.header}</h3>}
-                  <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`} role="list">
-                    {activitySection.items && Array.isArray(activitySection.items) && activitySection.items.map((item, itemIndex) => (
-                      <li className={styles.projectActivityItem} key={itemIndex}>{item}</li>
-                    ))}
-                  </ul>
+                  {Array.isArray(activitySection.items) && activitySection.items.length > 0 && (
+                    <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`} role="list">
+                      {activitySection.items.map((item, itemIndex) => (
+                        <li className={styles.projectActivityItem} key={itemIndex}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               )}
             </div>
@@ -76,8 +81,8 @@ Project.propTypes = {
     PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.shape({
-        header: PropTypes.string.isRequired,
-        items: PropTypes.arrayOf(PropTypes.string).isRequired
+        header: PropTypes.string,
+        items: PropTypes.arrayOf(PropTypes.string)
       })
     ])
   ),
