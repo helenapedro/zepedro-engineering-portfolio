@@ -25,7 +25,7 @@ const Card = () => {
       <Link  
         className={`${mainStyles.pic} ${styles.link} row col-1 col-3-medium col-6-small`}>
         <img 
-          src="https://ambrosiopublicfiles.s3.us-east-2.amazonaws.com/Jose_Pedro_Engineering_Order_Card.jpg" 
+          src="https://dh09x5tu10bt3.cloudfront.net/graduation/oea.jpeg" 
           alt="José Francisco Pedro" 
         />
       </Link>
