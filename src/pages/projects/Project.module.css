@@ -43,7 +43,14 @@
   word-spacing: normal;
 }
 
-.placeandyear {
+.number,
+.placeandyear,
+.organization {
+  font-family: "robotslab", sans-serif;
+}
+
+.placeandyear,
+.organization {
   line-height: normal;
 }
 
@@ -51,8 +58,9 @@
 .organization {
   color: #666;
   display: block;
-  font-size: 1em;
+  font-size: 0.7em;
   margin: 10px 0;
+  opacity: 0.5;
 }
 
 .projectdescription {

@@ -8,12 +8,12 @@ import mainStyles from '../../components/Main.module.css';
 
 const Home = () => {
   return (
-    <article id='home' className={`${mainStyles.panel} ${mainStyles.intro}`}>
+    <article id='home' className={`${mainStyles.panel} ${mainStyles.intro} ${styles.home}`}>
           <header>
             <h1 className={`card-title ${styles['home-title']}`}>José Francisco Pedro</h1>
             <p className={`card-text ${styles['home-text']}`}>
               <b> Hello, my name is <Link to="/card">ZéPedro</Link> and I'm an experienced Civil Engineer,
-              with over <i>3</i> years in
+              with over <i className={styles.year}>3</i> years in
               project management and nearly <i>1</i> year
               as Coordinator of QHSE-Quality at <Link to='https://www.linkedin.com/company/mota-engil-angola/' target='_blank' rel='noopener noreferrer'>Mota-Engil Angola</Link>.</b>
             </p>

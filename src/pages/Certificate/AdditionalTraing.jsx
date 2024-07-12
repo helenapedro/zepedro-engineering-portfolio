@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Academic.module.css';
 import config from '../../config';
+import { wrapNumbersWithClass } from './../../utils/WrapNumbers';
 
 const AdditionalTraining = ({ otherTrainingData }) => {
     if (!otherTrainingData || !Array.isArray(otherTrainingData)) {
@@ -20,7 +21,7 @@ const AdditionalTraining = ({ otherTrainingData }) => {
                                         <a className={styles.image}>
                                             <img src={imageUrl} alt={`Certificate ${index + 1}`} />
                                         </a>
-                                        <p className={styles.title}>{data.title[imgIndex]}</p>
+                                        <h4 className={styles.title}>{wrapNumbersWithClass(data.title[imgIndex], styles.number)}</h4>
                                     </div>
                                 );
                             }) 

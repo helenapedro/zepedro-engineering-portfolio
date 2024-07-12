@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import SkillsHeader from "./SkillsHeader";
 import SkillsBody from "./SkillsBody";
-import styles from './Skills.module.css'; // Import the Skills module CSS
+import styles from './Skills.module.css';
+import { wrapSkillsField } from "../../utils/wrapSkills";
 
 const SkillsTable = () => {
   const [sortColumn, setSortColumn] = useState({ path: 'year', order: 'asc' });
@@ -18,7 +19,7 @@ const SkillsTable = () => {
     { year: '2018', skill: 'Adobe Premiere Pro', level: 'Intermediate' },
     { year: '2017', skill: 'SAP 2000 - Analysis and Structural Design', level: 'Intermediate' },
     { year: '2016', skill: 'FTool', level: 'Intermediate' },
-    { year: '2010', skill: 'AutoCAD 2D - 3D', level: 'Intermediate' },
+    { year: '2010', skill: 'AutoCAD 2 D - 3 D', level: 'Intermediate' },
     { year: '2009', skill: 'Software and Hardware', level: 'Intermediate' },
     { year: '2009', skill: 'Microsoft Office', level: 'Intermediate' },
   ]);
@@ -34,6 +35,9 @@ const SkillsTable = () => {
     setSkills(sortedSkills); 
   };
 
+   // Wrap skills with the class for styling
+  const wrappedSkills = wrapSkillsField(skills, styles.number);
+
   return (
     <div> 
       <header className={styles['skills-table']}>
@@ -41,7 +45,7 @@ const SkillsTable = () => {
           <div className={`${styles['skills-table-body']} table-responsive mb-3`}>
             <table className="table table-bordered table-hover border-primary">
               <SkillsHeader sortColumn={sortColumn} onSort={handleSort} />
-              <SkillsBody data={skills} />
+              <SkillsBody data={wrappedSkills} />
             </table>
           </div>
         </section>

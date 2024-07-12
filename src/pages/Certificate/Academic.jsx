@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Academic.module.css';
 import config from '../../config';
+import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
 const Academic = ({ academicData }) => {
     if (!academicData || !Array.isArray(academicData)) {
@@ -12,8 +13,7 @@ const Academic = ({ academicData }) => {
             {academicData.map((data, index) => (
                 <article className={styles.panel} key={index}>
                     <header className={styles.header}>
-                        <h2 className={styles.title}>{data.title}</h2>
-                        <h1 className={styles.course}>{data.course}</h1>
+                        <h1 className={styles.course}>{wrapNumbersWithClass(data.course, styles.number)}</h1>
                         <b className={styles.institute}>
                             <a href={data.organizationLink} target='_blank' rel='noopener noreferrer'> ({data.organization})</a>
                         </b>

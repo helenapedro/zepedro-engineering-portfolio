@@ -5,7 +5,7 @@ import mainStyles from '../../components/Main.module.css';
 
 const Card = () => {
   return (
-    <article id='home' className={`${mainStyles.panel} ${mainStyles.intro}`}>
+    <article id='home' className={`${mainStyles.panel} ${mainStyles.intro} ${styles.card}`}>
       <header>
         <h1 className={styles['card-title']}>José Francisco Pedro</h1>
         <h6 className={styles['card-text']}>

@@ -183,6 +183,10 @@ header > p {
   }
 }
 
+p i {
+  font-family: "robotslab", sans-serif;
+}
+
 ul {
   list-style: disc;
   padding-left: 1em;
