@@ -1,16 +1,34 @@
 [
-     {
-       "title": "Rehabilitation of the Maria Mambo Café Airport Pavement Runway",
-       "organization": "MOTA-ENGIL ANGOLA",
-       "placeandyear": "Cabinda, Angola ~ 2023",
-       "description": "The project involved intervention on the runway of the main aerodrome in the province of Cabinda. Aimed at preserving the local economy and meeting the population's needs regarding flight services, the activities were carried out during the nighttime, after the closure of the last service, from midnight to 6 AM. The focus was primarily on the following activities:",
-       "activities": [
-         "Milling to a depth of 5 cm, covering a total length of 600 meters and width of 16 meters respectively;",
+  {
+    "title":"Construction of 120 Social Apartments in Buco-Zau",
+    "organization":"MOTA-ENGIL ANGOLA",
+    "placeandyear": "Bucozau, Cabinda, Angola ~ 2024",
+    "description": "The project, including the respective infrastructures, aims to meet the needs of modern housing, being implemented on a plot of approximately 16,638 m², consisting of the construction of 10 blocks of social housing apartments of type T3-90 m². The buildings have three floors, with four apartments per floor. These, in turn, have quadrangular geometric characteristics and symmetrical layout, with the following compartmentalization:",
+    "activities":[
+      "Common room with balcony",
+      "Kitchen with pantry and laundry included",
+      "Distribution corridor",
+      "Three bedrooms",
+      "Sanitary facilities, with one integrated into the main bedroom"
+    ],
+    "finalDescription": "At the building level, there are circulation areas that facilitate access to the apartments, a central staircase core, and technical areas. Although the installation of elevators is not planned, space is reserved for possible future inclusion.",
+    "images":[
+      "120-Apart-BZ-01.jpg", "120-Apart-BZ-02.jpg", "120-Apart-BZ-03.jpg",
+      "120-Apart-BZ-04.jpg", "120-Apart-BZ-05.JPG", "120-Apart-BZ-06.JPG"
+    ]
+  },
+  {
+    "title": "Rehabilitation of the Maria Mambo Café Airport Pavement Runway",
+    "organization": "MOTA-ENGIL ANGOLA",
+    "placeandyear": "Cabinda, Angola ~ 2023",
+    "description": "The project involved intervention on the runway of the main aerodrome in the province of Cabinda. Aimed at preserving the local economy and meeting the population's needs regarding flight services, the activities were carried out during the nighttime, after the closure of the last service, from midnight to 6 AM. The focus was primarily on the following activities:",
+    "activities": [
+      "Milling to a depth of 5 cm, covering a total length of 600 meters and width of 16 meters respectively;",
          "Repositioning the milled layer with asphalt."
-       ],
-       "finalDescription":"",
-       "images": [ "A3.jpg", "A2.jpg", "A5.jpg", "A8.jpg", "A0.jpg", "A7.jpg"]
-     },
+    ],
+    "finalDescription":"",
+    "images": [ "A3.jpg", "A2.jpg", "A5.jpg", "A8.jpg", "A0.jpg", "A7.jpg"]
+  },
      {
        "title":"Construction of Access Roads to the New Bridge Over the Lucola River",
        "organization":"MOTA-ENGIL ANGOLA",
