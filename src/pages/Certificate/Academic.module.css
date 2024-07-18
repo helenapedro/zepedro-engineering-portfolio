@@ -47,8 +47,12 @@
 .course {
   font-family: "eb_garamond_sc08_regular", sans-serif;
   font-size: 1.5em;
-  color: #007acc;
   margin-bottom: 10px;
+}
+
+.course,
+.duration {
+  color: #007acc;
 }
 
 .number {
@@ -57,8 +61,13 @@
 
 .institute,
 .tutordescription {
-  font-size: 1em;
   color: #666;
+}
+
+.institute,
+.duration,
+.tutordescription {
+  font-size: 1em;
   display: block;
   margin: 10px 0;
 }

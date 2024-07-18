@@ -24,7 +24,7 @@ const Home = () => {
           </header>
           <Link to="/projects" className={`jumplink ${mainStyles.pic} ${styles.link}`}>
             <span className={`${iconStyles.icon} ${iconStyles.solid} ${faChevronRight} fa-chevron-right arrow`}>See my work</span>
-            <img src="https://dh09x5tu10bt3.cloudfront.net/me_1.jpg" alt="José Francisco Pedro" />
+            <img src="https://dh09x5tu10bt3.cloudfront.net/me_1.jpg" alt="José Francisco Pedro" /> 
           </Link>
     </article>
   );

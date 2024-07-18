@@ -17,6 +17,7 @@ const Academic = ({ academicData }) => {
                         <b className={styles.institute}>
                             <a href={data.organizationLink} target='_blank' rel='noopener noreferrer'> ({data.organization})</a>
                         </b>
+                        <h6 className={styles.duration}>{wrapNumbersWithClass(data.duration, styles.number)}</h6>
                         {data.tutorDescription && (
                             <b className={styles.tutordescription}>
                                 {data.tutorDescription}
@@ -25,12 +26,13 @@ const Academic = ({ academicData }) => {
                         )}
                         <div className={styles.row}>
                             {data.images && data.images.map((image, imgIndex) => {
+                                const dataUrl = process.env.REACT_APP_ACADEMIC_DATA_URL;
                                 const imageUrl = `${config.baseUrl}${image}`;
                                 return (
                                     <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
-                                        <div className={styles.image}>
-                                            <img src={imageUrl} alt="images from the graduation ceremony" />
-                                        </div>
+                                        <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
+                                            <img src={imageUrl} alt="graduation ceremony" />
+                                        </a>
                                     </div>
                                 );
                             })} 
