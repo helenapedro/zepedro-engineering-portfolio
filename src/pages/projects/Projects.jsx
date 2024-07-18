@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Project from './Project';
-import PaginationComponent from '../../components/comon/Pagination';
+import PaginationComponent from '../../utils/PaginationComponent';
 import styles from './Project.module.css';
 
 const Projects = () => {
@@ -9,8 +9,10 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
   const pageSize = 3;
 
+  const dataUrl = process.env.REACT_APP_PROJECTS_DATA_URL;
+
   useEffect(() => {
-    fetch('/data/projectsData.json')
+    fetch(dataUrl)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -18,7 +20,7 @@ const Projects = () => {
         return response.json();
       })
       .then((data) => {
-        console.log('Fetched projects data:', data); // Add this line
+        console.log('Fetched projects data:', data); 
         setProjects(data);
         setLoading(false);
       })
@@ -26,14 +28,13 @@ const Projects = () => {
         console.error('Error fetching projects data:', error);
         setLoading(false);
       });
-  }, []);  
+  }, [dataUrl]);  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const totalPages = Math.ceil(projects.length / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
   const paginatedProjects = projects.slice(startIndex, startIndex + pageSize);
 

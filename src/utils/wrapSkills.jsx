@@ -1,4 +1,3 @@
-import React from 'react';
 import { wrapNumbersWithClass } from './WrapNumbers';
 
 export const wrapSkillsField = (skills, className) => {

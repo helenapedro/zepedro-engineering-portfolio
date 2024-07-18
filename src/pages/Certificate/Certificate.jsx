@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import styles from './Certificate.module.css';
 import mainStyles from '../../components/Main.module.css';
 

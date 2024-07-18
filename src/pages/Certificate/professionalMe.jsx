@@ -3,7 +3,7 @@ import styles from './Academic.module.css';
 import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
-const professionalMe = ({ professionalData }) => {
+const ProfessionalMe = ({ professionalData }) => {
     if (!professionalData || !Array.isArray(professionalData)) {
         return <div>No data available.</div>;
     }
@@ -18,10 +18,12 @@ const professionalMe = ({ professionalData }) => {
                                 const imageUrl = `${config.trainingUrl}${image}`;
                                 return (
                                     <div className='col-6 col-8-medium col-12-small' key={imgIndex}>
-                                        <a className={styles.image}>
+                                        <div className={styles.image}>
                                             <img src={imageUrl} alt={`Certificate ${index + 1}`} />
-                                        </a>
-                                        <h4 className={styles.title}>{wrapNumbersWithClass(data.title[imgIndex], styles.number)}</h4>
+                                        </div>
+                                        <h4 className={styles.title}>
+                                            {wrapNumbersWithClass(data.title[imgIndex], styles.number)}
+                                        </h4>
                                     </div>
                                 );
                             })
@@ -37,4 +39,4 @@ const professionalMe = ({ professionalData }) => {
     );
 };
 
-export default professionalMe;
+export default ProfessionalMe;

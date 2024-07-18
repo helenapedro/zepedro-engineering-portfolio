@@ -14,10 +14,7 @@ const Project = ({
   finalDescription = '',
   images = []
 }) => {
-  // Wrap numeric fields with the specified class
   const wrappedProject = wrapProjectFields({ title, placeandyear, description, activities, finalDescription }, styles.number);
-
-  console.log('Rendering Project:', { title, activities });
 
   return (
     <div className={styles.project}>
@@ -32,16 +29,16 @@ const Project = ({
           activities.map((activitySection, sectionIndex) => (
             <div key={sectionIndex}>
               {typeof activitySection === 'string' ? (
-                <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`} role="list">
+                <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`}>
                   <li className={styles.projectActivityItem}>{wrapNumbersWithClass(activitySection, styles.number)}</li>
                 </ul>
               ) : (
                 <div>
                   {activitySection.header && <h3>{activitySection.header}</h3>}
                   {Array.isArray(activitySection.items) && activitySection.items.length > 0 && (
-                    <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`} role="list">
+                    <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`}>
                       {activitySection.items.map((item, itemIndex) => (
-                        <li className={styles.projectActivityItem} key={itemIndex}>{item}</li>
+                        <li className={styles.projectActivityItem} key={itemIndex}>{wrapNumbersWithClass(item, styles.number)}</li>
                       ))}
                     </ul>
                   )}
@@ -59,7 +56,7 @@ const Project = ({
                 return (
                   <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
                     <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
-                      <img src={imageUrl} alt={`Project image ${imgIndex + 1} for ${wrappedProject.title}`} />
+                      <img src={imageUrl} alt='' />
                     </a>
                   </div>
                 );

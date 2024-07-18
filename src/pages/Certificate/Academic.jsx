@@ -28,9 +28,9 @@ const Academic = ({ academicData }) => {
                                 const imageUrl = `${config.baseUrl}${image}`;
                                 return (
                                     <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
-                                        <a className={styles.image}>
+                                        <div className={styles.image}>
                                             <img src={imageUrl} alt="images from the graduation ceremony" />
-                                        </a>
+                                        </div>
                                     </div>
                                 );
                             })} 

@@ -18,9 +18,9 @@ const AdditionalTraining = ({ otherTrainingData }) => {
                                 const imageUrl = `${config.trainingUrl}${image}`;
                                 return (
                                     <div className='col-6 col-8-medium col-12-small' key={imgIndex}>
-                                        <a className={styles.image}>
+                                        <div className={styles.image}>
                                             <img src={imageUrl} alt={`Certificate ${index + 1}`} />
-                                        </a>
+                                        </div>
                                         <h4 className={styles.title}>{wrapNumbersWithClass(data.title[imgIndex], styles.number)}</h4>
                                     </div>
                                 );

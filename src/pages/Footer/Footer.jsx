@@ -2,11 +2,12 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Footer.module.css';
 import iconStyles from '../../styles/Icons.module.css'
+import config from '../../config';
 
 const Footer = () => {
   return (
     <div id='footer' className={styles.footer}>
-     <ul className={styles.copyright}>
+        <ul className={styles.copyright}>
           <li>&copy; <a href="http://linkedin.com/in/josefpedro/">Engº ZéPedro</a></li>
           <li>
             <a href="tel:+244947462094" className={iconStyles.icon}>
@@ -20,18 +21,17 @@ const Footer = () => {
           </li>
           <li>
             <a 
-              href="https://pedropublicfiles.s3.us-east-2.amazonaws.com/CV_Jose+Pedro+REV.21+Foto+ENG.pdf" 
-              target="_blank" rel="noreferrer" className={iconStyles.icon}>
+              href={config.resumeUrl} target="_blank" rel="noreferrer" className={iconStyles.icon}>
               <FontAwesomeIcon icon="file" className="fas fa-file" />
-          </a>
-        </li>
+            </a>
+          </li>
           <li>
             <a 
-              href="http://linkedin.com/in/josefpedro/" target="_blank" rel="noreferrer" className={iconStyles.icon}>
+              href={config.linkedInUrl} target="_blank" rel="noreferrer" className={iconStyles.icon}>
               <FontAwesomeIcon icon={['fab', 'linkedin']} className="fab fa-linkedin" />
             </a>
           </li>
-     </ul>
+        </ul>
     </div>
   );
 }

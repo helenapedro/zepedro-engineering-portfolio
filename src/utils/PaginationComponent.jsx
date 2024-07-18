@@ -4,11 +4,12 @@ import Pagination from 'react-bootstrap/Pagination';
 
 const PaginationComponent = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
-  if (pagesCount === 1) return null;
+  if (pagesCount === 1) return null; 
+
   const pages = [...Array(pagesCount).keys()].map(x => x + 1);
 
   return (
-    <Pagination>
+    <Pagination className="justify-content-center">
       <Pagination.First onClick={() => onPageChange(1)} disabled={currentPage === 1} />
       <Pagination.Prev onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} />
       {pages.map(page => (
