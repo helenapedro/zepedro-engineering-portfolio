@@ -104,3 +104,9 @@
     width: 13em;
   }
 }
+
+@media (max-width: 1080px) {
+  .image img {
+    width: 13em;
+  }
+}
