@@ -26,7 +26,6 @@ const Academic = ({ academicData }) => {
                         )}
                         <div className={styles.row}>
                             {data.images && data.images.map((image, imgIndex) => {
-                                const dataUrl = process.env.REACT_APP_ACADEMIC_DATA_URL;
                                 const imageUrl = `${config.baseUrl}${image}`;
                                 return (
                                     <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>

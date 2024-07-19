@@ -8,10 +8,10 @@ import Main from './components/main';
 import NavBar from './pages/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import ProjectsContainer from './pages/projects/ProjectContainer';
-import Card from './pages/Card/Card';
 import Certificate from './pages/Certificate/Certificate';
 import NotFound from './pages/NotFound';
 import Footer from './pages/Footer/Footer';
+import AboutContainer from './pages/About/AboutContainer';
 
 const App = () => {
   return (
@@ -22,8 +22,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<ProjectsContainer />} />
-            <Route path="/card" element={<Card />} />
             <Route path="/certificate" element={<Certificate />} />
+            <Route path="/about" element={<AboutContainer />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Main>
