@@ -21,8 +21,8 @@ const Project = ({
       <article className={styles.panel} aria-labelledby={`project-title-${title}`}>
         <header className={styles.header}>
           <h2 className={styles.title} id={`project-title-${title}`}>{wrappedProject.title}</h2>
-          <i className={styles.organization}>{organization}</i>
-          <i className={styles.placeandyear}>{wrappedProject.placeandyear}</i>
+          <i className={`${styles.organization} number`}>{organization}</i>
+          <i className={`${styles.placeandyear} number`}>{wrappedProject.placeandyear}</i>
         </header>
         <p className={styles.projectdescription}><b>{wrappedProject.description}</b></p>
         {Array.isArray(activities) && activities.length > 0 && (
@@ -30,7 +30,7 @@ const Project = ({
             <div key={sectionIndex}>
               {typeof activitySection === 'string' ? (
                 <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`}>
-                  <li className={styles.projectActivityItem}>{wrapNumbersWithClass(activitySection, styles.number)}</li>
+                  <li className={styles.projectActivityItem}>{wrapNumbersWithClass(activitySection, 'number')}</li>
                 </ul>
               ) : (
                 <div>

@@ -44,12 +44,6 @@
   word-spacing: normal;
 }
 
-.number,
-.placeandyear,
-.organization {
-  font-family: "robotslab", sans-serif;
-}
-
 .placeandyear,
 .organization {
   line-height: normal;
