@@ -33,7 +33,20 @@
 .name {
   color: #007acc;
   font-size: 1.8em;
+}
+
+.name,
+.title {
   text-align: left;
+}
+
+.title,
+.card-text {
+  hyphens: auto;
+  letter-spacing: normal;
+  overflow: hidden;
+  word-spacing: normal;
+  text-decoration: none;
 }
 
 .title {
@@ -42,25 +55,14 @@
   display: block;
   margin: 10px 0;
   font-family: "eb_garamond_sc12_regular", sans-serif;
-  hyphens: auto;
-  letter-spacing: normal;
-  overflow: hidden;
-  word-spacing: normal;
-  text-decoration: none;
 }
 
 .title a:hover {
   text-decoration: underline;
 }
 
-.about-text {
-  hyphens: auto;
-  letter-spacing: normal;
-  word-spacing: normal;
-}
-
 .name,
-.about-text {
+.card-text {
   font-family: "eb_garamond_sc08_regular", sans-serif;
 }
 
@@ -100,12 +102,6 @@
     font-size: 1.4em;
   }
 
-  .image img {
-    width: 13em;
-  }
-}
-
-@media (max-width: 1080px) {
   .image img {
     width: 13em;
   }

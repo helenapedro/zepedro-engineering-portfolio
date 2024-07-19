@@ -183,7 +183,8 @@ header > p {
   }
 }
 
-p i {
+p i,
+.number {
   font-family: "robotslab", sans-serif;
 }
 
