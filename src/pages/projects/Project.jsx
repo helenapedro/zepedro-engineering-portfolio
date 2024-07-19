@@ -19,7 +19,7 @@ const Project = ({
   return (
     <div className={styles.project}>
       <article className={styles.panel} aria-labelledby={`project-title-${title}`}>
-        <header className={styles.header}>
+        <header className={styles.header}> 
           <h2 className={styles.title} id={`project-title-${title}`}>{wrappedProject.title}</h2>
           <i className={`${styles.organization} number`}>{organization}</i>
           <i className={`${styles.placeandyear} number`}>{wrappedProject.placeandyear}</i>

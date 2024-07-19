@@ -13,7 +13,7 @@ export const wrapProjectFields = (project, className) => {
             ? wrapNumbersWithClass(activitySection, className)
             : {
                 ...activitySection,
-                header: wrapNumbersWithClass(activitySection.header || '', className), // Ensure header is defaulted to empty string if undefined
+                header: wrapNumbersWithClass(activitySection.header || '', className),
                 items: Array.isArray(activitySection.items)
                   ? activitySection.items.map(item => wrapNumbersWithClass(item, className))
                   : []
