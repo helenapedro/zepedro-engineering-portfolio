@@ -7,7 +7,7 @@ import Projects from './Projects';
 const ProjectsContainer = () => {
     return (
         <div className={mainStyles.panel}>
-            <h1 className={styles['container-title']}>MY PROJECTS</h1>
+            <h1 className={styles['container-title']}>PROJECTS</h1>
             <div>
                 <Projects />
             </div>

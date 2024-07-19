@@ -9,7 +9,7 @@ import aboutmeData from '../../data/aboutmeData.json';
 const AboutContainer = () => {
     return (
         <div className={mainStyles.panel}>
-            <h1 className={styles['container-title']}>ABOUT ME</h1>
+            <h1 className={styles['container-title']}>ABOUT</h1>
             <div>
                 <About aboutmeData={aboutmeData} />
             </div>
