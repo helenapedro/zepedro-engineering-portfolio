@@ -14,11 +14,11 @@ import otherTrainingData from '../../data/otherTrainingData.json';
 const Certificate = () => {
     return (
         <div className={mainStyles.panel}>
-            <h1 className={styles['certificate-title']}>EDUCATION</h1>
+            <h1 className={styles['certificate-title']}>ACADEMIC EDUCATION</h1>
             <div>
                 <Academic academicData={academicData} />
             </div>
-            <h1 className={styles['certificate-title']}>TECHNICAL SKILLS</h1>
+            <h1 className={styles['certificate-title']}>IT SKILLS</h1>
             <div>
                 <SkillsTable />
             </div>
