@@ -28,7 +28,7 @@ const Academic = ({ academicData }) => {
                             {data.images && data.images.map((image, imgIndex) => {
                                 const imageUrl = `${config.baseUrl}${image}`;
                                 return (
-                                    <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
+                                    <div className={`${styles['col-4']}`} key={imgIndex}>
                                         <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
                                             <img src={imageUrl} alt="graduation ceremony" />
                                         </a>

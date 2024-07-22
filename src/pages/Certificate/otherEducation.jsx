@@ -17,7 +17,7 @@ const OtherEducationData = ({ otherEducationData }) => {
                             data.images.map((image, imgIndex) => {
                                 const imageUrl = `${config.trainingUrl}${image}`;
                                 return (
-                                    <div className='col-4 col-6-medium col-12-small' key={imgIndex}>
+                                    <div className='col-6' key={imgIndex}>
                                         <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
                                             <img src={imageUrl} alt={`Certificate ${index + 1}`} />
                                         </a>
@@ -26,7 +26,7 @@ const OtherEducationData = ({ otherEducationData }) => {
                                 );
                             })
                         ) : (
-                            <div className='col-12-small'>
+                            <div className={styles.title}>
                                 <p className={styles.title}>{data.title}</p>
                             </div>
                         )}

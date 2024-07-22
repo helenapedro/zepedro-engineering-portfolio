@@ -20,7 +20,7 @@ const About = ({ aboutmeData }) => {
                                 )}
                                 <h5 className={`${styles.title} card-subtitle mb-1`}>{data.title}</h5>
                                 <a className={styles['title-oea']} href={data.titleLink} target="_blank" rel="noopener noreferrer">
-                                    {data.titleOEA}
+                                    {data.titleOEA} 
                                 </a>
                             </div>
                             <div className="col-md-6 order-2 order-md-1">
@@ -29,7 +29,7 @@ const About = ({ aboutmeData }) => {
                                         <p>{data.descriptionOne}</p>
                                         <p>{data.descriptionTwo}</p>
                                         <p>{wrapNumbersWithClass(data.descriptionThree, 'number')}</p>
-                                        <a href={data.titleLink} target="_blank" rel="noopener noreferrer" className="card-link">OEA Card link</a>
+                                        <a href={data.titleLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">OEA Card link</a>
                                     </section>
                                 </div>
                             </div>

@@ -101,18 +101,14 @@
   margin-top: 20px;
 }
 
-.col-4,
-.col-6-medium,
-.col-12-small {
+.col-4 {
+  box-sizing: border-box;
   flex: 1 1 calc(33.333% - 20px);
   margin: 10px;
-  box-sizing: border-box;
   transition: transform 0.3s ease;
 }
 
-.col-4:hover,
-.col-6-medium:hover,
-.col-12-small:hover {
+.col-4:hover {
   transform: scale(1.05);
 }
 

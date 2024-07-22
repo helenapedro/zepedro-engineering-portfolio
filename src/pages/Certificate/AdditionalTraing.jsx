@@ -17,7 +17,7 @@ const AdditionalTraining = ({ otherTrainingData }) => {
                             data.images.map((image, imgIndex) => {
                                 const imageUrl = `${config.trainingUrl}${image}`;
                                 return (
-                                    <div className='col-6 col-8-medium col-12-small' key={imgIndex}>
+                                    <div className='col-6' key={imgIndex}>
                                         <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
                                             <img src={imageUrl} alt={`Certificate ${index + 1}`} />
                                         </a>
