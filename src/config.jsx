@@ -3,7 +3,8 @@ const config = {
     projectsUrl: "https://dh09x5tu10bt3.cloudfront.net/",
     trainingUrl: "https://dh09x5tu10bt3.cloudfront.net/certificates/",
     resumeUrl:"https://pedropublicfiles.s3.us-east-2.amazonaws.com/CV_Jose_Pedro_EN.pdf",
-    linkedInUrl: "http://linkedin.com/in/josefpedro/"
+    linkedInUrl: "http://linkedin.com/in/josefpedro/",
+    projectsDataUrl: "https://pedro-pi.s3.us-east-2.amazonaws.com/data/projectsData.json"
 };
 
 export default config;

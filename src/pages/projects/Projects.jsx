@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Project from './Project';
 import PaginationComponent from '../../utils/PaginationComponent';
 import styles from './Project.module.css';
+import config from '../../config';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -9,7 +10,7 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
   const pageSize = 3;
 
-  const dataUrl = process.env.REACT_APP_PROJECTS_DATA_URL;
+  const dataUrl = config.projectsDataUrl; 
 
   useEffect(() => {
     fetch(dataUrl)
