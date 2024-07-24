@@ -9,11 +9,9 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
   const pageSize = 3;
 
-  const dataUrl = 'https://my-express-server-c75e2dbd248d.herokuapp.com/api/projects';
-
 
   useEffect(() => {
-    fetch(dataUrl)
+    fetch('/data/projectsData.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -29,7 +27,7 @@ const Projects = () => {
         console.error('Error fetching projects data:', error);
         setLoading(false);
       });
-  }, [dataUrl]);  
+  }, []);  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

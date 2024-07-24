@@ -65,8 +65,7 @@
   font-weight: bold;
 }
 
-.projectdescription,
-.ulItems {
+.projectdescription {
   font-family: "eb_garamond_sc12_regular", sans-serif;
   hyphens: auto;
   line-height: normal;
@@ -100,8 +99,13 @@
 
 .ulItems--tick {
   list-style-image: url("../../assets/images/tick.svg");
-  padding-left: 3rem;
+  padding-left: 2.3rem;
   color: var(--color-headings);
+}
+
+.ulItems {
+  font-family: "eb_garamond_sc12_regular", sans-serif;
+  hyphens: auto;
 }
 
 .projectActivityItem {
