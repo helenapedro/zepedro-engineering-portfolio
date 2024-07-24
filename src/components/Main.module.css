@@ -119,6 +119,9 @@
 .main > .panel.intro .pic .arrow span {
   display: block;
   text-indent: -9999px;
+  background-image: url("../pages/Home/arrow-right-circle.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .main > .panel.intro .pic:hover .arrow {

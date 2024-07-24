@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPortrait } from '@fortawesome/free-solid-svg-icons';
 import styles from "./NavBar.module.css";
 import iconStyles from '../../styles/Icons.module.css';
 
@@ -33,7 +34,7 @@ const NavBar = () => {
           <span>Education</span>
         </Link>
         <Link to="/about" className={location.pathname === '/about' ? styles.active : ''} onClick={toggleMenu}>
-          <FontAwesomeIcon icon="id-card" className={`${iconStyles.icon} ${iconStyles.solid} fas fa-id-card`} />
+          <FontAwesomeIcon icon={faPortrait} className={`${iconStyles.icon} ${iconStyles.solid}`} />
           <span>About</span>
         </Link>
         <a 

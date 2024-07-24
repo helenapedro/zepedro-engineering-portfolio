@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
 import styles from './Home.module.css';
-import iconStyles from '../../styles/Icons.module.css'
 import mainStyles from '../../components/Main.module.css'; 
 
 const Home = () => {
@@ -22,11 +19,13 @@ const Home = () => {
               <Link to="/projects" className='fst-italic'>projects</Link> and <Link to="/education" className='fst-italic'>abilities</Link>.</b>
             </p>
           </header>
-          <Link to="/projects" className={`jumplink ${mainStyles.pic} ${styles.link}`}>
-            <span className={`${iconStyles.icon} ${iconStyles.solid} ${faChevronRight} fa-chevron-right arrow`}>See my work</span>
+          <Link to="/projects" className={`${mainStyles.pic}`}>
+            <span className={ `${mainStyles.arrow}` }>
+              <span>See my projects</span>
+            </span>
             <img src="https://dh09x5tu10bt3.cloudfront.net/me_1.jpg" alt="José Francisco Pedro" /> 
           </Link>
-    </article>
+    </article> 
   );
 }
 
