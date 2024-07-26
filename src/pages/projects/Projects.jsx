@@ -9,9 +9,10 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
   const pageSize = 3;
 
+  const dataUrl = "https://dh09x5tu10bt3.cloudfront.net/data/projectsData.json"
 
   useEffect(() => {
-    fetch('/data/projectsData.json')
+    fetch(dataUrl)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -19,7 +20,6 @@ const Projects = () => {
         return response.json();
       })
       .then((data) => {
-        console.log('Fetched projects data:', data); 
         setProjects(data);
         setLoading(false);
       })
@@ -27,7 +27,7 @@ const Projects = () => {
         console.error('Error fetching projects data:', error);
         setLoading(false);
       });
-  }, []);  
+  }, [dataUrl]);  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

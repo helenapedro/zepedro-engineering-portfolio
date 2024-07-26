@@ -1,16 +1,19 @@
 import React from 'react';
 import styles from './Academic.module.css';
 import config from '../../config';
+import useAcademicData from '../Hooks/useAcademicData';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
-const Academic = ({ academicData }) => {
-    if (!academicData || !Array.isArray(academicData)) {
-        return <div>No academic data available.</div>;
-    }
-  
+const Academic = () => {
+    const { academic, error } = useAcademicData();
+
+    if (error) {
+        return <div className={styles.certificate}>{error}</div>
+    } 
+   
     return ( 
         <div className={styles.certificate}>
-            {academicData.map((data, index) => (
+            {academic.map((data, index) => (
                 <article className={styles.panel} key={index}>
                     <header className={styles.header}>
                         <h1 className={styles.course}>{wrapNumbersWithClass(data.course, styles.number)}</h1>

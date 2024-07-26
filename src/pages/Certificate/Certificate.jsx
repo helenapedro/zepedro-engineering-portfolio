@@ -5,7 +5,6 @@ import Academic from './Academic';
 import ProfessionalMe from './professionalMe';
 import AditionalTraining from './AdditionalTraing';
 import SkillsTable from '../../components/Skills/SkillsTable';
-import academicData from '../../data/academicData.json';
 import professionalData from '../../data/professionalData.json';
 import otherEducationData from '../../data/otherEducationData.json';
 import OtherEducationData from './otherEducation';
@@ -16,7 +15,7 @@ const Certificate = () => {
         <div className={mainStyles.panel}>
             <h1 className={styles['certificate-title']}>ACADEMIC EDUCATION</h1>
             <div>
-                <Academic academicData={academicData} />
+                <Academic />
             </div>
             <h1 className={styles['certificate-title']}>IT SKILLS</h1>
             <div>
