@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import '../../data/academicData.json'
 
 const useAcademicData = () => {
      const [academic, setAcademic] = useState([]);

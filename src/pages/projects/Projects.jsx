@@ -1,33 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Project from './Project';
+import useProjectsData from '../Hooks/useProjectsData';
 import PaginationComponent from '../../utils/PaginationComponent';
 import styles from './Project.module.css';
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
+  
+  const dataUrl = process.env.REACT_APP_PROJECTS_DATA_URL;
+  const { projects, loading, error } = useProjectsData(dataUrl);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true);
   const pageSize = 3;
 
-  const dataUrl = "https://dh09x5tu10bt3.cloudfront.net/data/projectsData.json"
-
-  useEffect(() => {
-    fetch(dataUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setProjects(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching projects data:', error);
-        setLoading(false);
-      });
-  }, [dataUrl]);  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -39,6 +22,10 @@ const Projects = () => {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.projectContainer} >{error}</div>;
   }
 
   return (
