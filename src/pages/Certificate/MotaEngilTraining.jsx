@@ -1,27 +1,25 @@
 import React from 'react';
+import useData from '../Hooks/useData';
 import styles from './Academic.module.css';
 import config from '../../config';
-import useMotaEngilTrainingData from '../Hooks/useMotaEngilTraningData';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
-const MotaEngilTraining = () => {
-  const { medata, loading, error } = useMotaEngilTrainingData();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+const MotaEngilTraining = () => {
+  const dataUrl = '/data/meTrainingData.json'
+  const { data: meTrainingData, error } = useData(dataUrl);
 
   if (error) {
     return <div>{error}</div>;
   }
 
-  if (!medata || !Array.isArray(medata)) {
+  if (!meTrainingData || !Array.isArray(meTrainingData)) {
     return <div>No data available.</div>;
   }
 
   return (
     <div className={styles.certificate}>
-      {medata.map((data, index) => (
+      {meTrainingData.map((data, index) => (
         <article className={styles.panel} key={index}>
           <div className={styles.row}>
             {data.images && data.images.length > 0 ? (

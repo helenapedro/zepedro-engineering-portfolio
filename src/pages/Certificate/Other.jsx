@@ -1,16 +1,25 @@
 import React from 'react';
+import useData from '../Hooks/useData';
 import styles from './Academic.module.css';
 import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
-const OtherEducationData = ({ otherEducationData }) => {
-    if (!otherEducationData || !Array.isArray(otherEducationData)) {
-        return <div>No data available.</div>;
-    } 
+
+const Other = () => {
+     const dataUrl = '/data/otherData.json';
+     const { data: otherData, error } = useData(dataUrl);
+
+     if (error) {
+          return <div>{error}</div>;
+     }
+
+     if (!otherData || !Array.isArray(otherData)) {
+          return <div>No data available.</div>;
+     } 
 
     return (
         <div className={styles.certificate}>
-            {otherEducationData.map((data, index) => (
+            {otherData.map((data, index) => (
                 <article className={styles.panel} key={index}>
                     <div className={styles.row}>
                         {data.images && data.images.length > 0 ? (
@@ -37,4 +46,4 @@ const OtherEducationData = ({ otherEducationData }) => {
     );
 };
 
-export default OtherEducationData;
+export default Other;

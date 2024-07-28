@@ -16,7 +16,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.certificate-title {
+.certificate-title h1 {
   font-family: "eb_garamond_sc08_regular", sans-serif;
   font-size: 2em;
   color: #007acc;
@@ -33,6 +33,10 @@
   .certificate-title {
     font-size: 1.5em;
   }
+
+  .certificate-title h1 {
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -43,5 +47,9 @@
 
   .certificate-title {
     font-size: 1.2em;
+  }
+
+  .certificate-title h1 {
+    font-size: 1rem;
   }
 }

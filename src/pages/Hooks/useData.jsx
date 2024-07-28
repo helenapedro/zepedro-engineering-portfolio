@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 
-const useMotaEngilTrainingData = () => {
-  const [medata, setMeData] = useState([]);
+const useData = (dataUrl) => {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const dataUrl = process.env.REACT_APP_ME_TRAINING_DATA_URL;
-
     fetch(dataUrl)
       .then((response) => {
         if (!response.ok) {
@@ -16,17 +14,17 @@ const useMotaEngilTrainingData = () => {
         return response.json();
       })
       .then((data) => {
-        setMeData(data);
+        setData(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching professional data:', error);
-        setError('Failed to fetch professional data. Please try again later.');
+        console.error('Error fetching data:', error);
+        setError(`Failed to fetch data: ${error.message}`);
         setLoading(false);
       });
-  }, []);
+  }, [dataUrl]);
 
-  return { medata, loading, error };
+  return { data, loading, error };
 };
 
-export default useMotaEngilTrainingData;
+export default useData;

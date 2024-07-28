@@ -1,16 +1,25 @@
 import React from 'react';
+import useData from '../Hooks/useData';
 import styles from './Academic.module.css';
 import config from '../../config';
 import { wrapNumbersWithClass } from './../../utils/WrapNumbers';
 
-const AdditionalTraining = ({ otherTrainingData }) => {
-    if (!otherTrainingData || !Array.isArray(otherTrainingData)) {
-        return <div>No data available.</div>;
+const AdditionalTraining = () => {
+    const dataUrl = '/data/additionalTrainingData.json';
+    const { data: additionalTrainingData, error } = useData(dataUrl);
+
+    if (error) {
+        return <div>{error}</div>;
     }
+
+    if (!additionalTrainingData || !Array.isArray(additionalTrainingData)) {
+        return <div>No data available.</div>;
+    } 
+
   
     return (
         <div className={styles.certificate}>
-            {otherTrainingData.map((data, index) => (
+            {additionalTrainingData.map((data, index) => (
                 <article className={styles.panel} key={index}>
                     <div className={styles.row}>
                         {data.images && data.images.length > 0 ? (

@@ -2,36 +2,35 @@ import styles from './Certificate.module.css';
 import mainStyles from '../../components/Main.module.css';
 
 import Academic from './Academic';
-import ProfessionalMe from './professionalMe';
-import AditionalTraining from './AdditionalTraing';
 import SkillsTable from '../../components/Skills/SkillsTable';
-import professionalData from '../../data/professionalData.json';
-import otherEducationData from '../../data/otherEducationData.json';
-import OtherEducationData from './otherEducation';
-import otherTrainingData from '../../data/otherTrainingData.json';
+import MotaEngilTraining from './MotaEngilTraining';
+import AditionalTraining from './AdditionalTraing';
+import Other from './Other';
 
 const Certificate = () => {
     return (
         <div className={mainStyles.panel}>
-            <h1 className={styles['certificate-title']}>ACADEMIC EDUCATION</h1>
-            <div>
-                <Academic />
-            </div>
-            <h1 className={styles['certificate-title']}>IT SKILLS</h1>
-            <div>
-                <SkillsTable />
-            </div>
-            <h1 className={styles['certificate-title']}>MOTA-ENGIL TRAINING</h1>
-            <div>
-                <ProfessionalMe professionalData={professionalData} />
-            </div>
-            <h1 className={styles['certificate-title']}>ADDITIONAL TRAINING</h1>
-            <div>
-                <AditionalTraining otherTrainingData={otherTrainingData} />
-            </div>
-            <h1 className={styles['certificate-title']}>OTHER</h1>
-            <div>
-                <OtherEducationData otherEducationData={otherEducationData} />
+            <div className={styles['certificate-title']}>
+                <div>
+                    <h1>ACADEMIC EDUCATION</h1>
+                    <Academic />
+                </div>
+                <div>
+                    <h1>IT SKILLS</h1>
+                    <SkillsTable />
+                </div>
+                <div>
+                    <h1>MOTA-ENGIL TRAINING</h1>
+                    <MotaEngilTraining />
+                </div>
+                <div>
+                    <h1>ADDITIONAL TRAINING</h1>
+                    <AditionalTraining />
+                </div>
+                <div className={styles['certificate-title']}>
+                    <h1>OTHER</h1>
+                    <Other />
+                </div>
             </div>
         </div>
     );

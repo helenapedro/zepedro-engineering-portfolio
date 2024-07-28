@@ -1,15 +1,20 @@
 import React from 'react';
+import useData from '../Hooks/useData';
 import styles from './About.module.css';
 import { wrapNumbersWithClass } from './../../utils/WrapNumbers';
 
-const About = ({ aboutmeData }) => {
-    if (!aboutmeData || !Array.isArray(aboutmeData)) {
+
+const About = () => {
+    const dataUrl = '/data/aboutMeData.json';
+    const { data: aboutMeData } = useData(dataUrl);
+
+    if (!aboutMeData || !Array.isArray(aboutMeData)) {
         return <div>No data available.</div>;
     }
 
     return (
         <div className={styles.about}>
-            {aboutmeData.map((data, index) => (
+            {aboutMeData.map((data, index) => (
                 <article className={styles.panel} key={index}>
                     <div className='card border-0 mb-3'>
                         <div className='row g-0'>
