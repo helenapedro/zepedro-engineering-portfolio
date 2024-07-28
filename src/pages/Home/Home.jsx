@@ -23,7 +23,7 @@ const Home = () => {
             <span className={ `${mainStyles.arrow}` }>
               <span>See my projects</span>
             </span>
-            <img src="https://dh09x5tu10bt3.cloudfront.net/me_1.jpg" alt="José Francisco Pedro" /> 
+            <img src="https://dh09x5tu10bt3.cloudfront.net/120-Apart-BZ-hero.jpg" alt="José Francisco Pedro" /> 
           </Link>
     </article> 
   );
