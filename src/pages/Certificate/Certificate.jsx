@@ -1,6 +1,5 @@
 import styles from './Certificate.module.css';
 import mainStyles from '../../components/Main.module.css';
-
 import Academic from './Academic';
 import SkillsTable from '../../components/Skills/SkillsTable';
 import MotaEngilTraining from './MotaEngilTraining';

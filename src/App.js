@@ -10,7 +10,7 @@ import Home from './pages/Home/Home';
 import ProjectsContainer from './pages/projects/ProjectContainer';
 import Certificate from './pages/Certificate/Certificate';
 import NotFound from './pages/NotFound';
-import Footer from './pages/Footer/Footer';
+import Footer from './components/Footer/Footer';
 import AboutContainer from './pages/About/AboutContainer';
 
 const App = () => {

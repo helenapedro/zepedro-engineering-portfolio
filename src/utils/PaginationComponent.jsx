@@ -20,7 +20,7 @@ const PaginationComponent = ({ itemsCount, pageSize, currentPage, onPageChange }
       <Pagination.Next onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === pagesCount} />
       <Pagination.Last onClick={() => onPageChange(pagesCount)} disabled={currentPage === pagesCount} />
     </Pagination>
-  );
+  ); 
 };
 
 PaginationComponent.propTypes = {

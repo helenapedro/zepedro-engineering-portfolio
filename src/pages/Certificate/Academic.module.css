@@ -128,3 +128,17 @@
 .image img:hover {
   transform: scale(1.1);
 }
+
+@media (max-width: 768px) {
+  .title,
+  .year,
+  .othereducationtitle {
+    font-size: 0.58em;
+  }
+
+  .institute,
+  .duration,
+  .tutordescription {
+    font-size: 0.68em;
+  }
+}

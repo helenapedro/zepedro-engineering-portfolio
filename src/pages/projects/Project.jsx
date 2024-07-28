@@ -14,7 +14,13 @@ const Project = ({
   finalDescription = '',
   images = []
 }) => {
-  const wrappedProject = wrapProjectFields({ title, placeandyear, description, activities, finalDescription }, styles.number);
+  const wrappedProject = wrapProjectFields({ 
+    title, 
+    placeandyear, 
+    description, 
+    activities, 
+    finalDescription 
+  }, styles.number);
 
   return (
     <div className={styles.project}>
@@ -47,7 +53,9 @@ const Project = ({
             </div>
           ))
         )}
-        <p className={styles.projectdescription}><b>{wrappedProject.finalDescription}</b></p>
+        <p className={styles.projectdescription}>
+          <b>{wrappedProject.finalDescription}</b>
+        </p>
         {Array.isArray(images) && images.length > 0 && (
           <section aria-label="Project images">
             <div className={styles.row}>

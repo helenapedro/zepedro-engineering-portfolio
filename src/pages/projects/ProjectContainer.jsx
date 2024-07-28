@@ -1,5 +1,4 @@
 import React from 'react';
-
 import mainStyles from '../../components/Main.module.css';
 import styles from './ProjectContainer.module.css';
 import Projects from './Projects';
@@ -7,8 +6,8 @@ import Projects from './Projects';
 const ProjectsContainer = () => {
     return (
         <div className={mainStyles.panel}>
-            <h1 className={styles['container-title']}>PROJECTS</h1>
-            <div>
+            <div className={styles['container-title']}>
+                <h1>PROJECTS</h1>
                 <Projects />
             </div>
         </div> 
