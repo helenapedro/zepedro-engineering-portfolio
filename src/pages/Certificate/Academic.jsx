@@ -7,13 +7,13 @@ import LoadingError from '../../components/comon/LoadingError';
 
 const Academic = () => {
     const dataUrl = '/data/academicData.json';
-    const { data: academicData, error } = useData(dataUrl);
-
+    const { data: academicData, loading, error } = useData(dataUrl);
+ 
    
     return ( 
         <div className={styles.certificate}>
-            <LoadingError error={error} />
-            {!error && academicData && Array.isArray(academicData) && (
+            <LoadingError loading={loading} error={error} />
+            {!loading && !error && academicData && Array.isArray(academicData) && (
                 academicData.map((data, index) => (
                     <article className={styles.panel} key={index}>
                         <header className={styles.header}>
