@@ -12,7 +12,7 @@
 }
 
 .number {
-  font-family: var(--numbers-font-family);
+  font-family: var(--font-family-numbers);
 }
 
 @media (max-width: 768px) {

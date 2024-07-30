@@ -28,7 +28,7 @@ const Other = () => {
                                             </a>
                                             <h4 className={styles.title}>{wrapNumbersWithClass(data.title[imgIndex], styles.number)}</h4>
                                         </div>
-                                    );
+                                    ); 
                                 })
                             ) : (
                                 <div className={styles.title}>
