@@ -4,17 +4,14 @@ import EducationStyles from '../Education.module.css';
 import styles from './Academic.module.css';
 import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
-import LoadingError from '../comon/LoadingError';
 
 const Academic = () => {
     const dataUrl = '/data/academicData.json';
-    const { data: academicData, loading, error } = useData(dataUrl);
- 
+    const { data: academicData} = useData(dataUrl);
    
     return ( 
         <div className={EducationStyles.education}>
-            <LoadingError loading={loading} error={error} />
-            {!loading && !error && academicData && Array.isArray(academicData) && (
+            {academicData && Array.isArray(academicData) && (
                 academicData.map((data, index) => (
                     <article className={EducationStyles.panel} key={index}>
                         <header className={styles.header}>

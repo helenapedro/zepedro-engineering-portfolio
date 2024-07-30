@@ -1,25 +1,27 @@
+@import "../../vars.css";
+
 .container {
   align-items: center;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-container);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-container);
   display: flex;
   flex-direction: column;
   margin: auto;
   overflow: auto;
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition);
   width: 60%;
 }
 
 .container:hover {
   transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--box-shadow);
 }
 
 .container-title h1 {
-  color: #007acc;
-  font-family: "eb_garamond_sc08_regular", sans-serif;
+  color: var(--color-primary);
+  font-family: var(--font-family-primary);
   font-size: 2em;
   margin-bottom: 20px;
   text-align: center;
