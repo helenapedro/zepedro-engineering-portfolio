@@ -1,9 +1,10 @@
 import React from 'react';
-import useData from '../Hooks/useData';
+import useData from '../../pages/Hooks/useData';
+import EducationStyles from '../Education.module.css';
 import styles from './Academic.module.css';
 import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
-import LoadingError from '../../components/comon/LoadingError';
+import LoadingError from '../comon/LoadingError';
 
 const Academic = () => {
     const dataUrl = '/data/academicData.json';
@@ -11,11 +12,11 @@ const Academic = () => {
  
    
     return ( 
-        <div className={styles.certificate}>
+        <div className={EducationStyles.education}>
             <LoadingError loading={loading} error={error} />
             {!loading && !error && academicData && Array.isArray(academicData) && (
                 academicData.map((data, index) => (
-                    <article className={styles.panel} key={index}>
+                    <article className={EducationStyles.panel} key={index}>
                         <header className={styles.header}>
                             <h1 className={styles.course}>{wrapNumbersWithClass(data.course, styles.number)}</h1>
                             <b className={styles.institute}>
@@ -28,12 +29,12 @@ const Academic = () => {
                                     <a href={data.tutorLink} target='_blank' rel='noopener noreferrer'> {data.tutorName}</a>
                                 </b>
                             )}
-                            <div className={styles.row}>
+                            <div className={EducationStyles.row}>
                                 {data.images && data.images.map((image, imgIndex) => {
                                     const imageUrl = `${config.graduationImagesUrl}${image}`;
                                     return (
-                                        <div className={`${styles['col-4']}`} key={imgIndex}>
-                                            <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
+                                        <div className={`${EducationStyles['col-4']}`} key={imgIndex}>
+                                            <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
                                                 <img src={imageUrl} alt="graduation ceremony" />
                                             </a>
                                         </div>

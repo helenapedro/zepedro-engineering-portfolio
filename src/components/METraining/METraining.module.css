@@ -1,0 +1,22 @@
+@import "../../vars.css";
+
+.title {
+  font-size: 0.75em;
+  font-family: "eb_garamond_sc12_regular", sans-serif;
+  hyphens: auto;
+  letter-spacing: normal;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-align: center;
+  word-spacing: normal;
+}
+
+.number {
+  font-family: var(--numbers-font-family);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 0.58em;
+  }
+}

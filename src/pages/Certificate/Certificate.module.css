@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .certificate {
   align-items: center;
   background-color: #f9f9f9;
@@ -19,7 +21,7 @@
 .certificate-title h1 {
   font-family: "eb_garamond_sc08_regular", sans-serif;
   font-size: 2em;
-  color: #007acc;
+  color: var(--color-primary);
   margin-bottom: 20px;
   text-align: center;
 }

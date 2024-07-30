@@ -1,10 +1,10 @@
 import styles from './Certificate.module.css';
 import mainStyles from '../../components/Main.module.css';
-import Academic from './Academic';
+import Academic from '../../components/Academic/Academic';
 import SkillsTable from '../../components/Skills/SkillsTable';
-import MotaEngilTraining from './MotaEngilTraining';
-import AditionalTraining from './AdditionalTraing';
-import Other from './Other';
+import MotaEngilTraining from '../../components/METraining/MotaEngilTraining';
+import AdditionalTraining from '../../components/AdditionalTraining/AdditionalTraing';
+import Other from '../../components/OtherDocs/Other';
 
 const Certificate = () => {
     return (
@@ -24,7 +24,7 @@ const Certificate = () => {
                 </div>
                 <div>
                     <h1>ADDITIONAL TRAINING</h1>
-                    <AditionalTraining />
+                    <AdditionalTraining />
                 </div>
                 <div className={styles['certificate-title']}>
                     <h1>OTHER</h1>

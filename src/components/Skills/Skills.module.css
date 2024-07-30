@@ -1,17 +1,4 @@
-:root {
-  --skills-table-margin-top: 40px;
-  --skills-table-width: 100%;
-  --skills-table-max-width: 800px;
-  --skills-table-bg-color: #fff;
-  --skills-table-border-radius: 10px;
-  --skills-table-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --skills-table-header-bg-color: #007acc;
-  --skills-table-header-color: #fff;
-  --skills-table-header-hover-bg-color: #005d7a;
-  --skills-table-cell-padding: 10px;
-  --skills-table-body-even-bg-color: #f2f2f2;
-  --skills-table-body-hover-bg-color: #e0e0e0;
-}
+@import "../../vars.css";
 
 .skills {
   align-items: center;
@@ -19,69 +6,70 @@
   flex-direction: column;
   margin: auto;
   overflow: auto;
-  padding: 20px;
+  padding: 10px;
   width: 100%;
 }
 
 .panel {
   width: 100%;
   margin-bottom: 20px;
-  padding: 20px;
-  background-color: #8d9ea28d;
+  padding: 10px;
+  background-color: var(--color-border);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--box-shadow-container);
+  transition: var(--transition);
 }
 
 .panel:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--box-shadow);
 }
 
 .skills-table {
-  background-color: var(--skills-table-bg-color);
-  border-radius: var(--skills-table-border-radius);
-  box-shadow: var(--skills-table-box-shadow);
+  background-color: var(--color-panel);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-container);
   flex-direction: column;
-  font-family: "eb_garamond_sc08_regular", sans-serif;
+  font-family: var(--font-family-primary);
   hyphens: auto;
   letter-spacing: normal;
-  margin-top: var(--skills-table-margin-top);
-  max-width: var(--skills-table-max-width);
+  margin-top: 20px;
+  max-width: 100%;
   overflow: hidden;
   text-align: center;
-  width: var(--skills-table-width);
+  width: 100%;
   word-spacing: normal;
 }
 
 .skills-table-header {
-  background-color: var(--skills-table-header-bg-color);
-  color: var(--skills-table-header-color);
+  background-color: var(--color-primary);
+  color: var(--color-panel);
 }
 
 .skills-table-header th {
+  color: var(--color-primary);
   cursor: pointer;
-  padding: var(--skills-table-cell-padding);
+  padding: 15px;
 }
 
 .skills-table-header th:hover {
-  background-color: var(--skills-table-header-hover-bg-color);
+  background-color: var(--color-border);
 }
 
 .skills-table-body td {
-  padding: var(--skills-table-cell-padding);
+  padding: 5px;
 }
 
 .skills-table-body tr:nth-child(even) {
-  background-color: var(--skills-table-body-even-bg-color);
+  background-color: var(--color-panel);
 }
 
 .skills-table-body tr:hover {
-  background-color: var(--skills-table-body-hover-bg-color);
+  background-color: var(--color-container);
 }
 
-.year {
-  font-family: "robotslab", sans-serif;
+.number {
+  font-family: var(--font-family-numbers);
 }
 
 @media (max-width: 768px) {
@@ -111,11 +99,7 @@
 
   .skills-table-header th,
   .skills-table-body td {
-    padding: 6px;
-    font-size: 0.9em;
+    padding: 1.5px;
+    font-size: 0.6em;
   }
-}
-
-.number {
-  font-family: "robotslab", sans-serif;
 }

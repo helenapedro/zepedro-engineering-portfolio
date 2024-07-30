@@ -1,0 +1,68 @@
+@import "../vars.css";
+
+.education {
+  align-items: center;
+  background-color: var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-container);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: var(--padding-container);
+  transition: var(--transition);
+}
+
+.education:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--box-shadow);
+}
+
+.panel {
+  background-color: var(--color-panel);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-container);
+  margin-bottom: 20px;
+  padding: 10px;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.panel:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.col-4 {
+  box-sizing: border-box;
+  flex: 1 1 calc(33.333% - 20px);
+  margin: 5px;
+  transition: transform 0.3s ease;
+}
+
+.col-4:hover {
+  transform: scale(1.05);
+}
+
+.image {
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.image img:hover {
+  transform: scale(1.1);
+}

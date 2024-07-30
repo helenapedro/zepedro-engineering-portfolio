@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .nav {
   text-align: center;
   height: 4.25em;
@@ -7,7 +9,7 @@
 .nav a {
   position: relative;
   display: inline-block;
-  color: #ffffff;
+  color: var(--color-container);
   width: 1em;
   height: 1em;
   line-height: 0.9em;
@@ -36,7 +38,7 @@
   left: 50%;
   bottom: -0.75em;
   margin-left: -0.5em;
-  border-bottom: solid 0em #ffffff;
+  border-bottom: solid 0em var(--color-container);
   border-left: solid 0.5em transparent;
   border-right: solid 0.5em transparent;
   -moz-transition: border-bottom-width 0.25s ease-in-out;
@@ -49,7 +51,7 @@
   display: block;
   position: absolute;
   background: #222222;
-  color: #ffffff;
+  color: var(--color-container);
   top: -2.75em;
   font-size: 0.3em;
   height: 2.25em;

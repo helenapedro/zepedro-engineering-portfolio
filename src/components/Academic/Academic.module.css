@@ -1,0 +1,73 @@
+@import "../../vars.css";
+
+.header,
+.title,
+.year {
+  text-align: center;
+}
+
+.title,
+.year,
+.othereducationtitle {
+  font-size: 0.75em;
+  margin-bottom: 10px;
+}
+
+.course {
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.course,
+.duration {
+  color: var(--color-primary);
+}
+
+.number {
+  font-family: "robotslab", sans-serif;
+}
+
+.institute,
+.duration,
+.tutordescription {
+  font-size: 1em;
+  display: block;
+  margin: 10px 0;
+}
+
+.title,
+.othereducationtitle,
+.institute,
+.tutordescription {
+  font-family: "eb_garamond_sc12_regular", sans-serif;
+  hyphens: auto;
+  letter-spacing: normal;
+  overflow: hidden;
+  word-spacing: normal;
+}
+
+.institute a,
+.tutordescription a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+.institute a:hover,
+.tutordescription a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .title,
+  .year,
+  .othereducationtitle {
+    font-size: 0.58em;
+  }
+
+  .institute,
+  .duration,
+  .tutordescription {
+    font-size: 0.68em;
+  }
+}

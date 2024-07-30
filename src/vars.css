@@ -1,13 +1,15 @@
 :root {
   /* Colors */
-  --color-primary: #2584ff;
-  --color-secondary: #00d9ff;
-  --color-accent: #ff3400;
-  --color-headings: #15044d;
-  --color-body: #918ca4;
-  --color-body-darker: #5c5577;
-  --color-border: #ccc;
+  --color-primary: #007acc;
+  --color-border: #8d9ea28d;
+  --color-panel: #fff;
+  --color-container: #f9f9f9;
   --border-radius: 30px;
-
-  /* Fonts */
+  --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --box-shadow-container: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --font-family-primary: "eb_garamond_sc08_regular", sans-serif;
+  --font-family-secundary: "eb_garamond_sc12_regular", sans-serif;
+  --font-family-numbers: "robotslab", sans-serif;
+  --padding-container: 10px;
+  --transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
