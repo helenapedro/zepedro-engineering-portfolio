@@ -8,7 +8,7 @@ import LoadingError from '../comon/LoadingError';
 
 
 const MotaEngilTraining = () => {
-  const dataUrl = '/data/meTrainingData.json'
+  const dataUrl = `${process.env.REACT_APP_BASE_URL}data/meTrainingData.json`;
   const { data: meTrainingData, error } = useData(dataUrl);
 
   

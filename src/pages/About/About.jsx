@@ -5,8 +5,8 @@ import { wrapNumbersWithClass } from './../../utils/WrapNumbers';
 
 
 const About = () => {
-    const dataUrl = '/data/aboutMeData.json';
-    const { data: aboutMeData } = useData(dataUrl);
+    const dataUrl = `${process.env.REACT_APP_BASE_URL}data/aboutMeData.json`; 
+    const { data: aboutMeData } = useData(dataUrl); 
 
     return (
         <div className={styles.about}>

@@ -6,7 +6,7 @@ import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
 const Academic = () => {
-    const dataUrl = '/data/academicData.json';
+    const dataUrl = `${process.env.REACT_APP_BASE_URL}data/academicData.json`;
     const { data: academicData} = useData(dataUrl);
    
     return ( 

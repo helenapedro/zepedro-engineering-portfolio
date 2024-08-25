@@ -8,7 +8,7 @@ import LoadingError from '../comon/LoadingError';
 
 
 const Other = () => {
-    const dataUrl = '/data/otherData.json';
+    const dataUrl = `${process.env.REACT_APP_BASE_URL}data/otherEducationData.json`;
     const { data: otherData, error } = useData(dataUrl);
 
     return (

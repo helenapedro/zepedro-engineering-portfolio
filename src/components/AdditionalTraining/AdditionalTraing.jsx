@@ -7,10 +7,9 @@ import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 import LoadingError from '../comon/LoadingError';
 
 const AdditionalTraining = () => {
-    const dataUrl = '/data/additionalTrainingData.json';
+    const dataUrl = `${process.env.REACT_APP_BASE_URL}data/otherTrainingData.json`;
     const { data: additionalTrainingData, error } = useData(dataUrl);
 
-  
     return (
         <div className={EducationStyles.education}>
                 <LoadingError error={error} />
