@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Project from './Project';
 import useData from '../Hooks/useData';
-import PaginationComponent from '../../utils/PaginationComponent';
+import renderPagination from '../../utils/Pagination/renderPagination';
 import handlePageChange from '../../utils/handlePageChange';
 import LoadingError from '../../components/comon/LoadingError';
 import styles from './Project.module.css';
@@ -19,10 +19,11 @@ const Projects = () => {
   const paginatedProjects = data.slice(startIndex, startIndex + pageSize);
 
   return (
-    <div id="main" className={styles.projectContainer}>
+    <div id="main">
       <LoadingError loading={loading} error={error} /> 
       {!loading && !error && (
         <div>
+          {renderPagination(data.length, pageSize, currentPage, handlePageChangeWrapper, styles.paginationContainer)}
           {paginatedProjects.map((project, index) => (
             <React.Fragment key={index}>
               <Project
@@ -37,12 +38,7 @@ const Projects = () => {
               {index !== paginatedProjects.length - 1 && <br />}
             </React.Fragment>
           ))}
-          <PaginationComponent
-            itemsCount={data.length}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={handlePageChangeWrapper}
-          />
+          {renderPagination(data.length, pageSize, currentPage, handlePageChangeWrapper, styles.paginationContainer)}
         </div>
       )}
     </div>

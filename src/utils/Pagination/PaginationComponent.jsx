@@ -1,26 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Pagination from 'react-bootstrap/Pagination';
+import { calculatePageRange } from './calculatePageRange';
+import renderPaginationItem from './renderPaginationItem';
 
 const PaginationComponent = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
-  if (pagesCount === 1) return null; 
+  if (pagesCount === 1) return null;
 
-  const pages = [...Array(pagesCount).keys()].map(x => x + 1);
+  const pages = calculatePageRange(currentPage, pagesCount);
 
   return (
-    <Pagination className="justify-content-center">
+    <Pagination className="justify-content-center pagination-sm">
       <Pagination.First onClick={() => onPageChange(1)} disabled={currentPage === 1} />
       <Pagination.Prev onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} />
-      {pages.map(page => (
-        <Pagination.Item key={page} active={page === currentPage} onClick={() => onPageChange(page)}>
-          {page}
-        </Pagination.Item>
-      ))}
+      {pages.map(page => renderPaginationItem(page, currentPage, onPageChange))}
       <Pagination.Next onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === pagesCount} />
       <Pagination.Last onClick={() => onPageChange(pagesCount)} disabled={currentPage === pagesCount} />
     </Pagination>
-  ); 
+  );
 };
 
 PaginationComponent.propTypes = {

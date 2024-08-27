@@ -115,6 +115,10 @@
   padding-left: 0.5rem;
 }
 
+.paginationContainer {
+  margin: 20px 0;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
