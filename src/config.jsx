@@ -5,7 +5,7 @@ const config = {
     projectsUrl: baseUrl,
     trainingUrl: `${baseUrl}certificates/`,
     projectsDataUrl: `${baseUrl}data/projectsData.json`,
-    resumeUrl:"https://pedropublicfiles.s3.us-east-2.amazonaws.com/CV_Jose_Pedro_EN.pdf",
+    resumeUrl: "https://pedropublicfiles.s3.us-east-2.amazonaws.com/CV_Jose_Pedro_EN.pdf",
     linkedInUrl: "http://linkedin.com/in/josefpedro/"
 };
 

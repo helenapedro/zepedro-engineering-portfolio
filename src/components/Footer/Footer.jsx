@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div id='footer' className={styles.footer}>
         <ul className={styles.copyright}>
-          <li>&copy; <a href="http://linkedin.com/in/josefpedro/">Engº ZéPedro</a></li>
+          <li>&copy; <a href={config.linkedInUrl}>Engº ZéPedro</a></li>
           <li>
             <a href="tel:+244947462094" className={iconStyles.icon}>
               <FontAwesomeIcon icon="phone" className="fas fa-phone" />
