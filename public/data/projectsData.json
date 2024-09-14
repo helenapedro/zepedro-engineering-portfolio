@@ -315,29 +315,29 @@
       "images":[]
     },
     {
-      "title":"Architectural Project | 3-Story Multifunctional Building",
+      "title":"3-Story Multifunctional Building",
       "organization":"AUTONOMOUS PROJECT",
       "placeandyear": "Soyo, Zaire, Angola ~ 2019",
-      "description":"The building is organized as follows:",
+      "description":"This architectural project features a multifunctional 3-story building, designed and organized with the following layout:",
       "activities":[
         {
           "header": "Ground Floor:",
-          "items": ["Store (IT technology and home appliances)"]
+          "items": ["IT technology and home appliances store"]
         },
         {
           "header": "First Floor:",
-          "items":["Offices"]
+          "items":["Office spaces"]
         },
         {
           "header":"Second Floor",
-          "items":["Economic nightclub (convertible to a banquet hall)"]
+          "items":["Economic nightclub, convertible to a banquet hall"]
         },
         {
           "header":"Third Floor",
-          "items":["VIP nightclub (VIP area also convertible to a banquet hall)"]
+          "items":["VIP nightclub with an exclusive VIP area, also convertible to a banquet hall"]
         }
       ],
-      "finalDescription":"The project included supervision activities, which encompassed monitoring the physical execution, cost control, and inventory management over a three-month period.",
+      "finalDescription":"As part of the project, I was responsible for the supervision phase, which included: Monitoring the physical execution of the building’s construction, Cost control and Inventory management. The supervision activities spanned a three-month period.",
       "images":[
         "m0.jpeg", "m01.jpeg", "m1.jpeg", "m3.jpeg",
         "m4.jpeg", "m5.jpeg", "m6.jpeg", "m8.jpeg",

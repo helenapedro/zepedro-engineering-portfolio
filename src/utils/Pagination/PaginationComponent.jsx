@@ -19,7 +19,7 @@ const PaginationComponent = ({ itemsCount, pageSize, currentPage, onPageChange }
       <Pagination.Last onClick={() => onPageChange(pagesCount)} disabled={currentPage === pagesCount} />
     </Pagination>
   );
-};
+}; 
 
 PaginationComponent.propTypes = {
   itemsCount: PropTypes.number.isRequired,

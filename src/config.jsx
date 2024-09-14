@@ -1,4 +1,4 @@
-const baseUrl = "https://dh09x5tu10bt3.cloudfront.net/";
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const config = {
     graduationImagesUrl: `${baseUrl}graduation/`,
@@ -10,4 +10,4 @@ const config = {
 };
 
 export default config;
- 
+  
