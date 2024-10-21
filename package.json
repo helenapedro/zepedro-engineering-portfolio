@@ -22,7 +22,8 @@
     "react-router-dom": "^6.24.0",
     "react-scripts": "5.0.1",
     "serve": "^14.2.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zepedro-react-app": "file:"
   },
   "scripts": {
     "clean": "rimraf build",

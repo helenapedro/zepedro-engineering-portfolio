@@ -10,7 +10,7 @@ const Home = () => {
             <h1 className={`card-title ${styles['home-title']}`}>José Francisco Pedro</h1>
             <p className={`card-text ${styles['home-text']}`}>
               <b> Hello, my name is <Link to="/about">ZéPedro</Link> and I'm an experienced Construction Engineer,
-              with over <i className={styles.year}>3</i> years in
+              with over <i className={styles.year}>4</i> years in
               project management and nearly <i>1</i> year
               as Coordinator of QHSE-Quality at <Link to='https://www.linkedin.com/company/mota-engil-angola/' target='_blank' rel='noopener noreferrer'>Mota-Engil Angola</Link>.</b>
             </p>
