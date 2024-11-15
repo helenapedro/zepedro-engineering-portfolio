@@ -5,14 +5,16 @@ import styles from './Academic.module.css';
 import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
-const Academic = () => {
-    const dataUrl = `${process.env.REACT_APP_BASE_URL}data/academicData.json`;
-    const { data: academicData} = useData(dataUrl);
+const Education = () => {
+    const collectionName = 'education';
+    const { data, loading, error } = useData(collectionName); 
    
     return ( 
         <div className={EducationStyles.education}>
-            {academicData && Array.isArray(academicData) && (
-                academicData.map((data, index) => (
+            {loading && <p>Loading...</p>}
+            {error && <p>Error loading data.</p>}
+            {data && Array.isArray(data) && (
+                data.map((data, index) => (
                     <article className={EducationStyles.panel} key={index}>
                         <header className={styles.header}>
                             <h1 className={styles.course}>{wrapNumbersWithClass(data.course, styles.number)}</h1>
@@ -47,4 +49,4 @@ const Academic = () => {
     );
 };
 
-export default Academic;
+export default Education;

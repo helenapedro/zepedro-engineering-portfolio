@@ -4,17 +4,17 @@ import EducationStyles from '../Education.module.css';
 import styles from './AdditionalTraining.module.css';
 import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
-import LoadingError from '../comon/LoadingError';
 
-const AdditionalTraining = () => {
-    const dataUrl = `${process.env.REACT_APP_BASE_URL}data/otherTrainingData.json`;
-    const { data: additionalTrainingData, error } = useData(dataUrl);
+const Training = () => {
+    const collectionName = 'training';
+    const { data, loading, error } = useData(collectionName); 
 
     return (
         <div className={EducationStyles.education}>
-                <LoadingError error={error} />
-                {!error && additionalTrainingData && Array.isArray(additionalTrainingData) && (
-                    additionalTrainingData.map((data, index) => (
+                {loading && <p>Loading...</p>}
+                {error && <p>Error loading data.</p>}
+                {!error && data && Array.isArray(data) && (
+                    data.map((data, index) => (
                     <article className={EducationStyles.panel} key={index}>
                         <div className={EducationStyles.row}>
                             {data.images && data.images.length > 0 ? (
@@ -42,4 +42,4 @@ const AdditionalTraining = () => {
     );
 };
 
-export default AdditionalTraining;
+export default Training;

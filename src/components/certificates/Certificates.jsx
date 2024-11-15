@@ -4,18 +4,17 @@ import EducationStyles from '../Education.module.css';
 import styles from './OtherDocs.module.css';
 import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
-import LoadingError from '../comon/LoadingError';
 
-
-const Other = () => {
-    const dataUrl = `${process.env.REACT_APP_BASE_URL}data/otherEducationData.json`;
-    const { data: otherData, error } = useData(dataUrl);
+const Certificates = () => {
+    const collectionName = 'certificates';
+    const { data, loading, error } = useData(collectionName); 
 
     return (
         <div className={EducationStyles.education}>
-            <LoadingError error={error} />
-            {!error && otherData && Array.isArray(otherData) && (
-                otherData.map((data, index) => (
+            {loading && <p>Loading...</p>}
+            {error && <p>Error loading data.</p>}
+            {!error && data && Array.isArray(data) && (
+                data.map((data, index) => (
                     <article className={EducationStyles.panel} key={index}>
                         <div className={EducationStyles.row}>
                             {data.images && data.images.length > 0 ? (
@@ -43,4 +42,4 @@ const Other = () => {
     );
 };
 
-export default Other;
+export default Certificates;

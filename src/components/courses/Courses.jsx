@@ -4,19 +4,17 @@ import EducationStyles from '../Education.module.css';
 import styles from './METraining.module.css';
 import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
-import LoadingError from '../comon/LoadingError';
 
+const Courses = () => {
+  const collectionName = 'courses';
+  const { data, loading, error } = useData(collectionName); 
 
-const MotaEngilTraining = () => {
-  const dataUrl = `${process.env.REACT_APP_BASE_URL}data/meTrainingData.json`;
-  const { data: meTrainingData, error } = useData(dataUrl);
-
-  
   return (
     <div className={EducationStyles.education}>
-      <LoadingError error={error} />
-      {!error && meTrainingData && Array.isArray(meTrainingData) && (
-        meTrainingData.map((data, index) => (
+      {loading && <p>Loading...</p>}
+      {error && <p>Error loading data.</p>}
+      {!error && data && Array.isArray(data) && (
+        data.map((data, index) => (
           <article className={EducationStyles.panel} key={index}>
             <div className={EducationStyles.row}>
               {data.images && data.images.length > 0 ? (
@@ -46,4 +44,4 @@ const MotaEngilTraining = () => {
   );
 };
 
-export default MotaEngilTraining;
+export default Courses;

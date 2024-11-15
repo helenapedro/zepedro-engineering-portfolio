@@ -7,9 +7,8 @@ import LoadingError from '../../components/comon/LoadingError';
 import styles from './Project.module.css';
 
 const Projects = () => {
-  const dataUrl = `${process.env.REACT_APP_BASE_URL}data/projectsData.json`;
-  //const dataUrlDev = '/data/projectsData.json';
-  const { data, loading, error } = useData(dataUrl);
+  const collectionName = 'projects';
+  const { data, loading, error } = useData(collectionName);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 3;
 
