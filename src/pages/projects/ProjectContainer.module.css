@@ -9,20 +9,31 @@
 }
 
 .cardContainer {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
 }
 
-.card {
+.cardContainer img {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.cardContainer .card-body {
+  flex-grow: 1; /* Allow the body to stretch and align */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%; /* Ensures full height in grid */
-  min-height: 250px; /* Minimum height for consistency */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
+}
+
+/* Card footer for spacing */
+.cardContainer .card-footer {
+  text-align: center;
+  margin-top: auto; /* Push footer content to the bottom */
 }
 
 @media (max-width: 768px) {
