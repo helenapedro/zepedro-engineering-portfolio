@@ -19,11 +19,7 @@ const NavBar = () => {
       <div className={`${styles.menu} ${menuOpen ? styles.show : ''}`}>
         <Link to="/" className={location.pathname === '/' ? styles.active : ''} onClick={toggleMenu}>
           <FontAwesomeIcon icon="house" className={`${iconStyles.icon} ${iconStyles.solid} fas fa-house`} />
-         <span>Home</span>
-        </Link>  
-        <Link to="/projects" className={location.pathname === '/projects' ? styles.active : ''} onClick={toggleMenu}>
-          <FontAwesomeIcon icon="building" className={`${iconStyles.icon} ${iconStyles.solid} fas fa-building`} />
-          <span>Projects</span>
+          <span>Home</span>
         </Link>
         <Link to="/education" className={location.pathname === '/education' ? styles.active : ''} onClick={toggleMenu}>
           <FontAwesomeIcon icon={faGraduationCap} className={`${iconStyles.icon} ${iconStyles.solid} fas fa-certificate`} />

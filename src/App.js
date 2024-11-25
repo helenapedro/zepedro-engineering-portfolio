@@ -6,7 +6,6 @@ import './App.module.css';
 import Wrapper from './components/wrapper';
 import Main from './components/main';
 import NavBar from './pages/NavBar/NavBar';
-import Home from './pages/Home/Home';
 import ProjectsContainer from './pages/projects/ProjectContainer';
 import ProjectDetails from './components/ProjectDetails';
 import Certificate from './pages/Certificate/Certificate';
@@ -21,8 +20,7 @@ const App = () => {
         <NavBar />
         <Main>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<ProjectsContainer />} />
+            <Route path="/" element={<ProjectsContainer />} />
             <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="/education" element={<Certificate />} />
             <Route path="/about" element={<AboutContainer />} />
