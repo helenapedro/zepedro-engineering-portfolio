@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css'
 
@@ -38,9 +38,9 @@ const OwnerIntroduction = ({ ownerData }) => {
                             This is a showcase of my <Link to="/">projects</Link> and{' '}
                             <Link to="/education">abilities</Link>.
                         </Card.Text>
-                        {/* <Link to="/projects">
-                            <Button variant="primary">Explore My Projects</Button>
-                        </Link> */}
+                        <Link to={ownerData.oeaCardLink} target='_blank'>
+                            <Button variant="primary">OEA Member Card</Button>
+                        </Link>
                     </Col>
                 </Row>
             </Card.Body>
