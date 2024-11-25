@@ -8,6 +8,7 @@ import Main from './components/main';
 import NavBar from './pages/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import ProjectsContainer from './pages/projects/ProjectContainer';
+import ProjectDetails from './components/ProjectDetails';
 import Certificate from './pages/Certificate/Certificate';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer/Footer';
@@ -22,6 +23,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<ProjectsContainer />} />
+            <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="/education" element={<Certificate />} />
             <Route path="/about" element={<AboutContainer />} />
             <Route path="*" element={<NotFound />} />

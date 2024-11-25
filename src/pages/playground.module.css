@@ -1,0 +1,23 @@
+.pageContainer {
+  background-color: #f8f9fa;
+  padding: 2rem 1rem;
+}
+
+.homeSection {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.projectsSection {
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}

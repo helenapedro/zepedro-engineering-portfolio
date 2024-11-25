@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Project from './Project';
 import useData from '../Hooks/useData';
 import renderPagination from '../../utils/Pagination/renderPagination';
@@ -19,25 +20,39 @@ const Projects = () => {
 
   return (
     <div id="main">
-      <LoadingError loading={loading} error={error} /> 
+      <LoadingError loading={loading} error={error} />
       {!loading && !error && (
         <div>
-          {renderPagination(data.length, pageSize, currentPage, handlePageChangeWrapper, styles.paginationContainer)}
-          {paginatedProjects.map((project, index) => (
-            <React.Fragment key={index}>
-              <Project
-                title={project.title}
-                organization={project.organization}
-                placeandyear={project.placeandyear}
-                description={project.description}
-                activities={project.activities}
-                finalDescription={project.finalDescription}
-                images={project.images}
-              />
-              {index !== paginatedProjects.length - 1 && <br />}
-            </React.Fragment>
+          {renderPagination(
+            data.length, 
+            pageSize, 
+            currentPage, 
+            handlePageChangeWrapper, 
+            styles.paginationContainer
+          )}
+          {paginatedProjects.map((project) => (
+            <div key={project.id}>
+              <Link to={`/projects/${project.id}`}>
+                <Project
+                  title={project.title}
+                  organization={project.organization}
+                  placeandyear={project.placeandyear}
+                  summaryHeader={project.summaryHeader}
+                  activities={project.activities}
+                  projectOutcome={project.projectOutcome}
+                  images={project.images}
+                />
+              </Link>
+              <br />
+            </div>
           ))}
-          {renderPagination(data.length, pageSize, currentPage, handlePageChangeWrapper, styles.paginationContainer)}
+          {renderPagination(
+            data.length, 
+            pageSize, 
+            currentPage, 
+            handlePageChangeWrapper, 
+            styles.paginationContainer
+          )}
         </div>
       )}
     </div>

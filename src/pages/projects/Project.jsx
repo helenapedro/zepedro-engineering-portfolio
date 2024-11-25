@@ -9,17 +9,17 @@ const Project = ({
   title,
   organization,
   placeandyear,
-  description,
+  summaryHeader,
   activities = [],
-  finalDescription = '',
+  projectOutcome = '',
   images = []
 }) => {
   const wrappedProject = wrapProjectFields({ 
     title, 
     placeandyear, 
-    description, 
+    summaryHeader, 
     activities, 
-    finalDescription 
+    projectOutcome 
   }, styles.number);
 
   return (
@@ -30,7 +30,7 @@ const Project = ({
           <i className={`${styles.organization} number`}>{organization}</i>
           <i className={`${styles.placeandyear} number`}>{wrappedProject.placeandyear}</i>
         </header>
-        <p className={styles.projectdescription}><b>{wrappedProject.description}</b></p>
+        <p className={styles.projectdescription}><b>{wrappedProject.summaryHeader}</b></p>
         {Array.isArray(activities) && activities.length > 0 && (
           activities.map((activitySection, sectionIndex) => (
             <div key={sectionIndex}>
@@ -54,7 +54,7 @@ const Project = ({
           ))
         )}
         <p className={styles.projectdescription}>
-          <b>{wrappedProject.finalDescription}</b>
+          <b>{wrappedProject.projectOutcome}</b>
         </p>
         {Array.isArray(images) && images.length > 0 && (
           <section aria-label="Project images">
@@ -81,7 +81,7 @@ Project.propTypes = {
   title: PropTypes.string.isRequired,
   organization: PropTypes.string.isRequired,
   placeandyear: PropTypes.string,
-  description: PropTypes.string.isRequired,
+  summaryHeader: PropTypes.string.isRequired,
   activities: PropTypes.arrayOf(
     PropTypes.oneOfType([
       PropTypes.string,
@@ -91,7 +91,7 @@ Project.propTypes = {
       })
     ])
   ),
-  finalDescription: PropTypes.string,
+  projectOutcome: PropTypes.string,
   images: PropTypes.arrayOf(PropTypes.string)
 };
 

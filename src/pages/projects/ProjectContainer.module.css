@@ -8,6 +8,23 @@
   text-align: center;
 }
 
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Ensures full height in grid */
+  min-height: 250px; /* Minimum height for consistency */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 @media (max-width: 768px) {
   .title h1 {
     font-size: 1.5em;
