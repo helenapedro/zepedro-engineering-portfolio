@@ -24,7 +24,7 @@
 }
 
 .cardContainer .card-body {
-  flex-grow: 1; /* Allow the body to stretch and align */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -33,7 +33,16 @@
 /* Card footer for spacing */
 .cardContainer .card-footer {
   text-align: center;
-  margin-top: auto; /* Push footer content to the bottom */
+  margin-top: auto;
+}
+
+.filterSection .dropdown-menu {
+  width: 100%;
+  padding: 0;
+}
+
+.filterSection .dropdown-menu div {
+  padding: 10px;
 }
 
 @media (max-width: 768px) {

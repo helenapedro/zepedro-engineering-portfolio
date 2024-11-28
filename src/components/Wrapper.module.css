@@ -1,5 +1,5 @@
 .wrapper {
-  width: 45em;
+  width: 55em;
   margin: 0 auto;
   min-height: 100vh;
   max-width: 100%;
@@ -8,21 +8,9 @@
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
-  -moz-flex-direction: column;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -moz-align-items: center;
-  -webkit-align-items: center;
-  -ms-align-items: center;
   align-items: center;
-  -moz-justify-content: center;
-  -webkit-justify-content: center;
-  -ms-justify-content: center;
   justify-content: center;
-  -moz-transition: opacity 1s ease-in-out;
-  -webkit-transition: opacity 1s ease-in-out;
-  -ms-transition: opacity 1s ease-in-out;
   transition: opacity 1s ease-in-out;
 }
 

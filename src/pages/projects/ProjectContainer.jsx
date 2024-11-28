@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Card, Button, Row, Col, Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import mainStyles from '../../components/Main.module.css';
 import styles from './ProjectContainer.module.css';
@@ -14,7 +14,7 @@ const ProjectsContainer = () => {
     const { data: categories, loading: categoriesLoading, error: categoriesError } = useData('category');
     const { data: ownerData, loading: ownerLoading, error: ownerError } = useHomeData('home', 'homeInfo'); // Fetch owner data
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedCategories, setSelectedCategories] = useState([]);
     const pageSize = 9;
 
     const handlePageChangeWrapper = (page) => handlePageChange(page, setCurrentPage);
@@ -24,9 +24,19 @@ const ProjectsContainer = () => {
     if (categoriesError) return <p>Error: {categoriesError.message}</p>;
     if (ownerError) return <p>Error: {ownerError.message}</p>;
 
-    // Filter projects by selected category
-    const filteredProjects = selectedCategory
-        ? projects.filter((project) => project.categoryId === selectedCategory)
+    // Handle checkbox selection
+    const handleCategoryChange = (categoryId) => {
+        setSelectedCategories((prev) =>
+            prev.includes(categoryId)
+                ? prev.filter((id) => id !== categoryId) // Remove if already selected
+                : [...prev, categoryId] // Add if not selected
+        );
+        setCurrentPage(1); // Reset to the first page
+    };
+
+    // Filter projects based on selected categories
+    const filteredProjects = selectedCategories.length
+        ? projects.filter((project) => selectedCategories.includes(project.categoryId))
         : projects;
 
     // Paginate the filtered projects
@@ -38,23 +48,33 @@ const ProjectsContainer = () => {
             {/* Owner Introduction Section */}
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
 
-            {/* Dropdown for Filtering */}
-            <DropdownButton
-                id="dropdown-category"
-                title={selectedCategory ? categories.find((cat) => cat.id === selectedCategory)?.name : 'Filter by Category'}
-                className="mb-4"
-                onSelect={(categoryId) => {
-                    setSelectedCategory(categoryId);
-                    setCurrentPage(1); // Reset to the first page
-                }}
-            >
-                <Dropdown.Item eventKey={null}>All Categories</Dropdown.Item>
-                {categories.map((category) => (
-                    <Dropdown.Item key={category.id} eventKey={category.id}>
-                        {category.name}
-                    </Dropdown.Item>
-                ))}
-            </DropdownButton>
+            {/* Dropdown Filter Section */}
+            <div className={`mb-4 ${styles.filterSection}`}>
+                <DropdownButton
+                    id="dropdown-category"
+                    title={`Filter by Categories ${selectedCategories.length > 0 ? `(${selectedCategories.length})` : ''}`}
+                    variant="outline-primary"
+                >
+                    <div style={{ maxHeight: '300px', overflowY: 'auto', padding: '10px' }}>
+                        {categories.map((category) => {
+                            const projectCount = projects.filter(
+                                (project) => project.categoryId === category.id
+                            ).length;
+                            return (
+                                <Form.Check
+                                    key={category.id}
+                                    type="checkbox"
+                                    id={`category-${category.id}`}
+                                    label={`${category.name} (${projectCount})`}
+                                    onChange={() => handleCategoryChange(category.id)}
+                                    checked={selectedCategories.includes(category.id)}
+                                    className="mb-2"
+                                />
+                            );
+                        })}
+                    </div>
+                </DropdownButton>
+            </div>
 
             {/* Projects Grid */}
             <Row>
