@@ -17,9 +17,9 @@ const ProjectDetails = () => {
           title={data.title}
           organization={data.organization}
           placeandyear={data.placeandyear}
-          description={data.description}
+          summaryHeader={data.summaryHeader}
           activities={data.activities}
-          finalDescription={data.finalDescription}
+          projectOutcome={data.projectOutcome}
           images={data.images}
         />
       )}

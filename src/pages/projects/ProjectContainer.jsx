@@ -12,10 +12,10 @@ import handlePageChange from './../../utils/handlePageChange';
 const ProjectsContainer = () => {
     const { data: projects, loading: projectsLoading, error: projectsError } = useData('projects');
     const { data: categories, loading: categoriesLoading, error: categoriesError } = useData('category');
-    const { data: ownerData, loading: ownerLoading, error: ownerError } = useHomeData('home', 'homeInfo'); // Fetch owner data
+    const { data: ownerData, loading: ownerLoading, error: ownerError } = useHomeData('home', 'homeInfo'); 
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategories, setSelectedCategories] = useState([]);
-    const pageSize = 9;
+    const pageSize = 10;
 
     const handlePageChangeWrapper = (page) => handlePageChange(page, setCurrentPage);
 
