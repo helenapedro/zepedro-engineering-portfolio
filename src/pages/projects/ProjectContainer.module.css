@@ -23,6 +23,17 @@
   border-top-right-radius: 0.25rem;
 }
 
+.cardHeader {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  font-weight: bold;
+}
+
+.cardImage {
+  max-height: 300px;
+  object-fit: cover;
+}
+
 .cardContainer .card-body {
   flex-grow: 1;
   display: flex;

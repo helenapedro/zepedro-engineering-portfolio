@@ -79,31 +79,40 @@ const ProjectsContainer = () => {
             {/* Projects Grid */}
             <Row>
                 {paginatedProjects.map((project) => (
-                    <Col key={project.id} md={4} className="mb-4">
+                    <Col key={project.id} md={6} className="mb-4">
                         <Card className={`${styles.cardContainer} shadow-sm`}>
+                            {/* Move Title Above Image */}
+                            <Card.Header className={`${styles.cardHeader} text-center`}>
+                                <h5 className="mb-0">{project.title}</h5>
+                                <Card.Subtitle className="mb-2 text-muted text-center" style={{marginTop: '0.5rem'}}>
+                                    {project.organization}
+                                </Card.Subtitle>
+                            </Card.Header>
                             {project.images && project.images.length > 0 && (
                                 <Card.Img
                                     variant="top"
                                     src={`${process.env.REACT_APP_BASE_URL}${project.images[0]}`}
                                     alt={`${project.title} image`}
+                                    className={styles.cardImage}
                                 />
                             )}
                             <Card.Body>
-                                <Card.Title>{project.title}</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">{project.organization}</Card.Subtitle>
                                 <Card.Text>
                                     {project.summaryHeader.length > 100
                                         ? `${project.summaryHeader.slice(0, 100)}...`
                                         : project.summaryHeader}
                                 </Card.Text>
-                                <Link to={`/projects/${project.id}`}>
-                                    <Button variant="primary">View Details</Button>
-                                </Link>
+                                <div className="text-center">
+                                    <Link to={`/projects/${project.id}`}>
+                                        <Button variant="primary">View Details</Button>
+                                    </Link>
+                                </div>
                             </Card.Body>
                         </Card>
                     </Col>
                 ))}
             </Row>
+
 
             {/* Pagination */}
             <div>
