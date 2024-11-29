@@ -48,16 +48,6 @@ const ProjectsContainer = () => {
         <div className={`${mainStyles.panel}`}>
             {/* Owner Introduction Section */}
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
-
-            <div className={styles.pagination}>
-                {renderPagination(
-                    filteredProjects.length,
-                    pageSize,
-                    currentPage,
-                    handlePageChangeWrapper,
-                    styles.paginationContainer
-                )}
-            </div>
             {/* Dropdown Filter Section */}
             <CategoryFilterDropdown
                 categories={categories}
