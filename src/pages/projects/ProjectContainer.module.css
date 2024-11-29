@@ -22,8 +22,30 @@
   margin-top: 0.5rem;
 }
 
-.title {
+.organization,
+.subtitle {
+  line-height: normal;
+}
+
+.organization a,
+.projectdescription a {
   color: var(--color-primary);
+  text-decoration: none;
+}
+
+.subtitle,
+.organization {
+  color: #666;
+  display: block;
+  font-size: 0.7em;
+  margin: 10px 0;
+  opacity: 0.5;
+}
+
+.organization a:hover,
+.subtitle a:hover,
+.projectdescription a:hover {
+  text-decoration: underline;
 }
 
 .title h1 {
@@ -31,6 +53,10 @@
   font-size: 2em;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.number {
+  font-family: "robotslab", sans-serif;
 }
 
 .cardContainer {

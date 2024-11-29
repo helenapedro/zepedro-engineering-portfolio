@@ -8,7 +8,8 @@ import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 const Project = ({
   title,
   organization,
-  placeandyear,
+  endYear,
+  projectPlace,
   summaryHeader,
   activities = [],
   projectOutcome = '',
@@ -16,7 +17,7 @@ const Project = ({
 }) => {
   const wrappedProject = wrapProjectFields({ 
     title, 
-    placeandyear, 
+    endYear, 
     summaryHeader, 
     activities, 
     projectOutcome 
@@ -27,8 +28,10 @@ const Project = ({
       <article className={styles.panel} aria-labelledby={`project-title-${title}`}>
         <header className={styles.header}> 
           <h2 className={styles.title} id={`project-title-${title}`}>{wrappedProject.title}</h2>
-          <i className={`${styles.organization} number`}>{organization}</i>
-          <i className={`${styles.placeandyear} number`}>{wrappedProject.placeandyear}</i>
+          <i className={`${styles.organization} number`}>{organization}, {endYear}</i>
+          <i className={`${styles.placeandyear} number`}>
+            {projectPlace.address}, {projectPlace.province}, {projectPlace.country}
+          </i>
         </header>
         <p className={styles.projectdescription}><b>{wrappedProject.summaryHeader}</b></p>
         {Array.isArray(activities) && activities.length > 0 && (
@@ -80,7 +83,12 @@ const Project = ({
 Project.propTypes = {
   title: PropTypes.string.isRequired,
   organization: PropTypes.string.isRequired,
-  placeandyear: PropTypes.string,
+  endYear: PropTypes.number,
+  projectPlace: PropTypes.shape({
+    address: PropTypes.string,
+    province: PropTypes.string,
+    country: PropTypes.string
+  }),
   summaryHeader: PropTypes.string.isRequired,
   activities: PropTypes.arrayOf(
     PropTypes.oneOfType([

@@ -16,7 +16,8 @@ const ProjectDetails = () => {
         <Project
           title={data.title}
           organization={data.organization}
-          placeandyear={data.placeandyear}
+          endYear={data.endYear}
+          projectPlace={data.projectPlace}
           summaryHeader={data.summaryHeader}
           activities={data.activities}
           projectOutcome={data.projectOutcome}

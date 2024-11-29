@@ -74,9 +74,13 @@ const ProjectsContainer = () => {
                             {/* Move Title Above Image */}
                             <Card.Header className={`${styles.cardHeader} text-center`}>
                                 <h5 className={`${styles.title} mb-0`}>{project.title}</h5>
-                                <Card.Subtitle className="mb-2 text-muted text-center" style={{ marginTop: '0.5rem' }}>
-                                    {project.organization}
+                                <Card.Subtitle className={` ${styles.subtitle} text-muted text-center `}  style={{ marginTop: '0.5rem' }}>
+                                    {project.organization}, <i className={styles.number}>{project.endYear}</i> 
                                 </Card.Subtitle>
+                                <Card.Text className={` ${styles.subtitle} text-muted text-center `} style={{ marginTop: '0.5rem' }}>
+                                    <strong>Location: </strong> 
+                                    {project.projectPlace?.address}, {project.projectPlace?.province}, {project.projectPlace?.country}
+                                </Card.Text>
                             </Card.Header>
                             {project.images && project.images.length > 0 && (
                                 <Card.Img
@@ -92,6 +96,7 @@ const ProjectsContainer = () => {
                                         ? `${project.summaryHeader.slice(0, 100)}...`
                                         : project.summaryHeader}
                                 </Card.Text>
+
                                 <div className="text-center">
                                     <Link to={`/projects/${project.id}`}>
                                         <Button variant="primary">View Details</Button>
