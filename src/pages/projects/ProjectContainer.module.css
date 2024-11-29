@@ -1,7 +1,32 @@
 @import "../../vars.css";
 
-.title h1 {
+.container {
+  background-color: var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-container);
+  transition: var(--transition);
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow);
+}
+
+.container:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.pagination {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.title {
   color: var(--color-primary);
+}
+
+.title h1 {
   font-family: "eb_garamond_sc08_regular", sans-serif;
   font-size: 2em;
   margin-bottom: 20px;
@@ -12,7 +37,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
   gap: 1rem;
 }
 
@@ -25,8 +50,8 @@
 
 .cardHeader {
   background-color: #f8f9fa;
+  font-family: "eb_garamond_sc08_regular", sans-serif;
   padding: 10px 15px;
-  font-weight: bold;
 }
 
 .cardImage {
@@ -65,5 +90,13 @@
 @media (max-width: 480px) {
   .title h1 {
     font-size: 1.2em;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-column {
+    margin-bottom: 0.5rem;
   }
 }

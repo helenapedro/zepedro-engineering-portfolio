@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Row, Col, Form, DropdownButton } from 'react-bootstrap';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import mainStyles from '../../components/Main.module.css';
 import styles from './ProjectContainer.module.css';
@@ -8,11 +8,12 @@ import useData from './../Hooks/useData';
 import useHomeData from './../Hooks/homeData';
 import renderPagination from './../../utils/Pagination/renderPagination';
 import handlePageChange from './../../utils/handlePageChange';
+import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
 
 const ProjectsContainer = () => {
     const { data: projects, loading: projectsLoading, error: projectsError } = useData('projects');
     const { data: categories, loading: categoriesLoading, error: categoriesError } = useData('category');
-    const { data: ownerData, loading: ownerLoading, error: ownerError } = useHomeData('home', 'homeInfo'); 
+    const { data: ownerData, loading: ownerLoading, error: ownerError } = useHomeData('home', 'homeInfo');
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const pageSize = 10;
@@ -28,10 +29,10 @@ const ProjectsContainer = () => {
     const handleCategoryChange = (categoryId) => {
         setSelectedCategories((prev) =>
             prev.includes(categoryId)
-                ? prev.filter((id) => id !== categoryId) // Remove if already selected
-                : [...prev, categoryId] // Add if not selected
+                ? prev.filter((id) => id !== categoryId) 
+                : [...prev, categoryId] 
         );
-        setCurrentPage(1); // Reset to the first page
+        setCurrentPage(1);
     };
 
     // Filter projects based on selected categories
@@ -44,47 +45,36 @@ const ProjectsContainer = () => {
     const paginatedProjects = filteredProjects.slice(startIndex, startIndex + pageSize);
 
     return (
-        <div className={`${mainStyles.panel} ${styles.projectsContainer}`}>
+        <div className={`${mainStyles.panel}`}>
             {/* Owner Introduction Section */}
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
 
-            {/* Dropdown Filter Section */}
-            <div className={`mb-4 ${styles.filterSection}`}>
-                <DropdownButton
-                    id="dropdown-category"
-                    title={`Filter by Categories ${selectedCategories.length > 0 ? `(${selectedCategories.length})` : ''}`}
-                    variant="outline-primary"
-                >
-                    <div style={{ maxHeight: '300px', overflowY: 'auto', padding: '10px' }}>
-                        {categories.map((category) => {
-                            const projectCount = projects.filter(
-                                (project) => project.categoryId === category.id
-                            ).length;
-                            return (
-                                <Form.Check
-                                    key={category.id}
-                                    type="checkbox"
-                                    id={`category-${category.id}`}
-                                    label={`${category.name} (${projectCount})`}
-                                    onChange={() => handleCategoryChange(category.id)}
-                                    checked={selectedCategories.includes(category.id)}
-                                    className="mb-2"
-                                />
-                            );
-                        })}
-                    </div>
-                </DropdownButton>
+            <div className={styles.pagination}>
+                {renderPagination(
+                    filteredProjects.length,
+                    pageSize,
+                    currentPage,
+                    handlePageChangeWrapper,
+                    styles.paginationContainer
+                )}
             </div>
+            {/* Dropdown Filter Section */}
+            <CategoryFilterDropdown
+                categories={categories}
+                selectedCategories={selectedCategories}
+                projects={projects}
+                onCategoryChange={handleCategoryChange}
+            />
 
             {/* Projects Grid */}
-            <Row>
+            <Row className={styles.container}>
                 {paginatedProjects.map((project) => (
-                    <Col key={project.id} md={6} className="mb-4">
+                    <Col key={project.id} md={6} style={{ marginBottom: '1rem' }}>
                         <Card className={`${styles.cardContainer} shadow-sm`}>
                             {/* Move Title Above Image */}
                             <Card.Header className={`${styles.cardHeader} text-center`}>
-                                <h5 className="mb-0">{project.title}</h5>
-                                <Card.Subtitle className="mb-2 text-muted text-center" style={{marginTop: '0.5rem'}}>
+                                <h5 className={`${styles.title} mb-0`}>{project.title}</h5>
+                                <Card.Subtitle className="mb-2 text-muted text-center" style={{ marginTop: '0.5rem' }}>
                                     {project.organization}
                                 </Card.Subtitle>
                             </Card.Header>
@@ -113,9 +103,8 @@ const ProjectsContainer = () => {
                 ))}
             </Row>
 
-
             {/* Pagination */}
-            <div>
+            <div className={styles.pagination}>
                 {renderPagination(
                     filteredProjects.length,
                     pageSize,
