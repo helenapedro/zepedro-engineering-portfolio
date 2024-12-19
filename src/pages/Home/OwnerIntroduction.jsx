@@ -9,7 +9,7 @@ const OwnerIntroduction = ({ ownerData }) => {
             <Card.Body>
                 <Row>
                     {/* Profile Image */}
-                    <Col md={4} className="text-center mb-3 mb-md-0">
+                    <Col md={4} className={`${styles.image} text-center mb-3 mb-md-0`}>
                         {ownerData.mainImage && (
                             <img
                                 src={ownerData.mainImage}

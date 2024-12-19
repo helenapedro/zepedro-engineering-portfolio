@@ -29,3 +29,20 @@
 .home-text {
   font-family: "eb_garamond_sc08_regular", sans-serif;
 }
+
+.image {
+  display: inline-block;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.image img:hover {
+  transform: scale(1.1);
+}
