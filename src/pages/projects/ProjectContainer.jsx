@@ -81,11 +81,11 @@ const ProjectsContainer = () => {
                                 />
                             )}
                             <Card.Body>
-                                <Card.Text>
+                                {/* <Card.Text>
                                     {project.summaryHeader.length > 100
                                         ? `${project.summaryHeader.slice(0, 100)}...`
                                         : project.summaryHeader}
-                                </Card.Text>
+                                </Card.Text> */}
 
                                 <div className="text-center">
                                     <Link to={`/projects/${project.id}`}>

@@ -1,9 +1,17 @@
 @import "../../vars.css";
 
+.container {
+  background-color: var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-container);
+  transition: var(--transition);
+}
+
 .home {
   align-items: center;
-  background-color: var(--color-panel);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-container);
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -14,6 +22,11 @@
 .home:hover {
   transform: translateY(-5px);
   box-shadow: var(--box-shadow);
+}
+
+.home:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .home-title {

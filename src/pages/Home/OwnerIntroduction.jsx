@@ -5,7 +5,7 @@ import styles from './Home.module.css'
 
 const OwnerIntroduction = ({ ownerData }) => {
     return (
-        <Card className={`shadow-sm mb-4`}>
+        <Card className={`${styles.home} shadow-sm mb-4`}>
             <Card.Body>
                 <Row>
                     {/* Profile Image */}
