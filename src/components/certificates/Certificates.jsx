@@ -2,7 +2,6 @@ import React from 'react';
 import useData from '../../pages/Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './OtherDocs.module.css';
-import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
 const Certificates = () => {
@@ -19,7 +18,7 @@ const Certificates = () => {
                         <div className={EducationStyles.row}>
                             {data.images && data.images.length > 0 ? (
                                 data.images.map((image, imgIndex) => {
-                                    const imageUrl = `${config.trainingUrl}${image}`;
+                                    const imageUrl = `${image}`;
                                     return (
                                         <div className='col-6' key={imgIndex}>
                                             <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
