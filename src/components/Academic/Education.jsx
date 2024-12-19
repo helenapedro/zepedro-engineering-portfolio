@@ -30,7 +30,7 @@ const Education = () => {
                             )}
                             <div className={EducationStyles.row}>
                                 {data.images && data.images.map((image, imgIndex) => {
-                                    const imageUrl = `${config.graduationImagesUrl}${image}`;
+                                    const imageUrl = `${image}`;
                                     return (
                                         <div className={`${EducationStyles['col-4']}`} key={imgIndex}>
                                             <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
