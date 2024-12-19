@@ -2,7 +2,6 @@ import React from 'react';
 import useData from '../../pages/Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './AdditionalTraining.module.css';
-import config from '../../config';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
 const Training = () => {
