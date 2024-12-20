@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import useData from '../../pages/Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './METraining.module.css';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Courses = () => {
   const collectionName = 'courses';
   const { data, loading, error } = useData(collectionName);
+  const [showSummary, setShowSummary] = useState(false);
+
+  const toggleSummary = () => {
+    setShowSummary(!showSummary);
+  };
 
   return (
     <div className={EducationStyles.education}>
@@ -25,27 +30,35 @@ const Courses = () => {
                     data.images.map((image, imgIndex) => {
                       const imageUrl = `${image}`;
                       return (
-                        <div className='col-6' key={imgIndex}>
+                        <Col className='col-6' key={imgIndex}>
                           <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
                             <img src={imageUrl} alt={`Certificate ${index + 1}`} />
                           </a>
                           <h4 className={styles.title}>
                             {wrapNumbersWithClass(data.title[imgIndex], styles.number)}
                           </h4>
-                        </div>
+                        </Col>
                       );
                     })
                   ) : (
                     // Scenario 2: Single title with multiple images
                     <>
-                      <h4 className={EducationStyles.title}>
+                      <h1 className={EducationStyles.title}>
                         {wrapNumbersWithClass(data.title, styles.number)}
-                      </h4>
+                      </h1>
+                    <Button onClick={toggleSummary} className={`mb-2`}>
+                        {showSummary ? 'Hide Summary' : 'Show Summary'}
+                      </Button>
+                      {showSummary && (
+                        <b className={EducationStyles.traineeSummary}>
+                          {data.traineeSummary}
+                        </b>
+                      )}
                       <Row>
                         {data.images.map((image, imgIndex) => {
                           const imageUrl = `${image}`;
                           return (
-                            <Col xs={4} md={2} className="mb-6 mr-0 ml-0" key={imgIndex}>
+                            <Col xs={4} md={2} sm={12} className="mb-6 mr-0 ml-0" key={imgIndex}>
                               <a 
                                 className={`${EducationStyles.image}`} 
                                 href={imageUrl} 
