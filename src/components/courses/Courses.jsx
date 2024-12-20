@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import useData from '../../pages/Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './METraining.module.css';
@@ -15,6 +15,50 @@ const Courses = () => {
     setShowSummary(!showSummary);
   };
 
+  const renderScenario1 = (data, index) => (
+    data.images.map((image, imgIndex) => {
+      const imageUrl = `${image}`;
+      return (
+        <Col className='col-6' key={imgIndex}>
+          <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
+            <img src={imageUrl} alt={`Certificate ${index + 1}`} />
+          </a>
+          <h4 className={styles.title}>
+            {wrapNumbersWithClass(data.title[imgIndex], styles.number)}
+          </h4>
+        </Col>
+      );
+    })
+  );
+
+  const renderScenario2 = (data) => (
+    <>
+      <h4 className={EducationStyles.title}>
+        {wrapNumbersWithClass(data.title, styles.number)}
+      </h4>
+      <Button onClick={toggleSummary} className="mb-2">
+        {showSummary ? 'Hide Summary' : 'Show Summary'}
+      </Button>
+      {showSummary && (
+        <b className={EducationStyles.traineeSummary}>
+          {data.traineeSummary}
+        </b>
+      )}
+      <Row>
+        {data.images.map((image, imgIndex) => {
+          const imageUrl = `${image}`;
+          return (
+            <Col xs={4} className='mb-6' key={imgIndex}>
+              <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
+                <img src={imageUrl} alt={`${data.title} - Image ${imgIndex + 1}`} />
+              </a>
+            </Col>
+          );
+        })}
+      </Row>
+    </>
+  );
+
   return (
     <div className={EducationStyles.education}>
       {loading && <p>Loading...</p>}
@@ -26,52 +70,9 @@ const Courses = () => {
               {data.images && data.images.length > 0 ? (
                 <>
                   {Array.isArray(data.title) ? (
-                    // Scenario 1: Multiple titles, each with its own image
-                    data.images.map((image, imgIndex) => {
-                      const imageUrl = `${image}`;
-                      return (
-                        <Col className='col-6' key={imgIndex}>
-                          <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
-                            <img src={imageUrl} alt={`Certificate ${index + 1}`} />
-                          </a>
-                          <h4 className={styles.title}>
-                            {wrapNumbersWithClass(data.title[imgIndex], styles.number)}
-                          </h4>
-                        </Col>
-                      );
-                    })
+                    renderScenario1(data, index)
                   ) : (
-                    // Scenario 2: Single title with multiple images
-                    <>
-                      <h1 className={EducationStyles.title}>
-                        {wrapNumbersWithClass(data.title, styles.number)}
-                      </h1>
-                    <Button onClick={toggleSummary} className={`mb-2`}>
-                        {showSummary ? 'Hide Summary' : 'Show Summary'}
-                      </Button>
-                      {showSummary && (
-                        <b className={EducationStyles.traineeSummary}>
-                          {data.traineeSummary}
-                        </b>
-                      )}
-                      <Row>
-                        {data.images.map((image, imgIndex) => {
-                          const imageUrl = `${image}`;
-                          return (
-                            <Col xs={4} md={2} sm={12} className="mb-6 mr-0 ml-0" key={imgIndex}>
-                              <a 
-                                className={`${EducationStyles.image}`} 
-                                href={imageUrl} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                              >
-                                <img src={imageUrl} alt={`${data.title} ${imgIndex + 1}`} />
-                              </a>
-                            </Col>
-                          );
-                        })}
-                      </Row>
-                    </>
+                    renderScenario2(data)
                   )}
                 </>
               ) : (

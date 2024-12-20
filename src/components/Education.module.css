@@ -123,4 +123,9 @@
   .traineeSummary {
     font-size: 0.68em;
   }
+
+  .title {
+    font-size: medium;
+    text-align: center;
+  }
 }
