@@ -33,9 +33,9 @@ const Courses = () => {
 
   const renderScenario2 = (data) => (
     <>
-      <h4 className={EducationStyles.title}>
+      <h1 className={EducationStyles.title}>
         {wrapNumbersWithClass(data.title, styles.number)}
-      </h4>
+      </h1>
       <Button onClick={toggleSummary} className="mb-2">
         {showSummary ? 'Hide Summary' : 'Show Summary'}
       </Button>
