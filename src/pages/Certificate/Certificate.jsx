@@ -11,7 +11,6 @@ const Certificate = () => {
         <div className={mainStyles.panel}>
             <div className={styles['certificate-title']}>
                 <div>
-                    <h1>EDUCATION</h1>
                     <Education />
                 </div>
                 <div>
