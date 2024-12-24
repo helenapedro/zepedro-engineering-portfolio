@@ -19,7 +19,6 @@ const Certificate = () => {
                     <SkillsTable />
                 </div>
                 <div>
-                    <h1>MOTA-ENGIL TRAINING</h1>
                     <Courses />
                 </div>
                 <div>

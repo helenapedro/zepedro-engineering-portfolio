@@ -16,24 +16,29 @@ const Courses = () => {
   };
 
   const renderScenario1 = (data, index) => (
-    data.images.map((image, imgIndex) => {
-      const imageUrl = `${image}`;
-      return (
-        <Col className='col-6' key={imgIndex}>
-          <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
-            <img src={imageUrl} alt={`Certificate ${index + 1}`} />
-          </a>
-          <h4 className={styles.title}>
-            {wrapNumbersWithClass(data.title[imgIndex], styles.number)}
-          </h4>
-        </Col>
-      );
-    })
+    <>
+      <h1>Mota-Engil Certificates</h1>
+      <Row>
+        {data.images.map((image, imgIndex) => {
+          const imageUrl = `${image}`;
+          return (
+            <Col className='col-6' key={imgIndex}>
+              <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
+                <img src={imageUrl} alt={`Certificate ${index + 1}`} />
+              </a>
+              <h4 className={styles.title}>
+                {wrapNumbersWithClass(data.title[imgIndex], styles.number)}
+              </h4>
+            </Col>
+          );
+        })}
+      </Row>
+    </>
   );
 
   const renderScenario2 = (data) => (
     <>
-      <h1 className={EducationStyles.title}>
+      <h1 className={styles.title}>
         {wrapNumbersWithClass(data.title, styles.number)}
       </h1>
       <Button onClick={toggleSummary} className="mb-2">
@@ -48,7 +53,7 @@ const Courses = () => {
         {data.images.map((image, imgIndex) => {
           const imageUrl = `${image}`;
           return (
-            <Col xs={4} className='mb-6' key={imgIndex}>
+            <Col xs={6} md={3} key={imgIndex}>
               <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
                 <img src={imageUrl} alt={`${data.title} - Image ${imgIndex + 1}`} />
               </a>
