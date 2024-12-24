@@ -1,20 +1,21 @@
 import React from 'react';
 import useData from '../../pages/Hooks/useData';
 import EducationStyles from '../Education.module.css';
-import styles from './AdditionalTraining.module.css';
+import styles from './OtherDocs.module.css';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
-const Training = () => {
-    const collectionName = 'training';
+const Other = () => {
+    const collectionName = 'certificates';
     const { data, loading, error } = useData(collectionName); 
 
     return (
         <div className={EducationStyles.education}>
-                {loading && <p>Loading...</p>}
-                {error && <p>Error loading data.</p>}
-                {!error && data && Array.isArray(data) && (
-                    data.map((data, index) => (
+            {loading && <p>Loading...</p>}
+            {error && <p>Error loading data.</p>}
+            {!error && data && Array.isArray(data) && (
+                data.map((data, index) => (
                     <article className={EducationStyles.panel} key={index}>
+                        <h1>OTHER</h1>
                         <div className={EducationStyles.row}>
                             {data.images && data.images.length > 0 ? (
                                 data.images.map((image, imgIndex) => {
@@ -26,10 +27,10 @@ const Training = () => {
                                             </a>
                                             <h4 className={styles.title}>{wrapNumbersWithClass(data.title[imgIndex], styles.number)}</h4>
                                         </div>
-                                    );
-                                }) 
+                                    ); 
+                                })
                             ) : (
-                                <div className='col-12-small'>
+                                <div className={styles.title}>
                                     <p className={styles.title}>{data.title}</p>
                                 </div>
                             )}
@@ -41,4 +42,4 @@ const Training = () => {
     );
 };
 
-export default Training;
+export default Other;

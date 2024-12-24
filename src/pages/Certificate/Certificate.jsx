@@ -2,9 +2,9 @@ import styles from './Certificate.module.css';
 import mainStyles from '../../components/Main.module.css';
 import SkillsTable from '../../components/Skills/SkillsTable';
 import Courses from '../../components/courses/Courses';
-import Certificates from '../../components/certificates/Certificates';
+import Other from '../../components/other/Other';
 import Education from './../../components/Academic/Education';
-import Training from '../../components/training/Training';
+import Certificates from '../../components/certificates/Certificates';
 
 const Certificate = () => {
     return (
@@ -23,12 +23,10 @@ const Certificate = () => {
                     <Courses />
                 </div>
                 <div>
-                    <h1>TRAINING</h1>
-                    <Training />
+                    <Certificates />
                 </div>
                 <div className={styles['certificate-title']}>
-                    <h1>Certificates</h1>
-                    <Certificates />
+                    <Other />
                 </div>
             </div>
         </div>
