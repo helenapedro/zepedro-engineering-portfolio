@@ -33,7 +33,7 @@ const Certificates = () => {
             {!error && data && Array.isArray(data) && (
                 data.map((data, index) => (
                     <article className={EducationStyles.panel} key={index}>
-                        <h1>CERTIFICATES</h1>
+                        <h1>Certificates</h1>
                         <Row className={EducationStyles.row}>
                             {data.images && data.images.length > 0 ? (
                                 renderCertificates(data, index)
