@@ -1,8 +1,9 @@
 @import "../../vars.css";
 
 .title {
+  color: var(--color-primary);
   font-size: 0.75em;
-  font-family: "eb_garamond_sc12_regular", sans-serif;
+  font-family: var(--font-family-secundary);
   hyphens: auto;
   letter-spacing: normal;
   margin-bottom: 10px;
