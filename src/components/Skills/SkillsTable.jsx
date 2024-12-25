@@ -7,7 +7,7 @@ import styles from './Skills.module.css';
 import { wrapSkillsField } from "../../utils/wrapSkills";
 
 const SkillsTable = () => {
-  const [sortColumn, setSortColumn] = useState({ path: 'year', order: 'asc' });
+  const [sortColumn, setSortColumn] = useState({ path: 'year', order: 'desc' });
   const [skills, setSkills] = useState([]);
   const [error, setError] = useState(null);
 
@@ -37,7 +37,6 @@ const SkillsTable = () => {
       const order = newSortColumn.order === "asc" ? 1 : -1;
       if (a[path] < b[path]) return -1 * order;
       if (a[path] > b[path]) return 1 * order;
-      
       return 0;
     });
     setSkills(sortedSkills); 
