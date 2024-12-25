@@ -25,7 +25,7 @@ const About = () => {
           </div>
           <div className="col-md-6 order-2 order-md-1">
             <div className='card-body'>
-              <section className={`card-text ${styles['card-text']}`}>
+              <section className={`${styles['card-text']}`}>
                 <p>{data.descriptionOne}</p>
                 <p>{data.descriptionTwo}</p>
                 <p>{wrapNumbersWithClass(data.descriptionThree, 'number')}</p>
