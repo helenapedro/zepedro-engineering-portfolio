@@ -56,6 +56,16 @@ const ProjectsContainer = () => {
                 onCategoryChange={handleCategoryChange}
             />
 
+            <div className={styles.pagination}>
+                {renderPagination(
+                    filteredProjects.length,
+                    pageSize,
+                    currentPage,
+                    handlePageChangeWrapper,
+                    styles.paginationContainer
+                )}
+            </div>
+
             {/* Projects Grid */}
             <Row className={styles.container}>
                 {paginatedProjects.map((project) => (
