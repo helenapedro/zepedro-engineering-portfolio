@@ -29,7 +29,7 @@ const About = () => {
                 <p>{data.descriptionOne}</p>
                 <p>{data.descriptionTwo}</p>
                 <p>{wrapNumbersWithClass(data.descriptionThree, 'number')}</p>
-                <p>{wrapNumbersWithClass(data.descriptionFour, 'number')}</p>
+                {/* <p>{wrapNumbersWithClass(data.descriptionFour, 'number')}</p> */}
                 <a href={data.titleLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">OEA Card link</a>
               </section>
             </div>
