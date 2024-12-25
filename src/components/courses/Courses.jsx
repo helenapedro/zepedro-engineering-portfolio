@@ -58,7 +58,7 @@ const Courses = () => {
             return (
               <Col className='col-6' key={imgIndex}>
                 <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
-                  <img src={imageUrl} alt={`${data.title} - Image ${imgIndex + 1}`} />
+                  <img src={imageUrl} alt={`${data.title} ${imgIndex + 1}`} />
                 </a>
               </Col>
             );
@@ -80,7 +80,7 @@ const Courses = () => {
                   <img
                     className="d-block w-100"
                     src={image}
-                    alt={`${data.title} - Image ${imgIndex + 1}`}
+                    alt={`${data.title} ${imgIndex + 1}`}
                   />
                   <Carousel.Caption>
                     <h4>{wrapNumbersWithClass(data.title, styles.number)}</h4>
