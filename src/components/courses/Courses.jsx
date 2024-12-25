@@ -18,7 +18,7 @@ const Courses = () => {
 
   const renderScenario1 = (data, index) => (
     <>
-      <h1>MOTA-ENGIL TRAINING</h1>
+      <h1>MOTA-ENGIL CERTIFICATES</h1>
       <Row>
         {data.images.map((image, imgIndex) => {
           const imageUrl = `${image}`;
