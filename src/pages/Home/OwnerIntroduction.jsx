@@ -35,8 +35,7 @@ const OwnerIntroduction = ({ ownerData }) => {
                             </Link>.
                         </Card.Text>
                         <Card.Text className={`mb-3 ${styles['home-text']}`}>
-                            This is a showcase of my <Link to="/">projects</Link> and{' '}
-                            <Link to="/education">abilities</Link>.
+                            This is a showcase of my projects and{' '} abilities.
                         </Card.Text>
                         <Link to={ownerData.oeaCardLink} target='_blank'>
                             <Button variant="primary">OEA Member Card</Button>
