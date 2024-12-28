@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import styles from './Home.module.css'
+import styles from '../../styles/Home.module.css';
 
 const OwnerIntroduction = ({ ownerData }) => {
     return (

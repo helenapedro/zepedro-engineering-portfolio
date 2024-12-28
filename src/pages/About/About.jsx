@@ -1,6 +1,6 @@
 import React from 'react';
 import useData from '../Hooks/useData';
-import styles from './About.module.css';
+import styles from '../../styles/About.module.css';
 import { wrapNumbersWithClass } from './../../utils/WrapNumbers';
 import { Row, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
