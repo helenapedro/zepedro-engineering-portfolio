@@ -243,7 +243,8 @@ html {
 }
 
 body {
-  background-image: url("../public/overlay.png"), url("../public/bg0.webp");
+  background-image: url("https://dh09x5tu10bt3.cloudfront.net/overlay.png"),
+    url("https://dh09x5tu10bt3.cloudfront.net/bg0.webp");
   background-repeat: repeat, no-repeat;
   background-size: auto, 100% 100%;
   background-attachment: fixed;
