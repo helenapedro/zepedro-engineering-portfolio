@@ -26,7 +26,7 @@ const About = () => {
               rel="noopener noreferrer" 
               className="btn btn-secondary"
             >
-                OEA Member Card
+              OEA Member Card
             </a>
           </div>
 
