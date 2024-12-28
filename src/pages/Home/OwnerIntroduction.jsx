@@ -11,20 +11,23 @@ const OwnerIntroduction = ({ ownerData }) => {
                     {/* Profile Image */}
                     <Col md={4} className={`${styles.image} text-center mb-3 mb-md-0`}>
                         {ownerData.mainImage && (
-                            <img
-                                src={ownerData.mainImage}
-                                alt={ownerData.name}
-                                className="img-fluid rounded-circle shadow"
-                                style={{ maxWidth: '200px' }}
-                            />
+                        <img
+                            src={ownerData.mainImage}
+                            alt={ownerData.name}
+                            className="img-fluid rounded-circle shadow"
+                            style={{ maxWidth: '200px' }}
+                        />
                         )}
+                        <Card.Title as="h2" className={`mb-3 text-primary ${styles['home-title']}`}>
+                            {ownerData.name}
+                        </Card.Title>
+                        <Link to={ownerData.oeaCardLink} target='_blank'>
+                            <Button variant="primary">OEA Member Card</Button>
+                        </Link>
                     </Col>
 
                     {/* Owner Details */}
                     <Col md={8}>
-                        <Card.Title as="h2" className={`mb-3 text-primary ${styles['home-title']}`}>
-                            {ownerData.name}
-                        </Card.Title>
                         <Card.Text className={`mb-3 ${styles['home-text']}`}>
                             <strong>Hello, my name is </strong>
                             <Link to="/about">ZéPedro</Link>, an experienced Construction Engineer with over{' '}
@@ -37,9 +40,6 @@ const OwnerIntroduction = ({ ownerData }) => {
                         <Card.Text className={`mb-3 ${styles['home-text']}`}>
                             This is a showcase of my projects and{' '} abilities.
                         </Card.Text>
-                        <Link to={ownerData.oeaCardLink} target='_blank'>
-                            <Button variant="primary">OEA Member Card</Button>
-                        </Link>
                     </Col>
                 </Row>
             </Card.Body>
