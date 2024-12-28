@@ -21,9 +21,6 @@ const OwnerIntroduction = ({ ownerData }) => {
                         <Card.Title as="h2" className={`mb-3 text-primary ${styles['home-title']}`}>
                             {ownerData.name}
                         </Card.Title>
-                        <Link to={ownerData.oeaCardLink} target='_blank'>
-                            <Button variant="primary">OEA Member Card</Button>
-                        </Link>
                     </Col>
 
                     {/* Owner Details */}
