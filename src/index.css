@@ -268,54 +268,6 @@ select {
   line-height: 1.75em;
 }
 
-@media screen and (max-width: 1680px) {
-  body,
-  input,
-  textarea,
-  select {
-    font-size: 15pt;
-  }
-}
-
-@media screen and (max-width: 1280px) {
-  body,
-  input,
-  textarea,
-  select {
-    font-size: 14pt;
-  }
-}
-
-@media screen and (max-width: 736px) {
-  body,
-  input,
-  textarea,
-  select {
-    font-size: 12pt;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  body,
-  input,
-  textarea,
-  select {
-    font-size: 11pt;
-  }
-}
-
-strong,
-b,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 400;
-  color: #363636;
-}
-
 h1 {
   font-size: 2.4em;
   letter-spacing: -0.015em;
