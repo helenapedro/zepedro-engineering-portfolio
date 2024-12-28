@@ -7,7 +7,6 @@ const AboutContainer = () => {
     return (
         <div className={mainStyles.panel}>
             <div className={styles['container-title']}>
-                <h1>ABOUT</h1>
                 <About />
             </div>
         </div>
