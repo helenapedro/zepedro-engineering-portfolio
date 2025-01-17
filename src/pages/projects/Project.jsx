@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Modal, Button } from 'react-bootstrap';
 import styles from './Project.module.css';
 import config from '../../config';
 import { wrapProjectFields } from '../../utils/wrapProjectFields';
@@ -15,18 +16,34 @@ const Project = ({
   projectOutcome = '',
   images = []
 }) => {
-  const wrappedProject = wrapProjectFields({ 
-    title, 
-    endYear, 
-    summaryHeader, 
-    activities, 
-    projectOutcome 
+  const wrappedProject = wrapProjectFields({
+    title,
+    endYear,
+    summaryHeader,
+    activities,
+    projectOutcome
   }, styles.number);
+
+  // State for modal visibility and selected image
+  const [showModal, setShowModal] = useState(false);
+  const [currentImage, setCurrentImage] = useState('');
+
+  // Open modal and set selected image
+  const handleImageClick = (imageUrl) => {
+    setCurrentImage(imageUrl);
+    setShowModal(true);
+  };
+
+  // Close modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setCurrentImage('');
+  };
 
   return (
     <div className={styles.project}>
       <article className={styles.panel} aria-labelledby={`project-title-${title}`}>
-        <header className={styles.header}> 
+        <header className={styles.header}>
           <h2 className={styles.title} id={`project-title-${title}`}>{wrappedProject.title}</h2>
           <i className={`${styles.organization} number`}>{organization}, {endYear}</i>
           <i className={`${styles.placeandyear} number`}>
@@ -47,7 +64,9 @@ const Project = ({
                   {Array.isArray(activitySection.items) && activitySection.items.length > 0 && (
                     <ul className={`${styles.ulItems} ${styles['ulItems--tick']}`}>
                       {activitySection.items.map((item, itemIndex) => (
-                        <li className={styles.projectActivityItem} key={itemIndex}>{wrapNumbersWithClass(item, styles.number)}</li>
+                        <li className={styles.projectActivityItem} key={itemIndex}>
+                          {wrapNumbersWithClass(item, styles.number)}
+                        </li>
                       ))}
                     </ul>
                   )}
@@ -65,17 +84,35 @@ const Project = ({
               {images.map((image, imgIndex) => {
                 const imageUrl = `${config.projectsUrl}${image}`;
                 return (
-                  <div className={`${styles['col-4']} ${styles['col-6-medium']} ${styles['col-12-small']}`} key={imgIndex}>
-                    <a className={styles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
-                      <img src={imageUrl} alt='' />
-                    </a>
+                  <div className={styles.imageContainer} key={imgIndex}>
+                    <button
+                      className={styles.imageButton}
+                      onClick={() => handleImageClick(imageUrl)}
+                    >
+                      <img src={imageUrl} alt="" className={styles.image} />
+                    </button>
                   </div>
                 );
               })}
             </div>
-          </section>
+          </section>        
         )}
       </article>
+
+      {/* Modal for displaying images */}
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Image Preview</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <img src={currentImage} alt="Project" className={styles.modalImage} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
