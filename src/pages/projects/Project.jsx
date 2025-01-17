@@ -40,6 +40,11 @@ const Project = ({
     setCurrentImage('');
   };
 
+  // Helper function to get the full image URL
+  const getImageUrl = (image) => {
+    return image.startsWith('http') ? image : `${config.projectsUrl}${image}`;
+  };
+
   return (
     <div className={styles.project}>
       <article className={styles.panel} aria-labelledby={`project-title-${title}`}>
@@ -82,7 +87,7 @@ const Project = ({
           <section aria-label="Project images">
             <div className={styles.row}>
               {images.map((image, imgIndex) => {
-                const imageUrl = `${config.projectsUrl}${image}`;
+                const imageUrl = getImageUrl(image);
                 return (
                   <div className={styles.imageContainer} key={imgIndex}>
                     <button
@@ -128,8 +133,8 @@ Project.propTypes = {
   }),
   summaryHeader: PropTypes.string.isRequired,
   activities: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.string,
+    PropTypes.oneOfType([ 
+      PropTypes.string, 
       PropTypes.shape({
         header: PropTypes.string,
         items: PropTypes.arrayOf(PropTypes.string)
