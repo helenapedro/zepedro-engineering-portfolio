@@ -13,7 +13,7 @@ const OwnerIntroduction = ({ ownerData }) => {
             <Card.Body className={`${styles.panel} p-4`}>
                 <Row className="align-items-center">
                     {/* Profile Image */}
-                    <Col md={4} className="text-center mb-4 mb-md-0">
+                    <Col md={4} className="text-center mb-0 mb-md-0">
                         {ownerData.mainImage && (
                             <img
                                 src={ownerData.mainImage}
@@ -25,11 +25,12 @@ const OwnerIntroduction = ({ ownerData }) => {
                         <Card.Title as="h2" className="mt-3 text-primary fw-bold">
                             {ownerData.name}
                         </Card.Title>
+                        {/* <p className="text-xl text-gray-200 mb-6">Construction Engineer</p> */}
                     </Col>
 
                     {/* Owner Details */}
                     <Col md={8} className="text-md-start text-center">
-                        <Card.Text className={`mb-3 ${styles['home-text']}`}>
+                        <Card.Text className={`mb-2 ${styles['home-text']}`}>
                             <strong>Hello, my name is </strong>
                             <Link to="/about" className="text-decoration-none text-primary fw-bold">
                                 ZéPedro
@@ -44,16 +45,16 @@ const OwnerIntroduction = ({ ownerData }) => {
                             </Link>.
                         </Card.Text>
 
-                        <Card.Text className="mb-4">
+                        <Card.Text className="mb-2">
                             This is a showcase of my projects and abilities.
                         </Card.Text>
 
                         {/* Status Badge Icons */}
-                        <div className="d-flex justify-content-center justify-content-md-start gap-3 overflow-auto">
+                        <div className="d-flex justify-content-center justify-content-md-start gap-2 overflow-auto">
                             <StatusBadge Icon={FaEnvelope} href={`mailto:jose.pedro7@outlook.com`} />
                             <StatusBadge Icon={SiWhatsapp} href={`https://wa.me/+244947462094`} />
                             <StatusBadge Icon={FaFileAlt} href={config.resumeUrl} />
-                            {/* <StatusBadge Icon={FaLinkedin} href={config.linkedInUrl} /> */}
+                            <StatusBadge Icon={FaLinkedin} href={config.linkedInUrl} />
                         </div>
                     </Col>
                 </Row>
