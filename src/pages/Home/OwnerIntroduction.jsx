@@ -36,9 +36,9 @@ const OwnerIntroduction = ({ ownerData }) => {
                                 ZéPedro
                             </Link>
                             , an experienced Construction Engineer with over{' '}
-                            <strong className={styles.year}>{ownerData.experienceYears}</strong> years in project
+                            <strong className={styles.number}>{ownerData.experienceYears}</strong> years in project
                             management and nearly{' '}
-                            <strong className={styles.year}>{ownerData.qhseExperienceYears}</strong> year as Coordinator
+                            <strong className={styles.number}>{ownerData.qhseExperienceYears}</strong> year as Coordinator
                             of QHSE-Quality at{' '}
                             <Link to={ownerData.motaEngilLink} target="_blank" rel="noopener noreferrer" className="fw-bold text-primary">
                                 Mota-Engil Angola

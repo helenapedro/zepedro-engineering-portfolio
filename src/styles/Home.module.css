@@ -17,9 +17,10 @@
   outline-offset: 2px;
 }
 
-.year {
+.number {
   font-weight: bold;
   color: #0056b3;
+  font-family: "robotslab", sans-serif;
 }
 
 .home {
