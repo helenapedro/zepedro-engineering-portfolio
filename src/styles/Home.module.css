@@ -1,15 +1,14 @@
 @import "../vars.css";
 
 .panel {
-  background-color: #fff;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-container);
   transition: var(--transition);
-  padding: 8px;
+  padding: 16px;
 }
 
 .panel:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: var(--box-shadow);
 }
 
@@ -18,12 +17,15 @@
   outline-offset: 2px;
 }
 
+.year {
+  font-weight: bold;
+  color: #0056b3;
+}
+
 .home {
-  background-color: var(--color-border);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow-container);
-  transition: var(--transition);
-  padding: 8px;
+  background: linear-gradient(to right, #f8f9fa, var(--color-border));
+  border-radius: 16px;
+  padding: 20px;
 }
 
 .home:hover {
@@ -38,10 +40,9 @@
 }
 
 .home-text {
-  hyphens: auto;
-  font-size: 1.2em;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #333;
 }
 
 .home-title,
@@ -56,19 +57,38 @@
 }
 
 .image img {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth animation */
   height: auto;
+  max-width: 100%; /* Ensures image responsiveness */
 }
 
 .image img:hover {
+  transform: scale(1.08);
+  opacity: 0.9; /* Adds a subtle fade effect */
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-light);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease-in-out;
+}
+
+.status-badge:hover {
+  background-color: var(--color-primary);
+  color: white;
   transform: scale(1.1);
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  .panel,
   .home {
-    padding: 13px;
+    text-align: center;
+    /* padding: 13px; */
   }
 
   .home-title {

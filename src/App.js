@@ -1,17 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './App.css';
-import './App.module.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import "./App.module.css";
 
-import Wrapper from './components/wrapper';
-import Main from './components/main';
-import NavBar from './pages/NavBar/NavBar';
-import ProjectsContainer from './pages/projects/ProjectContainer';
-import ProjectDetails from './components/ProjectDetails';
-import Certificate from './pages/Certificate/Certificate';
-import NotFound from './pages/NotFound';
-import Footer from './components/Footer/Footer';
-import AboutContainer from './pages/About/AboutContainer';
+import Wrapper from "./components/wrapper";
+import Main from "./components/main";
+import NavBar from "./pages/NavBar/NavBar";
+import ProjectsContainer from "./pages/projects/ProjectContainer";
+import ProjectDetails from "./components/ProjectDetails";
+import Certificate from "./pages/Certificate/Certificate";
+import NotFound from "./pages/NotFound";
+import AboutContainer from "./pages/About/AboutContainer";
 
 const App = () => {
   return (
@@ -27,10 +26,9 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Main>
-        <Footer />
       </Wrapper>
     </Router>
   );
-}
+};
 
 export default App;
