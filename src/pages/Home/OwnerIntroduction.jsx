@@ -10,7 +10,7 @@ import StatusBadge from './StatusBadge';
 const OwnerIntroduction = ({ ownerData }) => {
     return (
         <Card className={`${styles.home} shadow-sm mb-4 border-0 rounded-4`}>
-            <Card.Body className={`${styles.panel} p-4`}>
+            <Card.Body className={` p-4`}>
                 <Row className="align-items-center">
                     {/* Profile Image */}
                     <Col md={4} className="text-center mb-0 mb-md-0">
