@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import styles from './Project.module.css';
-import config from '../../config';
 import { wrapProjectFields } from '../../utils/wrapProjectFields';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
@@ -40,10 +39,13 @@ const Project = ({
     setCurrentImage('');
   };
 
-  // Helper function to get the full image URL
-  const getImageUrl = (image) => {
-    return image.startsWith('http') ? image : `${config.projectsUrl}${image}`;
+
+  const resolveUrl = (url) => {
+    const baseUrl = 'https://dh09x5tu10bt3.cloudfront.net/';
+    return url.startsWith('http') ? url : `${baseUrl}${url}`;
   };
+  
+
 
   return (
     <div className={styles.project}>
@@ -87,7 +89,7 @@ const Project = ({
           <section aria-label="Project images">
             <div className={styles.row}>
               {images.map((image, imgIndex) => {
-                const imageUrl = getImageUrl(image);
+                const imageUrl = resolveUrl(image);
                 return (
                   <div className={styles.imageContainer} key={imgIndex}>
                     <button
@@ -100,7 +102,7 @@ const Project = ({
                 );
               })}
             </div>
-          </section>        
+          </section>
         )}
       </article>
 
@@ -133,8 +135,8 @@ Project.propTypes = {
   }),
   summaryHeader: PropTypes.string.isRequired,
   activities: PropTypes.arrayOf(
-    PropTypes.oneOfType([ 
-      PropTypes.string, 
+    PropTypes.oneOfType([
+      PropTypes.string,
       PropTypes.shape({
         header: PropTypes.string,
         items: PropTypes.arrayOf(PropTypes.string)
