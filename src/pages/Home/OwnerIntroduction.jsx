@@ -19,13 +19,19 @@ const OwnerIntroduction = ({ ownerData }) => {
                                 src={ownerData.mainImage}
                                 alt={ownerData.name}
                                 className="img-fluid rounded-circle shadow-lg overflow-hidden"
-                                style={{ maxWidth: '200px', border: '5px solid #ddd' }}
+                                style={{ maxWidth: '180px', border: '2px solid #ddd' }}
                             />
                         )}
                         <Card.Title as="h2" className="mt-3 text-primary fw-bold">
                             {ownerData.name}
                         </Card.Title>
                         {/* <p className="text-xl text-gray-200 mb-6">Construction Engineer</p> */}
+                        <div className="d-flex justify-content-center justify-content-md-center gap-2 overflow-auto">
+                            <StatusBadge Icon={FaEnvelope} href={`mailto:jose.pedro7@outlook.com`} />
+                            <StatusBadge Icon={SiWhatsapp} href={`https://wa.me/+244947462094`} />
+                            <StatusBadge Icon={FaFileAlt} href={config.resumeUrl} />
+                            {/*<StatusBadge Icon={FaLinkedin} href={config.linkedInUrl} /> */}
+                        </div>
                     </Col>
 
                     {/* Owner Details */}
@@ -50,12 +56,6 @@ const OwnerIntroduction = ({ ownerData }) => {
                         </Card.Text>
 
                         {/* Status Badge Icons */}
-                        <div className="d-flex justify-content-center justify-content-md-start gap-2 overflow-auto">
-                            <StatusBadge Icon={FaEnvelope} href={`mailto:jose.pedro7@outlook.com`} />
-                            <StatusBadge Icon={SiWhatsapp} href={`https://wa.me/+244947462094`} />
-                            <StatusBadge Icon={FaFileAlt} href={config.resumeUrl} />
-                            <StatusBadge Icon={FaLinkedin} href={config.linkedInUrl} />
-                        </div>
                     </Col>
                 </Row>
             </Card.Body>
