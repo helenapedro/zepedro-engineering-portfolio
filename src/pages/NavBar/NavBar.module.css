@@ -7,20 +7,20 @@
 }
 
 .nav a {
-  position: relative;
   display: inline-block;
   color: var(--color-container);
-  width: 1em;
+  font-size: 2.5em;
   height: 1em;
   line-height: 0.9em;
-  font-size: 2.5em;
   margin: 0 0.25em 0 0.25em;
-  opacity: 0.45;
   outline: 0;
+  opacity: 0.45;
+  position: relative;
   -moz-transition: opacity 0.25s ease-in-out;
   -webkit-transition: opacity 0.25s ease-in-out;
   -ms-transition: opacity 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out;
+  width: 1em;
 }
 
 .nav a.icon:before {
@@ -32,19 +32,19 @@
 }
 
 .nav a:after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 50%;
-  bottom: -0.75em;
-  margin-left: -0.5em;
   border-bottom: solid 0em var(--color-container);
   border-left: solid 0.5em transparent;
   border-right: solid 0.5em transparent;
+  bottom: -0.75em;
+  content: "";
+  display: block;
+  left: 50%;
+  margin-left: -0.5em;
+  position: absolute;
+  transition: border-bottom-width 0.25s ease-in-out;
   -moz-transition: border-bottom-width 0.25s ease-in-out;
   -webkit-transition: border-bottom-width 0.25s ease-in-out;
   -ms-transition: border-bottom-width 0.25s ease-in-out;
-  transition: border-bottom-width 0.25s ease-in-out;
 }
 
 .nav a span {

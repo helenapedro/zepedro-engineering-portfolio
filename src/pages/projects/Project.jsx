@@ -44,7 +44,7 @@ const Project = ({
     const baseUrl = 'https://dh09x5tu10bt3.cloudfront.net/';
     return url.startsWith('http') ? url : `${baseUrl}${url}`;
   };
-  
+
 
 
   return (
@@ -96,7 +96,8 @@ const Project = ({
                       className={styles.imageButton}
                       onClick={() => handleImageClick(imageUrl)}
                     >
-                      <img src={imageUrl} alt="" className={styles.image} />
+                      <img src={imageUrl} alt={`Project ${imgIndex}`} className={styles.image} />
+                      <div className={styles.overlay}>View Image</div>
                     </button>
                   </div>
                 );
@@ -104,6 +105,7 @@ const Project = ({
             </div>
           </section>
         )}
+
       </article>
 
       {/* Modal for displaying images */}
