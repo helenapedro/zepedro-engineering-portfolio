@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button, Row, Col, Modal } from 'react-bootstrap';
-import { FaBuilding, FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
+import { FaBuilding, FaMapMarkerAlt, FaCalendarAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import mainStyles from '../../components/Main.module.css';
 import OwnerIntroduction from '../Home/OwnerIntroduction';
@@ -9,6 +9,9 @@ import useHomeData from './../Hooks/homeData';
 import renderPagination from './../../utils/Pagination/renderPagination';
 import handlePageChange from './../../utils/handlePageChange';
 import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import styles from './ProjectContainer.module.css';
 import imagestyles from '../../components/ui/Image.module.css'
 import iconstyles from '../../components/ui/Icon.module.css'
@@ -53,6 +56,20 @@ const ProjectsContainer = () => {
 
     const closeModal = () => setShowModal(false);
 
+    // Left Arrow Component
+    const PrevArrow = ({ onClick }) => (
+        <div className={imagestyles.customArrow} style={{ left: '10px' }} onClick={onClick}>
+            <FaChevronLeft size={24} />
+        </div>
+    );
+
+    // Right Arrow Component
+    const NextArrow = ({ onClick }) => (
+        <div className={imagestyles.customArrow} style={{ right: '10px' }} onClick={onClick}>
+            <FaChevronRight size={24} />
+        </div>
+    );
+
     return (
         <div className={`${mainStyles.panel}`}>
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
@@ -90,23 +107,30 @@ const ProjectsContainer = () => {
 
                             </Card.Header>
                             {project.images && project.images.length > 0 && (
-                                <Card.Img
-                                    variant="top"
-                                    src={
-                                        project.images[0].startsWith('http')
-                                            ? project.images[0]
-                                            : `${process.env.REACT_APP_BASE_URL}${project.images[0]}`
-                                    }
-                                    alt={`${project.title} image`}
-                                    className={`${imagestyles.imageContainer}`}
-                                    onClick={() => openModal(
-                                        project.images[0].startsWith('http')
-                                            ? project.images[0]
-                                            : `${process.env.REACT_APP_BASE_URL}${project.images[0]}`
-                                    )}
-                                    style={{ cursor: 'pointer' }}
-                                />
+                                <Slider
+                                    dots={true}
+                                    infinite={false}  // User-controlled navigation
+                                    speed={500}
+                                    slidesToShow={1}
+                                    slidesToScroll={1}
+                                    autoplay={false}  // No autoplay
+                                    prevArrow={<PrevArrow />}
+                                    nextArrow={<NextArrow />}
+                                    className={imagestyles.imageCarousel}
+                                >
+                                    {project.images.map((image, index) => (
+                                        <div key={index} onClick={() => openModal(image)}>
+                                            <img
+                                                src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
+                                                alt={`${project.title} image ${index + 1}`}
+                                                className={`${imagestyles.imageContainer}`}
+                                                style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
+                                            />
+                                        </div>
+                                    ))}
+                                </Slider>
                             )}
+
                             <Card.Body>
                                 <div className="text-center">
                                     <Link to={`/projects/${project.id}`}>
