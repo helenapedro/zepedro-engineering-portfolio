@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import { FaBuilding, FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
-import styles from './Project.module.css';
 import { wrapProjectFields } from '../../utils/wrapProjectFields';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
+import styles from './Project.module.css';
+import imagestyles from '../../components/ui/Image.module.css';
 
 const Project = ({
   title,
@@ -102,17 +103,17 @@ const Project = ({
         </p>
         {Array.isArray(images) && images.length > 0 && (
           <section aria-label="Project images">
-            <div className={styles.row}>
+            <div className={imagestyles.row}>
               {images.map((image, imgIndex) => {
                 const imageUrl = resolveUrl(image);
                 return (
-                  <div className={styles.imageContainer} key={imgIndex}>
+                  <div className={imagestyles.imageContainer} key={imgIndex}>
                     <button
-                      className={styles.imageButton}
+                      className={imagestyles.imageButton}
                       onClick={() => handleImageClick(imageUrl)}
                     >
-                      <img src={imageUrl} alt={`Project ${imgIndex}`} className={styles.image} />
-                      <div className={styles.overlay}>View Image</div>
+                      <img src={imageUrl} alt={`Project ${imgIndex}`} className={imagestyles.image} />
+                      <div className={imagestyles.overlay}>View Image</div>
                     </button>
                   </div>
                 );
@@ -129,7 +130,7 @@ const Project = ({
           <Modal.Title>Image Preview</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img src={currentImage} alt="Project" className={styles.modalImage} />
+          <img src={currentImage} alt="Project" className={imagestyles.modalImage} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>

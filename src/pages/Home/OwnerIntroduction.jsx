@@ -6,6 +6,7 @@ import { SiWhatsapp } from 'react-icons/si';
 import styles from '../../styles/Home.module.css';
 import config from '../../config';
 import StatusBadge from './StatusBadge';
+import numberstyles from '../../components/ui/Number.module.css'
 
 const OwnerIntroduction = ({ ownerData }) => {
     return (
@@ -42,9 +43,9 @@ const OwnerIntroduction = ({ ownerData }) => {
                                 ZéPedro
                             </Link>
                             , an experienced Construction Engineer with over{' '}
-                            <strong className={styles.number}>{ownerData.experienceYears}</strong> years in project
+                            <strong className={numberstyles.number}>{ownerData.experienceYears}</strong> years in project
                             management and {' '}
-                            <strong className={styles.number}>{ownerData.qhseExperienceYears}+</strong> year as Coordinator
+                            <strong className={numberstyles.number}>{ownerData.qhseExperienceYears}+</strong> year as Coordinator
                             of QHSE-Quality at{' '}
                             <Link to={ownerData.motaEngilLink} target="_blank" rel="noopener noreferrer" className="fw-bold text-primary">
                                 Mota-Engil Angola

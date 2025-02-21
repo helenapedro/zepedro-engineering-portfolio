@@ -1,0 +1,7 @@
+@import "../../vars.css";
+
+.number {
+  font-weight: bold;
+  color: var(--color-secondary);
+  font-family: var(--font-family-numbers);
+}

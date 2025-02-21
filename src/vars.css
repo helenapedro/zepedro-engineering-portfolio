@@ -1,16 +1,27 @@
 :root {
   /* Colors */
-  --color-primary: #007acc;
+  --color-primary: #2563eb;
+  --color-secondary: #c89d2e;
   --color-border: #8d9ea28d;
   --color-panel: #fff;
   --color-container: #f9f9f9;
   --color-subtitle: #666;
+
+  /* Border */
   --border-radius: 30px;
+
+  /* Box */
   --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   --box-shadow-container: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  /* Font */
   --font-family-primary: "eb_garamond_sc08_regular", sans-serif;
   --font-family-secundary: "eb_garamond_sc12_regular", sans-serif;
   --font-family-numbers: "robotslab", sans-serif;
+
+  /* Padding */
   --padding-container: 10px;
+
+  /* Transition */
   --transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

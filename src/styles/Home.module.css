@@ -17,12 +17,6 @@
   outline-offset: 2px;
 }
 
-.number {
-  font-weight: bold;
-  color: #0056b3;
-  font-family: "robotslab", sans-serif;
-}
-
 .home {
   background: linear-gradient(to right, #f8f9fa, var(--color-border));
   border-radius: 16px;
@@ -66,23 +60,6 @@
 .image img:hover {
   transform: scale(1.08);
   opacity: 0.9; /* Adds a subtle fade effect */
-}
-
-.status-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-light);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  transition: all 0.3s ease-in-out;
-}
-
-.status-badge:hover {
-  background-color: var(--color-primary);
-  color: white;
-  transform: scale(1.1);
 }
 
 /* Responsive Design */
