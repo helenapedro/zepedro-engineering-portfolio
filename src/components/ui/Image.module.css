@@ -53,6 +53,7 @@
   cursor: pointer;
 }
 
+/* Carousel Container */
 .imageCarousel {
   margin: 0 auto;
   width: 100%;
@@ -61,10 +62,7 @@
   position: relative;
 }
 
-/* .imageCarousel img {
-  border-radius: 10px;
-} */
-
+/* Custom Arrows */
 .customArrow {
   position: absolute;
   top: 50%;
@@ -95,6 +93,38 @@
 .modal-content {
   padding: 20px;
   text-align: center;
+}
+
+/* Slide Counter */
+.slideCounter {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Thumbnail Container */
+.thumbnailContainer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+/* Thumbnails */
+.thumbnail {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.thumbnail img {
+  border-radius: 4px;
+}
+
+.activeThumbnail {
+  border-color: #007bff;
 }
 
 /* Row */

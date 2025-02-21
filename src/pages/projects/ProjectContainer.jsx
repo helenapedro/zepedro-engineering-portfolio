@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Slider from 'react-slick';
+import * as iconsfa from 'react-icons/fa';
 import { Card, Button, Row, Col, Modal } from 'react-bootstrap';
-import { FaBuilding, FaMapMarkerAlt, FaCalendarAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import mainStyles from '../../components/Main.module.css';
 import OwnerIntroduction from '../Home/OwnerIntroduction';
@@ -9,7 +10,6 @@ import useHomeData from './../Hooks/homeData';
 import renderPagination from './../../utils/Pagination/renderPagination';
 import handlePageChange from './../../utils/handlePageChange';
 import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './ProjectContainer.module.css';
@@ -25,6 +25,7 @@ const ProjectsContainer = () => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalImage, setModalImage] = useState('');
+    const [activeSlide, setActiveSlide] = useState(0);
 
     const pageSize = 10;
 
@@ -59,16 +60,19 @@ const ProjectsContainer = () => {
     // Left Arrow Component
     const PrevArrow = ({ onClick }) => (
         <div className={imagestyles.customArrow} style={{ left: '10px' }} onClick={onClick}>
-            <FaChevronLeft size={24} />
+            <iconsfa.FaChevronLeft size={24} />
         </div>
     );
 
     // Right Arrow Component
     const NextArrow = ({ onClick }) => (
         <div className={imagestyles.customArrow} style={{ right: '10px' }} onClick={onClick}>
-            <FaChevronRight size={24} />
+            <iconsfa.FaChevronRight size={24} />
         </div>
     );
+
+
+
 
     return (
         <div className={`${mainStyles.panel}`}>
@@ -98,37 +102,63 @@ const ProjectsContainer = () => {
                                 <h5 className={`${prodetailsstyles.title} number mb-0`}>{project.title}</h5>
                                 <Card.Subtitle className={`${prodetailsstyles.subtitle}`}>
                                     <div className={prodetailsstyles.organization}>
-                                        <FaBuilding className={`${iconstyles.icon}`} /> {project.organization}
+                                        <iconsfa.FaBuilding className={`${iconstyles.icon}`} /> {project.organization}
                                     </div>
                                     <div className={`${prodetailsstyles.place}`}>
-                                        <FaMapMarkerAlt className={iconstyles.icon} /> {project.projectPlace?.address}, {project.projectPlace?.province}, {project.projectPlace?.country}  <span className={`${prodetailsstyles.year} number`}> <FaCalendarAlt className={`${iconstyles.icon}`} /> {project.endYear} </span>
+                                        <iconsfa.FaMapMarkerAlt className={iconstyles.icon} /> {project.projectPlace?.address}, {project.projectPlace?.province}, {project.projectPlace?.country}  <span className={`${prodetailsstyles.year} number`}> <iconsfa.FaCalendarAlt className={`${iconstyles.icon}`} /> {project.endYear} </span>
                                     </div>
                                 </Card.Subtitle>
 
                             </Card.Header>
                             {project.images && project.images.length > 0 && (
-                                <Slider
-                                    dots={true}
-                                    infinite={false}  // User-controlled navigation
-                                    speed={500}
-                                    slidesToShow={1}
-                                    slidesToScroll={1}
-                                    autoplay={false}  // No autoplay
-                                    prevArrow={<PrevArrow />}
-                                    nextArrow={<NextArrow />}
-                                    className={imagestyles.imageCarousel}
-                                >
-                                    {project.images.map((image, index) => (
-                                        <div key={index} onClick={() => openModal(image)}>
-                                            <img
-                                                src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
-                                                alt={`${project.title} image ${index + 1}`}
-                                                className={`${imagestyles.imageContainer}`}
-                                                style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
-                                            />
-                                        </div>
-                                    ))}
-                                </Slider>
+                                <>
+                                    {/* Main Image Carousel */}
+                                    <Slider
+                                        dots={false}
+                                        infinite={false}
+                                        speed={500}
+                                        slidesToShow={1}
+                                        slidesToScroll={1}
+                                        autoplay={false}
+                                        prevArrow={<PrevArrow />}
+                                        nextArrow={<NextArrow />}
+                                        afterChange={(current) => setActiveSlide(current)}
+                                        className={imagestyles.imageCarousel}
+                                    >
+                                        {project.images.map((image, index) => (
+                                            <div key={index} onClick={() => openModal(image)}>
+                                                <img
+                                                    src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
+                                                    alt={`${project.title} image ${index + 1}`}
+                                                    className={`${imagestyles.imageContainer}`}
+                                                    style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
+                                                />
+                                            </div>
+                                        ))}
+                                    </Slider>
+
+                                    {/* Slide Counter */}
+                                    <div className={imagestyles.slideCounter}>
+                                        {activeSlide + 1} / {project.images.length}
+                                    </div>
+
+                                    {/* Thumbnails */}
+                                    <div className={imagestyles.thumbnailContainer}>
+                                        {project.images.map((image, index) => (
+                                            <div
+                                                key={index}
+                                                className={`${imagestyles.thumbnail} ${index === activeSlide ? imagestyles.activeThumbnail : ''}`}
+                                                onClick={() => setActiveSlide(index)}
+                                            >
+                                                <img
+                                                    src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
+                                                    alt={`Thumbnail ${index + 1}`}
+                                                    style={{ width: '60px', height: '40px', objectFit: 'cover' }}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>
                             )}
 
                             <Card.Body>
