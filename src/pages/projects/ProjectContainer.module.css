@@ -22,43 +22,6 @@
   margin-top: 0.5rem;
 }
 
-.organization,
-.subtitle {
-  line-height: normal;
-}
-
-.organization a,
-.projectdescription a {
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-.subtitle,
-.organization {
-  color: #666;
-  display: block;
-  font-size: 0.7em;
-  margin: 10px 0;
-  opacity: 0.5;
-}
-
-.organization a:hover,
-.subtitle a:hover,
-.projectdescription a:hover {
-  text-decoration: underline;
-}
-
-.title h1 {
-  font-family: "eb_garamond_sc08_regular", sans-serif;
-  font-size: 2em;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.number {
-  font-family: "robotslab", sans-serif;
-}
-
 .cardContainer {
   display: flex;
   flex-direction: column;
@@ -105,20 +68,6 @@
 
 .filterSection .dropdown-menu div {
   padding: 10px;
-}
-
-@media (max-width: 768px) {
-  .title h1 {
-    font-size: 1.5em;
-  }
-}
-
-@media (max-width: 480px) {
-  .title h1 {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-    line-height: 1.4;
-  }
 }
 
 @media (max-width: 768px) {

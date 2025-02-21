@@ -1,0 +1,8 @@
+@import "../../vars.css";
+
+.icon {
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  margin-right: auto;
+  vertical-align: middle;
+}

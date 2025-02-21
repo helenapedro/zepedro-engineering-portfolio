@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Card, Button, Row, Col, Modal } from 'react-bootstrap';
+import { FaBuilding, FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import mainStyles from '../../components/Main.module.css';
-import styles from './ProjectContainer.module.css';
 import OwnerIntroduction from '../Home/OwnerIntroduction';
 import useData from './../Hooks/useData';
 import useHomeData from './../Hooks/homeData';
 import renderPagination from './../../utils/Pagination/renderPagination';
 import handlePageChange from './../../utils/handlePageChange';
 import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
+import styles from './ProjectContainer.module.css';
+import imagestyles from '../../components/ui/Image.module.css'
+import iconstyles from '../../components/ui/Icon.module.css'
+import prodetailsstyles from '../../components/ui/ProjectDetails.module.css'
 
 const ProjectsContainer = () => {
     const { data: projects, loading: projectsLoading, error: projectsError } = useData('projects');
@@ -30,7 +34,7 @@ const ProjectsContainer = () => {
 
     const handleCategoryChange = (categoryId) => {
         setSelectedCategories((prev) =>
-        prev.includes(categoryId) ? prev.filter((id) => id !== categoryId) : [...prev, categoryId]
+            prev.includes(categoryId) ? prev.filter((id) => id !== categoryId) : [...prev, categoryId]
         );
         setCurrentPage(1);
     };
@@ -51,85 +55,91 @@ const ProjectsContainer = () => {
 
     return (
         <div className={`${mainStyles.panel}`}>
-        {ownerData && <OwnerIntroduction ownerData={ownerData} />}
-        <CategoryFilterDropdown
-            categories={categories}
-            selectedCategories={selectedCategories}
-            projects={projects}
-            onCategoryChange={handleCategoryChange}
-        />
+            {ownerData && <OwnerIntroduction ownerData={ownerData} />}
+            <CategoryFilterDropdown
+                categories={categories}
+                selectedCategories={selectedCategories}
+                projects={projects}
+                onCategoryChange={handleCategoryChange}
+            />
 
-        <div className={styles.pagination}>
-            {renderPagination(
-            filteredProjects.length,
-            pageSize,
-            currentPage,
-            handlePageChangeWrapper,
-            styles.paginationContainer
-            )}
-        </div>
+            <div className={styles.pagination}>
+                {renderPagination(
+                    filteredProjects.length,
+                    pageSize,
+                    currentPage,
+                    handlePageChangeWrapper,
+                    styles.paginationContainer
+                )}
+            </div>
 
-        <Row className={styles.container}>
-            {paginatedProjects.map((project) => (
-                <Col key={project.id} md={6} style={{ marginBottom: '1rem' }}>
-                    <Card className={`${styles.cardContainer} shadow-sm`}>
-                        <Card.Header className={`${styles.cardHeader} text-center`}>
-                            <h5 className={`${styles.title} mb-0`}>{project.title}</h5>
-                            <Card.Subtitle className={`${styles.subtitle} text-muted`}>
-                            {project.organization}, <i>{project.endYear}</i>
-                            </Card.Subtitle>
-                        </Card.Header>
-                        {project.images && project.images.length > 0 && (
-                            <Card.Img
-                                variant="top"
-                                src={
-                                project.images[0].startsWith('http') 
-                                    ? project.images[0] 
-                                    : `${process.env.REACT_APP_BASE_URL}${project.images[0]}`
-                                }
-                                alt={`${project.title} image`}
-                                className={styles.cardImage}
-                                onClick={() => openModal(
-                                project.images[0].startsWith('http') 
-                                    ? project.images[0] 
-                                    : `${process.env.REACT_APP_BASE_URL}${project.images[0]}`
-                                )}
-                                style={{ cursor: 'pointer' }}
-                            />
-                        )}
-                        <Card.Body>
-                            <div className="text-center">
-                            <Link to={`/projects/${project.id}`}>
-                                <Button variant="primary">View Details</Button>
-                            </Link>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            ))}
-        </Row>
+            <Row className={styles.container}>
+                {paginatedProjects.map((project) => (
+                    <Col key={project.id} md={6} style={{ marginBottom: '1rem' }}>
+                        <Card className={`${styles.cardContainer} shadow-sm`}>
+                            <Card.Header className={`${styles.cardHeader} text-center`}>
+                                <h5 className={`${prodetailsstyles.title} number mb-0`}>{project.title}</h5>
+                                <Card.Subtitle className={`${prodetailsstyles.subtitle}`}>
+                                    <div className={prodetailsstyles.organization}>
+                                        <FaBuilding className={`${iconstyles.icon}`} /> {project.organization}
+                                    </div>
+                                    <div className={`${prodetailsstyles.place}`}>
+                                        <FaMapMarkerAlt className={iconstyles.icon} /> {project.projectPlace?.address}, {project.projectPlace?.province}, {project.projectPlace?.country}  <span className={`${prodetailsstyles.year} number`}> <FaCalendarAlt className={`${iconstyles.icon}`} /> {project.endYear} </span>
+                                    </div>
+                                </Card.Subtitle>
 
-        <div className={styles.pagination}>
-            {renderPagination(
-            filteredProjects.length,
-            pageSize,
-            currentPage,
-            handlePageChangeWrapper,
-            styles.paginationContainer
-            )}
-        </div>
+                            </Card.Header>
+                            {project.images && project.images.length > 0 && (
+                                <Card.Img
+                                    variant="top"
+                                    src={
+                                        project.images[0].startsWith('http')
+                                            ? project.images[0]
+                                            : `${process.env.REACT_APP_BASE_URL}${project.images[0]}`
+                                    }
+                                    alt={`${project.title} image`}
+                                    className={`${imagestyles.imageContainer}`}
+                                    onClick={() => openModal(
+                                        project.images[0].startsWith('http')
+                                            ? project.images[0]
+                                            : `${process.env.REACT_APP_BASE_URL}${project.images[0]}`
+                                    )}
+                                    style={{ cursor: 'pointer' }}
+                                />
+                            )}
+                            <Card.Body>
+                                <div className="text-center">
+                                    <Link to={`/projects/${project.id}`}>
+                                        <Button variant="primary">View Details</Button>
+                                    </Link>
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
 
-        {/* Modal for Image Preview */}
-        <Modal show={showModal} onHide={closeModal} centered>
-            <Modal.Body>
-            <img src={modalImage} alt="Project" className="img-fluid" />
-            </Modal.Body>
-            <Modal.Footer>
-            <Button variant="secondary" onClick={closeModal}>
-                Close
-            </Button>
-            </Modal.Footer>
-        </Modal>
+            <div className={styles.pagination}>
+                {renderPagination(
+                    filteredProjects.length,
+                    pageSize,
+                    currentPage,
+                    handlePageChangeWrapper,
+                    styles.paginationContainer
+                )}
+            </div>
+
+            {/* Modal for Image Preview */}
+            <Modal show={showModal} onHide={closeModal} centered>
+                <Modal.Body>
+                    <img src={modalImage} alt="Project" className="img-fluid" />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={closeModal}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };

@@ -188,6 +188,10 @@ p i,
   font-family: "robotslab", sans-serif;
 }
 
+.organization {
+  color: var(--color-secondary);
+}
+
 ul {
   list-style: disc;
   padding-left: 1em;
