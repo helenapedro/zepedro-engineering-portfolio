@@ -53,7 +53,6 @@
   cursor: pointer;
 }
 
-/* Carousel Container */
 .imageCarousel {
   margin: 0 auto;
   width: 100%;
@@ -62,7 +61,6 @@
   position: relative;
 }
 
-/* Custom Arrows */
 .customArrow {
   position: absolute;
   top: 50%;

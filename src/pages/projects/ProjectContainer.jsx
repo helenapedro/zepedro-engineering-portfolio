@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Slider from 'react-slick';
 import * as iconsfa from 'react-icons/fa';
 import { Card, Button, Row, Col, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -10,6 +9,7 @@ import useHomeData from './../Hooks/homeData';
 import renderPagination from './../../utils/Pagination/renderPagination';
 import handlePageChange from './../../utils/handlePageChange';
 import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
+import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './ProjectContainer.module.css';
@@ -25,7 +25,6 @@ const ProjectsContainer = () => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalImage, setModalImage] = useState('');
-    const [activeSlide, setActiveSlide] = useState(0);
 
     const pageSize = 10;
 
@@ -71,9 +70,6 @@ const ProjectsContainer = () => {
         </div>
     );
 
-
-
-
     return (
         <div className={`${mainStyles.panel}`}>
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
@@ -111,54 +107,28 @@ const ProjectsContainer = () => {
 
                             </Card.Header>
                             {project.images && project.images.length > 0 && (
-                                <>
-                                    {/* Main Image Carousel */}
-                                    <Slider
-                                        dots={false}
-                                        infinite={false}
-                                        speed={500}
-                                        slidesToShow={1}
-                                        slidesToScroll={1}
-                                        autoplay={false}
-                                        prevArrow={<PrevArrow />}
-                                        nextArrow={<NextArrow />}
-                                        afterChange={(current) => setActiveSlide(current)}
-                                        className={imagestyles.imageCarousel}
-                                    >
-                                        {project.images.map((image, index) => (
-                                            <div key={index} onClick={() => openModal(image)}>
-                                                <img
-                                                    src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
-                                                    alt={`${project.title} image ${index + 1}`}
-                                                    className={`${imagestyles.imageContainer}`}
-                                                    style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
-                                                />
-                                            </div>
-                                        ))}
-                                    </Slider>
-
-                                    {/* Slide Counter */}
-                                    <div className={imagestyles.slideCounter}>
-                                        {activeSlide + 1} / {project.images.length}
-                                    </div>
-
-                                    {/* Thumbnails */}
-                                    <div className={imagestyles.thumbnailContainer}>
-                                        {project.images.map((image, index) => (
-                                            <div
-                                                key={index}
-                                                className={`${imagestyles.thumbnail} ${index === activeSlide ? imagestyles.activeThumbnail : ''}`}
-                                                onClick={() => setActiveSlide(index)}
-                                            >
-                                                <img
-                                                    src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
-                                                    alt={`Thumbnail ${index + 1}`}
-                                                    style={{ width: '60px', height: '40px', objectFit: 'cover' }}
-                                                />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </>
+                                <Slider
+                                    dots={true}
+                                    infinite={false}  // User-controlled navigation
+                                    speed={500}
+                                    slidesToShow={1}
+                                    slidesToScroll={1}
+                                    autoplay={false}  // No autoplay
+                                    prevArrow={<PrevArrow />}
+                                    nextArrow={<NextArrow />}
+                                    className={imagestyles.imageCarousel}
+                                >
+                                    {project.images.map((image, index) => (
+                                        <div key={index} onClick={() => openModal(image)}>
+                                            <img
+                                                src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
+                                                alt={`${project.title} image ${index + 1}`}
+                                                className={`${imagestyles.imageContainer}`}
+                                                style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
+                                            />
+                                        </div>
+                                    ))}
+                                </Slider>
                             )}
 
                             <Card.Body>
