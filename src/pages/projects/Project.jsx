@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
+import { FaBuilding, FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
 import styles from './Project.module.css';
 import { wrapProjectFields } from '../../utils/wrapProjectFields';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
@@ -51,12 +52,26 @@ const Project = ({
     <div className={styles.project}>
       <article className={styles.panel} aria-labelledby={`project-title-${title}`}>
         <header className={styles.header}>
-          <h2 className={styles.title} id={`project-title-${title}`}>{wrappedProject.title}</h2>
-          <i className={`${styles.organization} number`}>{organization}, {endYear}</i>
-          <i className={`${styles.placeandyear} number`}>
-            {projectPlace.address}, {projectPlace.province}, {projectPlace.country}
-          </i>
+          <h2 className={styles.title} id={`project-title-${title}`}>
+            {wrappedProject.title}
+          </h2>
+          <div className={styles.info}>
+            <p className={`${styles.organization} number`}>
+              <FaBuilding className={styles.icon} /> {organization}
+            </p>
+            <p className={`${styles.placeandyear} number`}>
+              <FaMapMarkerAlt className={styles.icon} /> {projectPlace.address}, {projectPlace.province}, {projectPlace.country}
+              <span className={styles.endYear}>
+                <FaCalendarAlt className={`${styles.icon} ${styles.marginLeft}`} /> {endYear}
+              </span>
+            </p>
+
+          </div>
         </header>
+
+
+
+
         <p className={styles.projectdescription}><b>{wrappedProject.summaryHeader}</b></p>
         {Array.isArray(activities) && activities.length > 0 && (
           activities.map((activitySection, sectionIndex) => (

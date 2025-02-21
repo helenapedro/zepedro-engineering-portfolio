@@ -48,18 +48,51 @@
 .number {
   font-family: "robotslab", sans-serif;
 }
-.placeandyear,
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.icon {
+  margin-right: auto;
+  color: #007bff;
+  vertical-align: middle;
+}
+
+.endYear {
+  display: block;
+  align-items: center;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.marginLeft {
+  margin-left: 42px;
+}
+
+.placeandyear {
+  display: block;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 1rem;
+}
+
 .organization {
   line-height: normal;
 }
 
 .placeandyear,
 .organization {
+  align-items: center;
   color: #666;
   display: block;
-  font-size: 0.7em;
+  font-size: 1rem;
   margin: 10px 0;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .projectdescription {
@@ -197,6 +230,12 @@
 @media (max-width: 768px) {
   .row {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .endYear {
+    width: 100%;
+    margin-left: 8px;
+    margin-top: 4px;
   }
 }
 
