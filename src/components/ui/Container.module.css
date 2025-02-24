@@ -16,3 +16,21 @@
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+
+.title {
+  color: var(--color-primary);
+  font-family: var(--font-family-secundary);
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    margin-right: 1.8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    margin-right: 1.8px;
+  }
+}

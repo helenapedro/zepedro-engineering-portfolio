@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, DropdownButton } from 'react-bootstrap';
+import React from "react";
+import { Form, DropdownButton } from "react-bootstrap";
 
 const CategoryFilterDropdown = ({
   categories,
@@ -10,13 +10,23 @@ const CategoryFilterDropdown = ({
   return (
     <DropdownButton
       id="dropdown-category"
-      title={`Filter by Categories ${selectedCategories.length > 0 ? `(${selectedCategories.length})` : ''}`}
+      title={`Filter by Categories ${
+        selectedCategories.length > 0 ? `(${selectedCategories.length})` : ""
+      }`}
       variant="outline-primary"
       className={`mb-4`}
     >
-      <div style={{ maxHeight: '300px', overflowY: 'auto', padding: '10px' }}>
+      <div
+        style={{
+          maxHeight: "300px",
+          overflowY: "auto",
+          padding: "10px",
+        }}
+      >
         {categories.map((category) => {
-          const projectCount = projects.filter((project) => project.categoryId === category.id).length;
+          const projectCount = projects.filter(
+            (project) => project.categoryId === category.id
+          ).length;
           return (
             <Form.Check
               key={category.id}

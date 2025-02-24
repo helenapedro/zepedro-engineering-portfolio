@@ -23,7 +23,7 @@ const ProjectsContainer = () => {
     const [showModal, setShowModal] = useState(false);
     const [modalImage, setModalImage] = useState('');
 
-    const pageSize = 10;
+    const pageSize = 8;
 
     const handlePageChangeWrapper = (page) => handlePageChange(page, setCurrentPage);
 
@@ -63,12 +63,6 @@ const ProjectsContainer = () => {
     return (
         <div className={`${mainStyles.panel}`}>
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
-            <CategoryFilterDropdown
-                categories={categories}
-                selectedCategories={selectedCategories}
-                projects={projects}
-                onCategoryChange={handleCategoryChange}
-            />
 
             <div className={styles.pagination}>
                 {renderPagination(
@@ -81,6 +75,22 @@ const ProjectsContainer = () => {
             </div>
 
             <Row className={containerstyles.container}>
+                <CategoryFilterDropdown
+                    categories={categories}
+                    selectedCategories={selectedCategories}
+                    projects={projects}
+                    onCategoryChange={handleCategoryChange}
+                />
+                {/* <Col xs={12} className="d-flex justify-content-between align-items-center">
+                    <h2 className={containerstyles.title}>Projects</h2>
+                    <CategoryFilterDropdown
+                        categories={categories}
+                        selectedCategories={selectedCategories}
+                        projects={projects}
+                        onCategoryChange={handleCategoryChange}
+                    />
+                </Col> */}
+
                 {paginatedProjects.map((project) => (
                     <Col key={project.id} md={6} style={{ marginBottom: '1rem' }}>
                         <Card className={`${styles.cardContainer} shadow-sm`}>
