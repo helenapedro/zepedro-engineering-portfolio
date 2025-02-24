@@ -81,15 +81,6 @@ const ProjectsContainer = () => {
                     projects={projects}
                     onCategoryChange={handleCategoryChange}
                 />
-                {/* <Col xs={12} className="d-flex justify-content-between align-items-center">
-                    <h2 className={containerstyles.title}>Projects</h2>
-                    <CategoryFilterDropdown
-                        categories={categories}
-                        selectedCategories={selectedCategories}
-                        projects={projects}
-                        onCategoryChange={handleCategoryChange}
-                    />
-                </Col> */}
 
                 {paginatedProjects.map((project) => (
                     <Col key={project.id} md={6} style={{ marginBottom: '1rem' }}>
