@@ -33,7 +33,7 @@ h5 {
   font-size: 1em;
   margin: 10px 0;
   opacity: 2;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 .title h1,
