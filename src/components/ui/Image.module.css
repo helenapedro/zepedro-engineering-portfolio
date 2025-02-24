@@ -23,6 +23,18 @@
   transition: transform 0.3s ease;
 }
 
+.heroImage {
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  max-width: 180px;
+  overflow: hidden;
+}
+
+.heroImage:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
 .imageWrapper {
   position: relative;
   width: 100%;
@@ -187,10 +199,18 @@
   .row {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .heroImage {
+    max-width: 130;
+  }
 }
 
 @media (max-width: 480px) {
   .row {
     grid-template-columns: 1fr;
+  }
+
+  .heroImage {
+    max-width: 130;
   }
 }

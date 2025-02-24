@@ -1,0 +1,51 @@
+@import "../../vars.css";
+
+.text {
+  font-family: var(--font-family-primary);
+  font-size: 1.5rem;
+  line-height: auto;
+  padding: 2px;
+}
+
+.name {
+  text-decoration: none;
+}
+
+.fullName {
+  color: var(--color-primary);
+  font-family: var(--font-family-secundary);
+  margin-top: 2px;
+}
+
+.experienceYear {
+  /* font-weight: bold; */
+  font-family: var(--font-family-numbers);
+  font-size: large;
+}
+
+.colorTwo,
+.name {
+  color: var(--color-secondary);
+}
+
+@media (max-width: 768px) {
+  .text {
+    font-size: 1.4em;
+  }
+
+  .fullName {
+    font-size: 2rem;
+    margin-top: 2.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text {
+    font-size: 1.4em;
+  }
+
+  .fullName {
+    font-size: 2rem;
+    margin-top: 2.5px;
+  }
+}

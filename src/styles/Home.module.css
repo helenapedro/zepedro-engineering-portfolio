@@ -17,17 +17,6 @@
   outline-offset: 2px;
 }
 
-.home {
-  background: var(--color-linear-gradient);
-  border-radius: 16px;
-  padding: 20px;
-}
-
-.home:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--box-shadow);
-}
-
 .home-title {
   color: var(--color-primary);
   font-size: 2em;
