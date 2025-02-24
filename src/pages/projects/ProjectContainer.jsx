@@ -11,6 +11,7 @@ import renderPagination from './../../utils/Pagination/renderPagination';
 import handlePageChange from './../../utils/handlePageChange';
 import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
 import styles from './ProjectContainer.module.css';
+import containerstyles from '../../components/ui/Container.module.css';
 import prodetailsstyles from '../../components/ui/ProjectDetails.module.css';
 
 const ProjectsContainer = () => {
@@ -77,7 +78,7 @@ const ProjectsContainer = () => {
                 )}
             </div>
 
-            <Row className={styles.container}>
+            <Row className={containerstyles.container}>
                 {paginatedProjects.map((project) => (
                     <Col key={project.id} md={6} style={{ marginBottom: '1rem' }}>
                         <Card className={`${styles.cardContainer} shadow-sm`}>

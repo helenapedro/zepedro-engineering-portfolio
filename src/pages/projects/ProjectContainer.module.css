@@ -1,22 +1,5 @@
 @import "../../vars.css";
 
-.container {
-  background: var(--color-linear-gradient);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow-container);
-  transition: var(--transition);
-}
-
-.container:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--box-shadow);
-}
-
-.container:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
 .pagination {
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
