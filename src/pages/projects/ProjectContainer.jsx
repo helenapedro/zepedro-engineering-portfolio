@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Card, Button, Row, Col, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import * as iconsfa from 'react-icons/fa';
-import ProjectCarousel from '../../components/Project/ProjectCarousel';
-import mainStyles from '../../components/Main.module.css';
-import OwnerIntroduction from '../Home/OwnerIntroduction';
 import useData from './../../Hooks/useData';
 import useHomeData from './../../Hooks/homeData';
+import * as iconsfa from 'react-icons/fa';
+import ProjectCarousel from '../../components/Project/ProjectCarousel';
+import OwnerIntroduction from '../Home/OwnerIntroduction';
 import renderPagination from './../../utils/Pagination/renderPagination';
 import handlePageChange from './../../utils/handlePageChange';
 import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
 import styles from './ProjectContainer.module.css';
+import mainStyles from '../../components/Main.module.css';
 import containerstyles from '../../components/ui/Container.module.css';
 import prodetailsstyles from '../../components/ui/ProjectDetails.module.css';
 
@@ -64,16 +64,6 @@ const ProjectsContainer = () => {
         <div className={`${mainStyles.panel}`}>
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
 
-            <div className={styles.pagination}>
-                {renderPagination(
-                    filteredProjects.length,
-                    pageSize,
-                    currentPage,
-                    handlePageChangeWrapper,
-                    styles.paginationContainer
-                )}
-            </div>
-
             <Row className={containerstyles.container}>
                 <CategoryFilterDropdown
                     categories={categories}
@@ -118,17 +108,18 @@ const ProjectsContainer = () => {
                         </Card>
                     </Col>
                 ))}
+
+                <div className={styles.pagination}>
+                    {renderPagination(
+                        filteredProjects.length,
+                        pageSize,
+                        currentPage,
+                        handlePageChangeWrapper,
+                        styles.paginationContainer
+                    )}
+                </div>
             </Row>
 
-            <div className={styles.pagination}>
-                {renderPagination(
-                    filteredProjects.length,
-                    pageSize,
-                    currentPage,
-                    handlePageChangeWrapper,
-                    styles.paginationContainer
-                )}
-            </div>
 
             <Modal show={showModal} onHide={closeModal} centered>
                 <Modal.Body>
