@@ -18,7 +18,7 @@
 }
 
 .home {
-  background: linear-gradient(to right, #f8f9fa, var(--color-border));
+  background: var(--color-linear-gradient);
   border-radius: 16px;
   padding: 20px;
 }

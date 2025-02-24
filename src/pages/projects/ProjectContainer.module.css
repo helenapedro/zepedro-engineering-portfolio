@@ -1,7 +1,7 @@
 @import "../../vars.css";
 
 .container {
-  background-color: var(--color-border);
+  background: var(--color-linear-gradient);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-container);
   transition: var(--transition);

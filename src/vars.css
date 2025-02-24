@@ -8,6 +8,7 @@
   --color-container: #f9f9f9;
   --color-subtitle: #666;
   --color-text: #050505;
+  --color-linear-gradient: linear-gradient(to right, #f8f9fa, #8d9ea28d);
 
   /* Border */
   --border-radius: 30px;
