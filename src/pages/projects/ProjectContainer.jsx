@@ -61,7 +61,7 @@ const ProjectsContainer = () => {
     };
 
     return (
-        <div className={`${mainStyles.panel}`}>
+        <div className={`${mainStyles.panel} ${styles.panel}`}>
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
 
             <Row className={containerstyles.container}>
