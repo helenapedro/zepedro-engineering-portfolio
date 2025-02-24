@@ -3,7 +3,6 @@
 .title h1,
 h5 {
   color: var(--color-primary);
-  font-family: var(--font-family-primary);
   font-size: 1.2em;
   margin-bottom: 20px;
   text-align: center;
@@ -18,14 +17,31 @@ h5 {
   line-height: normal;
 }
 
+.category {
+  color: var(--color-primary);
+}
+
 .organization,
 .place {
   color: var(--color-text);
+}
+
+.organization,
+.place,
+.category {
   display: block;
-  font-family: var(--font-family-primary);
   font-size: 1em;
   margin: 10px 0;
   opacity: 2;
+  text-transform: capitalize;
+}
+
+.title h1,
+h5,
+.organization,
+.place,
+.category {
+  font-family: var(--font-family-primary);
 }
 
 .organization a,
@@ -40,6 +56,11 @@ h5 {
   font-size: 0.7em;
   margin: 10px 0;
   opacity: 0.5;
+}
+
+.icon {
+  margin-right: 5px;
+  color: var(--color-primary);
 }
 
 .organization a:hover,

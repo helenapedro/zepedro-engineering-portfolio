@@ -52,6 +52,11 @@ const ProjectsContainer = () => {
 
     const closeModal = () => setShowModal(false);
 
+    const getCategoryName = (categoryId) => {
+        const category = categories.find((cat) => cat.id === categoryId);
+        return category ? category.name : 'Unknown Category';
+    };
+
     return (
         <div className={`${mainStyles.panel}`}>
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
@@ -80,10 +85,13 @@ const ProjectsContainer = () => {
                                 <h5 className={`${prodetailsstyles.title} number mb-0`}>{project.title}</h5>
                                 <Card.Subtitle className={`${prodetailsstyles.subtitle}`}>
                                     <div className={prodetailsstyles.organization}>
-                                        <iconsfa.FaBuilding className={`${prodetailsstyles.icon}`} /> {project.organization}
+                                        <iconsfa.FaBuilding className={`${prodetailsstyles.icon}`} /> {project.organization} <span className={`${prodetailsstyles.year} number`}><iconsfa.FaCalendarAlt className={`${prodetailsstyles.icon}`} /> {project.endYear}</span>
                                     </div>
                                     <div className={`${prodetailsstyles.place}`}>
-                                        <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> {project.projectPlace?.address}, {project.projectPlace?.province}, {project.projectPlace?.country} <span className={`${prodetailsstyles.year} number`}><iconsfa.FaCalendarAlt className={`${prodetailsstyles.icon}`} /> {project.endYear}</span>
+                                        <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> {project.projectPlace?.address}, {project.projectPlace?.province}, {project.projectPlace?.country}
+                                    </div>
+                                    <div className={prodetailsstyles.category}>
+                                        <iconsfa.FaTags className={prodetailsstyles.icon} /> {getCategoryName(project.categoryId)}
                                     </div>
                                 </Card.Subtitle>
                             </Card.Header>
