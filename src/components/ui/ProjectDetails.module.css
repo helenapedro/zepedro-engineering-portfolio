@@ -50,6 +50,11 @@ h5,
   text-decoration: none;
 }
 
+.dropdown {
+  font-family: var(--font-family-numbers);
+  font-size: 1em;
+}
+
 .subtitle {
   color: #666;
   display: block;

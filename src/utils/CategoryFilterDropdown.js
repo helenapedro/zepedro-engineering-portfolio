@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, DropdownButton } from "react-bootstrap";
+import styles from "../components/ui/ProjectDetails.module.css";
 
 const CategoryFilterDropdown = ({
   categories,
@@ -14,7 +15,7 @@ const CategoryFilterDropdown = ({
         selectedCategories.length > 0 ? `(${selectedCategories.length})` : ""
       }`}
       variant="outline-primary"
-      className={`mb-4`}
+      className={`mb-8`}
     >
       <div
         style={{
@@ -35,7 +36,7 @@ const CategoryFilterDropdown = ({
               label={`${category.name} (${projectCount})`}
               onChange={() => onCategoryChange(category.id)}
               checked={selectedCategories.includes(category.id)}
-              className="mb-2"
+              className={`${styles.dropdown} mb-6`}
             />
           );
         })}
