@@ -1,5 +1,5 @@
 import React from 'react';
-import useData from '../Hooks/useData';
+import useData from '../../Hooks/useData';
 import styles from '../../styles/About.module.css';
 import { wrapNumbersWithClass } from './../../utils/WrapNumbers';
 import { Row, Col, Container } from 'react-bootstrap';
@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const About = () => {
   const collectionName = 'biograph';
-  const { data, loading, error } = useData(collectionName); 
+  const { data, loading, error } = useData(collectionName);
 
   const renderPanel1 = (data, index) => (
     <Container className={styles.panel} key={index}>
@@ -20,10 +20,10 @@ const About = () => {
             )}
             <h1 className={styles.name}>{data.name}</h1>
             <h5 className={`${styles['subtitle']} card-subtitle mb-1`}>{data.title}</h5>
-            <a 
-              href={data.titleLink} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={data.titleLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-secondary"
             >
               OEA Member Card

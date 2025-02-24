@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import * as iconsfa from 'react-icons/fa';
 import { Card, Button, Row, Col, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import * as iconsfa from 'react-icons/fa';
+import ProjectCarousel from '../../components/Project/ProjectCarousel';
 import mainStyles from '../../components/Main.module.css';
 import OwnerIntroduction from '../Home/OwnerIntroduction';
-import useData from './../Hooks/useData';
-import useHomeData from './../Hooks/homeData';
+import useData from './../../Hooks/useData';
+import useHomeData from './../../Hooks/homeData';
 import renderPagination from './../../utils/Pagination/renderPagination';
 import handlePageChange from './../../utils/handlePageChange';
 import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import styles from './ProjectContainer.module.css';
-import imagestyles from '../../components/ui/Image.module.css'
-import iconstyles from '../../components/ui/Icon.module.css'
-import prodetailsstyles from '../../components/ui/ProjectDetails.module.css'
+import prodetailsstyles from '../../components/ui/ProjectDetails.module.css';
 
 const ProjectsContainer = () => {
     const { data: projects, loading: projectsLoading, error: projectsError } = useData('projects');
@@ -56,20 +52,6 @@ const ProjectsContainer = () => {
 
     const closeModal = () => setShowModal(false);
 
-    // Left Arrow Component
-    const PrevArrow = ({ onClick }) => (
-        <div className={imagestyles.customArrow} style={{ left: '10px' }} onClick={onClick}>
-            <iconsfa.FaChevronLeft size={24} />
-        </div>
-    );
-
-    // Right Arrow Component
-    const NextArrow = ({ onClick }) => (
-        <div className={imagestyles.customArrow} style={{ right: '10px' }} onClick={onClick}>
-            <iconsfa.FaChevronRight size={24} />
-        </div>
-    );
-
     return (
         <div className={`${mainStyles.panel}`}>
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
@@ -98,37 +80,20 @@ const ProjectsContainer = () => {
                                 <h5 className={`${prodetailsstyles.title} number mb-0`}>{project.title}</h5>
                                 <Card.Subtitle className={`${prodetailsstyles.subtitle}`}>
                                     <div className={prodetailsstyles.organization}>
-                                        <iconsfa.FaBuilding className={`${iconstyles.icon}`} /> {project.organization}
+                                        <iconsfa.FaBuilding className={`${prodetailsstyles.icon}`} /> {project.organization}
                                     </div>
                                     <div className={`${prodetailsstyles.place}`}>
-                                        <iconsfa.FaMapMarkerAlt className={iconstyles.icon} /> {project.projectPlace?.address}, {project.projectPlace?.province}, {project.projectPlace?.country}  <span className={`${prodetailsstyles.year} number`}> <iconsfa.FaCalendarAlt className={`${iconstyles.icon}`} /> {project.endYear} </span>
+                                        <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> {project.projectPlace?.address}, {project.projectPlace?.province}, {project.projectPlace?.country} <span className={`${prodetailsstyles.year} number`}><iconsfa.FaCalendarAlt className={`${prodetailsstyles.icon}`} /> {project.endYear}</span>
                                     </div>
                                 </Card.Subtitle>
-
                             </Card.Header>
+
                             {project.images && project.images.length > 0 && (
-                                <Slider
-                                    dots={true}
-                                    infinite={false}  // User-controlled navigation
-                                    speed={500}
-                                    slidesToShow={1}
-                                    slidesToScroll={1}
-                                    autoplay={false}  // No autoplay
-                                    prevArrow={<PrevArrow />}
-                                    nextArrow={<NextArrow />}
-                                    className={imagestyles.imageCarousel}
-                                >
-                                    {project.images.map((image, index) => (
-                                        <div key={index} onClick={() => openModal(image)}>
-                                            <img
-                                                src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
-                                                alt={`${project.title} image ${index + 1}`}
-                                                className={`${imagestyles.imageContainer}`}
-                                                style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
-                                            />
-                                        </div>
-                                    ))}
-                                </Slider>
+                                <ProjectCarousel
+                                    images={project.images}
+                                    title={project.title}
+                                    onImageClick={openModal}
+                                />
                             )}
 
                             <Card.Body>
@@ -153,7 +118,6 @@ const ProjectsContainer = () => {
                 )}
             </div>
 
-            {/* Modal for Image Preview */}
             <Modal show={showModal} onHide={closeModal} centered>
                 <Modal.Body>
                     <img src={modalImage} alt="Project" className="img-fluid" />

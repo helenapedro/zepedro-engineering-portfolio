@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import * as iconsfa from 'react-icons/fa';
-import imagestyles from '../ui/Image.module.css';
+import imagestyles from '../../components/ui/Image.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -38,7 +38,7 @@ const ProjectCarousel = ({ images, title, onImageClick }) => {
                          <div key={index} onClick={() => onImageClick(image)}>
                               <img
                                    src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
-                                   alt={`${title} image ${index + 1}`}
+                                   alt={`${title} ${index + 1}`}
                                    className={imagestyles.imageContainer}
                                    style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
                               />
@@ -48,22 +48,6 @@ const ProjectCarousel = ({ images, title, onImageClick }) => {
 
                <div className={imagestyles.slideCounter}>
                     {activeSlide + 1} / {images.length}
-               </div>
-
-               <div className={imagestyles.thumbnailContainer}>
-                    {images.map((image, index) => (
-                         <div
-                              key={index}
-                              className={`${imagestyles.thumbnail} ${index === activeSlide ? imagestyles.activeThumbnail : ''}`}
-                              onClick={() => setActiveSlide(index)}
-                         >
-                              <img
-                                   src={image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`}
-                                   alt={`Thumbnail ${index + 1}`}
-                                   style={{ width: '60px', height: '40px', objectFit: 'cover' }}
-                              />
-                         </div>
-                    ))}
                </div>
           </div>
      );

@@ -1,12 +1,12 @@
 import React from 'react';
-import useData from '../../pages/Hooks/useData';
+import useData from '../../Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './Academic.module.css';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 
 const Education = () => {
     const collectionName = 'education';
-    const { data, loading, error } = useData(collectionName); 
+    const { data, loading, error } = useData(collectionName);
 
     const renderHeader = (data) => (
         <header className={styles.header}>
@@ -35,11 +35,11 @@ const Education = () => {
                         </a>
                     </div>
                 );
-            })} 
+            })}
         </div>
     )
-   
-    return ( 
+
+    return (
         <div className={EducationStyles.education}>
             {loading && <p>Loading...</p>}
             {error && <p>Error loading data.</p>}
@@ -48,7 +48,7 @@ const Education = () => {
                     <article className={EducationStyles.panel} key={index}>
                         {renderHeader(data)}
                         {renderImages(data)}
-                    </article> 
+                    </article>
                 ))
             )}
         </div>

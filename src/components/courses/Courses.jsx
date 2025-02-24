@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useData from '../../pages/Hooks/useData';
+import useData from '../../Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './METraining.module.css';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';

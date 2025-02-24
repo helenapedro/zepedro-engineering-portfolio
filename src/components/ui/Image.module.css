@@ -61,6 +61,10 @@
   position: relative;
 }
 
+.imageCarousel img {
+  border-radius: 10px;
+}
+
 .customArrow {
   position: absolute;
   top: 50%;
@@ -78,6 +82,7 @@
   background-color: rgba(255, 255, 255, 1);
 }
 
+/* modal */
 .modalImage {
   width: 100%;
   height: auto;
@@ -93,7 +98,15 @@
   text-align: center;
 }
 
-/* Slide Counter */
+/* Slide */
+.slide {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
 .slideCounter {
   text-align: center;
   margin: 10px 0;

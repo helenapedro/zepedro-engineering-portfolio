@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
-import db from '../../firebase';
+import { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import db from "../firebase";
 
 const useHomeData = (collectionName, docName) => {
   const [data, setData] = useState(null);
@@ -16,7 +16,7 @@ const useHomeData = (collectionName, docName) => {
         if (docSnap.exists()) {
           setData(docSnap.data());
         } else {
-          setError('No such document!');
+          setError("No such document!");
         }
         setLoading(false);
       } catch (err) {

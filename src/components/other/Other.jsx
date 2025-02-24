@@ -1,5 +1,5 @@
 import React from 'react';
-import useData from '../../pages/Hooks/useData';
+import useData from '../../Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './OtherDocs.module.css';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
@@ -8,9 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Other = () => {
     const collectionName = 'certificates';
-    const { data, loading, error } = useData(collectionName); 
+    const { data, loading, error } = useData(collectionName);
 
-    const renderImagesWithTitles = (data, index) =>(
+    const renderImagesWithTitles = (data, index) => (
         data.images.map((image, imgIndex) => {
             const imageUrl = `${image}`;
             return (
@@ -28,7 +28,7 @@ const Other = () => {
 
     const renderTitleOnly = (data) => (
         <div className={styles.title}>
-          <p className={styles.title}>{data.title}</p>
+            <p className={styles.title}>{data.title}</p>
         </div>
     );
 
