@@ -47,9 +47,11 @@ const ProjectsContainer = () => {
     const paginatedProjects = filteredProjects.slice(startIndex, startIndex + pageSize);
 
     const openModal = (image) => {
-        setModalImage(image);
+        const imageUrl = image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`;
+        setModalImage(imageUrl);
         setShowModal(true);
     };
+
 
     const closeModal = () => setShowModal(false);
 
