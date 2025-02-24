@@ -8,7 +8,7 @@
   min-height: 100vh;
   padding: 2em 0;
   transition: opacity 1s ease-in-out;
-  width: 60em;
+  width: 55em;
 }
 
 .is-preload .wrapper {
