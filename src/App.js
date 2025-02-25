@@ -7,7 +7,7 @@ import Wrapper from "./components/wrapper";
 import Main from "./components/main";
 import NavBar from "./pages/NavBar/NavBar";
 import ProjectsContainer from "./pages/projects/ProjectContainer";
-import ProjectDetails from "./components/ProjectDetails";
+import ProjectDetailsCard from "./components/ProjectDetailsCard";
 import Certificate from "./pages/Certificate/Certificate";
 import NotFound from "./pages/NotFound";
 import AboutContainer from "./pages/About/AboutContainer";
@@ -20,7 +20,7 @@ const App = () => {
         <Main>
           <Routes>
             <Route path="/" element={<ProjectsContainer />} />
-            <Route path="/projects/:id" element={<ProjectDetails />} />
+            <Route path="/projects/:id" element={<ProjectDetailsCard />} />
             <Route path="/education" element={<Certificate />} />
             <Route path="/about" element={<AboutContainer />} />
             <Route path="*" element={<NotFound />} />

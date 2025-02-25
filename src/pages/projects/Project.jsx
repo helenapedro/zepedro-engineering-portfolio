@@ -121,7 +121,6 @@ const Project = ({
             </div>
           </section>
         )}
-
       </article>
 
       {/* Modal for displaying images */}

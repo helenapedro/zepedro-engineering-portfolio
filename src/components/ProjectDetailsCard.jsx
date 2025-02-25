@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import useData from '../Hooks/useData';
 import LoadingError from './comon/LoadingError';
 import styles from '../pages/projects/Project.module.css';
-import Project from '../pages/projects/Project';
+import ProjectDetails from './Project/ProjectDetails';
 
-const ProjectDetails = () => {
+const ProjectDetailsCard = () => {
   const { id } = useParams();
   const { data, loading, error } = useData('projects', id);
 
@@ -13,7 +13,7 @@ const ProjectDetails = () => {
     <div className={`${styles.project} ${styles.panel}`}>
       <LoadingError loading={loading} error={error} />
       {!loading && !error && data && (
-        <Project
+        <ProjectDetails
           title={data.title}
           organization={data.organization}
           endYear={data.endYear}
@@ -28,4 +28,4 @@ const ProjectDetails = () => {
   );
 };
 
-export default ProjectDetails;
+export default ProjectDetailsCard;
