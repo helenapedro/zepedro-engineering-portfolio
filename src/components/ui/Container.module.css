@@ -15,3 +15,35 @@
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+
+.cardContainer {
+  align-items: center;
+  background-color: var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: var(--padding-container);
+  transition: var(--transition);
+}
+
+.cardContainer:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.panel {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

@@ -9,6 +9,11 @@
   --color-subtitle: #666;
   --color-text: #050505;
   --color-linear-gradient: linear-gradient(to right, #f8f9fa, #8d9ea28d);
+  --color-cardheader-bg: linear-gradient(
+    to right,
+    rgba(59, 130, 246, 0.1),
+    rgba(139, 92, 246, 0.1)
+  );
 
   /* Border */
   --border-radius: 30px;

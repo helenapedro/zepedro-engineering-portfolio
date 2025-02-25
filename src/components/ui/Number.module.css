@@ -1,7 +1,16 @@
 @import "../../vars.css";
 
 .number {
-  font-weight: bold;
   color: var(--color-secondary);
+  font-weight: bold;
+}
+
+.proDetailsNumber {
+  color: var(--color-primary);
+  font-size: 0.9em;
+}
+
+.number,
+.proDetailsNumber {
   font-family: var(--font-family-numbers);
 }
