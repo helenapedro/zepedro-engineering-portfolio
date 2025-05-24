@@ -47,7 +47,7 @@ const ProjectDetails = ({
 
 
      const resolveUrl = (url) => {
-          const baseUrl = 'https://dh09x5tu10bt3.cloudfront.net/';
+          const baseUrl = process.env.REACT_APP_CDN_BASE_URL;
           return url.startsWith('http') ? url : `${baseUrl}${url}`;
      };
 
