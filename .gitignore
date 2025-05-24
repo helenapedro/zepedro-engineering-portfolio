@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+build/
 
 # misc
 .DS_Store
@@ -22,3 +22,4 @@ yarn-error.log*
 
 /src/config
 
+/src/firebase.js
