@@ -82,7 +82,7 @@ const ProjectsContainer = () => {
                                         <iconsfa.FaBuilding className={`${prodetailsstyles.icon}`} /> {project.organization} <span className={`${prodetailsstyles.year} number`}><iconsfa.FaCalendarAlt className={`${prodetailsstyles.icon}`} /> {project.endYear}</span>
                                     </div>
                                     <div className={`${prodetailsstyles.place}`}>
-                                        <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> {project.projectPlace?.address}, {project.projectPlace?.province}, {project.projectPlace?.country}
+                                        <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> {project.placeandyear}
                                     </div>
                                     <div className={prodetailsstyles.category}>
                                         <iconsfa.FaTags className={prodetailsstyles.icon} /> {getCategoryName(project.categoryId)}
@@ -90,9 +90,9 @@ const ProjectsContainer = () => {
                                 </Card.Subtitle>
                             </Card.Header>
 
-                            {project.images && project.images.length > 0 && (
+                            {project.imageRefs && project.imageRefs.length > 0 && (
                                 <ProjectCarousel
-                                    images={project.images}
+                                    images={project.imageRefs}
                                     title={project.title}
                                     onImageClick={openModal}
                                 />

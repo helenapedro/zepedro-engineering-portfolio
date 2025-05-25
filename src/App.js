@@ -7,7 +7,7 @@ import Wrapper from "./components/wrapper";
 import Main from "./components/main";
 import NavBar from "./pages/NavBar/NavBar";
 import ProjectsContainer from "./pages/projects/ProjectContainer";
-import ProjectDetailsCard from "./components/ProjectDetailsCard";
+import ProjectDetailsCard from "./components/Project/ProjectDetailsCard";
 import Certificate from "./pages/Certificate/Certificate";
 import NotFound from "./pages/NotFound";
 import AboutContainer from "./pages/About/AboutContainer";

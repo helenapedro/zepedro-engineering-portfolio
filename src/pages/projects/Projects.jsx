@@ -24,10 +24,10 @@ const Projects = () => {
       {!loading && !error && (
         <div>
           {renderPagination(
-            data.length, 
-            pageSize, 
-            currentPage, 
-            handlePageChangeWrapper, 
+            data.length,
+            pageSize,
+            currentPage,
+            handlePageChangeWrapper,
             styles.paginationContainer
           )}
           {paginatedProjects.map((project) => (
@@ -37,9 +37,9 @@ const Projects = () => {
                   title={project.title}
                   organization={project.organization}
                   placeandyear={project.placeandyear}
-                  summaryHeader={project.summaryHeader}
+                  description={project.description}
                   activities={project.activities}
-                  projectOutcome={project.projectOutcome}
+                  finalDescription={project.finalDescription}
                   images={project.images}
                 />
               </Link>
@@ -47,10 +47,10 @@ const Projects = () => {
             </div>
           ))}
           {renderPagination(
-            data.length, 
-            pageSize, 
-            currentPage, 
-            handlePageChangeWrapper, 
+            data.length,
+            pageSize,
+            currentPage,
+            handlePageChangeWrapper,
             styles.paginationContainer
           )}
         </div>

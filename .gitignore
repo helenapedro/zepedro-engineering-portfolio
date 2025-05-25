@@ -21,6 +21,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/src/config
+/src/config.jsx
 
 /src/firebase.js
+/src/assets/
+
+/src/App.test.js
+/src/App.css
+/src/index.css
+/src/rows.css

@@ -10,19 +10,18 @@ import imagestyles from '../../components/ui/Image.module.css';
 const Project = ({
   title,
   organization,
-  endYear,
-  projectPlace,
-  summaryHeader,
+  placeandyear,
+  description,
   activities = [],
-  projectOutcome = '',
-  images = []
+  finalDescription = '',
+  imageRefs = []
 }) => {
   const wrappedProject = wrapProjectFields({
     title,
-    endYear,
-    summaryHeader,
-    activities,
-    projectOutcome
+    organization,
+    placeandyear,
+    description,
+    finalDescription
   }, styles.number);
 
   // State for modal visibility and selected image
@@ -43,7 +42,7 @@ const Project = ({
 
 
   const resolveUrl = (url) => {
-    const baseUrl = 'https://dh09x5tu10bt3.cloudfront.net/';
+    const baseUrl = process.env.REACT_APP_CDN_BASE_URL;
     return url.startsWith('http') ? url : `${baseUrl}${url}`;
   };
 
@@ -61,10 +60,7 @@ const Project = ({
               <FaBuilding className={styles.icon} /> {organization}
             </p>
             <p className={`${styles.placeandyear} number`}>
-              <FaMapMarkerAlt className={styles.icon} /> {projectPlace.address}, {projectPlace.province}, {projectPlace.country}
-              <span className={styles.endYear}>
-                <FaCalendarAlt className={`${styles.icon} ${styles.marginLeft}`} /> {endYear}
-              </span>
+              <FaMapMarkerAlt className={styles.icon} /> {projectPlace}
             </p>
 
           </div>
@@ -73,7 +69,7 @@ const Project = ({
 
 
 
-        <p className={styles.projectdescription}><b>{wrappedProject.summaryHeader}</b></p>
+        <p className={styles.projectdescription}><b>{wrappedProject.description}</b></p>
         {Array.isArray(activities) && activities.length > 0 && (
           activities.map((activitySection, sectionIndex) => (
             <div key={sectionIndex}>
@@ -99,12 +95,12 @@ const Project = ({
           ))
         )}
         <p className={styles.projectdescription}>
-          <b>{wrappedProject.projectOutcome}</b>
+          <b>{wrappedProject.finalDescription}</b>
         </p>
-        {Array.isArray(images) && images.length > 0 && (
+        {Array.isArray(imageRefs) && imageRefs.length > 0 && (
           <section aria-label="Project images">
             <div className={imagestyles.row}>
-              {images.map((image, imgIndex) => {
+              {imageRefs.map((image, imgIndex) => {
                 const imageUrl = resolveUrl(image);
                 return (
                   <div className={imagestyles.imageContainer} key={imgIndex}>
@@ -144,13 +140,8 @@ const Project = ({
 Project.propTypes = {
   title: PropTypes.string.isRequired,
   organization: PropTypes.string.isRequired,
-  endYear: PropTypes.number,
-  projectPlace: PropTypes.shape({
-    address: PropTypes.string,
-    province: PropTypes.string,
-    country: PropTypes.string
-  }),
-  summaryHeader: PropTypes.string.isRequired,
+  placeandyear: PropTypes.string,
+  description: PropTypes.string.isRequired,
   activities: PropTypes.arrayOf(
     PropTypes.oneOfType([
       PropTypes.string,
@@ -160,8 +151,8 @@ Project.propTypes = {
       })
     ])
   ),
-  projectOutcome: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.string)
+  finalDescription: PropTypes.string,
+  imageRefs: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default Project;

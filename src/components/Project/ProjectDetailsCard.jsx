@@ -1,9 +1,8 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import useData from '../Hooks/useData';
-import LoadingError from './comon/LoadingError';
-import styles from '../pages/projects/Project.module.css';
-import ProjectDetails from './Project/ProjectDetails';
+import styles from '../../pages/projects/Project.module.css';
+import ProjectDetails from './ProjectDetails';
+import useData from '../../Hooks/useData';
+import LoadingError from './../comon/LoadingError';
 
 const ProjectDetailsCard = () => {
   const { id } = useParams();
@@ -16,12 +15,11 @@ const ProjectDetailsCard = () => {
         <ProjectDetails
           title={data.title}
           organization={data.organization}
-          endYear={data.endYear}
-          projectPlace={data.projectPlace}
-          summaryHeader={data.summaryHeader}
+          placeandyear={data.placeandyear}
+          description={data.description}
           activities={data.activities}
-          projectOutcome={data.projectOutcome}
-          images={data.images}
+          finalDescription={data.finalDescription}
+          imageRefs={data.imageRefs}
         />
       )}
     </div>

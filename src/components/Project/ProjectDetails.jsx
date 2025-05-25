@@ -14,19 +14,19 @@ import cardstyles from '../../components/ui/card.module.css';
 const ProjectDetails = ({
      title,
      organization,
-     endYear,
-     projectPlace,
-     summaryHeader,
+     placeandyear,
+     description,
      activities = [],
-     projectOutcome = '',
-     images = []
+     finalDescription = '',
+     imageRefs = []
 }) => {
      const wrappedProject = wrapProjectFields({
           title,
-          endYear,
-          summaryHeader,
+          organization,
+          placeandyear,
+          description,
           activities,
-          projectOutcome
+          finalDescription
      }, numberstyles.proDetailsNumber);
 
      // State for modal visibility and selected image
@@ -65,12 +65,12 @@ const ProjectDetails = ({
                                    </div>
 
                                    <div className={`${prodetailsstyles.place}`}>
-                                        <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> <b>{projectPlace?.address}, {projectPlace?.province}, {projectPlace?.country}</b>
+                                        <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> {placeandyear}
 
                                    </div>
                               </Card.Subtitle>
                          </CardHeader>
-                         <p className={`${styles.projectdescription} number`}><b>{wrappedProject.summaryHeader}</b></p>
+                         <p className={`${styles.projectdescription} number`}><b>{wrappedProject.description}</b></p>
                          {Array.isArray(activities) && activities.length > 0 && (
                               activities.map((activitySection, sectionIndex) => (
                                    <div key={sectionIndex}>
@@ -98,10 +98,10 @@ const ProjectDetails = ({
                          <p className={styles.projectdescription}>
                               <b>{wrappedProject.projectOutcome}</b>
                          </p>
-                         {Array.isArray(images) && images.length > 0 && (
+                         {Array.isArray(imageRefs) && imageRefs.length > 0 && (
                               <section aria-label="Project images">
                                    <div className={imagestyles.row}>
-                                        {images.map((image, imgIndex) => {
+                                        {imageRefs.map((image, imgIndex) => {
                                              const imageUrl = resolveUrl(image);
                                              return (
                                                   <div className={imagestyles.imageContainer} key={imgIndex}>
@@ -141,13 +141,8 @@ const ProjectDetails = ({
 ProjectDetails.propTypes = {
      title: PropTypes.string.isRequired,
      organization: PropTypes.string.isRequired,
-     endYear: PropTypes.number,
-     projectPlace: PropTypes.shape({
-          address: PropTypes.string,
-          province: PropTypes.string,
-          country: PropTypes.string
-     }),
-     summaryHeader: PropTypes.string.isRequired,
+     placeandyear: PropTypes.string,
+     description: PropTypes.string.isRequired,
      activities: PropTypes.arrayOf(
           PropTypes.oneOfType([
                PropTypes.string,
@@ -158,7 +153,7 @@ ProjectDetails.propTypes = {
           ])
      ),
      projectOutcome: PropTypes.string,
-     images: PropTypes.arrayOf(PropTypes.string)
+     imageRefs: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default ProjectDetails;
