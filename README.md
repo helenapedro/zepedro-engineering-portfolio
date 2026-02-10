@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+# ZéPedro Engineering Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio web app built with React.
 
-## Available Scripts
+This project displays projects, profile information, skills, and education content in a single-page application with client-side routing. Data is loaded directly from Firebase Firestore, and some static assets/documents are referenced from CloudFront and S3 URLs configured in the app.
 
-In the project directory, you can run:
+## What this project does
 
-### `npm start`
+- Shows a project list on the home route (`/`).
+- Allows opening a project details page (`/projects/:id`).
+- Provides category filtering and pagination on the projects list.
+- Shows additional pages for education (`/education`) and about (`/about`).
+- Displays image carousels and modal previews for project images.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech stack used in this repository
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React 18
+- React Router
+- Firebase Firestore (client SDK)
+- React Bootstrap + CSS modules
+- react-slick (project image carousel)
 
-### `npm test`
+## Project structure (high level)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `src/App.js` — app routes and top-level layout.
+- `src/pages/projects/ProjectContainer.jsx` — project list, filters, pagination, modal.
+- `src/components/Project/ProjectDetailsCard.jsx` — project details loader/view.
+- `src/Hooks/useData.js` — generic Firestore fetch hook used across views.
+- `src/components/Skills/SkillsTable.jsx` — skills table loaded from Firestore.
+- `src/config.jsx` — configured URLs (including CloudFront/S3 links).
 
-### `npm run build`
+## Data and infrastructure currently referenced
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Firestore collections are queried directly from the frontend.
+- Resume/document URL points to S3.
+- Project media base URL references CloudFront.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Local development
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Requirements
 
-### `npm run eject`
+- Node.js `20.x`
+- npm
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Run in development
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run dev
+```
 
-## Learn More
+### Build for production
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Serve production build
 
-### Code Splitting
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Environment variables
 
-### Analyzing the Bundle Size
+Create `.env.local`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+REACT_APP_BASE_URL=http://localhost:3000/
+```
 
-### Making a Progressive Web App
+If your local setup uses Firebase config from env, also define the Firebase web config variables expected by your local `firebase` initialization file.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Firebase emulator (optional)
 
-### Advanced Configuration
+If you have Firebase CLI and emulator config in your local setup:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+firebase emulators:start
+```
 
-### Deployment
+Typical ports:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Emulator UI: `4000`
+- Auth emulator: `9099`
+- Firestore emulator: `8080`
 
-### `npm run build` fails to minify
+## Notes about current repository state
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- This repo imports a local `firebase` module from multiple files; ensure your local project includes that file/config.
+- In this container snapshot, `npm run build` fails because `public/index.html` is missing.
+
+## License
+
+No license file is currently included.
