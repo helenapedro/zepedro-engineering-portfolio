@@ -60,6 +60,7 @@ Firestore/JSON reads are handled by reusable hooks and utilities:
 - `src/Hooks/homeData.js`
 - `src/Hooks/useProjectDevData.jsx`
 - `src/Hooks/fetchProjectsByCategory.js`
+- `src/Hooks/useProjectsServer.js`
 
 Caching is implemented in `src/utils/cacheStore.js` with:
 
@@ -68,6 +69,23 @@ Caching is implemented in `src/utils/cacheStore.js` with:
 - TTL-based expiration (`DEFAULT_CACHE_TTL_MS`, currently 1 hour).
 - Memory-first lookup with persistent fallback.
 - Fail-open behavior if browser storage is unavailable (app continues using memory cache).
+
+## Projects Query Strategy
+
+The projects listing (`src/pages/projects/ProjectContainer.jsx`) uses server-side querying:
+
+- Category filtering is executed in Firestore (`where('categoryId', 'in', [...])`).
+- Pagination is cursor-based (`orderBy(documentId()) + startAfter(...) + limit(pageSize)`).
+- Total matching rows are retrieved with `getCountFromServer(...)`.
+- Category counters in the filter dropdown are fetched with Firestore count queries.
+
+This avoids loading the entire `projects` collection into the browser and scales better as data grows.
+
+## Firestore Notes
+
+- Firestore `in` filters support up to 10 values. The app enforces this limit for selected categories.
+- Depending on your Firestore project settings, an index may be requested at runtime. If prompted, create it using the link from the Firestore error message.
+- Ensure Firestore rules allow read queries on `projects` and `category` for these filtered/count operations.
 
 ## Notes
 
