@@ -1,32 +1,9 @@
 .icon {
-  text-decoration: none;
-  position: relative;
-  text-decoration: none;
-}
-
-.icon:before {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
-  text-transform: none !important;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 400;
-}
-
-.solid:before {
-  font-weight: 900;
-}
-
-.brands:before {
-  font-family: "Font Awesome 5 Brands";
-}
-
-.icon:before {
-  line-height: inherit;
+  color: inherit;
 }
 
 .icon > .label {

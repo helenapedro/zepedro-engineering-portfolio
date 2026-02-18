@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPortrait, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { FaGraduationCap, FaHome, FaLinkedin, FaPortrait } from 'react-icons/fa';
 import styles from "./NavBar.module.css";
 import iconStyles from '../../styles/Icons.module.css';
 
@@ -18,15 +17,15 @@ const NavBar = () => {
       <div className={menuOpen ? styles.active : ''} onClick={toggleMenu}></div>
       <div className={`${styles.menu} ${menuOpen ? styles.show : ''}`}>
         <Link to="/" className={location.pathname === '/' ? styles.active : ''} onClick={toggleMenu}>
-          <FontAwesomeIcon icon="house" className={`${iconStyles.icon} ${iconStyles.solid} fas fa-house`} />
+          <FaHome className={iconStyles.icon} />
           <span>Home</span>
         </Link>
         <Link to="/education" className={location.pathname === '/education' ? styles.active : ''} onClick={toggleMenu}>
-          <FontAwesomeIcon icon={faGraduationCap} className={`${iconStyles.icon} ${iconStyles.solid} fas fa-certificate`} />
+          <FaGraduationCap className={iconStyles.icon} />
           <span>Education</span>
         </Link>
         <Link to="/about" className={location.pathname === '/about' ? styles.active : ''} onClick={toggleMenu}>
-          <FontAwesomeIcon icon={faPortrait} className={`${iconStyles.icon} ${iconStyles.solid}`} />
+          <FaPortrait className={iconStyles.icon} />
           <span>About</span>
         </Link>
         <a 
@@ -34,7 +33,7 @@ const NavBar = () => {
           target="_blank" 
           rel="noreferrer"
           onClick={toggleMenu}>
-          <FontAwesomeIcon icon={['fab', 'linkedin']} className={`${iconStyles.icon} ${iconStyles.brands} fab fa-linkedin`} />
+          <FaLinkedin className={iconStyles.icon} />
           <span>LinkedIn</span>
         </a>
       </div>
