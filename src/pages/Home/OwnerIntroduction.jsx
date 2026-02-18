@@ -42,8 +42,8 @@ const OwnerIntroduction = ({ ownerData }) => {
                             <Link to="/about" className={`${herostyles.name}`}>
                                 ZéPedro
                             </Link>
-                            , an experienced Construction Engineer with over{' '}
-                            <strong className={`${herostyles.experienceYear} ${herostyles.colorTwo}`}>{ownerData.experienceYears}</strong> years in project
+                            , an experienced Construction Engineer with {' '}
+                            <strong className={`${herostyles.experienceYear} ${herostyles.colorTwo}`}>{ownerData.experienceYears}+</strong> years in project
                             management and {' '}
                             <strong className={`${herostyles.experienceYear} ${herostyles.colorTwo}`}>{ownerData.qhseExperienceYears}+</strong> year as Coordinator
                             of QHSE-Quality at{' '}

@@ -12,6 +12,7 @@ const useData = (collectionName, id = null, options = {}) => {
   const {
     ttlMs = DEFAULT_CACHE_TTL_MS,
     persist = true,
+    revalidate = true,
   } = options || {};
   const [data, setData] = useState(id ? null : []);
   const [loading, setLoading] = useState(true);
@@ -26,13 +27,15 @@ const useData = (collectionName, id = null, options = {}) => {
         : createCacheKey("collection", collectionName);
 
       const cached = getCachedValue(key, { persist });
-      if (cached !== null) {
+      const hasCached = cached !== null;
+      if (hasCached) {
         setData(cached);
         setLoading(false);
-        return;
       }
 
-      setLoading(true);
+      if (hasCached && !revalidate) return;
+
+      if (!hasCached) setLoading(true);
       setError(null);
 
       try {
@@ -63,9 +66,11 @@ const useData = (collectionName, id = null, options = {}) => {
       } catch (err) {
         if (!isMounted) return;
         console.error(`Error fetching ${collectionName}:`, err);
-        setError(err instanceof Error ? err : new Error(String(err)));
+        if (!hasCached) {
+          setError(err instanceof Error ? err : new Error(String(err)));
+        }
       } finally {
-        if (isMounted) setLoading(false);
+        if (isMounted && !hasCached) setLoading(false);
       }
     };
 
@@ -74,7 +79,7 @@ const useData = (collectionName, id = null, options = {}) => {
     return () => {
       isMounted = false;
     };
-  }, [collectionName, id, ttlMs, persist]);
+  }, [collectionName, id, ttlMs, persist, revalidate]);
 
   return { data, loading, error };
 };
