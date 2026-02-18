@@ -1,50 +1,87 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import useData from './../../Hooks/useData';
 import useHomeData from './../../Hooks/homeData';
+import useData from './../../Hooks/useData';
+import useProjectsServer from './../../Hooks/useProjectsServer';
 import * as iconsfa from 'react-icons/fa';
 import ProjectCarousel from '../../components/Project/ProjectCarousel';
 import OwnerIntroduction from '../Home/OwnerIntroduction';
 import renderPagination from './../../utils/Pagination/renderPagination';
-import handlePageChange from './../../utils/handlePageChange';
 import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
 import styles from './ProjectContainer.module.css';
 import mainStyles from '../../components/Main.module.css';
 import containerstyles from '../../components/ui/Container.module.css';
 import prodetailsstyles from '../../components/ui/ProjectDetails.module.css';
+import { collection, getCountFromServer, query, where } from 'firebase/firestore';
+import db from '../../firebase';
+import { createCacheKey, getOrFetchCached } from '../../utils/cacheStore';
 
 const ProjectsContainer = () => {
-    const { data: projects, loading: projectsLoading, error: projectsError } = useData('projects');
+    const {
+        projects,
+        totalCount,
+        loading: projectsLoading,
+        error: projectsError,
+        currentPage,
+        pageSize,
+        selectedCategories,
+        handlePageChange,
+        handleCategoryChange,
+    } = useProjectsServer({ pageSize: 8 });
     const { data: categories, loading: categoriesLoading, error: categoriesError } = useData('category');
     const { data: ownerData, loading: ownerLoading, error: ownerError } = useHomeData('home', 'homeInfo');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [selectedCategories, setSelectedCategories] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalImage, setModalImage] = useState('');
+    const [categoryCounts, setCategoryCounts] = useState({});
 
-    const pageSize = 8;
+    useEffect(() => {
+        let isMounted = true;
 
-    const handlePageChangeWrapper = (page) => handlePageChange(page, setCurrentPage);
+        const fetchCategoryCounts = async () => {
+            if (!categories.length) return;
+
+            try {
+                const entries = await Promise.all(
+                    categories.map(async (category) => {
+                        const key = createCacheKey('count', `projects:category:${category.id}`);
+                        const count = await getOrFetchCached({
+                            key,
+                            fetcher: async () => {
+                                const countQuery = query(
+                                    collection(db, 'projects'),
+                                    where('categoryId', '==', category.id)
+                                );
+                                const snapshot = await getCountFromServer(countQuery);
+                                return snapshot.data().count;
+                            },
+                        });
+
+                        return [category.id, count];
+                    })
+                );
+
+                if (isMounted) {
+                    setCategoryCounts(Object.fromEntries(entries));
+                }
+            } catch (error) {
+                if (isMounted) {
+                    setCategoryCounts({});
+                }
+            }
+        };
+
+        fetchCategoryCounts();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [categories]);
 
     if (projectsLoading || categoriesLoading || ownerLoading) return <p>Loading...</p>;
     if (projectsError) return <p>Error: {projectsError.message}</p>;
     if (categoriesError) return <p>Error: {categoriesError.message}</p>;
     if (ownerError) return <p>Error: {ownerError.message}</p>;
-
-    const handleCategoryChange = (categoryId) => {
-        setSelectedCategories((prev) =>
-            prev.includes(categoryId) ? prev.filter((id) => id !== categoryId) : [...prev, categoryId]
-        );
-        setCurrentPage(1);
-    };
-
-    const filteredProjects = selectedCategories.length
-        ? projects.filter((project) => selectedCategories.includes(project.categoryId))
-        : projects;
-
-    const startIndex = (currentPage - 1) * pageSize;
-    const paginatedProjects = filteredProjects.slice(startIndex, startIndex + pageSize);
 
     const openModal = (image) => {
         const imageUrl = image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`;
@@ -68,11 +105,11 @@ const ProjectsContainer = () => {
                 <CategoryFilterDropdown
                     categories={categories}
                     selectedCategories={selectedCategories}
-                    projects={projects}
+                    categoryCounts={categoryCounts}
                     onCategoryChange={handleCategoryChange}
                 />
 
-                {paginatedProjects.map((project) => (
+                {projects.map((project) => (
                     <Col key={project.id} md={6} style={{ marginBottom: '1rem' }}>
                         <Card className={`${styles.cardContainer} shadow-sm`}>
                             <Card.Header className={`${styles.cardHeader} text-center`}>
@@ -111,10 +148,10 @@ const ProjectsContainer = () => {
 
                 <div className={styles.pagination}>
                     {renderPagination(
-                        filteredProjects.length,
+                        totalCount,
                         pageSize,
                         currentPage,
-                        handlePageChangeWrapper,
+                        handlePageChange,
                         styles.paginationContainer
                     )}
                 </div>
