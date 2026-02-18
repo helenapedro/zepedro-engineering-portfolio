@@ -1,60 +1,75 @@
-# ZéPedro Engineering Portfolio
+# ZePedro React App
 
-A **React single-page application (SPA)** that showcases engineering projects, skills, and credentials using a serverless architecture: **Browser client -> Firebase (Firestore/Auth/Security Rules)** with CDN-hosted static assets.
+React single-page portfolio application that showcases projects, education, certificates, and profile information.
 
----
+## Tech Stack
 
-## Local Development
+- React 18 (`react-scripts`)
+- React Router v6
+- Firebase Firestore (client-side reads)
+- Bootstrap / React-Bootstrap
 
-## Prerequisites
+## Requirements
 
-- **Node.js:** `20.x`
+- Node.js `20.x`
 - npm (bundled with Node)
-- Firebase CLI (`npm i -g firebase-tools`) for emulator workflows
 
-## Install
+## Installation
 
 ```bash
 npm install
 ```
 
-## Run (dev server)
+## Available Scripts
 
-```bash
-npm run dev
-```
-
-## Production build
-
-```bash
-npm run build
-npm start
-```
-
----
+- `npm run dev`: starts the React development server.
+- `npm run build`: creates production build in `build/`.
+- `npm start`: serves the production build from `build/`.
+- `npm test`: runs tests.
+- `npm run clean`: removes `build/`.
 
 ## Environment Variables
 
-Create `.env.local` (do not commit secrets):
+Create `.env.local` in the project root:
 
 ```bash
-# App base URL used for static paths
 REACT_APP_BASE_URL=http://localhost:3000/
 
-# Firebase Web config (public client config, still keep out of source for hygiene)
 REACT_APP_FIREBASE_API_KEY=...
 REACT_APP_FIREBASE_AUTH_DOMAIN=...
 REACT_APP_FIREBASE_PROJECT_ID=...
 REACT_APP_FIREBASE_STORAGE_BUCKET=...
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=...
 REACT_APP_FIREBASE_APP_ID=...
+REACT_APP_FIREBASE_MEASUREMENT_ID=...
 ```
 
-> Note: Firebase web config is not a server secret, but keeping it in env variables improves environment portability and prevents accidental hardcoding.
+## App Routes
 
----
+- `/`: projects landing page
+- `/projects/:id`: project details
+- `/education`: certificates and education section
+- `/about`: about page
+- `*`: not found page
 
-## Credits
+## Data Layer and Caching
 
-Built and maintained by **Helena Pedro**.
-Project includes React ecosystem libraries and Firebase managed services.
+Firestore/JSON reads are handled by reusable hooks and utilities:
+
+- `src/Hooks/useData.js`
+- `src/Hooks/homeData.js`
+- `src/Hooks/useProjectDevData.jsx`
+- `src/Hooks/fetchProjectsByCategory.js`
+
+Caching is implemented in `src/utils/cacheStore.js` with:
+
+- In-memory cache for fast repeated reads during a session.
+- `localStorage` persistence for suitable cached values.
+- TTL-based expiration (`DEFAULT_CACHE_TTL_MS`, currently 1 hour).
+- Memory-first lookup with persistent fallback.
+- Fail-open behavior if browser storage is unavailable (app continues using memory cache).
+
+## Notes
+
+- This app uses Firebase Web config values in environment variables for portability.
+- `npm start` serves static production files; use `npm run dev` for local development iteration.
