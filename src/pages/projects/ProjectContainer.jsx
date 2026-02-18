@@ -17,6 +17,10 @@ import { collection, getCountFromServer, query, where } from 'firebase/firestore
 import db from '../../firebase';
 import { createCacheKey, getOrFetchCached } from '../../utils/cacheStore';
 
+const FEATURED_IMAGE_URL = 'https://zepedro.s3.us-east-2.amazonaws.com/media/TPA_Online.jpeg';
+const FEATURED_PROJECT_TITLE = 'Construction of 120 Social Apartments in Buco-Zau';
+const FEATURED_PROJECT_PATH = '/projects/construction-of-120-social-apartments-in-buco-zau';
+
 const ProjectsContainer = () => {
     const {
         projects,
@@ -100,6 +104,30 @@ const ProjectsContainer = () => {
     return (
         <div className={`${mainStyles.panel} ${styles.panel}`}>
             {ownerData && <OwnerIntroduction ownerData={ownerData} />}
+            <Card className={`${containerstyles.container} ${styles.featuredMediaCard}`}>
+                <Card.Body className="p-4">
+                    <Row className="align-items-center">
+                        <Col md={5} className="mb-3 mb-md-0">
+                            <img
+                                src={FEATURED_IMAGE_URL}
+                                alt="Engineer being interviewed on live TV about a flagship construction project"
+                                className={styles.featuredMediaImage}
+                            />
+                        </Col>
+                        <Col md={7}>
+                            <span className={styles.featuredMediaBadge}>As Featured on Live TV</span>
+                            <h4 className={styles.featuredMediaTitle}>Live TV Interview</h4>
+                            <p className={styles.featuredMediaText}>
+                                Discussion of project execution and impact for
+                                <strong> {FEATURED_PROJECT_TITLE}</strong>.
+                            </p>
+                            <Link to={FEATURED_PROJECT_PATH}>
+                                <Button variant="outline-primary">View Related Project</Button>
+                            </Link>
+                        </Col>
+                    </Row>
+                </Card.Body>
+            </Card>
 
             <Row className={containerstyles.container}>
                 <CategoryFilterDropdown
