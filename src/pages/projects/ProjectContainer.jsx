@@ -13,9 +13,10 @@ import styles from "./ProjectContainer.module.css";
 import mainStyles from "../../components/Main.module.css";
 import containerstyles from "../../components/ui/Container.module.css";
 
-const FEATURED_IMAGE_URL = "https://zepedro.s3.us-east-2.amazonaws.com/media/TPA_Online.jpeg";
 const FEATURED_PROJECT_TITLE = "Construction of 120 Social Apartments in Buco-Zau";
 const FEATURED_PROJECT_PATH = "/projects/construction-of-120-social-apartments-in-buco-zau";
+const FEATURED_VIDEO_URL = "https://www.tiktok.com/@tpaonline/video/7607846826837953800";
+const FEATURED_VIDEO_EMBED_URL = "https://drive.google.com/file/d/13DcdDBES0ICsrer3pWLAh4SfFrkg36uF/preview#t=58";
 
 const getCategoryName = (categories, categoryId) => {
   const category = categories.find((item) => item.id === categoryId);
@@ -69,9 +70,10 @@ const ProjectsContainer = () => {
       {ownerData && <OwnerIntroduction ownerData={ownerData} />}
 
       <FeaturedMediaCard
-        imageUrl={FEATURED_IMAGE_URL}
         projectTitle={FEATURED_PROJECT_TITLE}
         projectPath={FEATURED_PROJECT_PATH}
+        videoUrl={FEATURED_VIDEO_URL}
+        embedUrl={FEATURED_VIDEO_EMBED_URL}
       />
 
       <Row className={containerstyles.container}>

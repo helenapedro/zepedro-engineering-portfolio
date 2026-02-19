@@ -3,11 +3,16 @@ import useData from '../../Hooks/useData';
 import styles from '../../styles/About.module.css';
 import { wrapNumbersWithClass } from './../../utils/WrapNumbers';
 import { Row, Col, Container } from 'react-bootstrap';
+import { PROFILE } from '../../constants/profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const About = () => {
   const collectionName = 'biograph';
   const { data, loading, error } = useData(collectionName);
+  const resumeUrl = PROFILE.resumeUrl;
+  const resumeQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=10&data=${encodeURIComponent(
+    resumeUrl
+  )}`;
 
   const renderPanel1 = (data, index) => (
     <Container className={styles.panel} key={index}>
@@ -51,6 +56,27 @@ const About = () => {
       {data && Array.isArray(data) && (
         data.map((data, index) => renderPanel1(data, index))
       )}
+      <Container className={styles.panel}>
+        <section className={styles.resumeAccess} aria-labelledby="resume-access-title">
+          <h2 id="resume-access-title" className={styles.resumeAccessTitle}>Resume Access</h2>
+          <p className={styles.resumeAccessText}>Scan the QR code to open the engineer resume.</p>
+          <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className={styles.resumeQrLink}>
+            <img
+              src={resumeQrUrl}
+              alt="QR code to open engineer resume"
+              className={styles.resumeQrImage}
+            />
+          </a>
+          <a
+            href={resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            Open Resume
+          </a>
+        </section>
+      </Container>
     </div>
   );
 };

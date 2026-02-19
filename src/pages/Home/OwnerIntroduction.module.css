@@ -22,6 +22,7 @@
 
 .rightHeadline {
   color: #0f172a;
+  font-family: "eb_garamond_sc08_regular", sans-serif;
   font-size: 2rem;
   line-height: 1.25;
   margin: 0 0 0.85rem;
@@ -41,17 +42,8 @@
   padding: 1rem 1.1rem;
 }
 
-.summaryLabel {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #1d4ed8;
-  font-weight: 700;
-}
-
 .summaryText {
+  font-family: "eb_garamond_sc12_regular", sans-serif;
   font-size: 1.3rem;
   line-height: 1.5;
   margin-bottom: 0;

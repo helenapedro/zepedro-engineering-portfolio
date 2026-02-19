@@ -48,7 +48,6 @@ const OwnerIntroduction = ({ ownerData }) => {
               {wrapNumbersWithClass(headline, highlightClassName)}
             </h3>
             <div className={styles.summaryPanel}>
-              <span className={styles.summaryLabel}>Professional Snapshot</span>
               <Card.Text className={styles.summaryText}>
                 {wrapNumbersWithClass(oneLineSummary, highlightClassName)}
               </Card.Text>
