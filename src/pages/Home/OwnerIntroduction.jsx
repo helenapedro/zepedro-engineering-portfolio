@@ -48,7 +48,9 @@ const OwnerIntroduction = ({ ownerData }) => {
             <Card.Title as="h2" className={`${herostyles.fullName} fw-bold`}>
               {ownerName}
             </Card.Title>
-            <Card.Text className="mb-2">{headline}</Card.Text>
+            <Card.Text className="mb-2">
+              {wrapNumbersWithClass(headline, highlightClassName)}
+            </Card.Text>
 
             <div className="d-flex justify-content-center justify-content-md-center gap-2 overflow-auto">
               <StatusBadge Icon={FaEnvelope} href={`mailto:${email}`} />

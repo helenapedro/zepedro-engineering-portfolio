@@ -4,6 +4,7 @@ import { Card, Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as iconsfa from "react-icons/fa";
 import ProjectCarousel from "../../../components/Project/ProjectCarousel";
+import { wrapNumbersWithClass } from "../../../utils/WrapNumbers";
 import styles from "../ProjectContainer.module.css";
 import prodetailsstyles from "../../../components/ui/ProjectDetails.module.css";
 
@@ -20,7 +21,8 @@ const ProjectCard = ({ project, categoryName, onOpenImage }) => (
             </span>
           </div>
           <div className={prodetailsstyles.place}>
-            <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> {project.placeandyear}
+            <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} />{" "}
+            {wrapNumbersWithClass(project.placeandyear || "", "number")}
           </div>
           <div className={prodetailsstyles.category}>
             <iconsfa.FaTags className={prodetailsstyles.icon} /> {categoryName}

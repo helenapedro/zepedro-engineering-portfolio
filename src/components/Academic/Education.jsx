@@ -17,7 +17,7 @@ const Education = () => {
             <h6 className={styles.duration}>{wrapNumbersWithClass(data.duration, styles.number)}</h6>
             {data.tutorDescription && (
                 <b className={styles.tutordescription}>
-                    {data.tutorDescription}
+                    {wrapNumbersWithClass(data.tutorDescription, styles.number)}
                     <a href={data.tutorLink} target='_blank' rel='noopener noreferrer'> {data.tutorName}</a>
                 </b>
             )}

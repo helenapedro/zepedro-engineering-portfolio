@@ -33,8 +33,8 @@ const About = () => {
           <div className="col-md-6 order-2 order-md-1">
             <div className='card-body'>
               <section className={`${styles['card-text']}`}>
-                <p>{data.descriptionOne}</p>
-                <p>{data.descriptionTwo}</p>
+                <p>{wrapNumbersWithClass(data.descriptionOne, 'number')}</p>
+                <p>{wrapNumbersWithClass(data.descriptionTwo, 'number')}</p>
                 <p>{wrapNumbersWithClass(data.descriptionThree, 'number')}</p>
               </section>
             </div>

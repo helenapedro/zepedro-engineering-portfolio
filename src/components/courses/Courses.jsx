@@ -49,7 +49,7 @@ const Courses = () => {
         </Button>
         {showSummary && (
           <b className={EducationStyles.traineeSummary}>
-            {data.traineeSummary}
+            {wrapNumbersWithClass(data.traineeSummary, styles.number)}
           </b>
         )}
         <Row>
@@ -112,7 +112,7 @@ const Courses = () => {
                 </>
               ) : (
                 <div className='col-12-small'>
-                  <p className={styles.title}>{data.title}</p>
+                  <p className={styles.title}>{wrapNumbersWithClass(data.title, styles.number)}</p>
                 </div>
               )}
             </div>
