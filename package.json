@@ -26,7 +26,8 @@
     "build": "react-scripts build",
     "dev": "react-scripts start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "export:projects": "node scripts/export-projects.mjs"
   },
   "engines": {
     "node": "20.x"

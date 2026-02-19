@@ -1,203 +1,122 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Button, Row, Col, Modal } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import useHomeData from './../../Hooks/homeData';
-import useData from './../../Hooks/useData';
-import useProjectsServer from './../../Hooks/useProjectsServer';
-import * as iconsfa from 'react-icons/fa';
-import ProjectCarousel from '../../components/Project/ProjectCarousel';
-import OwnerIntroduction from '../Home/OwnerIntroduction';
-import renderPagination from './../../utils/Pagination/renderPagination';
-import CategoryFilterDropdown from '../../utils/CategoryFilterDropdown';
-import styles from './ProjectContainer.module.css';
-import mainStyles from '../../components/Main.module.css';
-import containerstyles from '../../components/ui/Container.module.css';
-import prodetailsstyles from '../../components/ui/ProjectDetails.module.css';
-import { collection, getCountFromServer, query, where } from 'firebase/firestore';
-import db from '../../firebase';
-import { createCacheKey, getOrFetchCached } from '../../utils/cacheStore';
+import React, { useMemo, useState } from "react";
+import { Button, Modal, Row } from "react-bootstrap";
+import useHomeData from "../../Hooks/homeData";
+import useData from "../../Hooks/useData";
+import useProjectsServer from "../../Hooks/useProjectsServer";
+import useCategoryCounts from "../../Hooks/useCategoryCounts";
+import OwnerIntroduction from "../Home/OwnerIntroduction";
+import renderPagination from "../../utils/Pagination/renderPagination";
+import CategoryFilterDropdown from "../../utils/CategoryFilterDropdown";
+import FeaturedMediaCard from "./components/FeaturedMediaCard";
+import ProjectCard from "./components/ProjectCard";
+import styles from "./ProjectContainer.module.css";
+import mainStyles from "../../components/Main.module.css";
+import containerstyles from "../../components/ui/Container.module.css";
 
-const FEATURED_IMAGE_URL = 'https://zepedro.s3.us-east-2.amazonaws.com/media/TPA_Online.jpeg';
-const FEATURED_PROJECT_TITLE = 'Construction of 120 Social Apartments in Buco-Zau';
-const FEATURED_PROJECT_PATH = '/projects/construction-of-120-social-apartments-in-buco-zau';
+const FEATURED_IMAGE_URL = "https://zepedro.s3.us-east-2.amazonaws.com/media/TPA_Online.jpeg";
+const FEATURED_PROJECT_TITLE = "Construction of 120 Social Apartments in Buco-Zau";
+const FEATURED_PROJECT_PATH = "/projects/construction-of-120-social-apartments-in-buco-zau";
+
+const getCategoryName = (categories, categoryId) => {
+  const category = categories.find((item) => item.id === categoryId);
+  return category ? category.name : "Unknown Category";
+};
 
 const ProjectsContainer = () => {
-    const {
-        projects,
-        totalCount,
-        loading: projectsLoading,
-        error: projectsError,
-        currentPage,
-        pageSize,
-        selectedCategories,
-        handlePageChange,
-        handleCategoryChange,
-    } = useProjectsServer({ pageSize: 8 });
-    const { data: categories, loading: categoriesLoading, error: categoriesError } = useData('category');
-    const { data: ownerData, loading: ownerLoading, error: ownerError } = useHomeData('home', 'homeInfo');
-    const [showModal, setShowModal] = useState(false);
-    const [modalImage, setModalImage] = useState('');
-    const [categoryCounts, setCategoryCounts] = useState({});
+  const {
+    projects,
+    totalCount,
+    loading: projectsLoading,
+    error: projectsError,
+    currentPage,
+    pageSize,
+    selectedCategories,
+    handlePageChange,
+    handleCategoryChange,
+  } = useProjectsServer({ pageSize: 8 });
+  const { data: categories, loading: categoriesLoading, error: categoriesError } = useData(
+    "category"
+  );
+  const { data: ownerData, loading: ownerLoading, error: ownerError } = useHomeData(
+    "home",
+    "homeInfo"
+  );
 
-    useEffect(() => {
-        let isMounted = true;
+  const [showModal, setShowModal] = useState(false);
+  const [modalImage, setModalImage] = useState("");
+  const categoryCounts = useCategoryCounts(categories);
 
-        const fetchCategoryCounts = async () => {
-            if (!categories.length) return;
+  const categoryNameMap = useMemo(
+    () => Object.fromEntries(categories.map((category) => [category.id, category.name])),
+    [categories]
+  );
 
-            try {
-                const entries = await Promise.all(
-                    categories.map(async (category) => {
-                        const key = createCacheKey('count', `projects:category:${category.id}`);
-                        const count = await getOrFetchCached({
-                            key,
-                            fetcher: async () => {
-                                const countQuery = query(
-                                    collection(db, 'projects'),
-                                    where('categoryId', '==', category.id)
-                                );
-                                const snapshot = await getCountFromServer(countQuery);
-                                return snapshot.data().count;
-                            },
-                        });
+  const openModal = (image) => {
+    const imageUrl = image.startsWith("http")
+      ? image
+      : `${process.env.REACT_APP_BASE_URL}${image}`;
+    setModalImage(imageUrl);
+    setShowModal(true);
+  };
 
-                        return [category.id, count];
-                    })
-                );
+  if (projectsLoading || categoriesLoading || ownerLoading) return <p>Loading...</p>;
+  if (projectsError) return <p>Error: {projectsError.message}</p>;
+  if (categoriesError) return <p>Error: {categoriesError.message}</p>;
+  if (ownerError) return <p>Error: {ownerError.message}</p>;
 
-                if (isMounted) {
-                    setCategoryCounts(Object.fromEntries(entries));
-                }
-            } catch (error) {
-                if (isMounted) {
-                    setCategoryCounts({});
-                }
+  return (
+    <div className={`${mainStyles.panel} ${styles.panel}`}>
+      {ownerData && <OwnerIntroduction ownerData={ownerData} />}
+
+      <FeaturedMediaCard
+        imageUrl={FEATURED_IMAGE_URL}
+        projectTitle={FEATURED_PROJECT_TITLE}
+        projectPath={FEATURED_PROJECT_PATH}
+      />
+
+      <Row className={containerstyles.container}>
+        <CategoryFilterDropdown
+          categories={categories}
+          selectedCategories={selectedCategories}
+          categoryCounts={categoryCounts}
+          onCategoryChange={handleCategoryChange}
+        />
+
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            categoryName={
+              categoryNameMap[project.categoryId] ||
+              getCategoryName(categories, project.categoryId)
             }
-        };
+            onOpenImage={openModal}
+          />
+        ))}
 
-        fetchCategoryCounts();
-
-        return () => {
-            isMounted = false;
-        };
-    }, [categories]);
-
-    if (projectsLoading || categoriesLoading || ownerLoading) return <p>Loading...</p>;
-    if (projectsError) return <p>Error: {projectsError.message}</p>;
-    if (categoriesError) return <p>Error: {categoriesError.message}</p>;
-    if (ownerError) return <p>Error: {ownerError.message}</p>;
-
-    const openModal = (image) => {
-        const imageUrl = image.startsWith('http') ? image : `${process.env.REACT_APP_BASE_URL}${image}`;
-        setModalImage(imageUrl);
-        setShowModal(true);
-    };
-
-
-    const closeModal = () => setShowModal(false);
-
-    const getCategoryName = (categoryId) => {
-        const category = categories.find((cat) => cat.id === categoryId);
-        return category ? category.name : 'Unknown Category';
-    };
-
-    return (
-        <div className={`${mainStyles.panel} ${styles.panel}`}>
-            {ownerData && <OwnerIntroduction ownerData={ownerData} />}
-            <Card className={`${containerstyles.container} ${styles.featuredMediaCard}`}>
-                <Card.Body className="p-4">
-                    <Row className="align-items-center">
-                        <Col md={5} className="mb-3 mb-md-0">
-                            <img
-                                src={FEATURED_IMAGE_URL}
-                                alt="Engineer being interviewed on live TV about a flagship construction project"
-                                className={styles.featuredMediaImage}
-                            />
-                        </Col>
-                        <Col md={7}>
-                            <span className={styles.featuredMediaBadge}>As Featured on Live TV</span>
-                            <h4 className={styles.featuredMediaTitle}>Live TV Interview</h4>
-                            <p className={styles.featuredMediaText}>
-                                Discussion of project execution and impact for
-                                <strong> {FEATURED_PROJECT_TITLE}</strong>.
-                            </p>
-                            <Link to={FEATURED_PROJECT_PATH}>
-                                <Button variant="outline-primary">View Related Project</Button>
-                            </Link>
-                        </Col>
-                    </Row>
-                </Card.Body>
-            </Card>
-
-            <Row className={containerstyles.container}>
-                <CategoryFilterDropdown
-                    categories={categories}
-                    selectedCategories={selectedCategories}
-                    categoryCounts={categoryCounts}
-                    onCategoryChange={handleCategoryChange}
-                />
-
-                {projects.map((project) => (
-                    <Col key={project.id} md={6} style={{ marginBottom: '1rem' }}>
-                        <Card className={`${styles.cardContainer} shadow-sm`}>
-                            <Card.Header className={`${styles.cardHeader} text-center`}>
-                                <h5 className={`${prodetailsstyles.title} number mb-0`}>{project.title}</h5>
-                                <Card.Subtitle className={`${prodetailsstyles.subtitle}`}>
-                                    <div className={prodetailsstyles.organization}>
-                                        <iconsfa.FaBuilding className={`${prodetailsstyles.icon}`} /> {project.organization} <span className={`${prodetailsstyles.year} number`}><iconsfa.FaCalendarAlt className={`${prodetailsstyles.icon}`} /> {project.endYear}</span>
-                                    </div>
-                                    <div className={`${prodetailsstyles.place}`}>
-                                        <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> {project.placeandyear}
-                                    </div>
-                                    <div className={prodetailsstyles.category}>
-                                        <iconsfa.FaTags className={prodetailsstyles.icon} /> {getCategoryName(project.categoryId)}
-                                    </div>
-                                </Card.Subtitle>
-                            </Card.Header>
-
-                            {project.imageRefs && project.imageRefs.length > 0 && (
-                                <ProjectCarousel
-                                    images={project.imageRefs}
-                                    title={project.title}
-                                    onImageClick={openModal}
-                                />
-                            )}
-
-                            <Card.Body>
-                                <div className="text-center">
-                                    <Link to={`/projects/${project.id}`}>
-                                        <Button variant="primary">View Details</Button>
-                                    </Link>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-
-                <div className={styles.pagination}>
-                    {renderPagination(
-                        totalCount,
-                        pageSize,
-                        currentPage,
-                        handlePageChange,
-                        styles.paginationContainer
-                    )}
-                </div>
-            </Row>
-
-
-            <Modal show={showModal} onHide={closeModal} centered>
-                <Modal.Body>
-                    <img src={modalImage} alt="Project" className="img-fluid" />
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={closeModal}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+        <div className={styles.pagination}>
+          {renderPagination(
+            totalCount,
+            pageSize,
+            currentPage,
+            handlePageChange,
+            styles.paginationContainer
+          )}
         </div>
-    );
+      </Row>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Body>
+          <img src={modalImage} alt="Project" className="img-fluid" />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
 };
 
 export default ProjectsContainer;

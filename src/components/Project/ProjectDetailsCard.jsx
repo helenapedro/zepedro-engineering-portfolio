@@ -19,6 +19,7 @@ const ProjectDetailsCard = () => {
           description={data.description}
           activities={data.activities}
           finalDescription={data.finalDescription}
+          imageThumbRefs={data.imageThumbRefs}
           imageRefs={data.imageRefs}
         />
       )}
