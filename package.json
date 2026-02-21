@@ -27,7 +27,8 @@
     "dev": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "export:projects": "node scripts/export-projects.mjs"
+    "export:projects": "node scripts/export-projects.mjs",
+    "generate:qr": "node scripts/generate-portfolio-qr.mjs"
   },
   "engines": {
     "node": "20.x"
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "qrcode": "^1.5.4",
     "rimraf": "^5.0.7"
   }
 }

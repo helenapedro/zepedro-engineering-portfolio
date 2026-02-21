@@ -43,7 +43,7 @@ const FeaturedMediaCard = ({ projectTitle, projectPath, videoUrl, embedUrl }) =>
           <blockquote className={styles.featuredMediaQuote}>
             <em className={styles.featuredMediaQuoteText}>
               {wrapNumbersWithClass(
-                '"The project includes external infrastructure works such as asphalt paving, as well as electricity, hydraulics, and water drainage systems."',
+                '"The project includes external infrastructure works such as asphalt paving, as well as electricity, hydraulics, including water drainage systems."',
                 styles.featuredMediaNumber
               )}
             </em>
