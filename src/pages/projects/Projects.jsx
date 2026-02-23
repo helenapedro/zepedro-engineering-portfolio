@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Project from './Project';
-import useData from '../Hooks/useData';
+import useData from '../../Hooks/useData';
 import renderPagination from '../../utils/Pagination/renderPagination';
 import handlePageChange from '../../utils/handlePageChange';
 import LoadingError from '../../components/comon/LoadingError';
@@ -36,11 +36,13 @@ const Projects = () => {
                 <Project
                   title={project.title}
                   organization={project.organization}
-                  placeandyear={project.placeandyear}
-                  description={project.description}
-                  activities={project.activities}
-                  finalDescription={project.finalDescription}
-                  images={project.images}
+                  location={project.location}
+                  period={project.period}
+                  context={project.context}
+                  responsibilities={project.responsibilities}
+                  results={project.results}
+                  projectOutcome={project.projectOutcome}
+                  media={project.media}
                 />
               </Link>
               <br />

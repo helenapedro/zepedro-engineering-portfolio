@@ -17,12 +17,12 @@ const ProjectCard = ({ project, categoryName, onOpenImage }) => (
           <div className={prodetailsstyles.organization}>
             <iconsfa.FaBuilding className={prodetailsstyles.icon} /> {project.organization}{" "}
             <span className={`${prodetailsstyles.year} number`}>
-              <iconsfa.FaCalendarAlt className={prodetailsstyles.icon} /> {project.endYear}
+              <iconsfa.FaCalendarAlt className={prodetailsstyles.icon} /> {project.period?.label || ""}
             </span>
           </div>
           <div className={prodetailsstyles.place}>
             <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} />{" "}
-            {wrapNumbersWithClass(project.placeandyear || "", "number")}
+            {wrapNumbersWithClass(project.location || "", "number")}
           </div>
           <div className={prodetailsstyles.category}>
             <iconsfa.FaTags className={prodetailsstyles.icon} /> {categoryName}
@@ -30,9 +30,9 @@ const ProjectCard = ({ project, categoryName, onOpenImage }) => (
         </Card.Subtitle>
       </Card.Header>
 
-      {project.imageRefs && project.imageRefs.length > 0 && (
+      {project.media?.images && project.media.images.length > 0 && (
         <ProjectCarousel
-          images={project.imageRefs}
+          images={project.media.images}
           title={project.title}
           onImageClick={onOpenImage}
         />
@@ -54,9 +54,13 @@ ProjectCard.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     organization: PropTypes.string,
-    endYear: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    placeandyear: PropTypes.string,
-    imageRefs: PropTypes.arrayOf(PropTypes.string),
+    location: PropTypes.string,
+    period: PropTypes.shape({
+      label: PropTypes.string,
+    }),
+    media: PropTypes.shape({
+      images: PropTypes.arrayOf(PropTypes.string),
+    }),
   }).isRequired,
   categoryName: PropTypes.string.isRequired,
   onOpenImage: PropTypes.func.isRequired,

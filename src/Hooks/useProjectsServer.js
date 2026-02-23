@@ -12,7 +12,6 @@ import {
 } from "firebase/firestore";
 import db from "../firebase";
 import handleScrollToTop from "../utils/HandleScroll";
-import { adaptProjectDocument } from "../utils/adaptProjectDocument";
 import {
   createCacheKey,
   DEFAULT_CACHE_TTL_MS,
@@ -81,9 +80,7 @@ const useProjectsServer = (options = {}) => {
           const snapshot = await getDocs(
             query(collection(db, COLLECTION_NAME), ...constraints)
           );
-          const docs = snapshot.docs.map((doc) =>
-            adaptProjectDocument({ id: doc.id, ...doc.data() })
-          );
+          const docs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
           const endCursor = snapshot.docs.length
             ? snapshot.docs[snapshot.docs.length - 1].id
             : null;

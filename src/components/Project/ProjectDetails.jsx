@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { Card, Button, Col, Modal, CardHeader } from "react-bootstrap";
 import * as iconsfa from "react-icons/fa";
-import { wrapProjectFields } from "../../utils/wrapProjectFields";
+import { wrapNumbersWithClass } from "../../utils/WrapNumbers";
 import styles from "../../pages/projects/Project.module.css";
 import numberstyles from "../../components/ui/Number.module.css";
 import imagestyles from "../../components/ui/Image.module.css";
@@ -15,62 +15,46 @@ import ProjectMediaGallery from "./ProjectMediaGallery";
 import {
   buildImageItems,
   buildProjectStats,
-  flattenActivities,
-  splitActivitiesByOutcome,
 } from "./projectDetailsUtils";
 
 const ProjectDetails = ({
   title,
   organization,
-  placeandyear,
-  description,
-  activities = [],
-  finalDescription = "",
-  imageThumbRefs = [],
-  imageRefs = [],
+  location,
+  period,
+  context,
+  responsibilities = [],
+  results = [],
+  projectOutcome = "",
+  media = {},
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
-
-  const wrappedProject = wrapProjectFields(
-    {
-      title,
-      organization,
-      placeandyear,
-      description,
-      activities,
-      finalDescription,
-    },
-    numberstyles.proDetailsNumber
-  );
+  const placeAndPeriod = [location, period?.label].filter(Boolean).join(" ~ ");
 
   const resolveUrl = (url) => {
     const baseUrl = process.env.REACT_APP_CDN_BASE_URL;
     return url.startsWith("http") ? url : `${baseUrl}${url}`;
   };
 
-  const flatActivities = useMemo(() => flattenActivities(activities), [activities]);
   const stats = useMemo(
     () =>
       buildProjectStats({
-        description,
-        activityLines: flatActivities,
-        finalDescription,
+        context,
+        responsibilities,
+        results,
+        projectOutcome,
       }),
-    [description, flatActivities, finalDescription]
-  );
-  const sectionedActivities = useMemo(
-    () => splitActivitiesByOutcome(flatActivities),
-    [flatActivities]
+    [context, responsibilities, results, projectOutcome]
   );
   const imageItems = useMemo(
     () =>
       buildImageItems({
-        imageRefs,
-        imageThumbRefs,
+        imageRefs: media.images,
+        imageThumbRefs: media.thumbnails,
         resolveUrl,
       }),
-    [imageRefs, imageThumbRefs]
+    [media.images, media.thumbnails]
   );
 
   const handleImageClick = (imageUrl) => {
@@ -89,14 +73,15 @@ const ProjectDetails = ({
         <div className={cardstyles.cardContainer}>
           <CardHeader className={`${cardstyles.cardHeader} text-center`}>
             <h2 className={prodetailsstyles.title} id={`project-title-${title}`}>
-              {wrappedProject.title}
+              {wrapNumbersWithClass(title, numberstyles.proDetailsNumber)}
             </h2>
             <Card.Subtitle className={prodetailsstyles.subtitle}>
               <div className={prodetailsstyles.organization}>
                 <span className={prodetailsstyles.orgTitle}>{organization}</span>
               </div>
               <div className={prodetailsstyles.place}>
-                <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} /> {placeandyear}
+                <iconsfa.FaMapMarkerAlt className={prodetailsstyles.icon} />{" "}
+                {wrapNumbersWithClass(placeAndPeriod, numberstyles.proDetailsNumber)}
               </div>
             </Card.Subtitle>
           </CardHeader>
@@ -106,21 +91,21 @@ const ProjectDetails = ({
           <section className={prodetailsstyles.contentSection}>
             <h3 className={prodetailsstyles.sectionTitle}>Context</h3>
             <p className={`${styles.projectdescription} number`}>
-              <b>{wrappedProject.description}</b>
+              <b>{wrapNumbersWithClass(context, numberstyles.proDetailsNumber)}</b>
             </p>
           </section>
 
           <ProjectTextSection
             title="Responsibilities"
-            items={sectionedActivities.responsibilities}
+            items={responsibilities}
           />
-          <ProjectTextSection title="Results" items={sectionedActivities.results} />
+          <ProjectTextSection title="Results" items={results} />
 
-          {wrappedProject.finalDescription && (
+          {projectOutcome && (
             <section className={prodetailsstyles.contentSection}>
               <h3 className={prodetailsstyles.sectionTitle}>Project Outcome</h3>
               <p className={styles.projectdescription}>
-                <b>{wrappedProject.finalDescription}</b>
+                <b>{wrapNumbersWithClass(projectOutcome, numberstyles.proDetailsNumber)}</b>
               </p>
             </section>
           )}
@@ -149,20 +134,21 @@ const ProjectDetails = ({
 ProjectDetails.propTypes = {
   title: PropTypes.string.isRequired,
   organization: PropTypes.string.isRequired,
-  placeandyear: PropTypes.string,
-  description: PropTypes.string.isRequired,
-  activities: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.shape({
-        header: PropTypes.string,
-        items: PropTypes.arrayOf(PropTypes.string),
-      }),
-    ])
-  ),
-  finalDescription: PropTypes.string,
-  imageThumbRefs: PropTypes.arrayOf(PropTypes.string),
-  imageRefs: PropTypes.arrayOf(PropTypes.string),
+  location: PropTypes.string,
+  period: PropTypes.shape({
+    startYear: PropTypes.number,
+    endYear: PropTypes.number,
+    label: PropTypes.string,
+  }),
+  context: PropTypes.string.isRequired,
+  responsibilities: PropTypes.arrayOf(PropTypes.string),
+  results: PropTypes.arrayOf(PropTypes.string),
+  projectOutcome: PropTypes.string,
+  media: PropTypes.shape({
+    mainImage: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+    thumbnails: PropTypes.arrayOf(PropTypes.string),
+  }),
 };
 
 export default ProjectDetails;

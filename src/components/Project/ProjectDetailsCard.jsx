@@ -15,12 +15,13 @@ const ProjectDetailsCard = () => {
         <ProjectDetails
           title={data.title}
           organization={data.organization}
-          placeandyear={data.placeandyear}
-          description={data.description}
-          activities={data.activities}
-          finalDescription={data.finalDescription}
-          imageThumbRefs={data.imageThumbRefs}
-          imageRefs={data.imageRefs}
+          location={data.location}
+          period={data.period}
+          context={data.context}
+          responsibilities={data.responsibilities}
+          results={data.results}
+          projectOutcome={data.projectOutcome}
+          media={data.media}
         />
       )}
     </div>

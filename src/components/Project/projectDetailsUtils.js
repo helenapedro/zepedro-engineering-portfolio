@@ -25,18 +25,19 @@ const parseNumberWord = (text) => {
   return WORD_TO_NUMBER[match[1]] || null;
 };
 
-export const flattenActivities = (activities = []) => {
-  if (!Array.isArray(activities)) return [];
-  return activities.flatMap((activity) => {
-    if (typeof activity === "string") return [activity];
-    if (activity && Array.isArray(activity.items)) return activity.items;
-    return [];
-  });
-};
-
-export const buildProjectStats = ({ description = "", activityLines = [], finalDescription = "" }) => {
+export const buildProjectStats = ({
+  context = "",
+  responsibilities = [],
+  results = [],
+  projectOutcome = "",
+}) => {
   const extracted = [];
-  const sourceLines = [description, ...activityLines, finalDescription].filter(Boolean);
+  const sourceLines = [
+    context,
+    ...responsibilities,
+    ...results,
+    projectOutcome,
+  ].filter(Boolean);
 
   const physicalLine = sourceLines.find((line) => /physical/i.test(line) && /%/.test(line));
   const financialLine = sourceLines.find((line) => /financial/i.test(line) && /%/.test(line));
@@ -135,22 +136,6 @@ export const buildProjectStats = ({ description = "", activityLines = [], finalD
   }
 
   return extracted.slice(0, 5);
-};
-
-export const splitActivitiesByOutcome = (activityLines = []) => {
-  const results = [];
-  const responsibilities = [];
-  const resultPattern = /increased|progress|result|%|promoted|appointed|compliant|updated/i;
-
-  activityLines.forEach((line) => {
-    if (resultPattern.test(line)) {
-      results.push(line);
-      return;
-    }
-    responsibilities.push(line);
-  });
-
-  return { responsibilities, results };
 };
 
 export const buildImageItems = ({

@@ -5,7 +5,6 @@ import {
   DEFAULT_CACHE_TTL_MS,
 } from "../utils/cacheStore";
 import useCachedAsyncData from "./useCachedAsyncData";
-import { adaptProjectDocument } from "../utils/adaptProjectDocument";
 
 const useData = (collectionName, id = null, options = {}) => {
   const {
@@ -25,18 +24,14 @@ const useData = (collectionName, id = null, options = {}) => {
       if (!docSnap.exists()) {
         throw new Error("Document not found");
       }
-      const value = { id: docSnap.id, ...docSnap.data() };
-      return collectionName === "projects" ? adaptProjectDocument(value) : value;
+      return { id: docSnap.id, ...docSnap.data() };
     }
 
     const snapshot = await getDocs(collection(db, collectionName));
-    return snapshot.docs.map((item) => {
-      const value = {
-        id: item.id,
-        ...item.data(),
-      };
-      return collectionName === "projects" ? adaptProjectDocument(value) : value;
-    });
+    return snapshot.docs.map((item) => ({
+      id: item.id,
+      ...item.data(),
+    }));
   };
 
   return useCachedAsyncData({
