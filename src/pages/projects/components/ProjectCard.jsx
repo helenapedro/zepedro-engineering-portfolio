@@ -4,7 +4,7 @@ import { Card, Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import * as iconsfa from "react-icons/fa";
-import ProjectCarousel from "../../../components/Project/ProjectCarousel";
+import ProjectCarousel from "../../../components/project/ProjectCarousel";
 import { wrapNumbersWithClass } from "../../../utils/WrapNumbers";
 import styles from "../ProjectContainer.module.css";
 import prodetailsstyles from "../../../components/ui/ProjectDetails.module.css";
