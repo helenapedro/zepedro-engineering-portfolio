@@ -2,10 +2,19 @@ import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import db from "../firebase";
 
-const useData = (collectionName, id = null) => {
-  const [data, setData] = useState(id ? null : []);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+type FirestoreData = { id: string; [key: string]: any };
+
+function useData<T = FirestoreData>(
+  collectionName: string,
+  id?: string | null
+): {
+  data: T | T[] | null;
+  loading: boolean;
+  error: Error | null;
+} {
+  const [data, setData] = useState<T | T[] | null>(id ? null : []);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +27,7 @@ const useData = (collectionName, id = null) => {
           const docRef = doc(db, collectionName, id);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
-            setData({ id: docSnap.id, ...docSnap.data() });
+            setData({ id: docSnap.id, ...docSnap.data() } as T);
           } else {
             throw new Error("Document not found");
           }
@@ -28,12 +37,12 @@ const useData = (collectionName, id = null) => {
           const docs = snapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
-          }));
+          })) as T[];
           setData(docs);
         }
       } catch (err) {
-        console.error(`Error fetching ${collectionName}:, err`);
-        setError(err);
+        console.error(`Error fetching ${collectionName}:`, err);
+        setError(err as Error);
       } finally {
         setLoading(false);
       }
@@ -43,6 +52,6 @@ const useData = (collectionName, id = null) => {
   }, [collectionName, id]);
 
   return { data, loading, error };
-};
+}
 
 export default useData;

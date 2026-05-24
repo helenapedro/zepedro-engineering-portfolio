@@ -5,17 +5,23 @@ import imagestyles from '../../components/ui/Image.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const ProjectCarousel = ({ images, title, onImageClick }) => {
-     const [activeSlide, setActiveSlide] = useState(0);
-     const [hovered, setHovered] = useState(null);
+interface ProjectCarouselProps {
+     images: string[];
+     title: string;
+     onImageClick: (image: string) => void;
+}
 
-     const PrevArrow = ({ onClick }) => (
+const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, title, onImageClick }) => {
+     const [activeSlide, setActiveSlide] = useState<number>(0);
+     const [hovered, setHovered] = useState<number | null>(null);
+
+     const PrevArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
           <div className={imagestyles.customArrow} style={{ left: '10px' }} onClick={onClick}>
                <iconsfa.FaChevronLeft size={24} />
           </div>
      );
 
-     const NextArrow = ({ onClick }) => (
+     const NextArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
           <div className={imagestyles.customArrow} style={{ right: '10px' }} onClick={onClick}>
                <iconsfa.FaChevronRight size={24} />
           </div>
@@ -32,7 +38,7 @@ const ProjectCarousel = ({ images, title, onImageClick }) => {
                     autoplay={false}
                     prevArrow={<PrevArrow />}
                     nextArrow={<NextArrow />}
-                    afterChange={(current) => setActiveSlide(current)}
+                    afterChange={(current: number) => setActiveSlide(current)}
                     className={imagestyles.imageCarousel}
                >
                     {images.map((image, index) => (

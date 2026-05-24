@@ -2,10 +2,16 @@ import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import db from "../firebase";
 
-const useHomeData = (collectionName, docName) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+type UseHomeDataResult<T> = {
+  data: T | null;
+  loading: boolean;
+  error: unknown;
+};
+
+function useHomeData<T = any>(collectionName: string, docName: string): UseHomeDataResult<T> {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<unknown>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +20,7 @@ const useHomeData = (collectionName, docName) => {
         const docRef = doc(db, collectionName, docName);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setData(docSnap.data());
+          setData(docSnap.data() as T);
         } else {
           setError("No such document!");
         }
@@ -29,6 +35,6 @@ const useHomeData = (collectionName, docName) => {
   }, [collectionName, docName]);
 
   return { data, loading, error };
-};
+}
 
 export default useHomeData;
