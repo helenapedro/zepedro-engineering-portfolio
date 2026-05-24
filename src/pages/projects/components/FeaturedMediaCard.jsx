@@ -20,7 +20,7 @@ const FeaturedMediaCard = ({ projectTitle, projectPath, videoUrl, embedUrl }) =>
                 src={embedUrl}
                 title={t("featured.videoTitle")}
                 className={styles.featuredMediaVideo}
-                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                allow="autoplay; encrypted-media; picture-in-picture"
                 allowFullScreen
               />
               <div className={styles.featuredMediaPopoutMask} aria-hidden="true" />

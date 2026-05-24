@@ -62,7 +62,12 @@ const LanguageSync: React.FC = () => {
 const App: React.FC = () => {
   return React.createElement(
     Router,
-    null,
+    {
+      future: {
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      },
+    },
     React.createElement(LanguageSync, null)
   );
 };
