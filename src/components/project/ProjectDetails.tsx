@@ -10,6 +10,7 @@ import imagestyles from '../../components/ui/Image.module.css';
 import prodetailsstyles from '../../components/ui/ProjectDetails.module.css';
 import containerstyles from '../../components/ui/Container.module.css';
 import cardstyles from '../../components/ui/card.module.css';
+import BimModelViewer, { type BimModelAsset } from './BimModelViewer';
 
 export interface ProjectDetailsProps {
     title: string;
@@ -20,6 +21,7 @@ export interface ProjectDetailsProps {
     finalDescription: string;
     mainImageUrl: string;
     imageRefs: string[];
+    modelAsset?: BimModelAsset | null;
 }
 
 const ProjectDetails: React.FC<ProjectDetailsProps> = ({
@@ -31,6 +33,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
     finalDescription = '',
     mainImageUrl,
     imageRefs = [],
+    modelAsset = null,
 }) => {
     const { t } = useTranslation();
     const wrappedProject = wrapProjectFields(
@@ -147,6 +150,8 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                             </div>
                         </section>
                     )}
+
+                    <BimModelViewer asset={modelAsset} resolveUrl={resolveUrl} />
                 </div>
             </Col>
 

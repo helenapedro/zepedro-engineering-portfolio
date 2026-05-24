@@ -47,6 +47,7 @@ This phase shifts the platform from a static gallery to an interactive digital t
 - Current Preparation:
   - A GIS-ready `/map` and `/pt/mapa` project location shell now supports future latitude/longitude markers and gracefully lists projects that still need verified coordinates.
   - `project-locations.template.json` provides a structured intake file for collecting project coordinates before updating Firestore.
+  - Project detail pages now support an optional `modelAsset` field for 3D/BIM model metadata, with `project-model-assets.template.json` prepared for collecting optimized `.glb` or `.gltf` assets.
 - Firestore/S3 Integration:
   - Firestore will store GeoJSON data for site boundaries and project coordinates.
   - Heavy .gltf or .obj files, such as the Electronic Model of Tchiela Farm, will be delivered via CloudFront edge caching. This mitigates latency and payload size constraints, ensuring high-performance 3D rendering for global users.

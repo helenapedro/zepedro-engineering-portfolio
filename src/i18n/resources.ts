@@ -26,6 +26,15 @@ const resources = {
         notFound: "Project not found.",
         imagesLabel: "Project images",
       },
+      model: {
+        title: "3D / BIM Model",
+        ready: "Viewer-ready asset",
+        format: "Format",
+        size: "Size",
+        source: "Source",
+        openModel: "Open model asset",
+        previewNote: "Interactive Three.js rendering can be enabled when a verified .glb or .gltf model is attached to this project.",
+      },
       map: {
         title: "Project Location Map",
         subtitle: "GIS-ready project index for civil engineering sites. Exact GPS coordinates can be added as they become available.",
@@ -111,6 +120,15 @@ const resources = {
         viewDetails: "Ver detalhes",
         notFound: "Projeto não encontrado.",
         imagesLabel: "Imagens do projeto",
+      },
+      model: {
+        title: "Modelo 3D / BIM",
+        ready: "Ativo preparado para visualizador",
+        format: "Formato",
+        size: "Tamanho",
+        source: "Fonte",
+        openModel: "Abrir ativo do modelo",
+        previewNote: "A renderização interativa com Three.js pode ser ativada quando um modelo .glb ou .gltf verificado estiver associado a este projeto.",
       },
       map: {
         title: "Mapa de Localização dos Projetos",

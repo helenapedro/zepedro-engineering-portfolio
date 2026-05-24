@@ -20,7 +20,31 @@ type NormalizedProject = Project & {
   media?: {
     mainImage?: string;
     images?: string[];
+    model?: {
+      url: string;
+      title?: string;
+      format?: string;
+      sizeLabel?: string;
+      source?: string;
+      previewImage?: string;
+    };
   };
+  modelAsset?: {
+    url: string;
+    title?: string;
+    format?: string;
+    sizeLabel?: string;
+    source?: string;
+    previewImage?: string;
+  };
+  modelAssets?: Array<{
+    url: string;
+    title?: string;
+    format?: string;
+    sizeLabel?: string;
+    source?: string;
+    previewImage?: string;
+  }>;
 };
 
 const ProjectCard: React.FC = () => {
@@ -46,6 +70,7 @@ const ProjectCard: React.FC = () => {
         finalDescription: project.finalDescription || project.projectOutcome || "",
         mainImageUrl: project.mainImageUrl || project.media?.mainImage || "",
         imageRefs: project.imageRefs || project.media?.images || [],
+        modelAsset: project.modelAsset || project.media?.model || project.modelAssets?.[0] || null,
       }
     : null;
 
@@ -62,6 +87,7 @@ const ProjectCard: React.FC = () => {
           finalDescription={detailProject.finalDescription}
           mainImageUrl={detailProject.mainImageUrl}
           imageRefs={detailProject.imageRefs}
+          modelAsset={detailProject.modelAsset}
         />
       )}
       {!loading && !error && !detailProject && <p>{t("projects.notFound")}</p>}

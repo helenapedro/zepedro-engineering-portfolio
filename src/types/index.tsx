@@ -23,6 +23,17 @@ export interface Project {
   updatedAt: Timestamp;
   skillsShowcased?: string[];
   client?: string;
+  modelAsset?: ProjectModelAsset;
+  modelAssets?: ProjectModelAsset[];
+}
+
+export interface ProjectModelAsset {
+  url: string;
+  title?: string;
+  format?: string;
+  sizeLabel?: string;
+  source?: string;
+  previewImage?: string;
 }
 
 

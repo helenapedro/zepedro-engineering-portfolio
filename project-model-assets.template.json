@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "instructions": "Fill only verified model assets. Prefer optimized .glb files for browser rendering and keep large source files in S3/CloudFront as downloadable references.",
+  "supportedRuntimeFormats": [".glb", ".gltf"],
+  "projectFieldShape": {
+    "modelAsset": {
+      "url": "s3-or-cloudfront/path/model.glb",
+      "title": "Display name for the 3D/BIM model",
+      "format": "GLB",
+      "sizeLabel": "12 MB",
+      "source": "Revit / SketchUp / ArchiCAD / other",
+      "previewImage": "optional/path/model-preview.webp"
+    }
+  },
+  "projects": [
+    {
+      "id": "3-story-multifunctional-building",
+      "title": "3-Story Multifunctional Building",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "architectural-project-single-family-home-t5",
+      "title": "Architectural Project - Single-Family Home T5",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "construction-of-120-social-apartments-in-buco-zau",
+      "title": "Construction of 120 Social Apartments in Buco-Zau",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "construction-of-access-roads-to-the-new-bridge-over-the-lucola-river",
+      "title": "Construction of Access Roads to the New Bridge Over the Lucola River",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "construction-of-the-new-bridge-over-the-lucola-river",
+      "title": "Construction of the New Bridge Over the Lucola River",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "evolutionary-architectural-project-for-a-residential-complex-with-10-apartments",
+      "title": "Evolutionary Architectural Project for a Residential Complex with 10 Apartments",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "executive-and-structural-project-of-a-t4-single-family-home",
+      "title": "Executive and Structural Project of a T4 Single-Family Home",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "mamaland-project-electronic-model-of-tchiela-farm",
+      "title": "Mamaland Project: Electronic Model of Tchiela Farm",
+      "modelAsset": null,
+      "notes": "Primary candidate for first 3D/BIM showcase."
+    },
+    {
+      "id": "modification-and-renovation-project-for-two-t1-residences",
+      "title": "Modification and Renovation Project for Two T1 Residences",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "ravines-in-cabinda-province-tchizo-1",
+      "title": "Ravines in Cabinda Province-Tchizo 1",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "rehabilitation-of-the-maria-mambo-cafe-airport-pavement-runway",
+      "title": "Rehabilitation of the Maria Mambo Cafe Airport Pavement Runway",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "rehabilitation-of-the-office-building-on-macau-street",
+      "title": "Rehabilitation of the office building on Macau Street",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "renovation-and-expansion-of-a-2-story-residence",
+      "title": "Renovation and Expansion of a 2-Story Residence",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "renovation-and-expansion-of-the-1º-de-maio-maternity-hospital",
+      "title": "Renovation and Expansion of the 1 de Maio Maternity Hospital",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "stormwater-drainage-system-rehabilitation-in-cabinda-city",
+      "title": "Stormwater Drainage System Rehabilitation in Cabinda City",
+      "modelAsset": null,
+      "notes": ""
+    },
+    {
+      "id": "trainee-program-startme-2021-8th-edition",
+      "title": "Trainee Program STARTME @2021_8th Edition",
+      "modelAsset": null,
+      "notes": ""
+    }
+  ]
+}

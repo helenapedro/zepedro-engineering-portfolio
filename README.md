@@ -92,6 +92,11 @@ The architecture is designed for high-resolution engineering assets delivered th
 - [`src/pages/Map/ProjectMap.jsx`](src/pages/Map/ProjectMap.jsx): GIS-ready project location view with marker support for future latitude/longitude records and a fallback list for projects still missing coordinates.
 - [`project-locations.template.json`](project-locations.template.json): coordinate intake template for collecting verified GPS data before updating Firestore.
 
+### Phase 2 3D/BIM Foundation
+
+- [`src/components/project/BimModelViewer.tsx`](src/components/project/BimModelViewer.tsx): project detail model asset section that stays hidden until a model URL is configured.
+- [`project-model-assets.template.json`](project-model-assets.template.json): intake template for collecting optimized `.glb` / `.gltf` model URLs, source metadata, file size labels, and preview images.
+
 ## Real-World Engineering Context
 
 The application presents infrastructure and architecture work with direct connection to field delivery, public works, and technical coordination.
@@ -196,10 +201,29 @@ Future localized map schema:
 
 The compatibility layer translates known flat English values today and will automatically prefer localized Firestore maps as the database schema evolves.
 
+## 3D/BIM Content Model
+
+Project detail pages support an optional model asset field. If this field is missing, the 3D section is not rendered.
+
+```json
+{
+  "modelAsset": {
+    "url": "models/tchiela-farm.glb",
+    "title": "Tchiela Farm Electronic Model",
+    "format": "GLB",
+    "sizeLabel": "18 MB",
+    "source": "SketchUp / Lumion",
+    "previewImage": "models/tchiela-farm-preview.webp"
+  }
+}
+```
+
+The current implementation prepares the UI and data contract. Full browser rendering should be added once optimized model files are available.
+
 ## Future Technical Roadmap
 
 - GIS Integration: interactive mapping shell is in place; next step is adding verified coordinates to Firestore from `project-locations.template.json`.
-- 3D BIM Visualization: browser-based rendering of 3D construction and architectural models.
+- 3D BIM Visualization: model asset shell is in place; next step is attaching optimized `.glb` / `.gltf` assets from `project-model-assets.template.json` and enabling full Three.js rendering.
 - Enterprise Admin CMS: authenticated content management with Firebase Auth, Firestore rules, and controlled S3 uploads.
 - AI/LLM Assistant: RAG-based search over project documents, site reports, and technical specifications.
 - Computer Vision: automated tagging and progress verification for QHSE and construction milestone tracking.
