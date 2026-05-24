@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import imagestyles from '../../components/ui/Image.module.css';
 
@@ -10,6 +11,7 @@ interface ProjectCarouselProps {
 }
 
 const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, title, onImageClick }) => {
+     const { t } = useTranslation();
      const [activeSlide, setActiveSlide] = useState<number>(0);
      const [hovered, setHovered] = useState<number | null>(null);
      const ChevronLeft = FaChevronLeft as React.ComponentType<{ size?: number }>;
@@ -47,7 +49,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, title, onImag
                                         alt={`${title} ${index + 1}`}
                                         className={imagestyles.imageContainer}
                                    />
-                                   {hovered === index && <div className={imagestyles.viewImageOverlay}>View Image</div>}
+                                   {hovered === index && <div className={imagestyles.viewImageOverlay}>{t("common.viewImage")}</div>}
                               </div>
                          </Carousel.Item>
                     ))}

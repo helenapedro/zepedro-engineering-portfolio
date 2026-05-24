@@ -17,7 +17,6 @@ import { getLanguageFromPath, routePath } from "../../i18n/routes";
 import { localizeCategory, localizeOwner, localizeProject } from "../../i18n/localizedValue";
 
 const FEATURED_PROJECT_TITLE = "Construction of 120 Social Apartments in Buco-Zau";
-const FEATURED_PROJECT_PATH = "/projects/construction-of-120-social-apartments-in-buco-zau";
 const FEATURED_VIDEO_URL = "https://www.tiktok.com/@tpaonline/video/7607846826837953800";
 const FEATURED_VIDEO_EMBED_URL = "https://drive.google.com/file/d/13DcdDBES0ICsrer3pWLAh4SfFrkg36uF/preview#t=58";
 

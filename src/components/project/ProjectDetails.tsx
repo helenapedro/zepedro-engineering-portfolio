@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button, Col, Modal, CardHeader } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import * as iconsfa from 'react-icons/fa';
 import { wrapProjectFields } from '../../utils/wrapProjectFields';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
@@ -9,8 +10,6 @@ import imagestyles from '../../components/ui/Image.module.css';
 import prodetailsstyles from '../../components/ui/ProjectDetails.module.css';
 import containerstyles from '../../components/ui/Container.module.css';
 import cardstyles from '../../components/ui/card.module.css';
-
-import type { Project } from '../../types/index';
 
 export interface ProjectDetailsProps {
     title: string;
@@ -33,6 +32,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
     mainImageUrl,
     imageRefs = [],
 }) => {
+    const { t } = useTranslation();
     const wrappedProject = wrapProjectFields(
         {
             title,
@@ -127,7 +127,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                     )}
 
                     {Array.isArray(imageRefs) && imageRefs.length > 0 && (
-                        <section aria-label="Project images">
+                        <section aria-label={t("projects.imagesLabel")}>
                             <div className={imagestyles.row}>
                                 {imageRefs.map((imageRef, imgIndex) => {
                                     const imageUrl = resolveUrl(imageRef);
@@ -137,7 +137,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                                                 className={imagestyles.imageButton}
                                                 onClick={() => handleImageClick(imageUrl)}
                                             >
-                                                <img src={imageUrl} alt={`Project ${imgIndex}`} className={imagestyles.image} />
+                                                <img src={imageUrl} alt={`${t("common.projectImage")} ${imgIndex + 1}`} className={imagestyles.image} />
                                             </button>
                                         </div>
                                     );
@@ -150,14 +150,14 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
 
             <Modal show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Image Preview</Modal.Title>
+                    <Modal.Title>{t("common.imagePreview")}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <img src={currentImage} alt="Project" className={imagestyles.modalImage} />
+                    <img src={currentImage} alt={t("common.projectImage")} className={imagestyles.modalImage} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCloseModal}>
-                        Close
+                        {t("common.close")}
                     </Button>
                 </Modal.Footer>
             </Modal>

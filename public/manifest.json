@@ -1,15 +1,43 @@
 {
-     "short_name": "Portfolio",
-     "name": "My Portfolio",
-     "icons": [
-       {
-         "src": "favicon.png",
-         "sizes": "64x64 32x32 24x24 16x16",
-         "type": "image/x-icon"
-       }
-     ],
-     "start_url": ".",
-     "display": "standalone",
-     "theme_color": "#000000",
-     "background_color": "#ffffff"
+  "short_name": "Eng Portfolio",
+  "name": "Construction Engineering Portfolio",
+  "description": "Offline-ready civil engineering portfolio with multilingual project documentation.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#243447",
+  "background_color": "#f5f7f8",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "education"],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/paradoxo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Projetos",
+      "short_name": "Projetos",
+      "url": "/pt",
+      "description": "Abrir o portfólio em português"
+    },
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "url": "/",
+      "description": "Open the portfolio in English"
+    }
+  ]
 }

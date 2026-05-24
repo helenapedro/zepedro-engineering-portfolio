@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, DropdownButton } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import styles from "../components/ui/ProjectDetails.module.css";
 
 const CategoryFilterDropdown = ({
@@ -9,6 +10,7 @@ const CategoryFilterDropdown = ({
   categoryCounts = null,
   onCategoryChange,
 }) => {
+  const { t } = useTranslation();
   const getCategoryCount = (category) => {
     if (categoryCounts && typeof categoryCounts[category.id] === "number") {
       return categoryCounts[category.id];
@@ -20,7 +22,7 @@ const CategoryFilterDropdown = ({
   return (
     <DropdownButton
       id="dropdown-category"
-      title={`Filter by Categories ${
+      title={`${t("filters.categoryTitle")} ${
         selectedCategories.length > 0 ? `(${selectedCategories.length})` : ""
       }`}
       variant="outline-primary"

@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Card } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { FaEnvelope, FaFileAlt } from "react-icons/fa";
 import { SiWhatsapp } from "react-icons/si";
 import StatusBadge from "./StatusBadge";
@@ -11,13 +12,14 @@ import containerstyles from "../../components/ui/Container.module.css";
 import styles from "./OwnerIntroduction.module.css";
 
 const OwnerIntroduction = ({ ownerData }) => {
+  const { t } = useTranslation();
   const ownerName = ownerData.name || PROFILE.displayName;
   const resumeUrl = ownerData.resumeUrl || PROFILE.resumeUrl;
   const whatsappUrl = ownerData.whatsappUrl || PROFILE.whatsappUrl;
   const email = ownerData.email || PROFILE.email;
   const headline = ownerData.headline || PROFILE.roleLabel;
   const oneLineSummary = ownerData.homeSummary
-    || `4+ years in project management and ${ownerData.qhseExperienceYears || 2} years in QHSE-Quality coordination.`;
+    || t("owner.fallbackSummary", { years: ownerData.qhseExperienceYears || 2 });
   const highlightClassName = `${herostyles.experienceYear} ${herostyles.colorTwo}`;
 
   return (
