@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styles from './Certificate.module.css';
 import mainStyles from '../../components/Main.module.css';
 import SkillsTable from '../../components/Skills/SkillsTable';
@@ -7,6 +8,7 @@ import Education from './../../components/Academic/Education';
 import Certificates from '../../components/certificates/Certificates';
 
 const Certificate = () => {
+    const { t } = useTranslation();
     return (
         <div className={mainStyles.panel}>
             <div className={styles['certificate-title']}>
@@ -14,7 +16,7 @@ const Certificate = () => {
                     <Education />
                 </div>
                 <div>
-                    <h1>IT SKILLS</h1>
+                    <h1>{t("education.itSkills", "IT SKILLS")}</h1>
                     <SkillsTable />
                 </div>
                 <div>

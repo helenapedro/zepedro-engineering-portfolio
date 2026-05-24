@@ -123,23 +123,23 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                         <b>{wrappedProject.finalDescription}</b>
                     </p>
                     {mainImageUrl && (
-                      <div className={imagestyles.mainImageContainer}>
-                        <img src={resolveUrl(mainImageUrl)} alt={`${title} main`} className={imagestyles.mainImage} />
+                      <div className={imagestyles.detailMainImageContainer}>
+                        <img src={resolveUrl(mainImageUrl)} alt={`${title} main`} className={imagestyles.detailMainImage} />
                       </div>
                     )}
 
                     {Array.isArray(imageRefs) && imageRefs.length > 0 && (
                         <section aria-label={t("projects.imagesLabel")}>
-                            <div className={imagestyles.row}>
+                            <div className={imagestyles.detailGalleryGrid}>
                                 {imageRefs.map((imageRef, imgIndex) => {
                                     const imageUrl = resolveUrl(imageRef);
                                     return (
-                                        <div className={imagestyles.imageContainer} key={imgIndex}>
+                                        <div className={imagestyles.detailGalleryItem} key={imgIndex}>
                                             <button
                                                 className={imagestyles.imageButton}
                                                 onClick={() => handleImageClick(imageUrl)}
                                             >
-                                                <img src={imageUrl} alt={`${t("common.projectImage")} ${imgIndex + 1}`} className={imagestyles.image} />
+                                                <img src={imageUrl} alt={`${t("common.projectImage")} ${imgIndex + 1}`} className={imagestyles.detailGalleryImage} />
                                             </button>
                                         </div>
                                     );

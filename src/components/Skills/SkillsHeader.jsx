@@ -1,7 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styles from './Skills.module.css';
 
 const SkillsHeader = ({ sortColumn, onSort }) => {
+    const { t } = useTranslation();
     const raiseSort = (path) => {
         const newSortColumn = { ...sortColumn };
         if (newSortColumn.path === path)
@@ -26,13 +28,13 @@ const SkillsHeader = ({ sortColumn, onSort }) => {
         <thead className={styles['skills-table-header']}>
             <tr>
                 <th className={styles['skills-table-header-cell']} onClick={() => raiseSort('year')}>
-                    Start {renderSortIcon({ path: 'year' })}
+                    {t("education.skillStart", "Start")} {renderSortIcon({ path: 'year' })}
                 </th>
                 <th className={styles['skills-table-header-cell']} onClick={() => raiseSort('skill')}>
-                    Skill {renderSortIcon({ path: 'skill' })}
+                    {t("education.skill", "Skill")} {renderSortIcon({ path: 'skill' })}
                 </th>
                 <th className={styles['skills-table-header-cell']} onClick={() => raiseSort('level')}>
-                    Self-Assessment {renderSortIcon({ path: 'level' })}
+                    {t("education.selfAssessment", "Self-Assessment")} {renderSortIcon({ path: 'level' })}
                 </th>
             </tr>
         </thead>

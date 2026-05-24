@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { collection, getDocs } from "firebase/firestore";
 import db from "../../config/firebase";
 import SkillsHeader from "./SkillsHeader";
 import SkillsBody from "./SkillsBody";
 import styles from './Skills.module.css';
 import { wrapSkillsField } from "../../utils/wrapSkills";
+import { localizeRecord } from "../../i18n/localizedValue";
 
 const SkillsTable = () => {
+  const { i18n, t } = useTranslation();
   const [sortColumn, setSortColumn] = useState({ path: 'year', order: 'desc' });
   const [skills, setSkills] = useState([]);
   const [error, setError] = useState(null);
@@ -43,11 +46,12 @@ const SkillsTable = () => {
   };
 
    // Wrap skills with the class for styling
-  const wrappedSkills = wrapSkillsField(skills, styles.number);
+  const localizedSkills = skills.map((skill) => localizeRecord(skill, i18n.language));
+  const wrappedSkills = wrapSkillsField(localizedSkills, styles.number);
 
   return (
     <div> 
-      {error && <p>Error: {error}</p>}
+      {error && <p>{t("common.error")}: {error}</p>}
       <header className={styles['skills-table']}>
         <section className={styles.panel}>
           <div className={`${styles['skills-table-body']} table-responsive mb-3`}>

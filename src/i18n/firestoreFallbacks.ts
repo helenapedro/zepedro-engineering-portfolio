@@ -231,7 +231,57 @@ const pt = {
   "peak_workforce": "pico_de_mao_de_obra",
   "physical_progress": "progresso_fisico",
   "subcontractors": "subempreiteiros",
+  "I am a Construction Engineer with proven experience in project execution, quality coordination, and multidisciplinary site management in Angola.":
+    "Sou Engenheiro de Construção com experiência comprovada em execução de projetos, coordenação da qualidade e gestão multidisciplinar de obra em Angola.",
+  "I currently work at Mota-Engil Angola, with responsibilities spanning production management, QHSE-Quality coordination, and project leadership progression from technician to deputy and project director appointment.":
+    "Atualmente trabalho na Mota-Engil Angola, com responsabilidades que abrangem gestão de produção, coordenação QHSE-Qualidade e evolução de liderança de projeto, desde técnico até nomeação como diretor adjunto e diretor de projeto.",
+  "Core capabilities include project planning and control, subcontractor coordination, technical documentation compliance, quantity surveying support, and delivery supervision using SAP S/4P-HANA, MS Project, AutoCAD, SketchUp, Lumion, SAP2000, and Microsoft Office.":
+    "As principais competências incluem planeamento e controlo de projetos, coordenação de subempreiteiros, conformidade documental técnica, apoio a medições e supervisão da execução com SAP S/4P-HANA, MS Project, AutoCAD, SketchUp, Lumion, SAP2000 e Microsoft Office.",
+  "Core capabilities include project planning and control, subcontractor coordination, technical documentation compliance, quantity surveying support, and delivery supervision using SAP S/4HANA, MS Project, AutoCAD, SketchUp, Lumion, SAP2000, and Microsoft Office.":
+    "As principais competências incluem planeamento e controlo de projetos, coordenação de subempreiteiros, conformidade documental técnica, apoio a medições e supervisão da execução com SAP S/4HANA, MS Project, AutoCAD, SketchUp, Lumion, SAP2000 e Microsoft Office.",
+  "OEA Member Card": "Carteira de Membro da OEA",
+  "Construction Engineer | OEA Associate Nº 5916": "Engenheiro de Construção | Associado OEA Nº 5916",
+  "Bachelor of Science in Civil Engineering": "Licenciatura em Engenharia Civil",
+  "Metropolitan Polytechnic Higher Institute of Angola": "Instituto Superior Politécnico Metropolitano de Angola",
+  "Technical High School in Civil Construction": "Ensino Médio Técnico em Construção Civil",
+  "Industrial High School of Luanda": "Instituto Médio Industrial de Luanda",
+  "Thesis Advisor: Master, Engineer and Next Building's CEO Tatiana Casaca":
+    "Orientadora da tese: Mestre, Engenheira e CEO da Next Building Tatiana Casaca",
+  "Intermediate": "Intermédio",
+  "Basic": "Básico",
+  "Adobs Sketchbook": "Adobe Sketchbook",
+  "AutoCAD 2D - 3D": "AutoCAD 2D - 3D",
+  "GanttProject": "GanttProject",
+  "Revit - Architecture": "Revit - Arquitetura",
 };
+
+const ptPhraseFallbacks: Array<[RegExp, string]> = [
+  [/Bachelor of Science in Civil Engineering/gi, "Licenciatura em Engenharia Civil"],
+  [/Technical High School in Civil Construction/gi, "Ensino Médio Técnico em Construção Civil"],
+  [/Metropolitan Polytechnic Higher Institute of Angola/gi, "Instituto Superior Politécnico Metropolitano de Angola"],
+  [/Industrial High School of Luanda/gi, "Instituto Médio Industrial de Luanda"],
+  [/Thesis Advisor/gi, "Orientadora da tese"],
+  [/Master, Engineer and Next Building's CEO/gi, "Mestre, Engenheira e CEO da Next Building"],
+  [/Construction Engineer/gi, "Engenheiro de Construção"],
+  [/proven experience in project execution/gi, "experiência comprovada em execução de projetos"],
+  [/quality coordination/gi, "coordenação da qualidade"],
+  [/multidisciplinary site management/gi, "gestão multidisciplinar de obra"],
+  [/I currently work at Mota-Engil Angola/gi, "Atualmente trabalho na Mota-Engil Angola"],
+  [/responsibilities spanning production management/gi, "responsabilidades que abrangem gestão de produção"],
+  [/QHSE-Quality coordination/gi, "coordenação QHSE-Qualidade"],
+  [/project leadership progression/gi, "evolução de liderança de projeto"],
+  [/from technician to deputy and project director appointment/gi, "desde técnico até nomeação como diretor adjunto e diretor de projeto"],
+  [/Core capabilities include/gi, "As principais competências incluem"],
+  [/project planning and control/gi, "planeamento e controlo de projetos"],
+  [/subcontractor coordination/gi, "coordenação de subempreiteiros"],
+  [/technical documentation compliance/gi, "conformidade documental técnica"],
+  [/quantity surveying support/gi, "apoio a medições"],
+  [/delivery supervision/gi, "supervisão da execução"],
+  [/Microsoft Office/gi, "Microsoft Office"],
+  [/Intermediate/gi, "Intermédio"],
+  [/Basic/gi, "Básico"],
+  [/Architecture/gi, "Arquitetura"],
+];
 
 const dictionaries = {
   pt,
@@ -244,5 +294,11 @@ export const translateFirestoreString = (value: string, language: string) => {
   const dictionary = dictionaries[lang as keyof typeof dictionaries];
   if (!dictionary) return value;
 
-  return dictionary[normalizeKey(value) as keyof typeof dictionary] ?? value;
+  const exact = dictionary[normalizeKey(value) as keyof typeof dictionary];
+  if (exact) return exact;
+
+  return ptPhraseFallbacks.reduce(
+    (translated, [pattern, replacement]) => translated.replace(pattern, replacement),
+    value
+  );
 };
