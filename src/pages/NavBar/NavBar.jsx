@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { FaGraduationCap, FaHome, FaLinkedin, FaPortrait } from 'react-icons/fa';
+import { FaGraduationCap, FaHome, FaLinkedin, FaMapMarkedAlt, FaPortrait } from 'react-icons/fa';
 import styles from "./NavBar.module.css";
 import iconStyles from '../../styles/Icons.module.css';
 import { getLanguageFromPath, routePath, SUPPORTED_LANGUAGES, translatePath } from '../../i18n/routes';
@@ -34,6 +34,10 @@ const NavBar = () => {
         <Link to={routePath("education", language)} className={isActive("education") ? styles.active : ''} onClick={toggleMenu}>
           <FaGraduationCap className={iconStyles.icon} />
           <span>{t("nav.education")}</span>
+        </Link>
+        <Link to={routePath("map", language)} className={isActive("map") ? styles.active : ''} onClick={toggleMenu}>
+          <FaMapMarkedAlt className={iconStyles.icon} />
+          <span>{t("nav.map")}</span>
         </Link>
         <Link to={routePath("about", language)} className={isActive("about") ? styles.active : ''} onClick={toggleMenu}>
           <FaPortrait className={iconStyles.icon} />

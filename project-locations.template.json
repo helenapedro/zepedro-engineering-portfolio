@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "instructions": "Fill latitude and longitude when confirmed. Keep coordinates null until a location is verified.",
+  "coordinateFormat": {
+    "latitude": "decimal degrees, south is negative",
+    "longitude": "decimal degrees, east is positive"
+  },
+  "projects": [
+    {
+      "id": "3-story-multifunctional-building",
+      "title": "3-Story Multifunctional Building",
+      "currentLocation": "Soyo, Zaire, Angola",
+      "province": "Zaire",
+      "municipality": "Soyo",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "architectural-project-single-family-home-t5",
+      "title": "Architectural Project - Single-Family Home T5",
+      "currentLocation": "Soyo, Zaire, Angola",
+      "province": "Zaire",
+      "municipality": "Soyo",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "construction-of-120-social-apartments-in-buco-zau",
+      "title": "Construction of 120 Social Apartments in Buco-Zau",
+      "currentLocation": "Buco-Zau, Cabinda, Angola",
+      "province": "Cabinda",
+      "municipality": "Buco-Zau",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "construction-of-access-roads-to-the-new-bridge-over-the-lucola-river",
+      "title": "Construction of Access Roads to the New Bridge Over the Lucola River",
+      "currentLocation": "Cabinda, Angola",
+      "province": "Cabinda",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "construction-of-the-new-bridge-over-the-lucola-river",
+      "title": "Construction of the New Bridge Over the Lucola River",
+      "currentLocation": "Cabinda, Angola",
+      "province": "Cabinda",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "evolutionary-architectural-project-for-a-residential-complex-with-10-apartments",
+      "title": "Evolutionary Architectural Project for a Residential Complex with 10 Apartments",
+      "currentLocation": "Huambo, Angola",
+      "province": "Huambo",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "executive-and-structural-project-of-a-t4-single-family-home",
+      "title": "Executive and Structural Project of a T4 Single-Family Home",
+      "currentLocation": "Luanda, Angola",
+      "province": "Luanda",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "mamaland-project-electronic-model-of-tchiela-farm",
+      "title": "Mamaland Project: Electronic Model of Tchiela Farm",
+      "currentLocation": "Cabinda, Angola",
+      "province": "Cabinda",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "modification-and-renovation-project-for-two-t1-residences",
+      "title": "Modification and Renovation Project for Two T1 Residences",
+      "currentLocation": "Luanda, Angola",
+      "province": "Luanda",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "ravines-in-cabinda-province-tchizo-1",
+      "title": "Ravines in Cabinda Province-Tchizo 1",
+      "currentLocation": "Tchizo Neighborhood, Outskirts of Cabinda City, Angola",
+      "province": "Cabinda",
+      "municipality": "Cabinda",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "rehabilitation-of-the-maria-mambo-cafe-airport-pavement-runway",
+      "title": "Rehabilitation of the Maria Mambo Cafe Airport Pavement Runway",
+      "currentLocation": "Cabinda, Angola",
+      "province": "Cabinda",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "rehabilitation-of-the-office-building-on-macau-street",
+      "title": "Rehabilitation of the office building on Macau Street",
+      "currentLocation": "Cabinda, Angola",
+      "province": "Cabinda",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "renovation-and-expansion-of-a-2-story-residence",
+      "title": "Renovation and Expansion of a 2-Story Residence",
+      "currentLocation": "Luanda",
+      "province": "Luanda",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "renovation-and-expansion-of-the-1º-de-maio-maternity-hospital",
+      "title": "Renovation and Expansion of the 1 de Maio Maternity Hospital",
+      "currentLocation": "Cabinda, Angola",
+      "province": "Cabinda",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "stormwater-drainage-system-rehabilitation-in-cabinda-city",
+      "title": "Stormwater Drainage System Rehabilitation in Cabinda City",
+      "currentLocation": "Cabinda, Angola",
+      "province": "Cabinda",
+      "municipality": "Cabinda",
+      "coordinates": null,
+      "confidence": "pending"
+    },
+    {
+      "id": "trainee-program-startme-2021-8th-edition",
+      "title": "Trainee Program STARTME @2021_8th Edition",
+      "currentLocation": "Angola",
+      "province": "",
+      "municipality": "",
+      "coordinates": null,
+      "confidence": "pending"
+    }
+  ]
+}

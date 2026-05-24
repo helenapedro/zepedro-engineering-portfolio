@@ -34,10 +34,22 @@
       "description": "Abrir o portfólio em português"
     },
     {
+      "name": "Mapa",
+      "short_name": "Mapa",
+      "url": "/pt/mapa",
+      "description": "Abrir o mapa dos projetos"
+    },
+    {
       "name": "Projects",
       "short_name": "Projects",
       "url": "/",
       "description": "Open the portfolio in English"
+    },
+    {
+      "name": "Map",
+      "short_name": "Map",
+      "url": "/map",
+      "description": "Open the project map"
     }
   ]
 }

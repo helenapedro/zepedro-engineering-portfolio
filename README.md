@@ -87,6 +87,11 @@ The architecture is designed for high-resolution engineering assets delivered th
 - [`public/offline.html`](public/offline.html): offline fallback screen.
 - [`src/pwa/registerServiceWorker.ts`](src/pwa/registerServiceWorker.ts): production service worker registration.
 
+### Phase 2 GIS Foundation
+
+- [`src/pages/Map/ProjectMap.jsx`](src/pages/Map/ProjectMap.jsx): GIS-ready project location view with marker support for future latitude/longitude records and a fallback list for projects still missing coordinates.
+- [`project-locations.template.json`](project-locations.template.json): coordinate intake template for collecting verified GPS data before updating Firestore.
+
 ## Real-World Engineering Context
 
 The application presents infrastructure and architecture work with direct connection to field delivery, public works, and technical coordination.
@@ -139,10 +144,12 @@ REACT_APP_FIREBASE_MEASUREMENT_ID=...
 
 - `/`: English project showcase.
 - `/projects/:id`: English project details.
+- `/map`: English GIS-ready project map.
 - `/education`: education and certificates.
 - `/about`: profile/about page.
 - `/pt`: Portuguese project showcase.
 - `/pt/projetos/:id`: Portuguese project details.
+- `/pt/mapa`: Portuguese GIS-ready project map.
 - `/pt/formacao`: Portuguese education route.
 - `/pt/sobre`: Portuguese about route.
 
@@ -191,7 +198,7 @@ The compatibility layer translates known flat English values today and will auto
 
 ## Future Technical Roadmap
 
-- GIS Integration: interactive mapping for project sites across Luanda, Soyo, Cabinda, and other regions.
+- GIS Integration: interactive mapping shell is in place; next step is adding verified coordinates to Firestore from `project-locations.template.json`.
 - 3D BIM Visualization: browser-based rendering of 3D construction and architectural models.
 - Enterprise Admin CMS: authenticated content management with Firebase Auth, Firestore rules, and controlled S3 uploads.
 - AI/LLM Assistant: RAG-based search over project documents, site reports, and technical specifications.

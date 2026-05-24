@@ -5,12 +5,14 @@ const localizedSegments = {
   en: {
     home: "",
     projects: "projects",
+    map: "map",
     education: "education",
     about: "about",
   },
   pt: {
     home: "",
     projects: "projetos",
+    map: "mapa",
     education: "formacao",
     about: "sobre",
   },

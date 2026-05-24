@@ -4,7 +4,9 @@ const MEDIA_CACHE = `${CACHE_VERSION}:media`;
 const OFFLINE_URL = "/offline.html";
 const SHELL_ASSETS = [
   "/",
+  "/map",
   "/pt",
+  "/pt/mapa",
   OFFLINE_URL,
   "/manifest.json",
   "/favicon.png",

@@ -1,0 +1,198 @@
+.panel {
+  background: #fff;
+  border-radius: 8px;
+  color: #182033;
+  padding: 1.25rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  color: #1f5fff;
+  font-size: 1.8rem;
+  margin: 0 0 0.4rem;
+}
+
+.subtitle {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 44rem;
+}
+
+.summary {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.summaryBadge {
+  border: 1px solid #c8d5ef;
+  border-radius: 999px;
+  color: #1246a0;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+}
+
+.mapLayout {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.65fr);
+}
+
+.mapSurface {
+  aspect-ratio: 16 / 11;
+  background:
+    linear-gradient(135deg, rgba(31, 95, 255, 0.08), rgba(22, 150, 127, 0.08)),
+    radial-gradient(circle at 35% 30%, rgba(31, 95, 255, 0.14), transparent 28%),
+    #f8fbff;
+  border: 1px solid #cad5e5;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mapGrid {
+  inset: 0;
+  position: absolute;
+  background-image:
+    linear-gradient(rgba(18, 70, 160, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 70, 160, 0.09) 1px, transparent 1px);
+  background-size: 12.5% 12.5%;
+}
+
+.angolaShape {
+  inset: 8% 18% 10% 20%;
+  position: absolute;
+}
+
+.angolaShape svg {
+  height: 100%;
+  width: 100%;
+}
+
+.marker {
+  align-items: center;
+  background: #1f5fff;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  box-shadow: 0 0.25rem 0.65rem rgba(20, 31, 58, 0.25);
+  color: #fff;
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 700;
+  height: 2rem;
+  justify-content: center;
+  min-width: 2rem;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.emptyMapState {
+  align-items: center;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 2rem;
+  position: absolute;
+  text-align: center;
+}
+
+.emptyMapState p {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #d8e2f2;
+  border-radius: 8px;
+  margin: 0;
+  max-width: 26rem;
+  padding: 1rem;
+}
+
+.sidePanel {
+  border: 1px solid #d8e2f2;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.sidePanel h2 {
+  color: #1f5fff;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+
+.sidePanel p {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin: 0 0 0.8rem;
+}
+
+.pendingList {
+  display: grid;
+  gap: 0.65rem;
+  list-style: none;
+  margin: 0;
+  max-height: 32rem;
+  overflow: auto;
+  padding: 0;
+}
+
+.pendingItem {
+  border-top: 1px solid #e6edf7;
+  padding-top: 0.65rem;
+}
+
+.projectTitle {
+  color: #12224a;
+  display: block;
+  font-size: 0.95rem;
+}
+
+.projectMeta {
+  color: #536074;
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin-top: 0.2rem;
+}
+
+.projectLink {
+  color: #1f5fff;
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+  text-decoration: none;
+}
+
+.projectLink:hover,
+.projectLink:focus {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 980px) {
+  .mapLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .panel {
+    padding: 0.8rem;
+  }
+
+  .title {
+    font-size: 1.35rem;
+  }
+
+  .summary {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .mapSurface {
+    aspect-ratio: 1 / 1.15;
+  }
+}

@@ -2,6 +2,7 @@
   "language": "pt",
   "precache": [
     "/pt",
+    "/pt/mapa",
     "/manifest.json",
     "/offline.html",
     "/favicon.png",

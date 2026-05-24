@@ -13,6 +13,7 @@ import ProjectCard from "./components/project/ProjectCard";
 import Certificate from "./pages/Certificate/Certificate";
 import NotFound from "./pages/NotFound";
 import AboutContainer from "./pages/About/AboutContainer";
+import ProjectMap from "./pages/Map/ProjectMap";
 import { getLanguageFromPath, isSupportedLanguage, normalizeLanguage } from "./i18n/routes";
 
 const LanguageSync: React.FC = () => {
@@ -44,11 +45,14 @@ const LanguageSync: React.FC = () => {
         null,
         React.createElement(Route, { path: "/", element: React.createElement(ProjectsContainer, null) }),
         React.createElement(Route, { path: "/projects/:id", element: React.createElement(ProjectCard, null) }),
+        React.createElement(Route, { path: "/map", element: React.createElement(ProjectMap, null) }),
         React.createElement(Route, { path: "/education", element: React.createElement(Certificate, null) }),
         React.createElement(Route, { path: "/about", element: React.createElement(AboutContainer, null) }),
         React.createElement(Route, { path: "/:lang", element: React.createElement(ProjectsContainer, null) }),
         React.createElement(Route, { path: "/:lang/projetos/:id", element: React.createElement(ProjectCard, null) }),
         React.createElement(Route, { path: "/:lang/projects/:id", element: React.createElement(ProjectCard, null) }),
+        React.createElement(Route, { path: "/:lang/mapa", element: React.createElement(ProjectMap, null) }),
+        React.createElement(Route, { path: "/:lang/map", element: React.createElement(ProjectMap, null) }),
         React.createElement(Route, { path: "/:lang/formacao", element: React.createElement(Certificate, null) }),
         React.createElement(Route, { path: "/:lang/education", element: React.createElement(Certificate, null) }),
         React.createElement(Route, { path: "/:lang/sobre", element: React.createElement(AboutContainer, null) }),

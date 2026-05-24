@@ -14,6 +14,8 @@ export const getLocalizedValue = <T>(
   if (typeof value !== "object") return value as T;
 
   const localized = value as LocalizedMap<T>;
+  if (!("en" in localized) && !("pt" in localized)) return value as T;
+
   const lang = normalizeLanguage(language);
   return (
     localized[lang] ??
