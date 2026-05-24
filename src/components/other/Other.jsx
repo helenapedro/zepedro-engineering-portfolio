@@ -28,7 +28,7 @@ const Other = () => {
 
     const renderTitleOnly = (data) => (
         <div className={styles.title}>
-            <p className={styles.title}>{data.title}</p>
+            <p className={styles.title}>{wrapNumbersWithClass(data.title, styles.number)}</p>
         </div>
     );
 

@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# ZePedro React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React single-page portfolio application that showcases projects, education, certificates, and profile information.
+
+## Tech Stack
+
+- React 18 (`react-scripts`)
+- React Router v6
+- Firebase Firestore (client-side reads)
+- Bootstrap / React-Bootstrap
+
+## Requirements
+
+- Node.js `20.x`
+- npm (bundled with Node)
+
+## Installation
+
+```bash
+npm install
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm run dev`: starts the React development server.
+- `npm run build`: creates production build in `build/`.
+- `npm start`: serves the production build from `build/`.
+- `npm test`: runs tests.
+- `npm run clean`: removes `build/`.
 
-### `npm start`
+## Environment Variables
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Create `.env.local` in the project root:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+REACT_APP_BASE_URL=http://localhost:3000/
 
-### `npm test`
+REACT_APP_FIREBASE_API_KEY=...
+REACT_APP_FIREBASE_AUTH_DOMAIN=...
+REACT_APP_FIREBASE_PROJECT_ID=...
+REACT_APP_FIREBASE_STORAGE_BUCKET=...
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=...
+REACT_APP_FIREBASE_APP_ID=...
+REACT_APP_FIREBASE_MEASUREMENT_ID=...
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## App Routes
 
-### `npm run build`
+- `/`: projects landing page
+- `/projects/:id`: project details
+- `/education`: certificates and education section
+- `/about`: about page
+- `*`: not found page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Data Layer and Caching
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Firestore/JSON reads are handled by reusable hooks and utilities:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `src/Hooks/useData.js`
+- `src/Hooks/homeData.js`
+- `src/Hooks/useProjectDevData.jsx`
+- `src/Hooks/fetchProjectsByCategory.js`
+- `src/Hooks/useProjectsServer.js`
 
-### `npm run eject`
+Caching is implemented in `src/utils/cacheStore.js` with:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- In-memory cache for fast repeated reads during a session.
+- `localStorage` persistence for suitable cached values.
+- TTL-based expiration (`DEFAULT_CACHE_TTL_MS`, currently 1 hour).
+- Memory-first lookup with persistent fallback.
+- Fail-open behavior if browser storage is unavailable (app continues using memory cache).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Projects Query Strategy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The projects listing (`src/pages/projects/ProjectContainer.jsx`) uses server-side querying:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Category filtering is executed in Firestore (`where('categoryId', 'in', [...])`).
+- Pagination is cursor-based (`orderBy(documentId()) + startAfter(...) + limit(pageSize)`).
+- Total matching rows are retrieved with `getCountFromServer(...)`.
+- Category counters in the filter dropdown are fetched with Firestore count queries.
 
-## Learn More
+This avoids loading the entire `projects` collection into the browser and scales better as data grows.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Firestore Notes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Firestore `in` filters support up to 10 values. The app enforces this limit for selected categories.
+- Depending on your Firestore project settings, an index may be requested at runtime. If prompted, create it using the link from the Firestore error message.
+- Ensure Firestore rules allow read queries on `projects` and `category` for these filtered/count operations.
 
-### Code Splitting
+## Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- This app uses Firebase Web config values in environment variables for portability.
+- `npm start` serves static production files; use `npm run dev` for local development iteration.

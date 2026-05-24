@@ -97,6 +97,53 @@ h5,
   color: var(--color-primary);
 }
 
+.metricsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.65rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.metricCard {
+  background: #f6f8fc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.7rem 0.8rem;
+}
+
+.metricLabel {
+  display: block;
+  font-size: 0.72rem;
+  color: #64748b;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.metricValue {
+  color: #1e293b;
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
+.contentSection {
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  color: var(--color-primary);
+  font-family: var(--font-family-primary);
+  font-size: 1.05rem;
+  margin: 0.5rem 0 0.4rem;
+  letter-spacing: 0.01em;
+}
+
+.galleryActions {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.9rem;
+}
+
 .organization a:hover,
 .subtitle a:hover,
 .projectdescription a:hover {
@@ -108,6 +155,10 @@ h5,
   h5 {
     font-size: 1.5em;
   }
+
+  .metricsSection {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 480px) {
@@ -116,5 +167,9 @@ h5,
     font-size: 1.2em;
     margin-bottom: 15px;
     line-height: 1.4;
+  }
+
+  .metricsSection {
+    grid-template-columns: 1fr;
   }
 }

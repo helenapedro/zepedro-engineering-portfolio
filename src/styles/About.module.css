@@ -74,6 +74,37 @@
   transform: scale(1.1);
 }
 
+.resumeAccess {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.resumeAccessTitle {
+  color: var(--color-primary);
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+  margin-bottom: 0.4rem;
+}
+
+.resumeAccessText {
+  color: #334155;
+  font-family: "eb_garamond_sc12_regular", sans-serif;
+  margin-bottom: 0.9rem;
+}
+
+.resumeQrLink {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+}
+
+.resumeQrImage {
+  width: 170px;
+  height: 170px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.15);
+}
+
 @media (max-width: 768px) {
   .col-md-6 {
     order: unset;
@@ -98,5 +129,10 @@
   .card-text,
   .title-oea {
     font-size: medium;
+  }
+
+  .resumeQrImage {
+    width: 150px;
+    height: 150px;
   }
 }

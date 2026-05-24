@@ -5,9 +5,18 @@ import styles from "../components/ui/ProjectDetails.module.css";
 const CategoryFilterDropdown = ({
   categories,
   selectedCategories,
-  projects,
+  projects = [],
+  categoryCounts = null,
   onCategoryChange,
 }) => {
+  const getCategoryCount = (category) => {
+    if (categoryCounts && typeof categoryCounts[category.id] === "number") {
+      return categoryCounts[category.id];
+    }
+
+    return projects.filter((project) => project.categoryId === category.id).length;
+  };
+
   return (
     <DropdownButton
       id="dropdown-category"
@@ -25,9 +34,7 @@ const CategoryFilterDropdown = ({
         }}
       >
         {categories.map((category) => {
-          const projectCount = projects.filter(
-            (project) => project.categoryId === category.id
-          ).length;
+          const projectCount = getCategoryCount(category);
           return (
             <Form.Check
               key={category.id}

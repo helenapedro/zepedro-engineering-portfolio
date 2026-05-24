@@ -57,8 +57,105 @@
   padding: 10px;
 }
 
+.featuredMediaCard {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: linear-gradient(160deg, #ffffff 0%, #f8fafc 100%);
+  margin-bottom: 1.25rem;
+}
+
+.featuredMediaVideoWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 360px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.18);
+}
+
+.featuredMediaVideo {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.featuredMediaPopoutMask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 64px;
+  height: 64px;
+  background: #000;
+  opacity: 0.9;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.featuredMediaBadge {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: #1e3a8a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.featuredMediaTitle {
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.featuredMediaText {
+  color: #334155;
+  font-family: "eb_garamond_sc12_regular", sans-serif;
+  margin-bottom: 1rem;
+}
+
+.featuredMediaNumber {
+  font-family: var(--font-family-numbers);
+  font-style: normal;
+}
+
+.featuredMediaQuoteLabel {
+  color: #0f172a;
+  font-family: "eb_garamond_sc08_regular", sans-serif;
+  font-size: 1rem;
+  margin: 0 0 0.35rem 0;
+}
+
+.featuredMediaQuote {
+  margin: 0 0 1rem 0;
+  padding: 0.65rem 0.85rem;
+  border-left: 4px solid #1e3a8a;
+  background: #eef4ff;
+  border-radius: 6px;
+}
+
+.featuredMediaQuoteText {
+  display: block;
+  color: #0f172a;
+  font-family: "eb_garamond_sc12_regular", sans-serif;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.featuredMediaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
 @media (max-width: 768px) {
   .card-column {
     margin-bottom: 0.5rem;
+  }
+
+  .featuredMediaVideoWrapper {
+    max-height: 320px;
   }
 }

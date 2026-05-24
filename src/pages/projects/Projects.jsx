@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Project from './Project';
-import useData from '../Hooks/useData';
+import useData from '../../Hooks/useData';
 import renderPagination from '../../utils/Pagination/renderPagination';
 import handlePageChange from '../../utils/handlePageChange';
 import LoadingError from '../../components/comon/LoadingError';
@@ -24,10 +24,10 @@ const Projects = () => {
       {!loading && !error && (
         <div>
           {renderPagination(
-            data.length, 
-            pageSize, 
-            currentPage, 
-            handlePageChangeWrapper, 
+            data.length,
+            pageSize,
+            currentPage,
+            handlePageChangeWrapper,
             styles.paginationContainer
           )}
           {paginatedProjects.map((project) => (
@@ -36,21 +36,23 @@ const Projects = () => {
                 <Project
                   title={project.title}
                   organization={project.organization}
-                  placeandyear={project.placeandyear}
-                  summaryHeader={project.summaryHeader}
-                  activities={project.activities}
+                  location={project.location}
+                  period={project.period}
+                  context={project.context}
+                  responsibilities={project.responsibilities}
+                  results={project.results}
                   projectOutcome={project.projectOutcome}
-                  images={project.images}
+                  media={project.media}
                 />
               </Link>
               <br />
             </div>
           ))}
           {renderPagination(
-            data.length, 
-            pageSize, 
-            currentPage, 
-            handlePageChangeWrapper, 
+            data.length,
+            pageSize,
+            currentPage,
+            handlePageChangeWrapper,
             styles.paginationContainer
           )}
         </div>
