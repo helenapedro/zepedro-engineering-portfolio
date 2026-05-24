@@ -12,6 +12,8 @@ interface ProjectCarouselProps {
 const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, title, onImageClick }) => {
      const [activeSlide, setActiveSlide] = useState<number>(0);
      const [hovered, setHovered] = useState<number | null>(null);
+     const ChevronLeft = FaChevronLeft as React.ComponentType<{ size?: number }>;
+     const ChevronRight = FaChevronRight as React.ComponentType<{ size?: number }>;
 
      return (
           <div>
@@ -22,12 +24,12 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, title, onImag
                     onSelect={(selectedIndex) => setActiveSlide(selectedIndex)}
                     prevIcon={
                          <div className={imagestyles.customArrow} style={{ left: '10px' }}>
-                              <FaChevronLeft size={24} />
+                              {React.createElement(ChevronLeft, { size: 24 })}
                          </div>
                     }
                     nextIcon={
                          <div className={imagestyles.customArrow} style={{ right: '10px' }}>
-                              <FaChevronRight size={24} />
+                              {React.createElement(ChevronRight, { size: 24 })}
                          </div>
                     }
                     className={imagestyles.imageCarousel}

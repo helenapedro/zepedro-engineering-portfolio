@@ -34,7 +34,7 @@ export function useDocument<T = DocumentData>(
         },
         (err) => {
           console.error(err);
-          setError(err);
+          setError(new Error(err.message));
           setLoading(false);
         }
       );
@@ -46,8 +46,8 @@ export function useDocument<T = DocumentData>(
       try {
         const snap = await getDoc(ref);
         setData(snap.exists() ? ({ id: snap.id, ...(snap.data() as T) }) : null);
-      } catch (err: any) {
-        setError(err);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
       } finally {
         setLoading(false);
       }

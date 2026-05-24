@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import useData from '../../Hooks/useData';
 import LoadingError from '../comon/LoadingError';
-import styles from '../pages/projects/Project.module.css';
+import styles from '../../pages/projects/Project.module.css';
 import ProjectDetails from './ProjectDetails';
 import type { Project } from '../../types/index';
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { collection, getCountFromServer, query, where } from "firebase/firestore";
-import db from "../firebase";
+import db from "../config/firebase";
 import { createCacheKey, getOrFetchCached } from "../utils/cacheStore";
 
 const useCategoryCounts = (categories = []) => {

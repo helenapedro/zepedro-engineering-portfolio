@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import db from "../../firebase";
+import db from "../../config/firebase";
 import SkillsHeader from "./SkillsHeader";
 import SkillsBody from "./SkillsBody";
 import styles from './Skills.module.css';

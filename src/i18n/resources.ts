@@ -1,0 +1,94 @@
+const resources = {
+  en: {
+    translation: {
+      nav: {
+        home: "Home",
+        education: "Education",
+        about: "About",
+        linkedin: "LinkedIn",
+        language: "Language",
+      },
+      common: {
+        loading: "Loading...",
+        close: "Close",
+        error: "Error",
+        imagePreview: "Image Preview",
+        projectImage: "Project image",
+        viewImage: "View Image",
+      },
+      filters: {
+        categoryTitle: "Filter by Categories",
+        unknownCategory: "Unknown Category",
+      },
+      projects: {
+        viewDetails: "View Details",
+        notFound: "Project not found.",
+        imagesLabel: "Project images",
+      },
+      featured: {
+        badge: "As Featured on Live TV",
+        title: "Cabinda - Construction of 120 Apartments, Funded by PIIM Reaches 70% Completion",
+        text: "Reporter context: In Buco-Zau, lawmakers visited ongoing social projects, including 300 social houses and the construction of 120 apartments under PIIM (Integrated Municipal Intervention Plan), with physical progress already at 70%.",
+        quoteLabel: "Interview excerpt (Engineer Jose Pedro)",
+        quote: "\"The project includes external infrastructure works such as asphalt paving, as well as electricity, hydraulics, including water drainage systems.\"",
+        watch: "Watch Interview Clip",
+        related: "View Related Project",
+        videoTitle: "Live TV interview clip",
+      },
+      owner: {
+        fallbackSummary: "4+ years in project management and {{years}} years in QHSE-Quality coordination.",
+      },
+      pwa: {
+        offlineTitle: "You are offline",
+        offlineText: "The portfolio shell is available offline. Reconnect to refresh project data and media.",
+      },
+    },
+  },
+  pt: {
+    translation: {
+      nav: {
+        home: "Início",
+        education: "Formação",
+        about: "Sobre",
+        linkedin: "LinkedIn",
+        language: "Idioma",
+      },
+      common: {
+        loading: "A carregar...",
+        close: "Fechar",
+        error: "Erro",
+        imagePreview: "Pré-visualização",
+        projectImage: "Imagem do projeto",
+        viewImage: "Ver imagem",
+      },
+      filters: {
+        categoryTitle: "Filtrar por categorias",
+        unknownCategory: "Categoria desconhecida",
+      },
+      projects: {
+        viewDetails: "Ver detalhes",
+        notFound: "Projeto não encontrado.",
+        imagesLabel: "Imagens do projeto",
+      },
+      featured: {
+        badge: "Destaque na Televisão",
+        title: "Cabinda - Construção de 120 apartamentos, financiada pelo PIIM, atinge 70% de execução",
+        text: "Contexto da reportagem: Em Buco-Zau, deputados visitaram projetos sociais em curso, incluindo 300 casas sociais e a construção de 120 apartamentos no âmbito do PIIM (Plano Integrado de Intervenção nos Municípios), já com 70% de execução física.",
+        quoteLabel: "Excerto da entrevista (Engenheiro José Pedro)",
+        quote: "\"O projeto contempla as infraestruturas externas, como asfaltagem, eletricidade, hidráulica e sistemas de drenagem de águas.\"",
+        watch: "Ver entrevista",
+        related: "Ver projeto relacionado",
+        videoTitle: "Excerto da entrevista televisiva",
+      },
+      owner: {
+        fallbackSummary: "Mais de 4 anos em gestão de projetos e {{years}} anos em coordenação QHSE-Qualidade.",
+      },
+      pwa: {
+        offlineTitle: "Está offline",
+        offlineText: "A estrutura do portfólio está disponível offline. Volte a ligar para atualizar dados e media dos projetos.",
+      },
+    },
+  },
+};
+
+export default resources;

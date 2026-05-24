@@ -1,0 +1,12 @@
+{
+  "language": "pt",
+  "precache": [
+    "/pt",
+    "/manifest.json",
+    "/offline.html",
+    "/favicon.png",
+    "/paradoxo.png",
+    "/bg0.webp",
+    "/overlay.png"
+  ]
+}

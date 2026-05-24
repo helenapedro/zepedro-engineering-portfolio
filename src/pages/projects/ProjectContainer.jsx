@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Button, Modal, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import useHomeData from "../../Hooks/homeData";
 import useData from "../../Hooks/useData";
 import useProjectsServer from "../../Hooks/useProjectsServer";
@@ -12,6 +13,8 @@ import ProjectCard from "./components/ProjectCard";
 import styles from "./ProjectContainer.module.css";
 import mainStyles from "../../components/Main.module.css";
 import containerstyles from "../../components/ui/Container.module.css";
+import { getLanguageFromPath, routePath } from "../../i18n/routes";
+import { localizeCategory, localizeOwner, localizeProject } from "../../i18n/localizedValue";
 
 const FEATURED_PROJECT_TITLE = "Construction of 120 Social Apartments in Buco-Zau";
 const FEATURED_PROJECT_PATH = "/projects/construction-of-120-social-apartments-in-buco-zau";
@@ -24,6 +27,8 @@ const getCategoryName = (categories, categoryId) => {
 };
 
 const ProjectsContainer = () => {
+  const { t } = useTranslation();
+  const language = getLanguageFromPath(window.location.pathname);
   const {
     projects,
     totalCount,
@@ -45,11 +50,23 @@ const ProjectsContainer = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [modalImage, setModalImage] = useState("");
+  const localizedCategories = useMemo(
+    () => (Array.isArray(categories) ? categories.map((category) => localizeCategory(category, language)) : []),
+    [categories, language]
+  );
+  const localizedProjects = useMemo(
+    () => projects.map((project) => localizeProject(project, language)),
+    [projects, language]
+  );
+  const localizedOwnerData = useMemo(
+    () => (ownerData ? localizeOwner(ownerData, language) : ownerData),
+    [ownerData, language]
+  );
   const categoryCounts = useCategoryCounts(categories);
 
   const categoryNameMap = useMemo(
-    () => Object.fromEntries(categories.map((category) => [category.id, category.name])),
-    [categories]
+    () => Object.fromEntries(localizedCategories.map((category) => [category.id, category.name])),
+    [localizedCategories]
   );
 
   const openModal = (image) => {
@@ -60,37 +77,38 @@ const ProjectsContainer = () => {
     setShowModal(true);
   };
 
-  if (projectsLoading || categoriesLoading || ownerLoading) return <p>Loading...</p>;
-  if (projectsError) return <p>Error: {projectsError.message}</p>;
-  if (categoriesError) return <p>Error: {categoriesError.message}</p>;
-  if (ownerError) return <p>Error: {ownerError.message}</p>;
+  if (projectsLoading || categoriesLoading || ownerLoading) return <p>{t("common.loading")}</p>;
+  if (projectsError) return <p>{t("common.error")}: {projectsError.message}</p>;
+  if (categoriesError) return <p>{t("common.error")}: {categoriesError.message}</p>;
+  if (ownerError) return <p>{t("common.error")}: {ownerError.message}</p>;
 
   return (
     <div className={`${mainStyles.panel} ${styles.panel}`}>
-      {ownerData && <OwnerIntroduction ownerData={ownerData} />}
+      {localizedOwnerData && <OwnerIntroduction ownerData={localizedOwnerData} />}
 
       <FeaturedMediaCard
         projectTitle={FEATURED_PROJECT_TITLE}
-        projectPath={FEATURED_PROJECT_PATH}
+        projectPath={routePath("projects", language, { id: "construction-of-120-social-apartments-in-buco-zau" })}
         videoUrl={FEATURED_VIDEO_URL}
         embedUrl={FEATURED_VIDEO_EMBED_URL}
       />
 
       <Row className={containerstyles.container}>
         <CategoryFilterDropdown
-          categories={categories}
+          categories={localizedCategories}
           selectedCategories={selectedCategories}
           categoryCounts={categoryCounts}
           onCategoryChange={handleCategoryChange}
         />
 
-        {projects.map((project) => (
+        {localizedProjects.map((project) => (
           <ProjectCard
             key={project.id}
             project={project}
             categoryName={
               categoryNameMap[project.categoryId] ||
-              getCategoryName(categories, project.categoryId)
+              getCategoryName(localizedCategories, project.categoryId) ||
+              t("filters.unknownCategory")
             }
             onOpenImage={openModal}
           />
@@ -109,11 +127,11 @@ const ProjectsContainer = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Body>
-          <img src={modalImage} alt="Project" className="img-fluid" />
+          <img src={modalImage} alt={t("common.projectImage")} className="img-fluid" />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Close
+            {t("common.close")}
           </Button>
         </Modal.Footer>
       </Modal>

@@ -1,6 +1,6 @@
 import { getDocs, collection } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-import db from '../firebase'; 
+import db from '../config/firebase'; 
 
 interface Category {
   id: string;

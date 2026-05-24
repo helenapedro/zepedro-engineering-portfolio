@@ -10,7 +10,7 @@ import {
   startAfter,
   where,
 } from "firebase/firestore";
-import db from "../firebase";
+import db from "../config/firebase";
 import handleScrollToTop from "../utils/HandleScroll";
 import {
   createCacheKey,

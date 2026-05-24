@@ -9,7 +9,7 @@ import {
   DocumentData,
   QueryDocumentSnapshot,
 } from 'firebase/firestore';
-import db from '../firebase';
+import db from '../config/firebase';
 import type { ProjectsPage, Project } from '../types';
 
 interface PageOpts {

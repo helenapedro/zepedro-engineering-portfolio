@@ -94,8 +94,38 @@
   border-bottom-width: 0.5em;
 }
 
+.languageToggle {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin-left: 0.75rem;
+  vertical-align: top;
+}
+
+.languageToggle button {
+  background: transparent;
+  border: 1px solid var(--color-container);
+  color: var(--color-container);
+  cursor: pointer;
+  font-size: 0.8rem;
+  min-width: 2.5rem;
+  padding: 0.25rem 0.4rem;
+}
+
+.languageToggle button:hover,
+.languageToggle button:focus,
+.languageToggle .languageActive {
+  background: var(--color-container);
+  color: var(--color-border);
+}
+
 @media screen and (max-width: 980px) {
   .nav a span {
     display: none;
+  }
+
+  .languageToggle {
+    display: flex;
+    justify-content: center;
+    margin: 0.75rem 0 0;
   }
 }
