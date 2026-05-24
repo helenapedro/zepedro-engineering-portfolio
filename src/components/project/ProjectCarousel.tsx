@@ -9,36 +9,10 @@ interface ProjectCarouselProps {
      onImageClick: (image: string) => void;
 }
 
-<<<<<<< HEAD:src/components/project/ProjectCarousel.tsx
 const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, title, onImageClick }) => {
      const [activeSlide, setActiveSlide] = useState<number>(0);
      const [hovered, setHovered] = useState<number | null>(null);
 
-     const PrevArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
-          <div className={imagestyles.customArrow} style={{ left: '10px' }} onClick={onClick}>
-               <iconsfa.FaChevronLeft size={24} />
-          </div>
-     );
-
-     const NextArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
-          <div className={imagestyles.customArrow} style={{ right: '10px' }} onClick={onClick}>
-               <iconsfa.FaChevronRight size={24} />
-          </div>
-     );
-
-     return (
-          <div>
-               <Slider
-                    dots={false}
-                    infinite={false}
-                    speed={500}
-                    slidesToShow={1}
-                    slidesToScroll={1}
-                    autoplay={false}
-                    prevArrow={<PrevArrow />}
-                    nextArrow={<NextArrow />}
-                    afterChange={(current: number) => setActiveSlide(current)}
-=======
      return (
           <div>
                <Carousel
@@ -56,7 +30,6 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, title, onImag
                               <FaChevronRight size={24} />
                          </div>
                     }
->>>>>>> c9aebd1bef2f2937159333f4f6d04e981192f8b3:src/components/Project/ProjectCarousel.jsx
                     className={imagestyles.imageCarousel}
                >
                     {images.map((image, index) => (
