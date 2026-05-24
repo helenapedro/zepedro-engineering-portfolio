@@ -1,39 +1,130 @@
-# ZePedro React App
+# Scalable React-Firestore Architecture: Engineering Project Showcase
 
-React single-page portfolio application that showcases projects, education, certificates, and profile information.
+A high-performance single-page application architected to showcase complex civil engineering projects through a scalable React frontend, optimized Firestore querying, multilingual presentation, and offline-ready content delivery.
 
-## Tech Stack
+The platform is more than a portfolio site: it is a technical case study in building a resilient project showcase for infrastructure work, including social housing, bridges, drainage systems, airport pavement rehabilitation, and multimedia engineering documentation.
 
-- React 18 (`react-scripts`)
-- React Router v6
-- Firebase Firestore (client-side reads)
-- Bootstrap / React-Bootstrap
+## Core Technical Achievements
 
-## Requirements
+### Multi-Tier Caching System
 
-- Node.js `20.x`
-- npm (bundled with Node)
+The application implements a TTL-based caching engine in [`src/utils/cacheStore.js`](src/utils/cacheStore.js) with two layers:
+
+- In-memory cache for fast repeated reads during the active browser session.
+- `localStorage` persistence for cross-session reuse of query results.
+- One-hour default TTL expiration through `DEFAULT_CACHE_TTL_MS`.
+- Fail-open resilience when browser storage is unavailable, allowing the app to continue with memory-only caching.
+
+This strategy reduces redundant Firestore reads while keeping project data fresh enough for a live portfolio.
+
+### Server-Side Query Strategy
+
+Project listing is handled by [`src/Hooks/useProjectsServer.js`](src/Hooks/useProjectsServer.js), which avoids loading the full `projects` collection into the browser.
+
+The data layer uses:
+
+- Firestore `where("categoryId", "in", [...])` filtering.
+- Cursor-based pagination with `orderBy(documentId())`, `startAfter(...)`, and `limit(pageSize)`.
+- Cached cursor metadata to support page navigation without repeatedly walking every previous page.
+- Defensive handling for Firestore's 10-value `in` filter limit.
+
+### Optimized Data Metadata
+
+The platform uses Firestore aggregate reads through `getCountFromServer(...)` for:
+
+- Total project count per selected filter set.
+- Category count metadata in the filter dropdown.
+
+This avoids full document reads when the UI only needs totals.
+
+### Globalization and Offline-First Delivery
+
+Phase 1 of the technical roadmap adds:
+
+- Runtime internationalization with `i18next` and `react-i18next`.
+- English and Portuguese route support, including `/pt`, `/pt/projetos/:id`, `/pt/formacao`, and `/pt/sobre`.
+- Compatibility localization for current flat Firestore strings, plus support for future map fields like `{ en, pt }`.
+- PWA manifest, service worker, offline fallback, and persistent shell/media caching.
+
+### Global Asset Delivery
+
+The architecture is designed for high-resolution engineering assets delivered through AWS S3 and CloudFront. Project images, technical media, and video references can be served globally with low-latency CDN delivery while Firestore remains focused on metadata and queryable project structure.
+
+## Tech Stack and Infrastructure
+
+- Frontend: React 18, React Router v6, TypeScript, React-Bootstrap, CSS Modules.
+- Internationalization: `i18next`, `react-i18next`, `i18next-browser-languagedetector`.
+- Backend and Database: Firebase Firestore.
+- Storage and CDN: AWS S3, AWS CloudFront-ready asset delivery.
+- PWA: Custom service worker, web manifest, offline fallback, installable shell.
+- Development: Node.js 20.x compatible workflow, Create React App / `react-scripts`.
+
+## Architectural Deep Dive
+
+### Data Layer Abstraction
+
+- [`src/Hooks/useProjectsServer.js`](src/Hooks/useProjectsServer.js): server-side Firestore filtering, cursor pagination, count aggregation, and cached cursor metadata.
+- [`src/Hooks/fetchProjectsByCategory.tsx`](src/Hooks/fetchProjectsByCategory.tsx): category-based Firestore reads.
+- [`src/Hooks/useData.ts`](src/Hooks/useData.ts): generic document/collection access through a reusable hook.
+- [`src/Hooks/homeData.ts`](src/Hooks/homeData.ts): cached profile/home document reads.
+
+### State and Cache Management
+
+- [`src/utils/cacheStore.js`](src/utils/cacheStore.js): memory-first cache with persistent fallback and TTL invalidation.
+- [`src/Hooks/useCachedAsyncData.js`](src/Hooks/useCachedAsyncData.js): hook abstraction that lets Firestore-backed UI reuse cached data without duplicating fetch lifecycle logic.
+
+### Globalization Layer
+
+- [`src/i18n/index.ts`](src/i18n/index.ts): i18next initialization and browser language detection.
+- [`src/i18n/routes.ts`](src/i18n/routes.ts): localized route generation and language-aware path translation.
+- [`src/i18n/localizedValue.ts`](src/i18n/localizedValue.ts): Firestore localization adapter for both current flat strings and future localized map fields.
+- [`src/i18n/firestoreFallbacks.ts`](src/i18n/firestoreFallbacks.ts): Portuguese compatibility translations for existing Firestore content.
+
+### PWA Layer
+
+- [`public/service-worker.js`](public/service-worker.js): shell and media caching, offline navigation fallback, and cache cleanup.
+- [`public/manifest.json`](public/manifest.json): installable application metadata.
+- [`public/offline.html`](public/offline.html): offline fallback screen.
+- [`src/pwa/registerServiceWorker.ts`](src/pwa/registerServiceWorker.ts): production service worker registration.
+
+## Real-World Engineering Context
+
+The application presents infrastructure and architecture work with direct connection to field delivery, public works, and technical coordination.
+
+- Social Housing Infrastructure: the 120 social apartments project in Buco-Zau, funded by PIIM, including media coverage and construction progress context.
+- Public Works and Access Infrastructure: the New Bridge over the Lucola River and its access roads.
+- Urban Systems: stormwater drainage rehabilitation in Cabinda City.
+- Aviation Infrastructure: pavement rehabilitation at Maria Mambo Café Airport.
+- Multimedia Engineering Documentation: TV interview clips, high-resolution project galleries, and electronic model references such as the Mamaland / Tchiela Farm project.
 
 ## Installation
+
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-## Available Scripts
+Start local development:
 
-- `npm run dev`: starts the React development server.
-- `npm run build`: creates production build in `build/`.
-- `npm start`: serves the production build from `build/`.
-- `npm test`: runs tests.
-- `npm run clean`: removes `build/`.
+```bash
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
 
 ## Environment Variables
 
-Create `.env.local` in the project root:
+Create `.env.local` in the project root and provide Firebase/Web asset configuration:
 
 ```bash
+GENERATE_SOURCEMAP=false
 REACT_APP_BASE_URL=http://localhost:3000/
+REACT_APP_FIREBASE_STORAGE_BASE_URL=...
 
 REACT_APP_FIREBASE_API_KEY=...
 REACT_APP_FIREBASE_AUTH_DOMAIN=...
@@ -46,48 +137,66 @@ REACT_APP_FIREBASE_MEASUREMENT_ID=...
 
 ## App Routes
 
-- `/`: projects landing page
-- `/projects/:id`: project details
-- `/education`: certificates and education section
-- `/about`: about page
-- `*`: not found page
+- `/`: English project showcase.
+- `/projects/:id`: English project details.
+- `/education`: education and certificates.
+- `/about`: profile/about page.
+- `/pt`: Portuguese project showcase.
+- `/pt/projetos/:id`: Portuguese project details.
+- `/pt/formacao`: Portuguese education route.
+- `/pt/sobre`: Portuguese about route.
 
-## Data Layer and Caching
+Legacy English routes remain available so existing links continue to work.
 
-Firestore/JSON reads are handled by reusable hooks and utilities:
+## Firestore Requirements
 
-- `src/Hooks/useData.js`
-- `src/Hooks/homeData.js`
-- `src/Hooks/useProjectDevData.jsx`
-- `src/Hooks/fetchProjectsByCategory.js`
-- `src/Hooks/useProjectsServer.js`
+The app expects readable Firestore collections for:
 
-Caching is implemented in `src/utils/cacheStore.js` with:
+- `projects`
+- `category`
+- `home`
 
-- In-memory cache for fast repeated reads during a session.
-- `localStorage` persistence for suitable cached values.
-- TTL-based expiration (`DEFAULT_CACHE_TTL_MS`, currently 1 hour).
-- Memory-first lookup with persistent fallback.
-- Fail-open behavior if browser storage is unavailable (app continues using memory cache).
+For filtered project queries, Firestore may request composite indexes depending on production query shape. If Firestore returns an index link at runtime, create the suggested index in the Firebase console.
 
-## Projects Query Strategy
+Firestore rules must allow the public read operations required by the portfolio:
 
-The projects listing (`src/pages/projects/ProjectContainer.jsx`) uses server-side querying:
+- Project listing and detail reads.
+- Category reads and count aggregation.
+- Home/profile document reads.
 
-- Category filtering is executed in Firestore (`where('categoryId', 'in', [...])`).
-- Pagination is cursor-based (`orderBy(documentId()) + startAfter(...) + limit(pageSize)`).
-- Total matching rows are retrieved with `getCountFromServer(...)`.
-- Category counters in the filter dropdown are fetched with Firestore count queries.
+## Localized Content Model
 
-This avoids loading the entire `projects` collection into the browser and scales better as data grows.
+The current application supports two Firestore content shapes.
 
-## Firestore Notes
+Current flat string schema:
 
-- Firestore `in` filters support up to 10 values. The app enforces this limit for selected categories.
-- Depending on your Firestore project settings, an index may be requested at runtime. If prompted, create it using the link from the Firestore error message.
-- Ensure Firestore rules allow read queries on `projects` and `category` for these filtered/count operations.
+```json
+{
+  "title": "Construction of 120 Social Apartments in Buco-Zau"
+}
+```
 
-## Notes
+Future localized map schema:
 
-- This app uses Firebase Web config values in environment variables for portability.
-- `npm start` serves static production files; use `npm run dev` for local development iteration.
+```json
+{
+  "title": {
+    "en": "Construction of 120 Social Apartments in Buco-Zau",
+    "pt": "Construção de 120 Apartamentos Sociais no Buco-Zau"
+  }
+}
+```
+
+The compatibility layer translates known flat English values today and will automatically prefer localized Firestore maps as the database schema evolves.
+
+## Future Technical Roadmap
+
+- GIS Integration: interactive mapping for project sites across Luanda, Soyo, Cabinda, and other regions.
+- 3D BIM Visualization: browser-based rendering of 3D construction and architectural models.
+- Enterprise Admin CMS: authenticated content management with Firebase Auth, Firestore rules, and controlled S3 uploads.
+- AI/LLM Assistant: RAG-based search over project documents, site reports, and technical specifications.
+- Computer Vision: automated tagging and progress verification for QHSE and construction milestone tracking.
+
+## Why This Repository Matters
+
+This project demonstrates how frontend engineering, cloud data modeling, construction-domain knowledge, and performance architecture can come together in a practical technical showcase. The result is a portfolio system that communicates both engineering delivery experience and full-stack implementation judgment.

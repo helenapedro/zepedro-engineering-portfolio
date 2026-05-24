@@ -1,4 +1,5 @@
 import { DEFAULT_LANGUAGE, normalizeLanguage, type SupportedLanguage } from "./routes";
+import { translateFirestoreString } from "./firestoreFallbacks";
 
 type LocalizedMap<T> = Partial<Record<SupportedLanguage, T>> & Record<string, T | undefined>;
 
@@ -9,6 +10,7 @@ export const getLocalizedValue = <T>(
 ): T | "" => {
   if (value === null || value === undefined) return "";
   if (Array.isArray(value)) return value as T;
+  if (typeof value === "string") return translateFirestoreString(value, language) as T;
   if (typeof value !== "object") return value as T;
 
   const localized = value as LocalizedMap<T>;
@@ -22,7 +24,7 @@ export const getLocalizedValue = <T>(
 };
 
 export const localizeActivity = (activity: any, language: string): any => {
-  if (typeof activity === "string") return activity;
+  if (typeof activity === "string") return translateFirestoreString(activity, language);
   if (!activity || typeof activity !== "object") return activity;
 
   return {
@@ -41,10 +43,18 @@ export const localizeProject = <T extends Record<string, any>>(project: T, langu
   location: getLocalizedValue(project.location, language),
   placeandyear: getLocalizedValue(project.placeandyear, language),
   description: getLocalizedValue(project.description, language),
+  context: getLocalizedValue(project.context, language),
   finalDescription: getLocalizedValue(project.finalDescription, language),
+  projectOutcome: getLocalizedValue(project.projectOutcome, language),
   activities: Array.isArray(project.activities)
     ? project.activities.map((activity: any) => localizeActivity(activity, language))
     : project.activities,
+  responsibilities: Array.isArray(project.responsibilities)
+    ? project.responsibilities.map((item: any) => getLocalizedValue(item, language))
+    : project.responsibilities,
+  results: Array.isArray(project.results)
+    ? project.results.map((item: any) => getLocalizedValue(item, language))
+    : project.results,
   period: project.period
     ? {
         ...project.period,
