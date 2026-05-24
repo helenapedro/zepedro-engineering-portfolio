@@ -1,12 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import useData from '../../Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './AdditionalTraining.module.css';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { localizeRecord } from '../../i18n/localizedValue';
 
 const Certificates = () => {
+  const { i18n, t } = useTranslation();
   const collectionName = 'training';
   const { data, loading, error } = useData(collectionName);
 
@@ -16,7 +19,7 @@ const Certificates = () => {
       return (
         <Col className='col-6' key={imgIndex}>
           <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
-            <img src={imageUrl} alt={`Certificate ${index + 1}`} />
+            <img src={imageUrl} alt={`${t("education.certificate", "Certificate")} ${index + 1}`} />
           </a>
           <h4 className={styles.title}>
             {wrapNumbersWithClass(data.title[imgIndex], styles.number)}
@@ -28,21 +31,24 @@ const Certificates = () => {
 
   return (
     <div className={EducationStyles.education}>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error loading data.</p>}
+      {loading && <p>{t("common.loading")}</p>}
+      {error && <p>{t("common.error")} loading data.</p>}
       {!error && data && Array.isArray(data) && (
-        data.map((data, index) => (
+        data.map((item, index) => {
+          const localizedItem = localizeRecord(item, i18n.language);
+          return (
           <article className={EducationStyles.panel} key={index}>
-            <h1>Certificates</h1>
+            <h1>{t("education.certificates", "Certificates")}</h1>
             <Row className={EducationStyles.row}>
-              {data.images && data.images.length > 0 ? (
-                renderCertificates(data, index)
+              {localizedItem.images && localizedItem.images.length > 0 ? (
+                renderCertificates(localizedItem, index)
               ) : (
-                <p>No certificates available.</p>
+                <p>{t("education.noCertificates", "No certificates available.")}</p>
               )}
             </Row>
           </article>
-        ))
+          );
+        })
       )}
     </div>
   );

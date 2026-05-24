@@ -1,10 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import useData from '../../Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './Academic.module.css';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
+import { localizeRecord } from '../../i18n/localizedValue';
 
 const Education = () => {
+    const { i18n, t } = useTranslation();
     const collectionName = 'education';
     const { data, loading, error } = useData(collectionName);
 
@@ -41,15 +44,18 @@ const Education = () => {
 
     return (
         <div className={EducationStyles.education}>
-            {loading && <p>Loading...</p>}
-            {error && <p>Error loading data.</p>}
+            {loading && <p>{t("common.loading")}</p>}
+            {error && <p>{t("common.error")} loading data.</p>}
             {data && Array.isArray(data) && (
-                data.map((data, index) => (
+                data.map((item, index) => {
+                    const localizedItem = localizeRecord(item, i18n.language);
+                    return (
                     <article className={EducationStyles.panel} key={index}>
-                        {renderHeader(data)}
-                        {renderImages(data)}
+                        {renderHeader(localizedItem)}
+                        {renderImages(localizedItem)}
                     </article>
-                ))
+                    );
+                })
             )}
         </div>
     );

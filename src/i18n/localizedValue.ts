@@ -74,3 +74,26 @@ export const localizeOwner = <T extends Record<string, any>>(owner: T, language:
   headline: getLocalizedValue(owner.headline, language),
   homeSummary: getLocalizedValue(owner.homeSummary, language),
 });
+
+export const localizeRecord = <T extends Record<string, any>>(record: T, language: string): T => {
+  const localizedEntries = Object.entries(record).map(([key, value]) => {
+    if (Array.isArray(value)) {
+      return [
+        key,
+        value.map((item) =>
+          typeof item === "string" || (item && typeof item === "object")
+            ? getLocalizedValue(item as any, language)
+            : item
+        ),
+      ];
+    }
+
+    if (typeof value === "string" || (value && typeof value === "object")) {
+      return [key, getLocalizedValue(value as any, language)];
+    }
+
+    return [key, value];
+  });
+
+  return Object.fromEntries(localizedEntries) as T;
+};

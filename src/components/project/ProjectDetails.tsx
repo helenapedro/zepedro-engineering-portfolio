@@ -58,16 +58,18 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
     };
 
     const resolveUrl = (imageRef: string) => {
-        const STORAGE_BASE_URL = process.env.REACT_APP_FIREBASE_STORAGE_BASE_URL;
+        if (!imageRef) return '';
+        if (/^https?:\/\//i.test(imageRef)) return imageRef;
 
-        if (!STORAGE_BASE_URL) {
-          console.error("REACT_APP_FIREBASE_STORAGE_BASE_URL is not defined. Images may not load correctly.");
-          return imageRef;
-        }
+        const cdnBaseUrl =
+            process.env.REACT_APP_CDN_BASE_URL ||
+            process.env.REACT_APP_BASE_URL ||
+            process.env.REACT_APP_FIREBASE_STORAGE_BASE_URL;
 
-        const encodedImageRef = encodeURIComponent(imageRef);
+        if (!cdnBaseUrl) return imageRef;
 
-        return `${STORAGE_BASE_URL}projects%2F${encodedImageRef}?alt=media`;
+        const normalizedBase = cdnBaseUrl.endsWith('/') ? cdnBaseUrl : `${cdnBaseUrl}/`;
+        return `${normalizedBase}${imageRef.replace(/^\/+/, '')}`;
     };
 
     return (

@@ -1,4 +1,4 @@
-const CACHE_PREFIX = "zepedro:cache:v1:";
+const CACHE_PREFIX = "zepedro:cache:v2:";
 export const DEFAULT_CACHE_TTL_MS = 60 * 60 * 1000;
 
 const memoryCache = new Map();

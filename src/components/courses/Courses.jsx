@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useData from '../../Hooks/useData';
 import EducationStyles from '../Education.module.css';
 import styles from './METraining.module.css';
 import { wrapNumbersWithClass } from '../../utils/WrapNumbers';
 import { Row, Col, Button, Modal, Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { localizeRecord } from '../../i18n/localizedValue';
 
 const Courses = () => {
+  const { i18n, t } = useTranslation();
   const collectionName = 'courses';
   const { data, loading, error } = useData(collectionName);
   const [showModal, setShowModal] = useState(false);
@@ -18,14 +21,14 @@ const Courses = () => {
 
   const renderScenario1 = (data, index) => (
     <>
-      <h1>MOTA-ENGIL CERTIFICATES</h1>
+      <h1>{t("education.motaCertificates", "MOTA-ENGIL CERTIFICATES")}</h1>
       <Row>
         {data.images.map((image, imgIndex) => {
           const imageUrl = `${image}`;
           return (
             <Col className='col-6' key={imgIndex}>
               <a className={EducationStyles.image} href={imageUrl} target="_blank" rel="noopener noreferrer">
-                <img src={imageUrl} alt={`Certificate ${index + 1}`} />
+                <img src={imageUrl} alt={`${t("education.certificate", "Certificate")} ${index + 1}`} />
               </a>
               <h4 className={styles.title}>
                 {wrapNumbersWithClass(data.title[imgIndex], styles.number)}
@@ -45,7 +48,7 @@ const Courses = () => {
           {wrapNumbersWithClass(data.title, styles.number)}
         </h1>
         <Button onClick={toggleSummary} className="mb-2">
-          {showSummary ? 'Hide Summary' : 'Show Summary'}
+          {showSummary ? t("education.hideSummary", "Hide Summary") : t("education.showSummary", "Show Summary")}
         </Button>
         {showSummary && (
           <b className={EducationStyles.traineeSummary}>
@@ -66,12 +69,12 @@ const Courses = () => {
         </Row>
         {data.images.length > 6 && (
           <Button onClick={handleShowModal} className="mt-2">
-            View All Images
+            {t("education.viewAllImages", "View All Images")}
           </Button>
         )}
         <Modal show={showModal} onHide={handleCloseModal} size="lg">
           <Modal.Header closeButton>
-            <Modal.Title>All Images</Modal.Title>
+            <Modal.Title>{t("education.allImages", "All Images")}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Carousel>
@@ -96,28 +99,31 @@ const Courses = () => {
 
   return (
     <div className={EducationStyles.education}>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error loading data.</p>}
+      {loading && <p>{t("common.loading")}</p>}
+      {error && <p>{t("common.error")} loading data.</p>}
       {!error && data && Array.isArray(data) && (
-        data.map((data, index) => (
+        data.map((item, index) => {
+          const localizedItem = localizeRecord(item, i18n.language);
+          return (
           <article className={EducationStyles.panel} key={index}>
             <div className={EducationStyles.row}>
-              {data.images && data.images.length > 0 ? (
+              {localizedItem.images && localizedItem.images.length > 0 ? (
                 <>
-                  {Array.isArray(data.title) ? (
-                    renderScenario1(data, index)
+                  {Array.isArray(localizedItem.title) ? (
+                    renderScenario1(localizedItem, index)
                   ) : (
-                    renderScenario2(data)
+                    renderScenario2(localizedItem)
                   )}
                 </>
               ) : (
                 <div className='col-12-small'>
-                  <p className={styles.title}>{wrapNumbersWithClass(data.title, styles.number)}</p>
+                  <p className={styles.title}>{wrapNumbersWithClass(localizedItem.title, styles.number)}</p>
                 </div>
               )}
             </div>
           </article>
-        ))
+          );
+        })
       )}
     </div>
   );
