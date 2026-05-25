@@ -97,6 +97,12 @@ The architecture is designed for high-resolution engineering assets delivered th
 - [`src/components/project/BimModelViewer.tsx`](src/components/project/BimModelViewer.tsx): project detail model asset section that stays hidden until a model URL is configured.
 - [`project-model-assets.template.json`](project-model-assets.template.json): intake template for collecting optimized `.glb` / `.gltf` model URLs, source metadata, file size labels, and preview images.
 
+### Phase 3 Admin/CMS Foundation
+
+- [`src/pages/Admin/AdminDashboard.jsx`](src/pages/Admin/AdminDashboard.jsx): protected Firebase Auth admin shell with project inventory and metadata editing.
+- [`src/pages/Admin/useAdminAuth.ts`](src/pages/Admin/useAdminAuth.ts): Firebase Authentication listener, email/password sign-in, sign-out, and optional admin email allow-list.
+- The current CMS slice supports project metadata updates through Firestore `updateDoc`; uploads and destructive deletes remain disabled until storage policies are finalized.
+
 ## Real-World Engineering Context
 
 The application presents infrastructure and architecture work with direct connection to field delivery, public works, and technical coordination.
@@ -143,18 +149,23 @@ REACT_APP_FIREBASE_STORAGE_BUCKET=...
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=...
 REACT_APP_FIREBASE_APP_ID=...
 REACT_APP_FIREBASE_MEASUREMENT_ID=...
+REACT_APP_ADMIN_EMAILS=admin@example.com,second-admin@example.com
 ```
+
+`REACT_APP_ADMIN_EMAILS` is optional but recommended. It gates the client admin UI to specific authenticated Firebase users. It is not a replacement for Firestore Security Rules.
 
 ## App Routes
 
 - `/`: English project showcase.
 - `/projects/:id`: English project details.
 - `/map`: English GIS-ready project map.
+- `/admin`: protected admin/CMS foundation.
 - `/education`: education and certificates.
 - `/about`: profile/about page.
 - `/pt`: Portuguese project showcase.
 - `/pt/projetos/:id`: Portuguese project details.
 - `/pt/mapa`: Portuguese GIS-ready project map.
+- `/pt/admin`: protected Portuguese admin/CMS foundation.
 - `/pt/formacao`: Portuguese education route.
 - `/pt/sobre`: Portuguese about route.
 
@@ -175,6 +186,8 @@ Firestore rules must allow the public read operations required by the portfolio:
 - Project listing and detail reads.
 - Category reads and count aggregation.
 - Home/profile document reads.
+
+Admin/CMS writes must be protected separately. A production Phase 3 deployment should enforce custom claims or an `admins/{uid}` allow-list in Firestore rules before enabling create, update, delete, or upload features.
 
 ## Localized Content Model
 
@@ -225,6 +238,7 @@ The current implementation prepares the UI and data contract. Full browser rende
 - GIS Integration: interactive mapping shell is in place; next step is adding verified coordinates to Firestore from `project-locations.template.json`.
 - 3D BIM Visualization: model asset shell is in place; next step is attaching optimized `.glb` / `.gltf` assets from `project-model-assets.template.json` and enabling full Three.js rendering.
 - Enterprise Admin CMS: authenticated content management with Firebase Auth, Firestore rules, and controlled S3 uploads.
+- Phase 3 first slice: Firebase Auth protected admin shell, project inventory, and metadata editing are in place; uploads and destructive deletes remain future work until storage rules are finalized.
 - AI/LLM Assistant: RAG-based search over project documents, site reports, and technical specifications.
 - Computer Vision: automated tagging and progress verification for QHSE and construction milestone tracking.
 

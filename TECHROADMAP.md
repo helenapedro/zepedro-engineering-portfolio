@@ -64,6 +64,10 @@ The platform will evolve into a dynamic Content Management System (CMS), enablin
 
 - Technical Requirements:
   - Architecting a protected /admin route utilizing Firebase Authentication and React Router v6 protected loaders.
+- Current Preparation:
+  - A Firebase Auth protected `/admin` and `/pt/admin` shell is in place.
+  - The admin dashboard currently provides project inventory plus metadata editing for localized titles, descriptions, location text, coordinates, visibility, image references, and 3D/BIM model references.
+  - Optional `REACT_APP_ADMIN_EMAILS` client gating is supported, while production write access remains dependent on Firestore Security Rules.
 - Firestore/S3 Integration:
   - Transition to full CRUD (Create, Read, Update, Delete) capabilities.
   - Implementation of granular Firestore Security Rules to protect project metadata and S3 Bucket Policies to ensure secure, authenticated image and document uploads.

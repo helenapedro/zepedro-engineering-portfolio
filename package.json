@@ -40,7 +40,6 @@
     "react-slick": "^0.30.3",
     "serve": "^14.2.3",
     "slick-carousel": "^1.8.1",
-    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -71,8 +70,15 @@
     ]
   },
   "devDependencies": {
+    "@aws-amplify/backend": "^1.22.0",
+    "@aws-amplify/backend-cli": "^1.8.2",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "aws-cdk-lib": "^2.234.1",
+    "constructs": "^10.6.0",
+    "esbuild": "^0.28.0",
     "qrcode": "^1.5.4",
-    "rimraf": "^5.0.7"
+    "rimraf": "^5.0.7",
+    "tsx": "^4.22.3",
+    "typescript": "^5.9.3"
   }
 }

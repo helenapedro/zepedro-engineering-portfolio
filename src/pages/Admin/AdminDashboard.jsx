@@ -1,0 +1,425 @@
+import React, { useMemo, useState } from "react";
+import { Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
+import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import useData from "../../Hooks/useData";
+import db from "../../config/firebase";
+import { getLanguageFromPath } from "../../i18n/routes";
+import { getLocalizedValue } from "../../i18n/localizedValue";
+import { createCacheKey, invalidateCache } from "../../utils/cacheStore";
+import mainStyles from "../../components/Main.module.css";
+import styles from "./AdminDashboard.module.css";
+import { useAdminAuth } from "./useAdminAuth";
+
+const hasCoordinates = (project) => {
+  const coordinates = project.location?.coordinates || project.coordinates || project.geo;
+  if (!coordinates || typeof coordinates !== "object") return false;
+  const lat = coordinates.lat ?? coordinates.latitude;
+  const lng = coordinates.lng ?? coordinates.lon ?? coordinates.longitude;
+  return Number.isFinite(Number(lat)) && Number.isFinite(Number(lng));
+};
+
+const hasModelAsset = (project) =>
+  Boolean(project.modelAsset?.url || project.media?.model?.url || project.modelAssets?.[0]?.url);
+
+const valueForLanguage = (value, lang) => {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  if (typeof value === "object") return value[lang] || value.en || value.pt || "";
+  return "";
+};
+
+const localizedPair = (en, pt) => ({
+  en: en.trim(),
+  pt: pt.trim() || en.trim(),
+});
+
+const textToList = (value) =>
+  value
+    .split(/\r?\n/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+const makeEditForm = (project) => {
+  const location = project.location && typeof project.location === "object" ? project.location : null;
+  const locationValue = location?.label || location?.name || project.location;
+  const coordinates = project.location?.coordinates || project.coordinates || project.geo || {};
+  const modelAsset = project.modelAsset || project.media?.model || project.modelAssets?.[0] || {};
+  const imageRefs = project.imageRefs || project.media?.images || [];
+
+  return {
+    titleEn: valueForLanguage(project.title, "en"),
+    titlePt: valueForLanguage(project.title, "pt"),
+    organizationEn: valueForLanguage(project.organization, "en"),
+    organizationPt: valueForLanguage(project.organization, "pt"),
+    locationEn: valueForLanguage(locationValue, "en"),
+    locationPt: valueForLanguage(locationValue, "pt"),
+    contextEn: valueForLanguage(project.context || project.description, "en"),
+    contextPt: valueForLanguage(project.context || project.description, "pt"),
+    outcomeEn: valueForLanguage(project.projectOutcome || project.finalDescription, "en"),
+    outcomePt: valueForLanguage(project.projectOutcome || project.finalDescription, "pt"),
+    latitude: String(coordinates.lat ?? coordinates.latitude ?? ""),
+    longitude: String(coordinates.lng ?? coordinates.lon ?? coordinates.longitude ?? ""),
+    imageRefs: Array.isArray(imageRefs) ? imageRefs.join("\n") : "",
+    modelUrl: modelAsset.url || "",
+    modelTitle: modelAsset.title || "",
+    modelFormat: modelAsset.format || "",
+    modelSize: modelAsset.sizeLabel || "",
+    modelSource: modelAsset.source || "",
+    modelPreview: modelAsset.previewImage || "",
+    isVisible: project.isVisible !== false,
+  };
+};
+
+const getProjectLocationLabel = (project, language) => {
+  const location = project.location;
+  if (!location || typeof location === "string") return getLocalizedValue(location, language);
+  if (typeof location !== "object") return "";
+
+  const directLabel = getLocalizedValue(location.label || location.name, language);
+  if (directLabel) return directLabel;
+
+  return [location.municipality, location.province, location.country]
+    .map((value) => getLocalizedValue(value, language))
+    .filter(Boolean)
+    .join(", ");
+};
+
+const AdminDashboard = () => {
+  const { t } = useTranslation();
+  const language = getLanguageFromPath(window.location.pathname);
+  const { user, loading: authLoading, authError, isAllowedAdmin, signIn, signOutAdmin } = useAdminAuth();
+  const { data, loading: projectsLoading, error: projectsError } = useData("projects");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [editingProject, setEditingProject] = useState(null);
+  const [editForm, setEditForm] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState(null);
+  const [saveMessage, setSaveMessage] = useState("");
+  const [localUpdates, setLocalUpdates] = useState({});
+
+  const projects = useMemo(() => {
+    const records = Array.isArray(data) ? data : [];
+    return records
+      .map((project) => ({ ...project, ...(localUpdates[project.id] || {}) }))
+      .map((project) => {
+        const locationText = getProjectLocationLabel(project, language);
+        return {
+          ...project,
+          localizedTitle: getLocalizedValue(project.title, language),
+          localizedLocation: locationText,
+          hasCoordinates: hasCoordinates(project),
+          hasModelAsset: hasModelAsset(project),
+        };
+      })
+      .sort((a, b) => String(a.localizedTitle).localeCompare(String(b.localizedTitle)));
+  }, [data, language, localUpdates]);
+
+  const visibleCount = projects.filter((project) => project.isVisible !== false).length;
+  const gpsCount = projects.filter((project) => project.hasCoordinates).length;
+  const modelCount = projects.filter((project) => project.hasModelAsset).length;
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    signIn(email, password);
+  };
+
+  const startEditing = (project) => {
+    setEditingProject(project);
+    setEditForm(makeEditForm(project));
+    setSaveError(null);
+    setSaveMessage("");
+  };
+
+  const updateForm = (field, value) => {
+    setEditForm((current) => ({ ...current, [field]: value }));
+  };
+
+  const cancelEditing = () => {
+    setEditingProject(null);
+    setEditForm(null);
+    setSaveError(null);
+  };
+
+  const saveProject = async (event) => {
+    event.preventDefault();
+    if (!editingProject || !editForm) return;
+
+    const lat = Number(editForm.latitude);
+    const lng = Number(editForm.longitude);
+    const hasValidCoordinates = Number.isFinite(lat) && Number.isFinite(lng);
+    const imageRefs = textToList(editForm.imageRefs);
+    const modelAsset = editForm.modelUrl.trim()
+      ? {
+          url: editForm.modelUrl.trim(),
+          title: editForm.modelTitle.trim(),
+          format: editForm.modelFormat.trim(),
+          sizeLabel: editForm.modelSize.trim(),
+          source: editForm.modelSource.trim(),
+          previewImage: editForm.modelPreview.trim(),
+        }
+      : null;
+
+    const payload = {
+      title: localizedPair(editForm.titleEn, editForm.titlePt),
+      organization: localizedPair(editForm.organizationEn, editForm.organizationPt),
+      location: localizedPair(editForm.locationEn, editForm.locationPt),
+      context: localizedPair(editForm.contextEn, editForm.contextPt),
+      projectOutcome: localizedPair(editForm.outcomeEn, editForm.outcomePt),
+      coordinates: hasValidCoordinates ? { lat, lng } : null,
+      imageRefs,
+      media: {
+        ...(editingProject.media || {}),
+        images: imageRefs,
+        model: modelAsset,
+      },
+      modelAsset,
+      isVisible: Boolean(editForm.isVisible),
+      updatedAt: serverTimestamp(),
+    };
+
+    setSaving(true);
+    setSaveError(null);
+    setSaveMessage("");
+
+    try {
+      await updateDoc(doc(db, "projects", editingProject.id), payload);
+      invalidateCache(createCacheKey("collection", "projects"));
+      invalidateCache(createCacheKey("doc", `projects/${editingProject.id}`));
+      setLocalUpdates((current) => ({
+        ...current,
+        [editingProject.id]: {
+          ...payload,
+          updatedAt: new Date().toISOString(),
+        },
+      }));
+      setSaveMessage(t("admin.saved"));
+      setEditingProject(null);
+      setEditForm(null);
+    } catch (error) {
+      setSaveError(error instanceof Error ? error : new Error(String(error)));
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (authLoading) return <p>{t("common.loading")}</p>;
+
+  return (
+    <section className={`${mainStyles.panel} ${styles.panel}`} aria-labelledby="admin-title">
+      <header className={styles.header}>
+        <div>
+          <h1 id="admin-title" className={styles.title}>{t("admin.title")}</h1>
+          <p className={styles.subtitle}>{t("admin.subtitle")}</p>
+        </div>
+        {user && (
+          <Button variant="secondary" className={styles.signOut} onClick={signOutAdmin}>
+            {t("admin.signOut")}
+          </Button>
+        )}
+      </header>
+
+      {!user && (
+        <form className={styles.loginCard} onSubmit={handleSubmit}>
+          <h2>{t("admin.signInTitle")}</h2>
+          <label className={styles.field}>
+            <span>{t("admin.email")}</span>
+            <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+          </label>
+          <label className={styles.field}>
+            <span>{t("admin.password")}</span>
+            <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+          </label>
+          {authError && <p className={styles.error}>{authError.message}</p>}
+          <Button type="submit" variant="primary">{t("admin.signIn")}</Button>
+          <p className={styles.note}>{t("admin.authNote")}</p>
+        </form>
+      )}
+
+      {user && !isAllowedAdmin && (
+        <div className={styles.loginCard}>
+          <p className={styles.error}>{t("admin.restricted")}</p>
+          <p className={styles.note}>{t("admin.authNote")}</p>
+        </div>
+      )}
+
+      {user && isAllowedAdmin && (
+        <>
+          <p className={styles.note}>{t("admin.readOnly")}</p>
+          {saveMessage && <p className={styles.success}>{saveMessage}</p>}
+          {projectsLoading && <p>{t("common.loading")}</p>}
+          {projectsError && <p className={styles.error}>{t("common.error")}: {projectsError.message}</p>}
+          {!projectsLoading && !projectsError && (
+            <>
+              <div className={styles.metrics}>
+                <span className={styles.metric}>{t("admin.totalProjects", { count: projects.length })}</span>
+                <span className={styles.metric}>{t("admin.visibleProjects", { count: visibleCount })}</span>
+                <span className={styles.metric}>{t("admin.gpsReady", { count: gpsCount })}</span>
+                <span className={styles.metric}>{t("admin.modelReady", { count: modelCount })}</span>
+              </div>
+
+              <div className={styles.tableWrap}>
+                <table className={styles.table}>
+                  <caption>{t("admin.dashboard")}</caption>
+                  <thead>
+                    <tr>
+                      <th>{t("admin.tableProject")}</th>
+                      <th>{t("admin.tableLocation")}</th>
+                      <th>{t("admin.tableGps")}</th>
+                      <th>{t("admin.tableModel")}</th>
+                      <th>{t("admin.tableStatus")}</th>
+                      <th>{t("admin.tableActions")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {projects.map((project) => (
+                      <tr key={project.id}>
+                        <td>
+                          <strong>{project.localizedTitle}</strong>
+                          <span className={styles.projectId}>{project.id}</span>
+                        </td>
+                        <td>{project.localizedLocation || t("map.unknownLocation")}</td>
+                        <td>
+                          <span className={project.hasCoordinates ? styles.statusReady : styles.statusPending}>
+                            {project.hasCoordinates ? t("admin.ready") : t("admin.pending")}
+                          </span>
+                        </td>
+                        <td>
+                          <span className={project.hasModelAsset ? styles.statusReady : styles.statusPending}>
+                            {project.hasModelAsset ? t("admin.ready") : t("admin.pending")}
+                          </span>
+                        </td>
+                        <td>
+                          <span className={project.isVisible !== false ? styles.statusVisible : styles.statusHidden}>
+                            {project.isVisible !== false ? t("admin.visible") : t("admin.hidden")}
+                          </span>
+                        </td>
+                        <td>
+                          <Button size="sm" variant="outline-primary" onClick={() => startEditing(project)}>
+                            {t("admin.edit")}
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {editingProject && editForm && (
+                <form className={styles.editPanel} onSubmit={saveProject}>
+                  <div className={styles.editHeader}>
+                    <div>
+                      <h2>{t("admin.editProject")}</h2>
+                      <span>{editingProject.id}</span>
+                    </div>
+                    <Button type="button" variant="secondary" onClick={cancelEditing}>
+                      {t("admin.cancel")}
+                    </Button>
+                  </div>
+
+                  <div className={styles.formGrid}>
+                    <label className={styles.field}>
+                      <span>{t("admin.titleEn")}</span>
+                      <input value={editForm.titleEn} onChange={(event) => updateForm("titleEn", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.titlePt")}</span>
+                      <input value={editForm.titlePt} onChange={(event) => updateForm("titlePt", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.organizationEn")}</span>
+                      <input value={editForm.organizationEn} onChange={(event) => updateForm("organizationEn", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.organizationPt")}</span>
+                      <input value={editForm.organizationPt} onChange={(event) => updateForm("organizationPt", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.locationEn")}</span>
+                      <input value={editForm.locationEn} onChange={(event) => updateForm("locationEn", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.locationPt")}</span>
+                      <input value={editForm.locationPt} onChange={(event) => updateForm("locationPt", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.latitude")}</span>
+                      <input value={editForm.latitude} onChange={(event) => updateForm("latitude", event.target.value)} inputMode="decimal" />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.longitude")}</span>
+                      <input value={editForm.longitude} onChange={(event) => updateForm("longitude", event.target.value)} inputMode="decimal" />
+                    </label>
+                    <label className={`${styles.field} ${styles.fullWidth}`}>
+                      <span>{t("admin.contextEn")}</span>
+                      <textarea value={editForm.contextEn} onChange={(event) => updateForm("contextEn", event.target.value)} rows={4} />
+                    </label>
+                    <label className={`${styles.field} ${styles.fullWidth}`}>
+                      <span>{t("admin.contextPt")}</span>
+                      <textarea value={editForm.contextPt} onChange={(event) => updateForm("contextPt", event.target.value)} rows={4} />
+                    </label>
+                    <label className={`${styles.field} ${styles.fullWidth}`}>
+                      <span>{t("admin.outcomeEn")}</span>
+                      <textarea value={editForm.outcomeEn} onChange={(event) => updateForm("outcomeEn", event.target.value)} rows={4} />
+                    </label>
+                    <label className={`${styles.field} ${styles.fullWidth}`}>
+                      <span>{t("admin.outcomePt")}</span>
+                      <textarea value={editForm.outcomePt} onChange={(event) => updateForm("outcomePt", event.target.value)} rows={4} />
+                    </label>
+                    <label className={`${styles.field} ${styles.fullWidth}`}>
+                      <span>{t("admin.imageRefs")}</span>
+                      <textarea value={editForm.imageRefs} onChange={(event) => updateForm("imageRefs", event.target.value)} rows={5} />
+                      <small>{t("admin.imageRefsHelp")}</small>
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.modelUrl")}</span>
+                      <input value={editForm.modelUrl} onChange={(event) => updateForm("modelUrl", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.modelTitle")}</span>
+                      <input value={editForm.modelTitle} onChange={(event) => updateForm("modelTitle", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.modelFormat")}</span>
+                      <input value={editForm.modelFormat} onChange={(event) => updateForm("modelFormat", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.modelSize")}</span>
+                      <input value={editForm.modelSize} onChange={(event) => updateForm("modelSize", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.modelSource")}</span>
+                      <input value={editForm.modelSource} onChange={(event) => updateForm("modelSource", event.target.value)} />
+                    </label>
+                    <label className={styles.field}>
+                      <span>{t("admin.modelPreview")}</span>
+                      <input value={editForm.modelPreview} onChange={(event) => updateForm("modelPreview", event.target.value)} />
+                    </label>
+                    <label className={styles.checkboxField}>
+                      <input
+                        type="checkbox"
+                        checked={editForm.isVisible}
+                        onChange={(event) => updateForm("isVisible", event.target.checked)}
+                      />
+                      <span>{t("admin.isVisible")}</span>
+                    </label>
+                  </div>
+
+                  {saveError && <p className={styles.error}>{saveError.message}</p>}
+                  <div className={styles.editActions}>
+                    <Button type="submit" variant="primary" disabled={saving}>
+                      {saving ? t("common.loading") : t("admin.save")}
+                    </Button>
+                  </div>
+                </form>
+              )}
+            </>
+          )}
+        </>
+      )}
+    </section>
+  );
+};
+
+export default AdminDashboard;
