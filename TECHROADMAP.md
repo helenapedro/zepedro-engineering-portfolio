@@ -63,14 +63,16 @@ PORTFOLIO VALUE ADD This phase demonstrates a specialized intersection between C
 The platform will evolve into a dynamic Content Management System (CMS), enabling secure, real-time updates to project metadata and site status.
 
 - Technical Requirements:
-  - Architecting a protected /admin route utilizing Firebase Authentication and React Router v6 protected loaders.
+  - Architecting a protected /admin route utilizing Firebase Authentication and React Router v6 routing.
 - Current Preparation:
   - A Firebase Auth protected `/admin` and `/pt/admin` shell is in place.
   - The admin dashboard currently provides project inventory plus metadata editing for localized titles, descriptions, location text, coordinates, visibility, image references, and 3D/BIM model references.
-  - Optional `REACT_APP_ADMIN_EMAILS` client gating is supported, while production write access remains dependent on Firestore Security Rules.
+  - Optional `REACT_APP_ADMIN_EMAILS` client gating is supported.
+  - Firestore admin access is designed around authenticated users with matching `admins/{uid}` documents, so writes are not granted to every signed-in user.
 - Firestore/S3 Integration:
-  - Transition to full CRUD (Create, Read, Update, Delete) capabilities.
-  - Implementation of granular Firestore Security Rules to protect project metadata and S3 Bucket Policies to ensure secure, authenticated image and document uploads.
+  - Metadata update capability is implemented for existing project records.
+  - Full CRUD remains staged: create, destructive delete, and file uploads are intentionally deferred until CMS workflows and storage policies are finalized.
+  - Granular Firestore Security Rules protect project metadata through an admin allow-list model; S3 Bucket Policies or Firebase Storage rules are still required before enabling authenticated image and document uploads.
 - Professional Impact: The transition from a static repository to a dynamic CMS demonstrates enterprise-grade system design and sophisticated security awareness. It showcases the ability to manage complex data lifecycles while maintaining strict integrity and access controls across the infrastructure.
 
 ---
@@ -98,8 +100,11 @@ The following task list outlines the transformation from a high-performance SPA 
 
 - [x] Baseline: Established React SPA with 91.2% TypeScript, Firestore server-side querying, and multi-tier caching.
 - [x] Milestone 1: Deployment of PWA with i18n support for localized projects like the Buco-Zau Apartments.
-- [ ] Milestone 2: GIS mapping integration for project sites across Luanda, Soyo, and Cabinda.
-- [ ] Milestone 3: High-performance Three.js rendering of the Electronic Model of Tchiela Farm.
-- [ ] Milestone 4: Launch of Enterprise Admin CMS with strict Firestore Security Rules and S3 Bucket Policies.
+- [x] Milestone 2A: GIS-ready map shell, localized routes, coordinate intake template, and missing-coordinate fallback states.
+- [ ] Milestone 2B: Verified GPS coordinates and production map provider integration for project sites across Luanda, Soyo, Cabinda, and other regions.
+- [x] Milestone 3A: 3D/BIM model asset schema, project detail model section, and model intake template.
+- [ ] Milestone 3B: High-performance Three.js rendering of optimized `.glb` / `.gltf` models such as the Electronic Model of Tchiela Farm.
+- [x] Milestone 4A: Firebase Auth protected Admin/CMS shell, admin allow-list model, project inventory, and metadata editing.
+- [ ] Milestone 4B: Full Enterprise CMS with create/delete workflows, authenticated media/model uploads, strict storage policies, and operational audit safeguards.
 - [ ] Milestone 5: Deployment of AI-augmented QHSE coordination tools for automated verification of PIIM project milestones.
 - [ ] Final Target: Full "Cognitive Engineering Platform" integration.

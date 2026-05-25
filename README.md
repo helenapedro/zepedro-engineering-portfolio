@@ -6,6 +6,13 @@ The platform is more than a portfolio site: it is a technical case study in buil
 
 ## Core Technical Achievements
 
+## Current Implementation Status
+
+- Phase 1 complete: multilingual routing, Firestore localization adapters, Portuguese fallback coverage, PWA manifest, service worker, and offline shell.
+- Phase 2 foundation complete: GIS-ready map shell, coordinate intake template, 3D/BIM model asset schema, and model intake template.
+- Phase 3 foundation active: Firebase Auth protected admin area, admin allow-list support, project inventory, and Firestore metadata editing.
+- Still pending: verified project GPS coordinates, production map provider integration, true Three.js model rendering, create/delete workflows, and authenticated media/model upload policies.
+
 ### Multi-Tier Caching System
 
 The application implements a TTL-based caching engine in [`src/utils/cacheStore.js`](src/utils/cacheStore.js) with two layers:
@@ -102,6 +109,7 @@ The architecture is designed for high-resolution engineering assets delivered th
 - [`src/pages/Admin/AdminDashboard.jsx`](src/pages/Admin/AdminDashboard.jsx): protected Firebase Auth admin shell with project inventory and metadata editing.
 - [`src/pages/Admin/useAdminAuth.ts`](src/pages/Admin/useAdminAuth.ts): Firebase Authentication listener, email/password sign-in, sign-out, and optional admin email allow-list.
 - The current CMS slice supports project metadata updates through Firestore `updateDoc`; uploads and destructive deletes remain disabled until storage policies are finalized.
+- Admin writes are expected to be protected by Firestore rules using an `admins/{uid}` allow-list model.
 
 ## Real-World Engineering Context
 
@@ -188,6 +196,33 @@ Firestore rules must allow the public read operations required by the portfolio:
 - Home/profile document reads.
 
 Admin/CMS writes must be protected separately. A production Phase 3 deployment should enforce custom claims or an `admins/{uid}` allow-list in Firestore rules before enabling create, update, delete, or upload features.
+
+Recommended admin allow-list shape:
+
+```text
+admins/{firebaseAuthUid}
+```
+
+Example admin document:
+
+```json
+{
+  "email": "mbeua@outlook.com",
+  "role": "admin"
+}
+```
+
+The current CMS editing flow updates existing project metadata only. It does not upload files, create new project records, or permanently delete records.
+
+## Admin Editable Fields
+
+The protected admin dashboard can update:
+
+- localized title, organization, location, description, and outcome fields
+- latitude and longitude metadata
+- public visibility through `isVisible`
+- image references stored as paths or URLs
+- optional 3D/BIM model metadata through `modelAsset`
 
 ## Localized Content Model
 
