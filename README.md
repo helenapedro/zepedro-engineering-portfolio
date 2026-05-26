@@ -158,9 +158,12 @@ REACT_APP_FIREBASE_MESSAGING_SENDER_ID=...
 REACT_APP_FIREBASE_APP_ID=...
 REACT_APP_FIREBASE_MEASUREMENT_ID=...
 REACT_APP_ADMIN_EMAILS=admin@example.com,second-admin@example.com
+REACT_APP_S3_UPLOAD_ENDPOINT=https://your-api.example.com/admin/s3-presign
 ```
 
 `REACT_APP_ADMIN_EMAILS` is optional but recommended. It gates the client admin UI to specific authenticated Firebase users. It is not a replacement for Firestore Security Rules.
+
+`REACT_APP_S3_UPLOAD_ENDPOINT` should point to a protected backend/serverless endpoint that verifies the Firebase ID token and returns presigned S3 upload instructions. Do not expose AWS access keys in the React app.
 
 ## App Routes
 
@@ -223,6 +226,64 @@ The protected admin dashboard can update:
 - public visibility through `isVisible`
 - image references stored as paths or URLs
 - optional 3D/BIM model metadata through `modelAsset`
+- high-resolution project image references after uploading through a secure presigned S3 endpoint
+
+## S3 Upload Contract
+
+The admin dashboard sends this request to `REACT_APP_S3_UPLOAD_ENDPOINT`:
+
+```json
+{
+  "projectId": "construction-of-120-social-apartments-in-buco-zau",
+  "files": [
+    {
+      "fileName": "site-photo.jpg",
+      "contentType": "image/jpeg",
+      "size": 2400000
+    }
+  ]
+}
+```
+
+The request includes the Firebase ID token:
+
+```text
+Authorization: Bearer <firebase-id-token>
+```
+
+The endpoint should return either one upload object or an `uploads` array. PUT-style response:
+
+```json
+{
+  "uploads": [
+    {
+      "method": "PUT",
+      "uploadUrl": "https://s3-presigned-upload-url",
+      "publicUrl": "https://cdn.example.com/projects/project-id/site-photo.jpg"
+    }
+  ]
+}
+```
+
+POST-style response with S3 form fields is also supported:
+
+```json
+{
+  "uploads": [
+    {
+      "url": "https://bucket.s3.amazonaws.com",
+      "fields": {
+        "key": "projects/project-id/site-photo.jpg",
+        "policy": "...",
+        "x-amz-signature": "..."
+      },
+      "publicUrl": "https://cdn.example.com/projects/project-id/site-photo.jpg"
+    }
+  ]
+}
+```
+
+After upload, the returned `publicUrl` values are appended to the project image refs and saved to Firestore with the project metadata.
 
 ## Localized Content Model
 
@@ -273,7 +334,7 @@ The current implementation prepares the UI and data contract. Full browser rende
 - GIS Integration: interactive mapping shell is in place; next step is adding verified coordinates to Firestore from `project-locations.template.json`.
 - 3D BIM Visualization: model asset shell is in place; next step is attaching optimized `.glb` / `.gltf` assets from `project-model-assets.template.json` and enabling full Three.js rendering.
 - Enterprise Admin CMS: authenticated content management with Firebase Auth, Firestore rules, and controlled S3 uploads.
-- Phase 3 first slice: Firebase Auth protected admin shell, project inventory, and metadata editing are in place; uploads and destructive deletes remain future work until storage rules are finalized.
+- Phase 3 first slice: Firebase Auth protected admin shell, project inventory, metadata editing, and presigned S3 image upload integration are in place; create/delete workflows and storage policy hardening remain future work.
 - AI/LLM Assistant: RAG-based search over project documents, site reports, and technical specifications.
 - Computer Vision: automated tagging and progress verification for QHSE and construction milestone tracking.
 

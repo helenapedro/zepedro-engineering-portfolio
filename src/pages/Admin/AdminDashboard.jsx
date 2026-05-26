@@ -40,6 +40,67 @@ const textToList = (value) =>
     .map((item) => item.trim())
     .filter(Boolean);
 
+const s3UploadEndpoint = process.env.REACT_APP_S3_UPLOAD_ENDPOINT || "";
+
+const requestPresignedUploads = async ({ user, projectId, files }) => {
+  if (!s3UploadEndpoint) {
+    throw new Error("Missing REACT_APP_S3_UPLOAD_ENDPOINT.");
+  }
+
+  const token = await user.getIdToken();
+  const response = await fetch(s3UploadEndpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      projectId,
+      files: files.map((file) => ({
+        fileName: file.name,
+        contentType: file.type || "application/octet-stream",
+        size: file.size,
+      })),
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`S3 upload signing failed (${response.status}).`);
+  }
+
+  const payload = await response.json();
+  return Array.isArray(payload.uploads) ? payload.uploads : [payload];
+};
+
+const uploadFileWithSignedRequest = async (file, signedUpload) => {
+  if (signedUpload.fields) {
+    const formData = new FormData();
+    Object.entries(signedUpload.fields).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    formData.append("file", file);
+
+    const response = await fetch(signedUpload.url || signedUpload.uploadUrl, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) throw new Error(`S3 POST upload failed for ${file.name}.`);
+    return signedUpload.publicUrl || signedUpload.fileUrl || signedUpload.url;
+  }
+
+  const response = await fetch(signedUpload.uploadUrl || signedUpload.url, {
+    method: signedUpload.method || "PUT",
+    headers: {
+      "Content-Type": file.type || "application/octet-stream",
+    },
+    body: file,
+  });
+
+  if (!response.ok) throw new Error(`S3 PUT upload failed for ${file.name}.`);
+  return signedUpload.publicUrl || signedUpload.fileUrl || signedUpload.key || signedUpload.url;
+};
+
 const makeEditForm = (project) => {
   const location = project.location && typeof project.location === "object" ? project.location : null;
   const locationValue = location?.label || location?.name || project.location;
@@ -98,6 +159,9 @@ const AdminDashboard = () => {
   const [saveError, setSaveError] = useState(null);
   const [saveMessage, setSaveMessage] = useState("");
   const [localUpdates, setLocalUpdates] = useState({});
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState(null);
 
   const projects = useMemo(() => {
     const records = Array.isArray(data) ? data : [];
@@ -140,6 +204,40 @@ const AdminDashboard = () => {
     setEditingProject(null);
     setEditForm(null);
     setSaveError(null);
+    setUploadError(null);
+    setSelectedFiles([]);
+  };
+
+  const uploadSelectedImages = async () => {
+    if (!editingProject || !user || !selectedFiles.length) return;
+
+    setUploading(true);
+    setUploadError(null);
+    setSaveMessage("");
+
+    try {
+      const files = Array.from(selectedFiles);
+      const signedUploads = await requestPresignedUploads({
+        user,
+        projectId: editingProject.id,
+        files,
+      });
+
+      const uploadedUrls = [];
+      for (let index = 0; index < files.length; index += 1) {
+        const url = await uploadFileWithSignedRequest(files[index], signedUploads[index] || signedUploads[0]);
+        if (url) uploadedUrls.push(url);
+      }
+
+      const existingRefs = textToList(editForm.imageRefs);
+      updateForm("imageRefs", [...existingRefs, ...uploadedUrls].join("\n"));
+      setSelectedFiles([]);
+      setSaveMessage(t("admin.uploadComplete", { count: uploadedUrls.length }));
+    } catch (error) {
+      setUploadError(error instanceof Error ? error : new Error(String(error)));
+    } finally {
+      setUploading(false);
+    }
   };
 
   const saveProject = async (event) => {
@@ -372,6 +470,34 @@ const AdminDashboard = () => {
                       <textarea value={editForm.imageRefs} onChange={(event) => updateForm("imageRefs", event.target.value)} rows={5} />
                       <small>{t("admin.imageRefsHelp")}</small>
                     </label>
+                    <div className={`${styles.uploadPanel} ${styles.fullWidth}`}>
+                      <div>
+                        <strong>{t("admin.s3Upload")}</strong>
+                        <p>{s3UploadEndpoint ? t("admin.s3UploadHelp") : t("admin.s3EndpointMissing")}</p>
+                      </div>
+                      <label className={styles.filePicker}>
+                        <span>{t("admin.chooseImages")}</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          onChange={(event) => setSelectedFiles(Array.from(event.target.files || []))}
+                          disabled={!s3UploadEndpoint || uploading}
+                        />
+                      </label>
+                      {selectedFiles.length > 0 && (
+                        <span className={styles.fileCount}>{selectedFiles.length} selected</span>
+                      )}
+                      <Button
+                        type="button"
+                        variant="outline-primary"
+                        onClick={uploadSelectedImages}
+                        disabled={!s3UploadEndpoint || uploading || selectedFiles.length === 0}
+                      >
+                        {uploading ? t("common.loading") : t("admin.uploadImages")}
+                      </Button>
+                      {uploadError && <p className={styles.error}>{uploadError.message}</p>}
+                    </div>
                     <label className={styles.field}>
                       <span>{t("admin.modelUrl")}</span>
                       <input value={editForm.modelUrl} onChange={(event) => updateForm("modelUrl", event.target.value)} />

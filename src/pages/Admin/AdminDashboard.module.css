@@ -236,6 +236,60 @@
   width: 1rem;
 }
 
+.uploadPanel {
+  align-items: center;
+  background: #f8fbff;
+  border: 1px solid #dce5f2;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  padding: 0.9rem;
+}
+
+.uploadPanel strong {
+  color: #1246a0;
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.uploadPanel p {
+  color: #475569;
+  font-family: Arial, sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.filePicker {
+  align-items: center;
+  border: 1px dashed #9db2d2;
+  border-radius: 8px;
+  color: #1246a0;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: Arial, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 2.4rem;
+  padding: 0.45rem 0.7rem;
+  white-space: nowrap;
+}
+
+.filePicker input {
+  display: none;
+}
+
+.fileCount {
+  color: #64748b;
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
 .editActions {
   display: flex;
   justify-content: flex-end;
@@ -257,5 +311,14 @@
 
   .editHeader {
     flex-direction: column;
+  }
+
+  .uploadPanel {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .filePicker {
+    width: 100%;
   }
 }
