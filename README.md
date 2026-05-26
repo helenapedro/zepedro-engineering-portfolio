@@ -108,7 +108,7 @@ The architecture is designed for high-resolution engineering assets delivered th
 
 - [`src/pages/Admin/AdminDashboard.jsx`](src/pages/Admin/AdminDashboard.jsx): protected Firebase Auth admin shell with project inventory and metadata editing.
 - [`src/pages/Admin/useAdminAuth.ts`](src/pages/Admin/useAdminAuth.ts): Firebase Authentication listener, email/password sign-in, sign-out, and optional admin email allow-list.
-- The current CMS slice supports project metadata updates through Firestore `updateDoc`; uploads and destructive deletes remain disabled until storage policies are finalized.
+- The current CMS slice supports project creation with `setDoc`, metadata updates with `updateDoc`, and explicit-confirmation deletion with `deleteDoc`.
 - Admin writes are expected to be protected by Firestore rules using an `admins/{uid}` allow-list model.
 
 ## Real-World Engineering Context
@@ -215,12 +215,13 @@ Example admin document:
 }
 ```
 
-The current CMS editing flow updates existing project metadata only. It does not upload files, create new project records, or permanently delete records.
+The current CMS flow can create, update, and delete project metadata. Image upload UI is prepared for a presigned S3 endpoint, but it remains inactive until `REACT_APP_S3_UPLOAD_ENDPOINT` is configured.
 
 ## Admin Editable Fields
 
 The protected admin dashboard can update:
 
+- project records through create, update, and delete workflows
 - localized title, organization, location, description, and outcome fields
 - latitude and longitude metadata
 - public visibility through `isVisible`
@@ -334,7 +335,7 @@ The current implementation prepares the UI and data contract. Full browser rende
 - GIS Integration: interactive mapping shell is in place; next step is adding verified coordinates to Firestore from `project-locations.template.json`.
 - 3D BIM Visualization: model asset shell is in place; next step is attaching optimized `.glb` / `.gltf` assets from `project-model-assets.template.json` and enabling full Three.js rendering.
 - Enterprise Admin CMS: authenticated content management with Firebase Auth, Firestore rules, and controlled S3 uploads.
-- Phase 3 first slice: Firebase Auth protected admin shell, project inventory, metadata editing, and presigned S3 image upload integration are in place; create/delete workflows and storage policy hardening remain future work.
+- Phase 3 first slice: Firebase Auth protected admin shell, project inventory, project create/update/delete workflows, metadata editing, and presigned S3 image upload integration are in place; storage policy hardening and operational audit safeguards remain future work.
 - AI/LLM Assistant: RAG-based search over project documents, site reports, and technical specifications.
 - Computer Vision: automated tagging and progress verification for QHSE and construction milestone tracking.
 

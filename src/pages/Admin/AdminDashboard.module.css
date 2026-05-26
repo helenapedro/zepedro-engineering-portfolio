@@ -111,6 +111,12 @@
   margin-bottom: 1rem;
 }
 
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 1rem;
+}
+
 .metric {
   background: #f8fbff;
   border: 1px solid #dce5f2;
@@ -183,6 +189,12 @@
 .statusHidden {
   background: #f1f5f9;
   color: #475569;
+}
+
+.rowActions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .editPanel {

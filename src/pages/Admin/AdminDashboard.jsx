@@ -200,7 +200,14 @@ const AdminDashboard = () => {
 
   const projects = useMemo(() => {
     const records = Array.isArray(data) ? data : [];
-    return records
+    const recordIds = new Set(records.map((project) => project.id));
+    const locallyCreated = Object.entries(localUpdates)
+      .filter(([id]) => !recordIds.has(id) && !localDeletes[id])
+      .map(([id, project]) => ({ id, ...project }));
+
+    const combinedRecords = [...records, ...locallyCreated];
+
+    return combinedRecords
       .filter((project) => !localDeletes[project.id])
       .map((project) => ({ ...project, ...(localUpdates[project.id] || {}) }))
       .map((project) => {
@@ -266,7 +273,7 @@ const AdminDashboard = () => {
       const files = Array.from(selectedFiles);
       const signedUploads = await requestPresignedUploads({
         user,
-        projectId: editingProject.id,
+        projectId: editingProject.id || slugify(editForm.projectId || editForm.titleEn),
         files,
       });
 
@@ -512,9 +519,8 @@ const AdminDashboard = () => {
                 <form className={styles.editPanel} onSubmit={saveProject}>
                   <div className={styles.editHeader}>
                     <div>
-                      <h2>{t("admin.editProject")}</h2>
                       <h2>{t(formMode === "create" ? "admin.createProject" : "admin.editProject")}</h2>
-                      <span>{editingProject.id}</span>
+                      <span>{formMode === "create" ? editForm.projectId || t("admin.projectId") : editingProject.id}</span>
                     </div>
                     <Button type="button" variant="secondary" onClick={cancelEditing}>
                       {t("admin.cancel")}
