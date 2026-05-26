@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import useData from "../../Hooks/useData";
 import db from "../../config/firebase";
 import { getLanguageFromPath } from "../../i18n/routes";
@@ -33,6 +33,14 @@ const localizedPair = (en, pt) => ({
   en: en.trim(),
   pt: pt.trim() || en.trim(),
 });
+
+const slugify = (value) =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 const textToList = (value) =>
   value
@@ -109,6 +117,7 @@ const makeEditForm = (project) => {
   const imageRefs = project.imageRefs || project.media?.images || [];
 
   return {
+    projectId: project.id || project.slug || "",
     titleEn: valueForLanguage(project.title, "en"),
     titlePt: valueForLanguage(project.title, "pt"),
     organizationEn: valueForLanguage(project.organization, "en"),
@@ -131,6 +140,30 @@ const makeEditForm = (project) => {
     isVisible: project.isVisible !== false,
   };
 };
+
+const makeCreateForm = () => ({
+  projectId: "",
+  titleEn: "",
+  titlePt: "",
+  organizationEn: "",
+  organizationPt: "",
+  locationEn: "",
+  locationPt: "",
+  contextEn: "",
+  contextPt: "",
+  outcomeEn: "",
+  outcomePt: "",
+  latitude: "",
+  longitude: "",
+  imageRefs: "",
+  modelUrl: "",
+  modelTitle: "",
+  modelFormat: "",
+  modelSize: "",
+  modelSource: "",
+  modelPreview: "",
+  isVisible: false,
+});
 
 const getProjectLocationLabel = (project, language) => {
   const location = project.location;
@@ -155,10 +188,12 @@ const AdminDashboard = () => {
   const [password, setPassword] = useState("");
   const [editingProject, setEditingProject] = useState(null);
   const [editForm, setEditForm] = useState(null);
+  const [formMode, setFormMode] = useState("edit");
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState(null);
   const [saveMessage, setSaveMessage] = useState("");
   const [localUpdates, setLocalUpdates] = useState({});
+  const [localDeletes, setLocalDeletes] = useState({});
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
@@ -166,6 +201,7 @@ const AdminDashboard = () => {
   const projects = useMemo(() => {
     const records = Array.isArray(data) ? data : [];
     return records
+      .filter((project) => !localDeletes[project.id])
       .map((project) => ({ ...project, ...(localUpdates[project.id] || {}) }))
       .map((project) => {
         const locationText = getProjectLocationLabel(project, language);
@@ -178,7 +214,7 @@ const AdminDashboard = () => {
         };
       })
       .sort((a, b) => String(a.localizedTitle).localeCompare(String(b.localizedTitle)));
-  }, [data, language, localUpdates]);
+  }, [data, language, localUpdates, localDeletes]);
 
   const visibleCount = projects.filter((project) => project.isVisible !== false).length;
   const gpsCount = projects.filter((project) => project.hasCoordinates).length;
@@ -192,8 +228,19 @@ const AdminDashboard = () => {
   const startEditing = (project) => {
     setEditingProject(project);
     setEditForm(makeEditForm(project));
+    setFormMode("edit");
     setSaveError(null);
     setSaveMessage("");
+  };
+
+  const startCreating = () => {
+    setEditingProject({ id: "", media: {} });
+    setEditForm(makeCreateForm());
+    setFormMode("create");
+    setSaveError(null);
+    setSaveMessage("");
+    setUploadError(null);
+    setSelectedFiles([]);
   };
 
   const updateForm = (field, value) => {
@@ -260,6 +307,7 @@ const AdminDashboard = () => {
       : null;
 
     const payload = {
+      slug: formMode === "create" ? slugify(editForm.projectId || editForm.titleEn) : editingProject.slug || editingProject.id,
       title: localizedPair(editForm.titleEn, editForm.titlePt),
       organization: localizedPair(editForm.organizationEn, editForm.organizationPt),
       location: localizedPair(editForm.locationEn, editForm.locationPt),
@@ -277,24 +325,69 @@ const AdminDashboard = () => {
       updatedAt: serverTimestamp(),
     };
 
+    if (formMode === "create") {
+      payload.createdAt = serverTimestamp();
+    }
+
     setSaving(true);
     setSaveError(null);
     setSaveMessage("");
 
     try {
-      await updateDoc(doc(db, "projects", editingProject.id), payload);
+      const projectId = formMode === "create"
+        ? slugify(editForm.projectId || editForm.titleEn)
+        : editingProject.id;
+
+      if (!projectId) {
+        throw new Error("Project ID is required.");
+      }
+
+      if (formMode === "create") {
+        await setDoc(doc(db, "projects", projectId), payload);
+      } else {
+        await updateDoc(doc(db, "projects", projectId), payload);
+      }
+
       invalidateCache(createCacheKey("collection", "projects"));
-      invalidateCache(createCacheKey("doc", `projects/${editingProject.id}`));
+      invalidateCache(createCacheKey("doc", `projects/${projectId}`));
       setLocalUpdates((current) => ({
         ...current,
-        [editingProject.id]: {
+        [projectId]: {
+          id: projectId,
           ...payload,
           updatedAt: new Date().toISOString(),
         },
       }));
-      setSaveMessage(t("admin.saved"));
+      setSaveMessage(t(formMode === "create" ? "admin.created" : "admin.saved"));
       setEditingProject(null);
       setEditForm(null);
+    } catch (error) {
+      setSaveError(error instanceof Error ? error : new Error(String(error)));
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const deleteProject = async (project) => {
+    const confirmation = window.prompt(`${t("admin.deleteProject")}: ${project.localizedTitle}\n${t("admin.deleteConfirm")}`);
+    if (confirmation !== "DELETE") return;
+
+    setSaving(true);
+    setSaveError(null);
+    setSaveMessage("");
+
+    try {
+      await deleteDoc(doc(db, "projects", project.id));
+      invalidateCache(createCacheKey("collection", "projects"));
+      invalidateCache(createCacheKey("doc", `projects/${project.id}`));
+      setLocalDeletes((current) => ({ ...current, [project.id]: true }));
+      setLocalUpdates((current) => {
+        const next = { ...current };
+        delete next[project.id];
+        return next;
+      });
+      if (editingProject?.id === project.id) cancelEditing();
+      setSaveMessage(t("admin.deleted"));
     } catch (error) {
       setSaveError(error instanceof Error ? error : new Error(String(error)));
     } finally {
@@ -357,6 +450,12 @@ const AdminDashboard = () => {
                 <span className={styles.metric}>{t("admin.modelReady", { count: modelCount })}</span>
               </div>
 
+              <div className={styles.toolbar}>
+                <Button type="button" variant="primary" onClick={startCreating}>
+                  {t("admin.create")}
+                </Button>
+              </div>
+
               <div className={styles.tableWrap}>
                 <table className={styles.table}>
                   <caption>{t("admin.dashboard")}</caption>
@@ -394,9 +493,14 @@ const AdminDashboard = () => {
                           </span>
                         </td>
                         <td>
-                          <Button size="sm" variant="outline-primary" onClick={() => startEditing(project)}>
-                            {t("admin.edit")}
-                          </Button>
+                          <div className={styles.rowActions}>
+                            <Button size="sm" variant="outline-primary" onClick={() => startEditing(project)}>
+                              {t("admin.edit")}
+                            </Button>
+                            <Button size="sm" variant="outline-danger" onClick={() => deleteProject(project)} disabled={saving}>
+                              {t("admin.delete")}
+                            </Button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -409,6 +513,7 @@ const AdminDashboard = () => {
                   <div className={styles.editHeader}>
                     <div>
                       <h2>{t("admin.editProject")}</h2>
+                      <h2>{t(formMode === "create" ? "admin.createProject" : "admin.editProject")}</h2>
                       <span>{editingProject.id}</span>
                     </div>
                     <Button type="button" variant="secondary" onClick={cancelEditing}>
@@ -417,6 +522,15 @@ const AdminDashboard = () => {
                   </div>
 
                   <div className={styles.formGrid}>
+                    <label className={`${styles.field} ${styles.fullWidth}`}>
+                      <span>{t("admin.projectId")}</span>
+                      <input
+                        value={editForm.projectId}
+                        onChange={(event) => updateForm("projectId", slugify(event.target.value))}
+                        disabled={formMode !== "create"}
+                        required={formMode === "create"}
+                      />
+                    </label>
                     <label className={styles.field}>
                       <span>{t("admin.titleEn")}</span>
                       <input value={editForm.titleEn} onChange={(event) => updateForm("titleEn", event.target.value)} />
@@ -535,7 +649,7 @@ const AdminDashboard = () => {
                   {saveError && <p className={styles.error}>{saveError.message}</p>}
                   <div className={styles.editActions}>
                     <Button type="submit" variant="primary" disabled={saving}>
-                      {saving ? t("common.loading") : t("admin.save")}
+                      {saving ? t("common.loading") : t(formMode === "create" ? "admin.createSave" : "admin.save")}
                     </Button>
                   </div>
                 </form>
