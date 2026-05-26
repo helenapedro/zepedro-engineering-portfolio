@@ -79,6 +79,18 @@ const getMarkerPosition = ({ lat, lng }) => {
   };
 };
 
+const getMarkerStyle = (coordinates, index) => {
+  const base = getMarkerPosition(coordinates);
+  const angle = (index * 72 * Math.PI) / 180;
+  const radius = index === 0 ? 0 : 18;
+
+  return {
+    ...base,
+    "--marker-offset-x": `${Math.cos(angle) * radius}px`,
+    "--marker-offset-y": `${Math.sin(angle) * radius}px`,
+  };
+};
+
 const ProjectMap = () => {
   const { t } = useTranslation();
   const language = getLanguageFromPath(window.location.pathname);
@@ -123,6 +135,12 @@ const ProjectMap = () => {
           <div className={styles.angolaShape} aria-hidden="true">
             <svg viewBox="0 0 320 420" focusable="false">
               <path
+                d="M5 16 36 18 44 45 33 78 8 74 0 48Z"
+                fill="rgba(31, 95, 255, 0.16)"
+                stroke="#7b93bd"
+                strokeWidth="3"
+              />
+              <path
                 d="M92 24 227 30 236 86 284 88 278 159 250 184 260 268 221 318 212 389 139 397 119 341 80 314 94 256 54 215 77 164 63 99Z"
                 fill="rgba(31, 95, 255, 0.10)"
                 stroke="#7b93bd"
@@ -137,7 +155,7 @@ const ProjectMap = () => {
                 key={project.id}
                 to={routePath("projects", language, { id: project.id })}
                 className={styles.marker}
-                style={getMarkerPosition(project.location.coordinates)}
+                style={getMarkerStyle(project.location.coordinates, index)}
                 aria-label={`${project.title}: ${project.location.text}`}
                 title={`${project.title} - ${project.location.text}`}
               >
@@ -152,6 +170,24 @@ const ProjectMap = () => {
         </div>
 
         <aside className={styles.sidePanel}>
+          {mappedProjects.length > 0 && (
+            <>
+              <h2>{t("map.mappedTitle")}</h2>
+              <ul className={styles.pendingList}>
+                {mappedProjects.map((project, index) => (
+                  <li key={project.id} className={styles.pendingItem}>
+                    <strong className={styles.projectTitle}>{index + 1}. {project.title}</strong>
+                    <span className={styles.projectMeta}>
+                      {project.location.text || t("map.unknownLocation")}
+                    </span>
+                    <Link to={routePath("projects", language, { id: project.id })} className={styles.projectLink}>
+                      {t("map.openProject")}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
           <h2>{t("map.pendingTitle")}</h2>
           <p>{t("map.pendingText")}</p>
           <ul className={styles.pendingList}>

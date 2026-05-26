@@ -67,7 +67,7 @@
 }
 
 .angolaShape {
-  inset: 8% 18% 10% 20%;
+  inset: 7% 15% 9% 13%;
   position: absolute;
 }
 
@@ -90,7 +90,7 @@
   justify-content: center;
   min-width: 2rem;
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translate(var(--marker-offset-x, 0), var(--marker-offset-y, 0));
 }
 
 .emptyMapState {
@@ -134,8 +134,8 @@
   display: grid;
   gap: 0.65rem;
   list-style: none;
-  margin: 0;
-  max-height: 32rem;
+  margin: 0 0 1rem;
+  max-height: 18rem;
   overflow: auto;
   padding: 0;
 }
