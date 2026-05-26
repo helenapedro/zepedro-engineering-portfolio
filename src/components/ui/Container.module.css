@@ -26,6 +26,9 @@
   margin: auto;
   padding: var(--padding-container);
   transition: var(--transition);
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
 }
 
 .cardContainer:hover {
@@ -41,6 +44,41 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 736px) {
+  .cardContainer {
+    border-radius: 18px;
+    padding: 0.5rem;
+    transform: none;
+  }
+
+  .cardContainer:hover {
+    transform: none;
+  }
+
+  .panel {
+    border-radius: 18px;
+    padding: 0.75rem;
+    transform: none;
+  }
+
+  .panel:hover {
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .cardContainer {
+    padding: 0.35rem;
+  }
+
+  .panel {
+    padding: 0.55rem;
+  }
 }
 
 .panel:hover {
