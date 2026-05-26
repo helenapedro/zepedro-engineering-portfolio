@@ -8,8 +8,12 @@
   display: flex;
   flex-direction: column;
   margin: auto;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
   padding: var(--padding-container);
   transition: var(--transition);
+  width: 100%;
 }
 
 .project:hover {
@@ -24,6 +28,9 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
   transition: var(--transition);
 }
 
@@ -104,6 +111,7 @@
   font-family: "eb_garamond_sc12_regular", sans-serif;
   hyphens: auto;
   line-height: normal;
+  overflow-wrap: anywhere;
   text-align: justify;
   word-spacing: normal;
 }
@@ -136,6 +144,7 @@
   list-style-image: url("../../assets/images/tick.svg");
   padding-left: 2rem;
   color: var(--color-headings);
+  max-width: 100%;
 }
 
 .ulItems {
@@ -146,6 +155,7 @@
 .projectActivityItem {
   line-height: 1.2;
   margin-bottom: 1rem;
+  overflow-wrap: anywhere;
   padding-left: 0.5rem;
 }
 
@@ -154,10 +164,51 @@
 }
 
 @media (max-width: 768px) {
+  .project,
+  .panel {
+    border-radius: 18px;
+    padding: 0.65rem;
+    transform: none;
+  }
+
+  .project:hover,
+  .panel:hover {
+    transform: none;
+  }
+
+  .projectdescription {
+    font-size: 0.95rem;
+    line-height: 1.38;
+    text-align: left;
+  }
+
+  .ulItems--tick {
+    padding-left: 1.15rem;
+  }
+
+  .projectActivityItem {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    margin-bottom: 0.85rem;
+    padding-left: 0.25rem;
+  }
+
   .endYear {
     width: 100%;
     margin-left: 8px;
     margin-top: 4px;
+  }
+}
+
+@media (max-width: 380px) {
+  .project,
+  .panel {
+    padding: 0.45rem;
+  }
+
+  .projectdescription,
+  .projectActivityItem {
+    font-size: 0.88rem;
   }
 }
 
