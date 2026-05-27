@@ -45,9 +45,10 @@ This phase shifts the platform from a static gallery to an interactive digital t
   - Integration of Mapbox or Leaflet for interactive GIS mapping of project coordinates.
   - Deployment of Three.js to render complex 3D architectural models.
 - Current Preparation:
-  - A GIS-ready `/map` and `/pt/mapa` project location shell now supports future latitude/longitude markers and gracefully lists projects that still need verified coordinates.
+  - A Leaflet/OpenStreetMap-powered `/map` and `/pt/mapa` project location experience now supports panning, zooming, numbered markers, localized popups, and fallback lists for projects that still need verified coordinates.
   - `project-locations.template.json` provides a structured intake file for collecting project coordinates before updating Firestore.
-  - Project detail pages now support an optional `modelAsset` field for 3D/BIM model metadata, with `project-model-assets.template.json` prepared for collecting optimized `.glb` or `.gltf` assets.
+  - Project detail pages now support an optional `modelAsset` field for 3D/BIM model metadata and render valid `.glb` / `.gltf` assets with Three.js, orbit controls, lighting, responsive resizing, and preview fallback handling.
+  - `project-model-assets.template.json` is prepared for collecting optimized `.glb` or `.gltf` assets.
 - Firestore/S3 Integration:
   - Firestore will store GeoJSON data for site boundaries and project coordinates.
   - Heavy .gltf or .obj files, such as the Electronic Model of Tchiela Farm, will be delivered via CloudFront edge caching. This mitigates latency and payload size constraints, ensuring high-performance 3D rendering for global users.
@@ -103,10 +104,12 @@ The following task list outlines the transformation from a high-performance SPA 
 
 - [x] Baseline: Established React SPA with 91.2% TypeScript, Firestore server-side querying, and multi-tier caching.
 - [x] Milestone 1: Deployment of PWA with i18n support for localized projects like the Buco-Zau Apartments.
-- [x] Milestone 2A: GIS-ready map shell, localized routes, coordinate intake template, and missing-coordinate fallback states.
-- [ ] Milestone 2B: Verified GPS coordinates and production map provider integration for project sites across Luanda, Soyo, Cabinda, and other regions.
+- [x] Milestone 2A: GIS-ready localized routes, coordinate intake template, and missing-coordinate fallback states.
+- [x] Milestone 2B: Interactive Leaflet/OpenStreetMap integration with real markers for projects that have coordinates.
+- [ ] Milestone 2C: Remaining verified GPS coordinates and production map provider policy for project sites across Luanda, Soyo, Cabinda, and other regions.
 - [x] Milestone 3A: 3D/BIM model asset schema, project detail model section, and model intake template.
-- [ ] Milestone 3B: High-performance Three.js rendering of optimized `.glb` / `.gltf` models such as the Electronic Model of Tchiela Farm.
+- [x] Milestone 3B: High-performance Three.js rendering of optimized `.glb` / `.gltf` models such as the Electronic Model of Tchiela Farm.
+- [ ] Milestone 3C: Production-optimized model asset collection, compression, and CDN validation.
 - [x] Milestone 4A: Firebase Auth protected Admin/CMS shell, admin allow-list model, project inventory, project metadata CRUD, and presigned S3 image upload integration with Lambda handler.
 - [ ] Milestone 4B: Enterprise hardening with model/document uploads, strict storage policies, audit history, and operational safeguards.
 - [ ] Milestone 5: Deployment of AI-augmented QHSE coordination tools for automated verification of PIIM project milestones.

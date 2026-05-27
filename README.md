@@ -9,9 +9,9 @@ The platform is more than a portfolio site: it is a technical case study in buil
 ## Current Implementation Status
 
 - Phase 1 complete: multilingual routing, Firestore localization adapters, Portuguese fallback coverage, PWA manifest, service worker, and offline shell.
-- Phase 2 foundation complete: GIS-ready map shell, coordinate intake template, 3D/BIM model asset schema, and model intake template.
+- Phase 2 active: interactive Leaflet/OpenStreetMap project map, coordinate intake template, Three.js GLTF/GLB model viewer, 3D/BIM model asset schema, and model intake template.
 - Phase 3 foundation active: Firebase Auth protected admin area, admin allow-list support, project inventory, and Firestore metadata editing.
-- Still pending: verified project GPS coordinates, production map provider integration, true Three.js model rendering, create/delete workflows, and authenticated media/model upload policies.
+- Still pending: remaining verified project GPS coordinates, production tile/provider policy decisions, validated optimized model assets, and authenticated media/model upload policy hardening.
 
 ### Multi-Tier Caching System
 
@@ -61,6 +61,7 @@ The architecture is designed for high-resolution engineering assets delivered th
 
 - Frontend: React 18, React Router v6, TypeScript, React-Bootstrap, CSS Modules.
 - Internationalization: `i18next`, `react-i18next`, `i18next-browser-languagedetector`.
+- GIS and 3D: Leaflet, OpenStreetMap tiles, Three.js, GLTFLoader, OrbitControls.
 - Backend and Database: Firebase Firestore.
 - Storage and CDN: AWS S3, AWS CloudFront-ready asset delivery.
 - PWA: Custom service worker, web manifest, offline fallback, installable shell.
@@ -94,14 +95,14 @@ The architecture is designed for high-resolution engineering assets delivered th
 - [`public/offline.html`](public/offline.html): offline fallback screen.
 - [`src/pwa/registerServiceWorker.ts`](src/pwa/registerServiceWorker.ts): production service worker registration.
 
-### Phase 2 GIS Foundation
+### Phase 2 Interactive GIS
 
-- [`src/pages/Map/ProjectMap.jsx`](src/pages/Map/ProjectMap.jsx): GIS-ready project location view with marker support for future latitude/longitude records and a fallback list for projects still missing coordinates.
+- [`src/pages/Map/ProjectMap.jsx`](src/pages/Map/ProjectMap.jsx): interactive Leaflet/OpenStreetMap project location view with real map panning, zooming, numbered markers, popups, localized project links, and a fallback list for projects still missing coordinates.
 - [`project-locations.template.json`](project-locations.template.json): coordinate intake template for collecting verified GPS data before updating Firestore.
 
-### Phase 2 3D/BIM Foundation
+### Phase 2 3D/BIM Viewer
 
-- [`src/components/project/BimModelViewer.tsx`](src/components/project/BimModelViewer.tsx): project detail model asset section that stays hidden until a model URL is configured.
+- [`src/components/project/BimModelViewer.tsx`](src/components/project/BimModelViewer.tsx): Three.js-powered project detail viewer for optional `.glb` / `.gltf` model assets, with orbit controls, lighting, responsive resizing, metadata, and preview fallback handling.
 - [`project-model-assets.template.json`](project-model-assets.template.json): intake template for collecting optimized `.glb` / `.gltf` model URLs, source metadata, file size labels, and preview images.
 
 ### Phase 3 Admin/CMS Foundation
@@ -329,12 +330,12 @@ Project detail pages support an optional model asset field. If this field is mis
 }
 ```
 
-The current implementation prepares the UI and data contract. Full browser rendering should be added once optimized model files are available.
+When a valid `.glb` or `.gltf` URL is provided, the project detail page renders the model in-browser with Three.js orbit controls. If loading fails, the viewer falls back to the configured preview image when one exists.
 
 ## Future Technical Roadmap
 
-- GIS Integration: interactive mapping shell is in place; next step is adding verified coordinates to Firestore from `project-locations.template.json`.
-- 3D BIM Visualization: model asset shell is in place; next step is attaching optimized `.glb` / `.gltf` assets from `project-model-assets.template.json` and enabling full Three.js rendering.
+- GIS Integration: interactive Leaflet/OpenStreetMap mapping is in place; next step is adding the remaining verified coordinates to Firestore from `project-locations.template.json`.
+- 3D BIM Visualization: Three.js rendering is in place; next step is attaching production-optimized `.glb` / `.gltf` assets from `project-model-assets.template.json`.
 - Enterprise Admin CMS: authenticated content management with Firebase Auth, Firestore rules, and controlled S3 uploads.
 - Phase 3 first slice: Firebase Auth protected admin shell, project inventory, project create/update/delete workflows, metadata editing, and presigned S3 image upload integration are in place; storage policy hardening and operational audit safeguards remain future work.
 - AI/LLM Assistant: RAG-based search over project documents, site reports, and technical specifications.

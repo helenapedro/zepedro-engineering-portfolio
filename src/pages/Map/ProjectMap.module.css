@@ -47,36 +47,25 @@
 
 .mapSurface {
   aspect-ratio: 16 / 11;
-  background:
-    linear-gradient(135deg, rgba(31, 95, 255, 0.08), rgba(22, 150, 127, 0.08)),
-    radial-gradient(circle at 35% 30%, rgba(31, 95, 255, 0.14), transparent 28%),
-    #f8fbff;
+  background: #eaf1f8;
   border: 1px solid #cad5e5;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
 }
 
-.mapGrid {
-  inset: 0;
-  position: absolute;
-  background-image:
-    linear-gradient(rgba(18, 70, 160, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 70, 160, 0.09) 1px, transparent 1px);
-  background-size: 12.5% 12.5%;
-}
-
-.angolaShape {
-  inset: 7% 15% 9% 13%;
-  position: absolute;
-}
-
-.angolaShape svg {
+.leafletMap {
   height: 100%;
   width: 100%;
 }
 
-.marker {
+.mapSurface :global(.leaflet-container) {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+.leafletMarker {
   align-items: center;
   background: #1f5fff;
   border: 2px solid #fff;
@@ -89,8 +78,14 @@
   height: 2rem;
   justify-content: center;
   min-width: 2rem;
-  position: absolute;
-  transform: translate(-50%, -50%) translate(var(--marker-offset-x, 0), var(--marker-offset-y, 0));
+}
+
+.leafletMarker span {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }
 
 .emptyMapState {

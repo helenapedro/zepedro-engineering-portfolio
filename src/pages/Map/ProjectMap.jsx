@@ -1,18 +1,13 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import useData from "../../Hooks/useData";
 import { getLanguageFromPath, routePath } from "../../i18n/routes";
 import { getLocalizedValue } from "../../i18n/localizedValue";
 import mainStyles from "../../components/Main.module.css";
 import styles from "./ProjectMap.module.css";
-
-const ANGOLA_BOUNDS = {
-  north: -4.25,
-  south: -18.1,
-  west: 11.3,
-  east: 24.2,
-};
 
 const toNumber = (value) => {
   if (value === null || value === undefined || value === "") return null;
@@ -69,32 +64,12 @@ const resolveLocation = (project, language) => {
   };
 };
 
-const getMarkerPosition = ({ lat, lng }) => {
-  const left = ((lng - ANGOLA_BOUNDS.west) / (ANGOLA_BOUNDS.east - ANGOLA_BOUNDS.west)) * 100;
-  const top = ((ANGOLA_BOUNDS.north - lat) / (ANGOLA_BOUNDS.north - ANGOLA_BOUNDS.south)) * 100;
-
-  return {
-    left: `${Math.min(96, Math.max(4, left))}%`,
-    top: `${Math.min(96, Math.max(4, top))}%`,
-  };
-};
-
-const getMarkerStyle = (coordinates, index) => {
-  const base = getMarkerPosition(coordinates);
-  const angle = (index * 72 * Math.PI) / 180;
-  const radius = index === 0 ? 0 : 18;
-
-  return {
-    ...base,
-    "--marker-offset-x": `${Math.cos(angle) * radius}px`,
-    "--marker-offset-y": `${Math.sin(angle) * radius}px`,
-  };
-};
-
 const ProjectMap = () => {
   const { t } = useTranslation();
   const language = getLanguageFromPath(window.location.pathname);
   const { data, loading, error } = useData("projects");
+  const mapElementRef = useRef(null);
+  const mapInstanceRef = useRef(null);
 
   const projects = useMemo(() => {
     const records = Array.isArray(data) ? data : [];
@@ -115,6 +90,63 @@ const ProjectMap = () => {
   const mappedProjects = projects.filter((project) => project.location.coordinates);
   const pendingProjects = projects.filter((project) => !project.location.coordinates);
 
+  useEffect(() => {
+    if (!mapElementRef.current || !mappedProjects.length) return undefined;
+
+    if (!mapInstanceRef.current) {
+      mapInstanceRef.current = L.map(mapElementRef.current, {
+        scrollWheelZoom: false,
+        zoomControl: true,
+      }).setView([-11.2, 17.8], 5);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18,
+      }).addTo(mapInstanceRef.current);
+    }
+
+    const map = mapInstanceRef.current;
+    const markerLayer = L.layerGroup().addTo(map);
+    const bounds = [];
+
+    mappedProjects.forEach((project, index) => {
+      const { lat, lng } = project.location.coordinates;
+      bounds.push([lat, lng]);
+
+      const marker = L.marker([lat, lng], {
+        icon: L.divIcon({
+          className: styles.leafletMarker,
+          html: `<span>${index + 1}</span>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 17],
+        }),
+      }).addTo(markerLayer);
+
+      marker.bindPopup(`
+        <strong>${project.title}</strong>
+        <br />
+        <span>${project.location.text || t("map.unknownLocation")}</span>
+      `);
+    });
+
+    if (bounds.length) {
+      map.fitBounds(bounds, { padding: [36, 36], maxZoom: 9 });
+    }
+
+    setTimeout(() => map.invalidateSize(), 0);
+
+    return () => {
+      markerLayer.remove();
+    };
+  }, [mappedProjects, t]);
+
+  useEffect(() => () => {
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.remove();
+      mapInstanceRef.current = null;
+    }
+  }, []);
+
   if (loading) return <p>{t("common.loading")}</p>;
   if (error) return <p>{t("common.error")}: {error.message}</p>;
 
@@ -130,38 +162,9 @@ const ProjectMap = () => {
       </header>
 
       <div className={styles.mapLayout}>
-        <div className={styles.mapSurface} role="img" aria-label={t("map.mapLabel")}>
-          <div className={styles.mapGrid} aria-hidden="true" />
-          <div className={styles.angolaShape} aria-hidden="true">
-            <svg viewBox="0 0 320 420" focusable="false">
-              <path
-                d="M5 16 36 18 44 45 33 78 8 74 0 48Z"
-                fill="rgba(31, 95, 255, 0.16)"
-                stroke="#7b93bd"
-                strokeWidth="3"
-              />
-              <path
-                d="M92 24 227 30 236 86 284 88 278 159 250 184 260 268 221 318 212 389 139 397 119 341 80 314 94 256 54 215 77 164 63 99Z"
-                fill="rgba(31, 95, 255, 0.10)"
-                stroke="#7b93bd"
-                strokeWidth="3"
-              />
-            </svg>
-          </div>
-
+        <div className={styles.mapSurface} aria-label={t("map.mapLabel")}>
           {mappedProjects.length ? (
-            mappedProjects.map((project, index) => (
-              <Link
-                key={project.id}
-                to={routePath("projects", language, { id: project.id })}
-                className={styles.marker}
-                style={getMarkerStyle(project.location.coordinates, index)}
-                aria-label={`${project.title}: ${project.location.text}`}
-                title={`${project.title} - ${project.location.text}`}
-              >
-                {index + 1}
-              </Link>
-            ))
+            <div ref={mapElementRef} className={styles.leafletMap} />
           ) : (
             <div className={styles.emptyMapState}>
               <p>{t("map.pendingText")}</p>
@@ -195,7 +198,7 @@ const ProjectMap = () => {
               <li key={project.id} className={styles.pendingItem}>
                 <strong className={styles.projectTitle}>{project.title}</strong>
                 <span className={styles.projectMeta}>
-                  {project.location.text || t("map.unknownLocation")} · {t("map.noCoordinates")}
+                  {project.location.text || t("map.unknownLocation")} - {t("map.noCoordinates")}
                 </span>
                 <Link to={routePath("projects", language, { id: project.id })} className={styles.projectLink}>
                   {t("map.openProject")}
