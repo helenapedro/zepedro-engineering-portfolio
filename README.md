@@ -110,6 +110,7 @@ The architecture is designed for high-resolution engineering assets delivered th
 - [`src/pages/Admin/useAdminAuth.ts`](src/pages/Admin/useAdminAuth.ts): Firebase Authentication listener, email/password sign-in, sign-out, and optional admin email allow-list.
 - The current CMS slice supports project creation with `setDoc`, metadata updates with `updateDoc`, and explicit-confirmation deletion with `deleteDoc`.
 - Admin writes are expected to be protected by Firestore rules using an `admins/{uid}` allow-list model.
+- [`serverless/s3-presign/handler.mjs`](serverless/s3-presign/handler.mjs): AWS Lambda handler that verifies Firebase admins and returns temporary S3 upload URLs for high-resolution project images.
 
 ## Real-World Engineering Context
 
@@ -163,7 +164,7 @@ REACT_APP_S3_UPLOAD_ENDPOINT=https://your-api.example.com/admin/s3-presign
 
 `REACT_APP_ADMIN_EMAILS` is optional but recommended. It gates the client admin UI to specific authenticated Firebase users. It is not a replacement for Firestore Security Rules.
 
-`REACT_APP_S3_UPLOAD_ENDPOINT` should point to a protected backend/serverless endpoint that verifies the Firebase ID token and returns presigned S3 upload instructions. Do not expose AWS access keys in the React app.
+`REACT_APP_S3_UPLOAD_ENDPOINT` should point to the protected Lambda/API Gateway endpoint in [`serverless/s3-presign`](serverless/s3-presign). It verifies the Firebase ID token and returns presigned S3 upload instructions. Do not expose AWS access keys in the React app.
 
 ## App Routes
 

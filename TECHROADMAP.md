@@ -69,6 +69,7 @@ The platform will evolve into a dynamic Content Management System (CMS), enablin
   - The admin dashboard currently provides project inventory plus create, update, and delete workflows for project metadata.
   - Editable project fields include localized titles, descriptions, location text, coordinates, visibility, image references, and 3D/BIM model references.
   - Presigned S3 upload integration is available through `REACT_APP_S3_UPLOAD_ENDPOINT`, allowing admins to upload high-resolution images without exposing AWS credentials in the browser.
+  - A deployable AWS Lambda presign handler exists under `serverless/s3-presign`, with Firebase admin verification and S3 object-key scoping.
   - Optional `REACT_APP_ADMIN_EMAILS` client gating is supported.
   - Firestore admin access is designed around authenticated users with matching `admins/{uid}` documents, so writes are not granted to every signed-in user.
 - Firestore/S3 Integration:
@@ -106,7 +107,7 @@ The following task list outlines the transformation from a high-performance SPA 
 - [ ] Milestone 2B: Verified GPS coordinates and production map provider integration for project sites across Luanda, Soyo, Cabinda, and other regions.
 - [x] Milestone 3A: 3D/BIM model asset schema, project detail model section, and model intake template.
 - [ ] Milestone 3B: High-performance Three.js rendering of optimized `.glb` / `.gltf` models such as the Electronic Model of Tchiela Farm.
-- [x] Milestone 4A: Firebase Auth protected Admin/CMS shell, admin allow-list model, project inventory, project metadata CRUD, and presigned S3 image upload integration.
+- [x] Milestone 4A: Firebase Auth protected Admin/CMS shell, admin allow-list model, project inventory, project metadata CRUD, and presigned S3 image upload integration with Lambda handler.
 - [ ] Milestone 4B: Enterprise hardening with model/document uploads, strict storage policies, audit history, and operational safeguards.
 - [ ] Milestone 5: Deployment of AI-augmented QHSE coordination tools for automated verification of PIIM project milestones.
 - [ ] Final Target: Full "Cognitive Engineering Platform" integration.

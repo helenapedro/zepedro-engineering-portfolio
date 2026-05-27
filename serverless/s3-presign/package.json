@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-s3-presign",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AWS Lambda presigned S3 upload endpoint for the construction engineering portfolio admin CMS.",
+  "main": "handler.mjs",
+  "scripts": {
+    "check": "node --check handler.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.699.0",
+    "@aws-sdk/s3-request-presigner": "^3.699.0",
+    "firebase-admin": "^12.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
